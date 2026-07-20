@@ -1,0 +1,160 @@
+# <project name> — operating instructions
+
+**Tier:** `<tier>` · **Framework:** Astronomer (`PROVISIONAL`) · **Doctrine:** `<doctrine path>`
+
+<what this project is about> — one paragraph: what is being studied, what cannot be
+experimented on here, and what a correct outcome would look like.
+
+This is the operational form of the doctrine, not a summary of it. `<doctrine path>/01-laws.md`
+carries the reasoning and the concrete failure behind every law. Cite laws by number; never
+paraphrase one into a new rule.
+
+**This file is a rendering, not a source.** Where it restates a vocabulary — the confidence
+tokens, the triage buckets — the authority is the doctrine, and this copy exists only so a
+session need not load the full corpus to work. That is permitted under L-14 on one condition:
+**a rendering is regenerated when its source changes, never edited in place.** If you find this
+file disagreeing with the doctrine, the doctrine is right and this file is stale.
+
+## Precedence
+
+<the precedence order>
+
+Higher wins, and the lower document is **wrong** — not "in tension," not "another perspective."
+Correct it or annotate it. Two absolutes: **reality outranks every document** (settle documents
+to the subject, however high they sit), and **frozen records are outranked but never corrected**
+(annotate in place).
+
+## The laws
+
+- **L-1** One document wins; the precedence order decides which.
+- **L-2** A decision supersedes only by *naming* what it replaces. Recency never wins.
+- **L-3** Observation and inference are different records. Type is a field, not a tone.
+- **L-4** Every claim carries scope. Unscoped is `ASSERTED-UNIVERSAL` → scrutiny, not trust.
+- **L-5** Co-occurrence is not shared cause. Two things together are two things.
+- **L-6** Refutation is a result. Keep the wrong calls in the record, marked.
+- **L-7** Nothing changes during observation. Not one line. Not the obvious thing.
+- **L-8** Validate small before scaling, with a GO/NO-GO gate at the boundary.
+- **L-9** The falsifier is written first — numeric, calibrated on the real measuring condition.
+- **L-10** One variable at a time, or write down that the result is unattributable.
+- **L-11** Measure your own baseline. Trust no quoted number — including numbers in this file.
+- **L-12** Verify at the right altitude. A check that cannot fail as it matters proves nothing.
+- **L-13** Records freeze (annotate); specifications live (rewrite). Never the same file.
+- **L-14** Vocabulary has one home. Consumers point at it; they never restate it.
+- **L-15** Name what cannot be delegated, then stop there. Honest stop beats plausible substitute.
+- **L-16** Make it work or tell the truth. False success outranks breakage as a defect class.
+- **L-17** On the third instance of a defect class, build a gate — not a third fix.
+
+## The loop
+
+`OBSERVE → TRIAGE → RESOLVE → ACT → RECORD →` (repeat). Run it at whatever scale the surprise
+deserves. Announce which phase you are in. The **forbidden** column is the part that binds.
+
+| Phase | Enter | Forbidden inside | Exit |
+|---|---|---|---|
+| **OBSERVE** | a declared window | changing *anything* about the subject; grouping by apparent cause; skipping an item as minor or irreproducible | write `INTAKE CLOSED` explicitly |
+| **TRIAGE** | intake closed | acting on a cluster; merging items that merely co-occurred | every item bucketed A–E, clustered or noted standalone; operator decisions listed in one place |
+| **RESOLVE** | a cluster + hypothesis | acting from the hypothesis; accepting a cause because it explains the symptom | `CONFIRMED`+citation, `REFUTED`+note, or `UNRESOLVED`+what would settle it |
+| **ACT** | a `CONFIRMED` cause | bundling unrelated changes; touching anything outside declared scope | pre-registered criterion evaluated against reality — including when it failed |
+| **RECORD** | the change landed | editing a frozen record; letting a living doc accrete a change-log | frozen record + living doc at current reality + ledger entry. Missing one = not closed |
+
+Inside OBSERVE: verbatim first, live timestamp, **conditions of observation**, appended
+immediately — a pass written up at the end is filtered through what you concluded during it.
+Inside ACT: smallest reversible change, one variable, change size (`minimal`/`medium`/`large`)
+declared before starting.
+
+## Confidence tokens
+
+Fixed vocabulary, in a field position. A reader skims past "probably"; they cannot skim a label.
+
+| Token | Use when | Also required |
+|---|---|---|
+| `CONFIRMED` | independently re-derived from the source | cite where |
+| `UNVERIFIED` | recorded, plausible, unchecked — **the default for anything new** | — |
+| `REFUTED` | actively disproven | keep the entry; never delete (L-6) |
+| `PROVISIONAL` | accepted for now | name the condition that reopens it |
+| `UNRESOLVED` | tried honestly, could not determine | state what would settle it |
+| `ACCEPTED` | imperfect and deliberately kept | state the reason |
+
+Nothing enters the record untokened. If you cannot choose, it is `UNVERIFIED`.
+
+**Triage buckets:** `A` cause proven + cited · `B` direction clear, cause unproven · `C` real
+problem, contested response → **operator decides** · `D` a want, not a problem · `E` seen once /
+accepted / cannot reproduce → **parked with a reason**. Severity (`stop`/`major`/`minor`/
+`question`) is recorded but is never the sort axis.
+
+## Hard rules
+
+1. **Never record an inference as an observation.** If you did not see it, it is `INFERENCE`, in
+   its own field, naming the claims it rests on.
+2. **Always demand scope on a claim.** Ask for the conditions — and never inherit the
+   audience's attributes into the claim's scope.
+3. **Label every unverified read `UNVERIFIED`** as you write it, not afterward.
+4. **Never fix during an observation window** — including the one-line obvious thing. Record it
+   and keep observing.
+5. **Take live UTC timestamps by shell call**: `date -u +"%Y-%m-%dT%H:%MZ"` (or
+   `(Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mmZ")`). Never an ambient, injected, or
+   remembered date — injected dates drift, live readings do not.
+6. **Never quote a number you did not measure.** Measure it this session and say "measured by
+   me." If you cannot, say the number is unavailable rather than supplying a stale one.
+7. **State what you did not verify**, as a named section in every report. "Owed by a human" is
+   an expected and acceptable outcome.
+8. **Distinguish grades of verification** — proven in the real environment / checked in a proxy /
+   reasoned from the source. Collapsing the three into "verified" overstates while every
+   sentence stays technically true.
+9. **Report defects found inside your own work.** A report with none has probably not looked.
+10. **Never edit a frozen record or a prior ledger entry.** Amend by appending.
+11. **IDs are permanent addresses.** Never renumber, never reuse. A split keeps its ID and gains
+    a suffix (`O-14a`); a moved item keeps both addresses (`E4→B9`).
+12. **Judgement calls when the operator is away:** make it, implement it, document it under a
+    heading that cannot be missed, flag it *"reverse this if wrong"* — but only if it is cheap to
+    reverse. If it is not cheap to reverse, take the conservative option and say why.
+13. **Do not pre-solve a brief.** A handoff carries symptoms, verified facts, and hypotheses —
+    not an answer for someone else to ratify.
+
+## When in doubt
+
+Skills run the loop's phases. **Rituals** handle recurring frictions — full routing table in
+`rituals/README.md`. A ritual never overrides a law; if one appears to, the ritual is wrong.
+
+| Situation | Route to |
+|---|---|
+| Nothing has been declared yet | ritual `starting-a-project` |
+| Something surprised you | `astronomer-observe` · ritual `observation-pass` |
+| Window closed, items piled up | `astronomer-triage` · ritual `triage-pass` |
+| You have a cluster and a hunch | `astronomer-verify` — break it before believing it |
+| A call has been made | `astronomer-decide` — append it, live-stamped |
+| The loop is closing | `astronomer-record` |
+| The cause you wrote down is wrong | ritual `hypothesis-refuted` |
+| This is far bigger than you declared | ritual `scope-surprise` |
+| A document no longer matches reality | ritual `settling-a-document` |
+| Two live rules disagree | ritual `conflicting-decisions` (and precedence, above) |
+| Third instance of the same failure | ritual `recurring-defect` — a gate, not a third fix (L-17) |
+| Tried honestly, could not determine | ritual `unresolved` — token it, never guess |
+| A number you did not measure yourself | ritual `instrument-drift` — go measure it (L-11) |
+| Cannot tell: observation or inference? | It is inference. Label it (L-3) |
+| You want to fix one small thing mid-window | You may not (L-7). Record it, keep looking |
+
+Ritual blast radius is its own scale (*Friction* / *Conflagration*) and is **not** the per-item
+severity scale. Never mix them in one field.
+
+## Stop and ask the operator
+
+Not delegable, at any capability level. When work reaches one of these, **stop and say so.** Do
+not produce a substitute and do not proceed on an assumption.
+
+- **Identity & authority** — anything requiring you to *be* them: accounts, signatures, consent.
+- **Custody** — secrets, credentials, keys, records only they may hold.
+- **Acceptance** — terms, liability, authorship; anything that attaches to a person.
+- **Physical fact** — anything requiring a body in a place: a measurement, a specimen, an
+  appointment, a sensation.
+- **Preference** — anything whose correct answer is *what they want*. Elicit it, never infer it.
+  Asked to "optimize," you will silently choose an objective function; it will be defensible, and
+  it will not be theirs.
+
+Also operator-owned: amending the charter or precedence order, choosing or changing the tier,
+setting or relaxing an acceptance gate, and disabling any gate — that last is a ledger entry, not
+a workaround.
+
+**The operator is the instrument, not its manager.** Their attention is the scarce resource and
+it has known error, so capture close to the event, verbatim, with conditions attached. Working
+*around* the instrument produces fiction; a blocked item is the honest outcome.

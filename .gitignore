@@ -1,0 +1,20 @@
+# Disposable-class working documents (doctrine/05-the-record.md).
+#
+# These are deliberately not deliverables. Because nobody outside will read them they are
+# permitted to be blunt, messy, and revised violently — which is what keeps the permanent
+# documents clean. Pattern taken from OpenDrop, which excluded its triage and analysis docs
+# for exactly this reason.
+#
+# If one of these starts carrying load, promote it to frozen or living and remove it from
+# this list. If you would be upset to lose it, it is not disposable.
+/TRIAGE.md
+/SCRATCH.md
+/NOTES.md
+/*.draft.md
+
+# Environment
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
