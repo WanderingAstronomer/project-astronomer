@@ -4,6 +4,8 @@
 > follow-ups go in the decision ledger or in a new record, never back into this file. A report
 > that can be revised after review is a report whose reviewers are reading a moving target.
 
+**Required at:** **Full** — the return half of the brief; required wherever briefs are.
+
 **Brief:** `<path/to/brief>` · **Executor:** `<who>` · **Window:** `<live UTC>` — `<live UTC>`
 **Declared change size:** `<minimal | medium | large>` — `<held | re-classed upward to <x> at
 <point>, because <why>>`

@@ -9,7 +9,7 @@ The everything-in-scope inventory. Its purpose is not documentation — it is **
 catalog exists so that "we have looked at all of it" becomes a claim someone can check, and so
 that the thing nobody owns becomes visible before it becomes the thing nobody fixed.
 
-It is a **Full-tier artifact and deliberately not a law.** An exhaustive inventory with an empty
+**Required at:** **Full** — and deliberately not a law. An exhaustive inventory with an empty
 orphan list is powerful and it is expensive, and demanding one of a small project is how you get a
 project that never starts. Build this when scope ambiguity is the binding constraint — when
 people are asking "is that ours?" more than once a week — and not before.

@@ -9,6 +9,9 @@
 > Where this document and the living specification disagree, **the living document wins on fact
 > and this one stands on the historical record.** Both are true and neither file changes.
 
+**Required at:** **Standard** — from the point where what the world *is* has to be separable from
+what you decided about it.
+
 ---
 
 ## Verdict
@@ -76,7 +79,9 @@ next to it. It is not omitted. Omission reads as *no signal*; a visible small nu
 
 ### F-`<n>` — `<the finding>`
 
-**Confidence:** `<CONFIRMED | PROVISIONAL | UNRESOLVED | REFUTED>`
+**Confidence:** `<one of the six confidence tokens — see doctrine/02-epistemics.md. Do not
+abbreviate the set here; a four-token version of this slot shipped in the seeded corpus and the
+tokens it dropped were UNVERIFIED and ACCEPTED>`
 **Evidence tier:** `<T1|T2|T3|T4>`
 **Scope:** `<conditions under which this holds>`
 **Method:** `<what was done>`

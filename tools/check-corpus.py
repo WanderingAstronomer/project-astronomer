@@ -1,0 +1,388 @@
+#!/usr/bin/env python3
+"""
+check-corpus.py — the corpus self-check gate.
+
+WHY THIS EXISTS (the incident is the description; see rituals/recurring-defect.md):
+
+  Twice, a vocabulary in this corpus shipped with more than one membership.
+
+  First: AMENDS D-015. The confidence vocabulary went out with THREE different memberships
+  — four tokens in one table, five in the ledger, six in another table — within hours of
+  writing L-14, the law that says a vocabulary has exactly one home. Two reviewers found it
+  independently. The amendment closed with: "Under L-17 a third recurrence demands a gate
+  rather than a third correction ... Not built. next: build it if the drift recurs."
+
+  Second: D-019 promoted `append-only` to a record class in its own right. Ten sites across
+  the corpus went on enumerating three classes for four days. One of them, the
+  astronomer-start skill, did not merely omit the fourth class — it instructed the reader
+  "do not invent a fourth," which would have put a new project's ledger in the wrong class
+  on day one.
+
+  That is the recurrence. This is the gate. Per L-17, the fix for a defect CLASS is a
+  mechanism, not a third hand-fix: every hand-fix in the source corpus drifted back.
+
+  The guard is intentional. Fix the cause; do not switch off the check.
+
+THREE CHECKS
+  1. vocabularies — every registered token set has one home containing every member, and
+     every tight enumeration of it anywhere in the corpus carries the full membership.
+  2. install manifest — the skill directories on disk match both places that list them.
+     Nothing else detects an omission, and adding a skill requires lockstep edits in three
+     files.
+  3. links — every relative markdown link resolves from the file it appears in, including
+     its #anchor.
+
+WHAT THIS CANNOT CATCH — stated, not hidden:
+  - A vocabulary that is not in tools/vocabularies.json. Adding a token set to the corpus
+    without registering it here is invisible to this gate.
+  - Drift stated in prose rather than as a tight list ("the three classes are ...").
+  - Vocabularies marked check_enumerations:false in the registry, each with its reason.
+  Run with --verbose to print every exemption taken. Silence is not coverage.
+
+Usage:  python tools/check-corpus.py [--verbose]
+Exit:   0 all checks pass · 1 one or more failures
+"""
+
+import json
+import re
+import sys
+from pathlib import Path
+
+# The corpus is UTF-8 throughout; Windows consoles frequently are not. Report in ASCII and
+# force a UTF-8 stream so a snippet quoted out of a doctrine file cannot crash the gate.
+# A check that dies on its own output is worse than no check: it fails loudly for the wrong
+# reason and teaches you to ignore it.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
+ROOT = Path(__file__).resolve().parent.parent
+REGISTRY = ROOT / "tools" / "vocabularies.json"
+
+VERBOSE = "--verbose" in sys.argv or "-v" in sys.argv
+
+failures: list[str] = []
+exemptions: list[str] = []
+
+
+def rel(p: Path) -> str:
+    return p.relative_to(ROOT).as_posix()
+
+
+def md_files():
+    for p in sorted(ROOT.rglob("*.md")):
+        if ".git" in p.parts:
+            continue
+        yield p
+
+
+def fail(msg: str) -> None:
+    failures.append(msg)
+
+
+def exempt(msg: str) -> None:
+    exemptions.append(msg)
+
+
+# ---------------------------------------------------------------- check 1
+
+BOUND_L = r"(?<![A-Za-z0-9_-])"
+BOUND_R = r"(?![A-Za-z0-9_-])"
+# Members may be wrapped in backticks and/or bold/italic markers.
+WRAP = r"[`*_]{0,3}"
+# A separator is a LIST separator only. Prose between two members means it is a sentence,
+# not an enumeration, and this gate deliberately does not police sentences. The trailing
+# (?:or |and )? catches natural-language lists: "a, b, c, or d".
+SEP = r"\s*[·|,/]\s*(?:or |and )?"
+
+NUMWORDS = {
+    "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7,
+    "eight": 8, "nine": 9, "ten": 10, "eleven": 11, "twelve": 12, "thirteen": 13,
+    "fourteen": 14, "fifteen": 15, "sixteen": 16, "seventeen": 17, "eighteen": 18,
+    "nineteen": 19, "twenty": 20,
+}
+
+
+def as_int(word: str):
+    w = word.lower()
+    return NUMWORDS.get(w, int(w) if w.isdigit() else None)
+
+
+# A run must carry at least this many members before it counts as an enumeration.
+# Two members side by side is a COMPARISON ("the Operator / Coordinator boundary",
+# "frozen, append-only"); three or more is a LIST. Every real drift this gate was built
+# for was 3-of-4, 4-of-6, or 5-of-6 — never 2. Set to 2 and the output is almost entirely
+# prose pairs, which is how a check gets ignored and then switched off.
+MIN_RUN = 3
+
+
+def check_vocabularies(registry: dict) -> None:
+    for vocab in registry["vocabularies"]:
+        name = vocab["name"]
+        members = vocab["members"]
+        home = vocab["home"]
+        cased = vocab.get("case_sensitive", True)
+        flags = 0 if cased else re.IGNORECASE
+
+        # -- 1a. the home file must contain every member
+        if vocab.get("check_home", True):
+            home_path = ROOT / home
+            if not home_path.exists():
+                fail(f"[vocab:{name}] declared home does not exist: {home}")
+                continue
+            text = home_path.read_text(encoding="utf-8", errors="replace")
+            missing = [
+                m for m in members
+                if not re.search(BOUND_L + re.escape(m) + BOUND_R, text, flags)
+            ]
+            if missing:
+                fail(
+                    f"[vocab:{name}] home {home} is missing member(s): "
+                    f"{', '.join(missing)}"
+                )
+        else:
+            exempt(
+                f"[vocab:{name}] home-membership NOT checked — "
+                f"{vocab.get('unchecked_reason', 'no reason given')}"
+            )
+
+        # -- 1a-bis. counted prose: "recognizes three classes" when there are four.
+        # This is the gap that let the D-019 drift survive: doctrine/05-the-record.md said
+        # "Astronomer recognizes three classes" in a sentence, directly above a table
+        # listing four, and no list-shaped check could see it. A sentence that counts a
+        # vocabulary is asserting its membership just as firmly as a list is.
+        for noun in vocab.get("count_nouns", []):
+            expected = len(members)
+            count_re = re.compile(
+                r"\b(" + "|".join(NUMWORDS) + r"|\d{1,2})\s+"
+                r"(?:[A-Za-z][A-Za-z-]*\s+){0,2}?" + re.escape(noun) + r"\b",
+                re.IGNORECASE,
+            )
+            for path in md_files():
+                r = rel(path)
+                if r in {e["file"] for e in vocab.get("exempt_files", [])}:
+                    continue
+                if r.startswith("tools/"):
+                    continue  # the gate's own prose describes the defect it checks for
+                text = path.read_text(encoding="utf-8", errors="replace")
+                for match in count_re.finditer(text):
+                    n = as_int(match.group(1))
+                    if n is None or n == expected:
+                        continue
+                    line_no = text.count("\n", 0, match.start()) + 1
+                    fail(
+                        f"[vocab:{name}] {r}:{line_no} prose counts {n} "
+                        f"'{noun}', registry has {expected}\n"
+                        f"    -> {' '.join(match.group(0).split())}"
+                    )
+
+        # -- 1b. every tight enumeration anywhere must carry the full membership
+        if not vocab.get("check_enumerations", True):
+            exempt(
+                f"[vocab:{name}] enumerations NOT checked - "
+                f"{vocab.get('unchecked_reason', 'no reason given')}"
+            )
+            continue
+
+        if len(members) < MIN_RUN:
+            exempt(
+                f"[vocab:{name}] enumerations NOT checked - only {len(members)} members, "
+                f"below the {MIN_RUN}-member threshold that separates a list from a "
+                f"comparison. Membership consistency here is a manual review item."
+            )
+            continue
+
+        alt = "|".join(re.escape(m) for m in sorted(members, key=len, reverse=True))
+        tok = f"{WRAP}(?:{alt}){WRAP}"
+        run_re = re.compile(BOUND_L + tok + f"(?:{SEP}{tok})+", flags)
+        member_re = re.compile(BOUND_L + f"(?:{alt})" + BOUND_R, flags)
+
+        allowed = {a["file"]: a["reason"] for a in vocab.get("allowed_subsets", [])}
+        exempt_files = {e["file"]: e["reason"] for e in vocab.get("exempt_files", [])}
+
+        for path in md_files():
+            r = rel(path)
+            if r == "tools/vocabularies.json":
+                continue
+            if r in exempt_files:
+                exempt(f"[vocab:{name}] {r} exempt — {exempt_files[r]}")
+                continue
+
+            text = path.read_text(encoding="utf-8", errors="replace")
+            for match in run_re.finditer(text):
+                found_raw = member_re.findall(match.group(0))
+                found = {f if cased else f.lower() for f in found_raw}
+                full = {m if cased else m.lower() for m in members}
+                if found == full or len(found) < MIN_RUN:
+                    continue
+                line_no = text.count("\n", 0, match.start()) + 1
+                if r in allowed:
+                    exempt(
+                        f"[vocab:{name}] {r}:{line_no} subset allowed — {allowed[r]}"
+                    )
+                    continue
+                missing = sorted(full - found)
+                snippet = " ".join(match.group(0).split())[:70]
+                fail(
+                    f"[vocab:{name}] {r}:{line_no} enumerates "
+                    f"{len(found)}/{len(full)}, missing: {', '.join(missing)}\n"
+                    f"    -> {snippet}"
+                )
+
+
+# ---------------------------------------------------------------- check 2
+
+def check_install_manifest() -> None:
+    skills_dir = ROOT / "install" / "skills"
+    if not skills_dir.is_dir():
+        fail("[manifest] install/skills/ does not exist")
+        return
+
+    on_disk = {
+        d.name for d in skills_dir.iterdir()
+        if d.is_dir() and (d / "SKILL.md").exists()
+    }
+    no_skill_md = {
+        d.name for d in skills_dir.iterdir()
+        if d.is_dir() and not (d / "SKILL.md").exists()
+    }
+    for d in sorted(no_skill_md):
+        fail(f"[manifest] install/skills/{d}/ has no SKILL.md")
+
+    readme = ROOT / "install" / "README.md"
+    in_readme = set(
+        re.findall(r"\.claude/skills/([a-z0-9-]+)/SKILL\.md",
+                   readme.read_text(encoding="utf-8", errors="replace"))
+    )
+
+    template = ROOT / "install" / "CLAUDE.md.template"
+    in_template = set(
+        re.findall(r"`(astronomer-[a-z0-9-]+)`",
+                   template.read_text(encoding="utf-8", errors="replace"))
+    )
+
+    for label, listed in (("install/README.md", in_readme),
+                          ("install/CLAUDE.md.template", in_template)):
+        for missing in sorted(on_disk - listed):
+            fail(f"[manifest] skill '{missing}' exists on disk but is not listed in {label}")
+        for phantom in sorted(listed - on_disk):
+            fail(f"[manifest] {label} lists skill '{phantom}' which does not exist on disk")
+
+
+# ---------------------------------------------------------------- check 3
+
+LINK_RE = re.compile(r"\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
+HEADING_RE = re.compile(r"^#{1,6}\s+(.*)$", re.MULTILINE)
+CODE_SPAN_RE = re.compile(r"`[^`]*`")
+
+
+def strip_quoted_links(line: str) -> str:
+    """Blank out inline code spans that contain a whole markdown link.
+
+    A link inside backticks is being QUOTED, not followed - tools/README.md discusses a
+    broken template link by showing it. Documenting a defect must not trip the check for
+    that defect, or the only way to describe a problem is to reproduce it.
+
+    Only spans containing '](' are removed. The common form [`file.md`](file.md) puts
+    backticks inside the link LABEL, and that span holds no link of its own, so it survives
+    and the link is still checked.
+    """
+    return CODE_SPAN_RE.sub(lambda m: "" if "](" in m.group(0) else m.group(0), line)
+
+
+def slug(heading: str) -> str:
+    h = re.sub(r"[`*_]", "", heading).strip().lower()
+    h = re.sub(r"[^a-z0-9 \-]", "", h)
+    return re.sub(r"\s+", "-", h)
+
+
+_anchor_cache: dict[Path, set[str]] = {}
+
+
+def anchors_of(path: Path) -> set[str]:
+    if path not in _anchor_cache:
+        text = path.read_text(encoding="utf-8", errors="replace")
+        _anchor_cache[path] = {slug(h) for h in HEADING_RE.findall(text)}
+    return _anchor_cache[path]
+
+
+def check_links() -> None:
+    for path in md_files():
+        # Templates are written to be COPIED, so their links are resolved from where the
+        # copy LANDS - a project root - not from artifacts/ where the master sits.
+        #
+        # The convention, and it is the whole reason this is not simply exempted:
+        #   - references to FRAMEWORK files (doctrine/, rituals/, tiers/) are bare backticked
+        #     paths, never markdown links, because the framework path varies per install
+        #     (install/README.md fills a <doctrine path> placeholder).
+        #   - references to PROJECT files (CHARTER.md, DECISIONS.md, OBSERVATIONS.md) stay
+        #     markdown links, root-relative, because they resolve at the destination.
+        #   - a '../' in a template link is always wrong: after the copy it points outside
+        #     the project, at whatever happens to be there.
+        is_template = path.name.endswith(".template.md")
+        base = ROOT if is_template else path.parent
+
+        text = path.read_text(encoding="utf-8", errors="replace")
+        for line_no, line in enumerate(text.splitlines(), 1):
+            for target in LINK_RE.findall(strip_quoted_links(line)):
+                if re.match(r"^(https?:|mailto:|tel:)", target):
+                    continue
+                if "<" in target or ">" in target:
+                    continue  # unfilled template placeholder
+                file_part, _, anchor = target.partition("#")
+
+                if not file_part:
+                    if anchor and anchor not in anchors_of(path):
+                        fail(f"[link] {rel(path)}:{line_no} anchor #{anchor} "
+                             f"not found in this file")
+                    continue
+
+                if is_template and file_part.startswith("../"):
+                    fail(f"[link] {rel(path)}:{line_no} template link escapes the project "
+                         f"root -> {target}\n"
+                         f"    Templates are copied to a project. Reference framework files "
+                         f"by bare backticked path, not by link.")
+                    continue
+
+                dest = (base / file_part).resolve()
+                if not dest.exists():
+                    fail(f"[link] {rel(path)}:{line_no} broken -> {target}")
+                    continue
+                if anchor and dest.suffix == ".md":
+                    if anchor not in anchors_of(dest):
+                        fail(f"[link] {rel(path)}:{line_no} anchor #{anchor} "
+                             f"not found in {file_part}")
+
+
+# ---------------------------------------------------------------- main
+
+def main() -> int:
+    registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
+
+    check_vocabularies(registry)
+    check_install_manifest()
+    check_links()
+
+    if VERBOSE and exemptions:
+        print(f"EXEMPTIONS TAKEN ({len(exemptions)}) - every one is a place this gate "
+              f"does not look:\n")
+        for e in exemptions:
+            print(f"  - {e}")
+        print()
+
+    if failures:
+        print(f"CORPUS CHECK FAILED - {len(failures)} problem(s):\n")
+        for f in failures:
+            print(f"  [FAIL] {f}")
+        print("\nThe guard is intentional. Fix the cause, do not disable the check.")
+        if not VERBOSE:
+            print("Run with --verbose to see what the gate deliberately does not check.")
+        return 1
+
+    print("CORPUS CHECK PASSED - vocabularies, install manifest, and links all consistent.")
+    if not VERBOSE:
+        print(f"({len(exemptions)} exemptions taken; run with --verbose to see them.)")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

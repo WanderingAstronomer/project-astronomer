@@ -21,7 +21,9 @@ overrides a law.** If one appears to, the ritual is wrong and gets corrected —
 | Situation | Ritual | Blast radius |
 |---|---|---|
 | "I am starting something and nothing has been declared yet." | [starting-a-project](starting-a-project.md) | — |
+| "I have been handed a pile of documents I did not write." | [corpus-intake](corpus-intake.md) | Friction → Conflagration once a finding is published from a corpus whose coverage was never recorded |
 | "I need to look at this properly before I touch it." | [observation-pass](observation-pass.md) | — |
+| "I need to know something the project cannot observe for itself." | [external-research](external-research.md) | Friction |
 | "The window is closed and I have a pile of raw entries." | [triage-pass](triage-pass.md) | — |
 | "The cause I wrote down turns out to be wrong." | [hypothesis-refuted](hypothesis-refuted.md) | Conflagration |
 | "This is far bigger than I declared it was." | [scope-surprise](scope-surprise.md) | Conflagration |
@@ -48,8 +50,10 @@ Conflagration if six decisions rest on it.
 *This column was renamed after a review pass caught the collision. The original framing
 documented the clash instead of removing it, which leaves the mechanism intact (L-17).*
 
-The scheduled rituals — the first three, and `scale-up-gate` — carry no blast radius: they are
-procedures you run on purpose, not responses to something going wrong.
+The scheduled rituals — `starting-a-project`, `observation-pass`, `triage-pass`, and
+`scale-up-gate` — carry no blast radius: they are procedures you run on purpose, not responses to
+something going wrong. `corpus-intake` and `external-research` sit between the two kinds: scheduled,
+but each with a way of going wrong that reaches past the session.
 
 ## Growth rule
 

@@ -54,9 +54,13 @@ Three consequences:
 
 Name it in writing, before the work starts, and stop there when you reach it (L-15).
 
-VOC derived five categories of human-only work, and observed that recognizing the category tells
-you *why* it landed on you — which is what makes it feel like structure instead of an obstacle.
-Generalized:
+VOC derived five categories of human-only work — accounts, secrets, external identity, legal
+authorship, and physical facts — and observed that recognizing the category tells you *why* it
+landed on you, which is what makes it feel like structure instead of an obstacle.
+
+Generalized below, **VOC's five collapse into the first four rows.** The fifth row is an Astronomer
+addition and is not inherited from any source project; the note under the table says so. Read the
+table as four attested categories plus one proposed one, not as VOC's list restated.
 
 | Category | What it covers |
 |---|---|
@@ -151,8 +155,9 @@ Returned work carries six sections. The last three are what separate a report fr
 
 1. **What was done, and the cause established** — with citations, including where the brief's
    hypothesis was wrong
-2. **What was verified, and how** — distinguishing *proven in the real environment* from
-   *checked in a proxy* from *reasoned from the source* (L-12)
+2. **What was verified, and how** — naming the grade achieved rather than collapsing everything
+   into "verified." The grades are defined once, in
+   [`04-verification.md`](04-verification.md), and are not restated here (L-12, L-14)
 3. **Judgement calls made** — flagged for review
 4. **Defects found inside your own work** — VOC's finding is that *every* session in its largest
    run found one this way, without exception. A report with none has almost certainly not looked.

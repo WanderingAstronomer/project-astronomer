@@ -1,11 +1,14 @@
 # OBSERVATION LOG — `<project name>` — `<window name>`
 
-> **Doc class:** frozen (append-only). **Nothing in this file is ever edited or reordered.**
+> **Doc class:** append-only — its own class, not a flavour of frozen (D-019). **Nothing in this
+> file is ever edited or reordered.**
 > Corrections arrive as new entries that name the entry they correct. If an entry turns out to be
 > wrong, that is a fact about what you saw and believed, and it is worth more than a tidy log.
 
 > **Nothing is changed during observation** (L-7). Not one line. Not the obvious thing. A change
 > made mid-window invalidates every observation after it, and you will not know which ones.
+
+**Required at:** **Lite** — the one artifact that cannot be reconstructed from memory afterward.
 
 ## Window
 
@@ -35,11 +38,18 @@ pressure — `Conditions` and `Source` — are the two that make an entry re-che
 | `Confidence` | a token from the charter's vocabulary | grades **the observation**, not the explanation. See below |
 | `Source` | where this came from, precisely enough to return to it | the only defense against a record that gradually accumulates its own conclusions as inputs |
 
-**The confidence token grades the observation, not the read.** `CONFIRMED` means *I saw this
-reliably* — not *my explanation is right*. A directly sensed, well-localised observation is
-`CONFIRMED` even when nobody has any idea what causes it. A second-hand report is `UNVERIFIED`.
-Something you tried to pin down and could not is `UNRESOLVED`, which is a real result and not a
-failure to try harder.
+**The confidence token grades the observation, not the read.** `CONFIRMED` here means *I saw this
+reliably* — not *my explanation is right*. A directly sensed, well-localised observation earns it
+even when nobody has any idea what causes it. A second-hand report is `UNVERIFIED`. Something you
+tried to pin down and could not is `UNRESOLVED`, which is a real result and not a failure to try
+harder.
+
+Those sentences say how the vocabulary **applies to an observation**; they are not definitions of
+it. **The six tokens are defined once, in
+`doctrine/02-epistemics.md`, section *Confidence tokens*, and are not
+redefined here** (L-14, AMENDS D-015). This file previously defined three of them locally, which
+is exactly the second-home mechanism that let the vocabulary ship with three different memberships
+in the seeded corpus.
 
 **The `Initial read` is `UNVERIFIED` at intake, always, without exception.** It is promoted —
 or refuted — during RESOLVE, and the promotion is recorded on the triage board and in findings.

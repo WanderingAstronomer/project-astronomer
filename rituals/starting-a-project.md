@@ -11,6 +11,28 @@ window**, not settled record, however finished it looks.
 
 ## Do
 
+0. **If the collaborator's filesystem access reaches beyond this project's own work product,
+   declare the data boundary first** — before opening anything. Three named tiers: RED (do not
+   open, each with its reason), GREEN (read freely, named affirmatively), YELLOW (ask first, case
+   by case). An unlisted item is unclassified, not GREEN
+   ([`artifacts/data-boundary.template.md`](../artifacts/data-boundary.template.md)). Then declare
+   the collaborator's own workspace — separate from the project's artifacts — with a `README.md`
+   pointing to a "read this first" living state-of-play doc.
+0b. **Declare what may leave, separately from what may be read** — permission to read is not
+   permission to transmit (B-1, [`doctrine/07-boundaries.md`](../doctrine/07-boundaries.md)). Fill
+   this in even when the answer is "nothing"; an unstated egress boundary reads as an unrestricted
+   one. **A query is derived data** (B-2): anything built *from* restricted material carries
+   information out with no copied string in it. If any outbound channel is permitted, open the
+   [query log](../artifacts/query-log.template.md).
+0c. **If something other than the operator is doing the observing, write the capability
+   inventory** ([`artifacts/capability-inventory.template.md`](../artifacts/capability-inventory.template.md))
+   — what it can read, run and reach, and **where it is systematically wrong, with a direction**.
+   Every other instrument in this framework declares what it cannot detect; this is the one that
+   was exempt.
+0d. **If the project is taking in material it did not author, run
+   [corpus-intake](corpus-intake.md) before the first window** — count it, check per-item
+   readability, and record what could not be read. A failed extraction returns a page count, no
+   error, and almost no text.
 1. **Choose a tier** — Lite, Standard, or Full ([`tiers/`](../tiers/README.md)). Choose on
    stakes and reversibility, not ambition. Tiers change which artifacts are required; they never
    relax a law (D-008). This choice is itself a decision: log it as `D-001` with the reasoning.
@@ -39,6 +61,12 @@ window**, not settled record, however finished it looks.
 
 ## Record
 
+- The **data boundary** (read tiers *and* egress) and the collaborator's **workspace README**, if
+  Step 0 applied — before anything else, since they gate what may be read while writing everything
+  below. Plus the **query log**, **capability inventory**, and **source manifest** wherever 0b–0d
+  applied. These four are gated on circumstance, not on tier: a Lite project next to a client's
+  files needs all of them, and a Full-tier project on a clean repository of its own making needs
+  none ([`tiers/`](../tiers/README.md)).
 - `CHARTER` — mission, scope, invariants, precedence, vocabularies, definition of done.
 - `DECISIONS` — the tier choice, the precedence adoption, the vocabulary set, the scrutiny gate,
   and the non-delegable list, as separate numbered entries. Separate, because they will be

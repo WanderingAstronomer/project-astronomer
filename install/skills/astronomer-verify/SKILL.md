@@ -75,6 +75,11 @@ Report measurements as "measured by me," with the baseline.
 Emit exactly one token, plus the evidence address: `CONFIRMED` (cite where) · `REFUTED` (state the
 break) · `PROVISIONAL` (name what reopens it) · `UNRESOLVED` (state what would settle it)
 
+**These four are the subset a verifier may emit — not the whole vocabulary.** The six confidence
+tokens are defined in doctrine `02-epistemics.md`. `UNVERIFIED` is the state a claim arrives in, so
+a verifier never emits it; `ACCEPTED` records a deliberate choice to keep a known imperfection,
+which is the operator's call and not a verification result.
+
 `UNRESOLVED` is a legitimate result — the instrument reached its limit and the report says so.
 Rounding it to `CONFIRMED` is how a guess enters the record as a finding.
 

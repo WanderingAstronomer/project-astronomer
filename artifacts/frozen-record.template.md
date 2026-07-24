@@ -11,6 +11,9 @@
 makes a frozen record obviously frozen at a glance in a directory listing, before anyone opens
 it.>`
 
+**Required at:** **Standard** — from the point where a run's numbers have to survive the next
+revision of your understanding.
+
 ---
 
 ## Run metadata

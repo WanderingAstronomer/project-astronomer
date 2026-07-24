@@ -17,8 +17,9 @@ enforceable form a collaborator actually reads each session.
 | [`02-epistemics.md`](02-epistemics.md) | Typed claims, scope, the evidence ladder, confidence | Before recording anything. This is the part that does the work |
 | [`03-the-loop.md`](03-the-loop.md) | OBSERVE → TRIAGE → RESOLVE → ACT → RECORD | Whenever something surprises you |
 | [`04-verification.md`](04-verification.md) | Adversarial verification, altitude, instrumentation, gates | Before believing a result — especially your own |
-| [`05-the-record.md`](05-the-record.md) | Living vs frozen vs disposable; ledgers; identifiers | When deciding where something goes |
+| [`05-the-record.md`](05-the-record.md) | The four record classes — living, frozen, append-only, disposable; ledgers; identifiers | When deciding where something goes |
 | [`06-delegation.md`](06-delegation.md) | Roles, fences, briefs, the non-delegable categories | Before handing work to anyone, human or otherwise |
+| [`07-boundaries.md`](07-boundaries.md) | What must not leave, and what a collaborator may run | Before a collaborator has filesystem access, a network, and a shell at once |
 
 ## If you read only one thing
 

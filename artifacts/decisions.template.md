@@ -1,8 +1,10 @@
 # DECISIONS — `<project name>`
 
-> **Doc class:** frozen (append-only). Entries are never edited. The file grows forever; nothing
-> in it changes. Growth is not editing — say this out loud to whoever will one day want to tidy
-> it up.
+> **Doc class:** append-only — its own class, not a flavour of frozen (D-019). Entries are never
+> edited. The file grows forever; nothing in it changes. Growth is not editing — say this out loud
+> to whoever will one day want to tidy it up.
+
+**Required at:** **Lite** — one of the three artifacts without which the framework is not itself.
 
 The append-only decision ledger for this project. It is the cheapest artifact in the framework
 and the highest-value one: roughly ninety seconds of writing per entry, and it is the difference

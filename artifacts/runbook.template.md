@@ -5,6 +5,9 @@
 > runbook that accretes a change-log stops being readable at speed, and speed is the only reason
 > it exists.
 
+**Required at:** **Standard** — but gated on an event rather than a date: the second time you hit
+the same friction, whatever tier you are running.
+
 A runbook is written the **second** time you improvise the same response. Not the first — the
 first time is an incident, and the response to it is a record. Not the fifth — by the fifth, the
 improvisation has become folklore, three people are doing it three different ways, and the
@@ -16,7 +19,7 @@ Every runbook is three parts and no more.
 > friction — and they collide on sight. The test is mechanical (D-017): **if the procedure cannot
 > be written without naming your subject, it is a runbook and it belongs here, in your project.**
 > If it can be written domain-neutrally, it is a *ritual*, it belongs to the framework, and one
-> probably already exists — check [`rituals/`](../rituals/README.md) before writing it, because a
+> probably already exists — check `rituals/` before writing it, because a
 > local copy of a framework procedure is a second home for a rule (L-14), and the two will drift.
 
 ---

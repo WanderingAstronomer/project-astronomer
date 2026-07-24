@@ -38,6 +38,30 @@ recording.
 10. **Close it explicitly.** A literal `INTAKE CLOSED` marker with a live UTC stamp. Without one,
     observation and triage overlap and the boundary silently stops existing.
 
+## Choosing the instrument: detection is not the same question as completeness
+
+Before the window opens, decide which of two questions you are asking, because they want different
+instruments and mixing them up produces a confident undercount.
+
+- **"Does this happen at all?"** — a detection question. Reading, judgement, and an attentive
+  collaborator are good at it. They notice the thing nobody thought to search for.
+- **"Where does this happen, everywhere?"** — a completeness question. Reading is *bad* at it, and
+  the failure is quiet: you get a list that looks finished.
+
+**The scar, measured here, once.** A four-reader pass over this corpus, told exactly which defect
+class to look for, reported **seven** sites. A mechanical search during the repair found **three
+more, in files those readers had read** — roughly a 30% undercount, in the direction that feels
+complete. Two of the three missed sites were the most load-bearing ones in the set.
+
+The working rule that follows: **for a completeness question, the mechanical search is the
+instrument and the reader is the interpreter — not the reverse.** Search first, exhaustively, then
+have someone read the hits to decide which are real. Using a reader as the instrument and a search
+as the spot-check inverts their strengths.
+
+Record which one you used in the window's `Instrument(s)` field, and record the undercount if you
+ever measure it. That figure is stale the moment it is written (L-11) — it is *this* pass, on *this*
+corpus, and it should be re-measured rather than quoted.
+
 ## Record
 
 - `OBSERVATIONS` — one entry per item, `O-<n>`, append-only and frozen once written. IDs are

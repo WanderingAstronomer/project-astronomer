@@ -83,5 +83,41 @@ not a feeling.
 6. **A real project outside this repo has run one full OBSERVE→RECORD loop on it, and the
    friction it hit is written back here as a ritual or an amendment.**
 
-Conditions 1–5 are met at seeding. **Condition 6 is not met and is the only thing standing
-between this corpus and `VALIDATED`.** Until it is met, this framework is a well-argued guess.
+### Status — corrected 2026-07-24
+
+The seeded version of this section read *"Conditions 1–5 are met at seeding."* **Two of them were
+not**, and neither was found by anyone checking the claim — both surfaced in the corpus's first
+self-survey, four days later:
+
+- **Condition 2** — ten of twelve artifact templates stated no required-at tier anywhere in the
+  file. A template copied whole into a project carried no statement of the tier that required it.
+  Now stated in all fifteen.
+- **Condition 4** — [`provenance/lineage.md`](provenance/lineage.md) had no provenance rows for the
+  entire `rituals/` layer, the Friction/Conflagration vocabulary, the `artifacts/` template set, or
+  the `Append-only` record class added by D-019. Addressed by dated addendum, since that file is
+  frozen and is annotated rather than edited (L-13).
+
+Conditions 1, 3, and 5 were met at seeding and remain met. **Conditions 1–5 are met as of
+2026-07-24** (D-033).
+
+This correction is stated rather than applied quietly, because a charter asserting a condition it
+has not met is precisely the defect class L-16 puts above breakage — *a thing that is broken and
+says so is safe; a thing that is broken and reports success is not* — and silently satisfying the
+conditions afterward would have been the same defect in a quieter form.
+
+**Condition 6 is not met and remains the only thing standing between this corpus and `VALIDATED`.**
+Until it is met, this framework is a well-argued guess.
+
+### Checking conditions 2, 3, and 4 mechanically
+
+Parts of the above are now machine-checkable, because they drifted twice before anything caught
+them (D-025):
+
+```bash
+python tools/check-corpus.py --verbose
+```
+
+Vocabulary membership, the install manifest, and every relative link. It is run by hand — automating
+it moves toward the tooling D-005 bars — and it is itself verified by `tools/verify-gate.py`, which
+seeds a real defect per check and asserts the gate fails. See
+[`tools/README.md`](tools/README.md) for what it deliberately does not check.

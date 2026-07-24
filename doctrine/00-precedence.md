@@ -20,7 +20,7 @@ Higher wins. When two artifacts disagree, the lower one is **wrong** — not "in
 2. DECISIONS          what was decided, when, and by whom. Append-only.
 3. SPECIFICATION      what is currently true. Living; rewritten to match reality.
 4. FINDINGS           what was learned, at the time it was learned. Frozen.
-5. OBSERVATIONS       what was seen, verbatim. Frozen, append-only.
+5. OBSERVATIONS       what was seen, verbatim. Append-only.
 6. EVERYTHING ELSE    notes, drafts, plans, conversation.
 ```
 

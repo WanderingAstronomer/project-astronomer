@@ -1,0 +1,157 @@
+{
+  "_comment": [
+    "THE REGISTRY OF VOCABULARIES. This is L-14 applied to the framework's own vocabularies:",
+    "every shared token set in this corpus is listed here once, with its declared home.",
+    "",
+    "It exists because the same defect happened twice. AMENDS D-015 records the confidence",
+    "vocabulary shipping with three different memberships within hours of writing the law",
+    "against exactly that. D-019 added a fourth record class and ten sites went on saying",
+    "three for four days. The amendment's own closing line was 'Not built. next: build it if",
+    "the drift recurs.' It recurred. This is the gate.",
+    "",
+    "Adding a vocabulary to the corpus without adding it here is the failure this file cannot",
+    "catch. That is a known limit, stated rather than hidden."
+  ],
+
+  "vocabularies": [
+    {
+      "name": "confidence",
+      "members": ["CONFIRMED", "UNVERIFIED", "REFUTED", "PROVISIONAL", "UNRESOLVED", "ACCEPTED"],
+      "home": "doctrine/02-epistemics.md",
+      "note": "Framework-level. ACCEPTED is the member that goes missing every time; see AMENDS D-015 for why.",
+      "count_nouns": ["confidence tokens"],
+      "allowed_subsets": [
+        {
+          "file": "install/skills/astronomer-verify/SKILL.md",
+          "reason": "The four verdicts a verifier may emit. UNVERIFIED is the state a claim arrives in; ACCEPTED is the operator's call. Documented in the file itself."
+        }
+      ],
+      "exempt_files": [
+        {
+          "file": "DECISIONS.md",
+          "reason": "Append-only. D-015's original five-token entry is the incident record itself and is never edited; the AMENDS entry above it carries the correction."
+        },
+        {
+          "file": "OBSERVATIONS.md",
+          "reason": "Append-only. Entries quote the defective text they observed, verbatim, which is the point of an observation log."
+        }
+      ]
+    },
+    {
+      "name": "record_class",
+      "members": ["living", "frozen", "append-only", "disposable"],
+      "home": "doctrine/05-the-record.md",
+      "case_sensitive": false,
+      "note": "append-only is its own class, not a flavour of frozen (D-019). This is the vocabulary whose recurrence built this gate.",
+      "count_nouns": ["classes"],
+      "allowed_subsets": [],
+      "exempt_files": [
+        {
+          "file": "provenance/lineage.md",
+          "reason": "Frozen record dated 2026-07-20, predates D-019. Annotated by addendum, never edited (L-13)."
+        },
+        {
+          "file": "DECISIONS.md",
+          "reason": "Append-only. Historical entries record what was believed when written and are never edited."
+        },
+        {
+          "file": "OBSERVATIONS.md",
+          "reason": "Append-only. O-1 quotes the three-class text verbatim because that is the defect it observed. An observation log that cannot quote what it saw is not a log."
+        }
+      ]
+    },
+    {
+      "name": "law",
+      "members": ["L-1", "L-2", "L-3", "L-4", "L-5", "L-6", "L-7", "L-8", "L-9", "L-10",
+                  "L-11", "L-12", "L-13", "L-14", "L-15", "L-16", "L-17"],
+      "home": "doctrine/01-laws.md",
+      "note": "Not a token vocabulary but the same failure applies: adding or retiring a law leaves every 'seventeen laws' in the corpus wrong, and nothing announces it.",
+      "count_nouns": ["laws"],
+      "check_enumerations": false,
+      "unchecked_reason": "Law IDs appear as citations on nearly every page. Enumeration matching would be all false positives. Home-membership and the counted-prose check both apply."
+    },
+    {
+      "name": "severity",
+      "members": ["stop", "major", "minor", "question"],
+      "home": "doctrine/05-the-record.md",
+      "case_sensitive": false,
+      "note": "Per-item scale. Orthogonal to blast radius (D-018) — never mix them in one field.",
+      "allowed_subsets": []
+    },
+    {
+      "name": "change_size",
+      "members": ["minimal", "medium", "large"],
+      "home": "doctrine/05-the-record.md",
+      "case_sensitive": false,
+      "allowed_subsets": []
+    },
+    {
+      "name": "loop_phase",
+      "members": ["OBSERVE", "TRIAGE", "RESOLVE", "ACT", "RECORD"],
+      "home": "doctrine/03-the-loop.md",
+      "note": "ACT is the phase with no skill. If an enumeration drops one, it is usually this one.",
+      "count_nouns": ["phases"],
+      "allowed_subsets": [],
+      "exempt_files": [
+        {
+          "file": "provenance/lineage.md",
+          "reason": "Frozen record. Notes that the source projects ran four-phase loops without a distinct RECORD step — that is the historical fact D-013 diverged from, not drift."
+        }
+      ]
+    },
+    {
+      "name": "blast_radius",
+      "members": ["Friction", "Conflagration"],
+      "home": "rituals/README.md",
+      "case_sensitive": false,
+      "allowed_subsets": []
+    },
+    {
+      "name": "id_prefix",
+      "members": ["D-", "O-", "C-", "Q-", "F-", "S-", "E-"],
+      "home": "doctrine/05-the-record.md",
+      "note": "Record IDs are permanent addresses and are never reused — distinct from filename slots, which may be refilled. S- (source document) and E- (outbound request) arrived with the source manifest and query log.",
+      "check_enumerations": false,
+      "unchecked_reason": "Bare prefixes appear constantly in prose as part of live IDs (D-19, O-4). Enumeration matching would be almost entirely false positives. Home-membership is still checked."
+    },
+    {
+      "name": "non_delegable",
+      "members": ["Identity & authority", "Custody", "Acceptance", "Physical fact", "Preference"],
+      "home": "doctrine/06-delegation.md",
+      "note": "Four inherited from VOC plus Preference, which is an Astronomer addition and is single-authored.",
+      "count_nouns": ["non-delegable categories"],
+      "check_enumerations": false,
+      "unchecked_reason": "Members are multi-word phrases rendered differently per site (table rows, prose lists, skill bullets). No reliable tight-run pattern. Home-membership is checked; cross-site consistency is a manual review item."
+    },
+    {
+      "name": "role",
+      "members": ["Operator", "Coordinator", "Executor", "Verifier"],
+      "home": "doctrine/06-delegation.md",
+      "case_sensitive": false,
+      "allowed_subsets": []
+    },
+    {
+      "name": "evidence_tier",
+      "members": ["T1", "T2", "T3", "T4"],
+      "home": "artifacts/findings.template.md",
+      "note": "Project-level, not framework-level (D-021). Projects are expected to replace this set; the check enforces internal consistency of the default only.",
+      "allowed_subsets": []
+    },
+    {
+      "name": "effort",
+      "members": ["S", "M", "L"],
+      "home": "doctrine/05-the-record.md",
+      "check_enumerations": false,
+      "check_home": false,
+      "unchecked_reason": "Single-letter members cannot be distinguished from ordinary prose by any pattern. Wholly unchecked, deliberately. If effort drifts, only review will catch it."
+    },
+    {
+      "name": "verification_grade",
+      "members": ["Direct", "Proxy", "Derived"],
+      "home": "doctrine/04-verification.md",
+      "check_enumerations": false,
+      "check_home": false,
+      "unchecked_reason": "The grades are rendered two ways in the corpus — as bold single words (Direct/Proxy/Derived) and as full phrases (proven in the real environment / checked in a proxy / reasoned from the source). Until one form is canonical this cannot be checked without false positives. Known gap; see tools/README.md."
+    }
+  ]
+}

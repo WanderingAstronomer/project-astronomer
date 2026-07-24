@@ -31,10 +31,19 @@ A claim carries, at minimum:
 | `confidence` | one of the six tokens — see [below](#confidence-tokens) | L-3 — a field, not a tone |
 | `source` | where it came from, precisely enough to re-check | lets a future reader re-derive it |
 | `observed_at` | live timestamp | ordering, and lag analysis |
+| `retrieved_at` | when an external source was **fetched** — required on `CITED`, absent otherwise | a source has two clocks and they run at different speeds |
 
 `source` is the field most often softened and should not be. It exists so that a claim can be
 returned to its origin and re-verified — which is the only defense against a corpus that
 gradually accumulates its own conclusions as if they were inputs.
+
+**`retrieved_at` is not `observed_at`, and neither is the publication date.** Three different facts:
+when the source was written, when you fetched it, and when the claim it supports was observed. The
+corpus previously had one field for all three, and collapsing them is how a five-year-old figure
+reads as this week's evidence. The rule that follows is L-11's, applied to retrieval: **do not cite
+a source you did not fetch yourself** — a figure quoted by a search result is a summary of a
+summary, and that is where the digit changes. See
+[`../rituals/external-research.md`](../rituals/external-research.md).
 
 ---
 
@@ -43,8 +52,14 @@ gradually accumulates its own conclusions as if they were inputs.
 Type is not topic. Topic tells you what a claim is *about*; type tells you what it is *worth*
 and what it takes to promote it.
 
-Both projects that built one converged on cutting the categories by epistemic status rather
-than subject matter. The generalized ladder:
+Both projects that built one — FR, with a ten-type taxonomy, and DD, with four — converged on
+cutting the categories by **epistemic status** rather than by subject matter. That convergence is
+the attested part, and it is the part worth trusting.
+
+**The seven-type ladder below is neither of theirs. It is a single-authored synthesis**, listed as
+such in [`../provenance/lineage.md`](../provenance/lineage.md). Treat the *principle* as
+well-attested and the *membership* as provisional — if a claim does not fit, the ladder is wrong
+and gets amended by decision (below), which is a cheaper outcome than forcing the claim.
 
 | Type | What it is | How it may be used |
 |---|---|---|

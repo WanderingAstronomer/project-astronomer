@@ -9,6 +9,9 @@
 > being disposable. Promote it to frozen, deliberately. *If you would be upset to lose it, it is
 > not disposable, whatever the directory says.*
 
+**Required at:** **Standard** — from the point where there are more findings than you can hold in
+your head, and someone will act on them later.
+
 **Entry condition:** the observation window is closed and the log carries an explicit
 `INTAKE CLOSED` marker. Triage does not begin while intake is open — if it did, the first item
 triaged during intake would look exactly like an item triaged after it, and the boundary would

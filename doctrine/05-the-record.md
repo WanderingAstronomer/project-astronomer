@@ -5,11 +5,11 @@ fails in a specific, predictable way: not by containing errors, but by containin
 **class** is ambiguous — so nobody knows whether a given file is supposed to be updated, frozen,
 or thrown away, and all three happen to it at different times.
 
-Astronomer recognizes three classes and one rule per class.
+Astronomer recognizes four classes and one rule per class.
 
 ---
 
-## The three classes
+## The four classes
 
 | Class | Rule | Examples |
 |---|---|---|
@@ -109,6 +109,8 @@ A workable scheme, adapted from the source projects:
 | `C-<n>` | cluster (a shared root cause) | the triage board |
 | `Q-<n>` | open question owed to a human | triage board / standard |
 | `F-<n>` | finding | findings |
+| `S-<n>` | source document taken in from outside | the source manifest |
+| `E-<n>` | outbound request — something that left the machine | the query log |
 
 Bare references resolve to the **local** ledger only. Cross-project references are namespaced
 (`VOC-D-4`). An item that splits keeps its ID and gains a suffix (`O-14a`, `O-14b`) rather than
@@ -131,15 +133,26 @@ charter.
   hour-ish, L = multi-hour or needs design care.* Falsifiable, unlike a 5.
 - **Change size:** `minimal` · `medium` · `large`, declared before starting. Re-classing upward
   is expected; silently exceeding the class is not.
-- **Doc status:** `living` · `frozen` · `disposable`, stated at the top of the file.
+- **Doc status:** the four record classes — `living` · `frozen` · `append-only` · `disposable` —
+  stated at the top of the file. Defined once, in [The four classes](#the-four-classes) above; the
+  membership is named here but not redefined, for the same reason confidence is not (L-14). A
+  three-member version of this list survived in six places for four days after D-019 added the
+  fourth class, which is what the vocabulary gate now checks for.
 
 ---
 
 ## Naming
 
-- **Numbered slugs for ordered corpora:** `01-charter.md`, `04-verification.md`. Numbers are
+- **Numbered slugs for ordered corpora:** `01-charter.md`, `04-verification.md`. Numbers here are
   *slots* — when a document is retired, the slot's history is recorded and the number may be
   refilled by something unrelated. It is a position, not a meaning.
+
+  **This is the one exception to "retire, never reuse" above, and the boundary is exact.** A
+  *filename slot* orders a shelf and may be refilled. A *record ID* — `D-`, `O-`, `C-`, `Q-`, `F-`
+  — is a permanent address and may never be. Applying the slot rule to a record ID does exactly
+  what the identifier section calls strictly worse than a dangling pointer. When you cannot tell
+  which you are holding, ask whether anything has ever cited it *by that number*: if yes, it is an
+  address, not a slot.
 - **Date-suffixed for frozen records:** `audit-2026-07-20.md`. The date in the filename is what
   makes a frozen record obviously frozen at a glance in a directory listing.
 - **Underscore-prefix for shared includes:** `_SHARED-PREAMBLE.md` sorts to the top, where a file

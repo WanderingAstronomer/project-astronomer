@@ -13,6 +13,27 @@ knowledge; or the subject has changed since the reading was taken.
 **Every number in every document is stale from the moment it is typed** (L-11). That is a
 statement about time, not about carelessness.
 
+## Before any of that: take the baseline
+
+Everything below is repair. It is written for the moment you *discover* a bad number, which is
+always after you have already used it — step 1 is "stop using the number," and that presupposes it
+is in use.
+
+The cheap half of this ritual runs at the other end, before the work starts:
+
+- **Measure what you are about to change, first.** A baseline you did not take is a baseline you
+  are guessing at, and after the change there is no way back to it.
+- **Declare what your instruments cannot detect**, in writing, where the next session will see it.
+  For a human operator that is the observation log's `Known instrument error` field. For a
+  collaborator doing the observing, it is the
+  [capability inventory](../artifacts/capability-inventory.template.md) — and it is required from
+  Lite upward whenever something other than the operator is doing the looking.
+- **State the direction of a known bias, not just its existence.** "Roughly a 30% undercount on
+  completeness questions" can be subtracted; "may be incomplete" cannot.
+
+A limit declared in advance costs a paragraph. The same limit discovered mid-window costs the
+window, because you cannot tell which observations it already touched.
+
 ## Do
 
 1. **Stop using the number.** Not "flag it and continue" — anything you conclude from it in the

@@ -119,6 +119,22 @@ followed by a baseline-versus-final table.
 This matters most where the subject changes while you read it. A software test count drifts when
 someone else commits. A physiological baseline drifts because you are alive.
 
+**Two corollaries, both of which are "measured by me" failing on its other end.**
+
+**Measured by me, with an instrument I have not checked, is not a measurement.** A tool you built
+and have not tested produces a claim about your tool, not about the world. It is typed `INFERENCE`
+and promoted to `OBSERVATION` only after the instrument has been broken on purpose and seen to
+notice (B-6, [`07-boundaries.md`](07-boundaries.md)). This framework earned the scar building its
+own vocabulary gate: first run, fourteen defects reported, **nine of them artifacts of the gate** —
+each plausible, each citing a real file and line, each ready to be "fixed." The output format of a
+broken instrument is identical to the output format of a working one.
+
+**Cited by me, from a source I did not fetch, is not a citation.** A figure a search result quotes
+from a document is a summary of a summary, and that is where the digit changes. Retrieve it
+yourself, and stamp when you did — the fetch date, the publication date, and the observation date
+are three different facts ([`02-epistemics.md`](02-epistemics.md),
+[`../rituals/external-research.md`](../rituals/external-research.md)).
+
 ---
 
 ## Instrument anything that runs longer than you will watch

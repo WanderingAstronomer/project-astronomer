@@ -6,6 +6,9 @@
 > charter, **the charter wins.** Amend it deliberately, with a dated entry in
 > [`DECISIONS.md`](DECISIONS.md) — never silently.
 
+**Required at:** **Lite** — every tier requires it; it is the document that makes a contradiction
+detectable at all (L-1).
+
 <!--
 HOW TO USE THIS TEMPLATE
   Copy to CHARTER.md at the root of your project. Fill every angle-bracket slot. Do not delete
@@ -117,7 +120,7 @@ project-level**: their home is this section, and everything else in your project
 
 **Six tokens: `CONFIRMED` · `UNVERIFIED` · `REFUTED` · `PROVISIONAL` · `UNRESOLVED` · `ACCEPTED`.**
 
-**Their single home is [`doctrine/02-epistemics.md`](../doctrine/02-epistemics.md), and this
+**Their single home is `doctrine/02-epistemics.md`, and this
 charter deliberately does not restate their definitions** — it points at them (AMENDS D-015).
 Restating them here would put a second copy in the corpus, and a second copy is how a vocabulary
 drifts. That is not a hypothetical: the seeded framework shipped **three different memberships of
@@ -132,7 +135,7 @@ per project cannot be aggregated across projects, which is most of the reason to
 
 **Severity** — a property of the symptom. Distinct from **blast radius** (Friction /
 Conflagration), which asks how far something reaches rather than how much it matters (D-018); see
-[`rituals/README.md`](../rituals/README.md). The two are orthogonal — a `minor` item is a
+`rituals/README.md`. The two are orthogonal — a `minor` item is a
 Conflagration if six decisions rest on it.
 
 | Token | Means |
@@ -154,7 +157,12 @@ can be wrong about.
 **Change size** — declared *before* starting: `minimal` · `medium` · `large`. Re-classing upward
 mid-flight is expected and fine. Silently exceeding the declared class is not.
 
-**Doc class** — `living` · `frozen` · `disposable`, stated at the top of every file.
+**Doc class** — `living` · `frozen` · `append-only` · `disposable`, stated at the top of every
+file. **Framework-level, like confidence**: the home is
+`doctrine/05-the-record.md` and this charter points at it rather
+than defining it. `append-only` is a class in its own right, not a flavour of frozen (D-019) — it
+is the one your ledger and your observation log take, and the one a three-member version of this
+list quietly dropped in six places for four days after it was added.
 
 ## Cost gate for scrutiny
 

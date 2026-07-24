@@ -118,8 +118,10 @@ Skills run the loop's phases. **Rituals** handle recurring frictions — full ro
 
 | Situation | Route to |
 |---|---|
-| Nothing has been declared yet | ritual `starting-a-project` |
+| Nothing has been declared yet | `astronomer-start` · ritual `starting-a-project` |
+| Handed documents this project did not write | `astronomer-intake` · ritual `corpus-intake` — count and check readability before reading |
 | Something surprised you | `astronomer-observe` · ritual `observation-pass` |
+| You need something the project cannot observe for itself | `astronomer-research` · ritual `external-research` — clear the query before it goes out |
 | Window closed, items piled up | `astronomer-triage` · ritual `triage-pass` |
 | You have a cluster and a hunch | `astronomer-verify` — break it before believing it |
 | A call has been made | `astronomer-decide` — append it, live-stamped |

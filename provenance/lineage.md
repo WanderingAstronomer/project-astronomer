@@ -154,3 +154,103 @@ loses the ambiguity that made it hard at the time.
 This is why the corpus ships as `PROVISIONAL` (D-001) and why condition 6 of the definition of
 done — *a real project outside this repo has run one full loop on it* — is the only thing that
 would move it. Until then, Astronomer is a well-argued guess about what worked.
+
+---
+
+## Addendum — 2026-07-24
+
+**This does not revise the extraction above; it records what came after it.** The original
+four-project extraction stands as written on 2026-07-20.
+
+A fifth, external, unrelated engagement — code **BK** (`Berman & Killeen`, a forensic-psychology
+practice; not one of the four source projects and not part of this corpus) — used Astronomer as an
+**analytical lens** on its own AI-collaborator prompts, and its working `Claude/` directory
+independently converged on two patterns absent from the seeded artifact set:
+
+1. A **data-boundary classification** (RED / GREEN / YELLOW) for what an AI collaborator may read,
+   grounded in a live scar: a subpoenaed, legally privileged case file and raw financial exports
+   sitting in the same directory the collaborator had standing access to, with no written boundary
+   until one was made explicit — at which point an existing compliance commitment (a signed BAA)
+   was found already in tension with an unflagged privileged file nearby.
+2. A **collaborator workspace layout** — a directory the collaborator uses freely, separate from the
+   project's own artifacts, opened with a `README.md` that states its authorization and points to one
+   "read this first" living document.
+
+Both are now `artifacts/data-boundary.template.md` and part of the new `astronomer-start` skill
+(`install/skills/astronomer-start/`), per `DECISIONS.md` D-023.
+
+**Marked single-attested and provisional (D-006), on both counts, deliberately:**
+
+- **BK did not run a full OBSERVE→RECORD loop on Astronomer.** It was consulting work *about* an
+  account, not a project *governed by* the framework end to end. CHARTER definition-of-done
+  condition 6 is **not** satisfied by this addendum, and this addendum does not claim it is.
+- Two patterns from one outside source is exactly the attestation level D-006 calls a *practice*,
+  not a *law* — the same caution the original extraction applied to L-11 applies here, doubly, since
+  this is a single source rather than one-of-four.
+- The next real project that uses `astronomer-start` is what would move either pattern toward
+  independently-attested. Until then, treat both as reasonable, unproven additions — exactly the
+  posture this framework asks of everything else in it.
+
+---
+
+# Addendum — 2026-07-24T20:46Z
+
+> Like the addendum above, this **does not re-run or revise** the 2026-07-20 extraction. It records
+> what the first self-survey of this corpus found unattributed, and attributes the material added
+> since. Everything above this line stands as written.
+
+## Part 1 — patterns that were never attributed
+
+CHARTER definition-of-done condition 4 requires every doctrine section to name its sources, with no
+unattributed patterns. The section-level table above covers `doctrine/00`–`06` and `tiers/`. Four
+things it does not cover, found by survey rather than by anyone auditing the condition:
+
+| Unattributed | Status | Note |
+|---|---|---|
+| The **`rituals/` layer** — all files | **Original to Astronomer** (D-017) | No source project had a framework-level procedure layer distinct from project runbooks. VOC and OD both had domain procedures; the *separation* is new here, and D-017's test is the new part: if the procedure cannot be written without naming your subject, it is a runbook. |
+| The **Friction / Conflagration** blast-radius axis | **Original to Astronomer** (D-018) | Arrived by correction, not design: the axis was first called "severity," collided with the existing per-item severity scale, and was renamed. The first fix documented the collision instead of removing it, which is the L-17 failure — a re-taught trap rather than a closed one. |
+| The **`artifacts/` template set as shapes** | **Mixed; per-artifact** | The *patterns* are attested via the doctrine rows above (ledger → DD, VOC; brief and report → VOC; catalog → OD). The **rendered templates** — section order, mandatory fields, worked examples — are Astronomer's, single-authored. No source project shipped a blank template; each had a filled instance. |
+| The **`Append-only` record class** | **Original to Astronomer** (D-019) | Row `05-the-record — three classes → OD` above is correct **as of 2026-07-20** and is left standing. D-019 added the fourth class the next day. OD supplied three; the fourth is not inherited. |
+
+The `rituals/` and blast-radius entries should have appeared in **"Original to Astronomer"** above
+and did not. That list had four items; it has eight. Recording the omission rather than
+back-filling the original list, because the original list is evidence of what the extraction
+noticed at the time — which is the entire reason that section is frozen.
+
+## Part 2 — the boundaries layer, and why it is the weakest thing here
+
+`doctrine/07-boundaries.md`, `artifacts/query-log.template.md`,
+`artifacts/source-manifest.template.md`, `artifacts/capability-inventory.template.md`,
+`rituals/corpus-intake.md`, `rituals/external-research.md`, and the `astronomer-intake` and
+`astronomer-research` skills, added 2026-07-24 (D-031 – D-033).
+
+| Rule | Attestation |
+|---|---|
+| **B-1** read access ≠ egress | **BK**, partially — BK's scar produced the read classification. The egress half is single-authored; BK classified what could be opened, not what could be sent. |
+| **B-2** a query is derived data | **Policy-derived** (D-022 precedent) — an operator ruling on a live engagement, no incident behind it. Labelled, not dressed up. |
+| **B-3** outbound requests are recorded | **Structurally inherited** from L-17. Written *in advance* of its incident, which is stated in the rule itself. |
+| **B-4** unlisted destination is unclassified | **BK**, by direct extension of the unlisted-item rule. |
+| **B-5** self-authored tools inherit the boundary | **Single-authored.** No scar. |
+| **B-6** your own tool's output is `INFERENCE` until verified | **This corpus, 2026-07-24.** The first run of `tools/check-corpus.py` reported fourteen defects; **nine were artifacts of the gate.** Each was plausible and cited a real file and line. This is the only rule in the group with a scar that was actually paid for. |
+| **B-7** cheap-to-reverse governs unattended execution | **VOC**, extended from autonomous *decisions* to autonomous *execution*. |
+| Source manifest — extraction states, `Not read` field | **Single-authored**, from L-12 and L-16. No source project ingested an outside corpus. |
+| Capability inventory | **Single-authored.** The nearest attested statement, "the operator is the instrument," is about the human. |
+| `retrieved_at`, and "do not cite a source you did not fetch" | **VOC**, extended — L-11's "trust no number quoted to you" applied to retrieval. |
+| The completeness-vs-detection instrument rule (`observation-pass`) | **This corpus, measured once.** Four readers found seven of ten sites; mechanical search found the rest. ~30% undercount, one measurement, stale from the moment it was typed (L-11). |
+
+**Marked single-attested and provisional (D-006), and weaker than the BK addendum above it.** That
+addendum had one outside project converging on two patterns. **This has no outside project at all.**
+The whole boundaries layer exists because an AI collaborator now has filesystem access, a network,
+and a shell at once — a condition **none of the four source projects had**, which is exactly why
+there is nothing to converge with.
+
+Two of the eleven rows carry a scar this corpus actually paid for (B-6, and the instrument rule).
+The rest are structural arguments: *the collaborator is an instrument, instruments declare their
+error; read is not transmit; an unlisted thing is unclassified.* Structural arguments are how the
+seeded corpus's weakest material got in, and it says so about itself
+([`../doctrine/README.md`](../doctrine/README.md): single-authored claims "are the weakest parts of
+the framework and the first that should change").
+
+**What would move this:** a second, unrelated project that arrives independently at an egress
+boundary or a source manifest. Not this framework being used again by the same operator — that
+tests whether it is *usable*, which is a different question from whether it is *right*.

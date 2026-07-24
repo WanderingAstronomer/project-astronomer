@@ -7,6 +7,8 @@
 > restated per-brief drifts per-brief, and the drift is invisible because each copy reads fine on
 > its own (L-14).
 
+**Required at:** **Full** — created when the second parallel workstream is.
+
 Read this in full before starting. It is not preamble in the ceremonial sense — it is the set of
 rules that apply to all work in this project regardless of scope, and **every one of them was
 learned the hard way.**

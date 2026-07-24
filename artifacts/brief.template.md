@@ -16,6 +16,9 @@
 > properly refute. The value of a second mind is entirely in its independence, and pre-solving
 > spends it before the work starts.
 
+**Required at:** **Full** — from the moment work is handed to someone who cannot ask you a
+question mid-flight.
+
 ---
 
 ## 1. Read this first
@@ -165,7 +168,7 @@ bigger scope is an explicit re-plan, not an in-session expansion.
 
 ## Return
 
-Your report follows the six-section contract in [`report.template.md`](report.template.md). Two
+Your report follows the six-section contract in `report.template.md`. Two
 of its sections are the ones that make a report evidence rather than a pitch, and both are
 mandatory even when empty:
 

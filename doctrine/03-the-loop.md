@@ -148,9 +148,10 @@ record as a finding.
   generalizes past AI collaboration.
 - Where the same failure class has now recurred three times, **build a gate instead of a third
   fix** (L-17).
-- Classify the change size before starting — *minimal / medium / large*. Re-classing upward
-  mid-flight is fine and expected; silently doing more than the plan is not. VOC's phrasing:
-  "bigger scope = an explicit re-plan, not an in-session expansion."
+- Classify the change size before starting. The vocabulary is defined once, in
+  [`05-the-record.md`](05-the-record.md#status-vocabularies), and is not restated here (L-14).
+  Re-classing upward mid-flight is fine and expected; silently doing more than the plan is not.
+  VOC's phrasing: "bigger scope = an explicit re-plan, not an in-session expansion."
 
 **Forbidden**
 
