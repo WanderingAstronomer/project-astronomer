@@ -1,0 +1,68 @@
+{
+  "_comment": [
+    "THE ATTESTATION REGISTRY. One home for how much evidence stands behind each law (D-039,",
+    "D-040). Checked by check_attestation() in tools/check-corpus.py against the `law`",
+    "vocabulary in tools/vocabularies.json.",
+    "",
+    "WHY THIS FILE IS LIVING AND provenance/lineage.md IS NOT. The tally in lineage.md is a",
+    "FROZEN record of the 2026-07-20 extraction (L-13). It is annotated by addendum, never",
+    "edited -- so it cannot carry L-18, and it cannot carry a correction. That is correct",
+    "behaviour for a frozen record and useless as a live source of truth, which is why the two",
+    "coexist: lineage.md is the evidence this file was derived from, and this file is what the",
+    "gate reads. This is the frozen/living split, not a second home for one fact.",
+    "",
+    "GRADE IS ORTHOGONAL TO BINDING. Every law binds at every tier whatever its grade. The",
+    "grade governs how readily the rule is amended when a project pushes back on it, and",
+    "whether it owes a sunset. See doctrine/01-laws.md.",
+    "",
+    "ASTRONOMER CANNOT ATTEST ITS OWN LAWS. This corpus has twice broken L-14 and built a gate",
+    "for it (AMENDS D-015, D-019), and those incidents do NOT raise L-14 to settled. The four",
+    "source projects were independent of each other and of a framework that did not yet exist;",
+    "the framework applying its own rule to itself is not a fifth independent arrival, it is",
+    "the same claim looking in a mirror. D-007 says Astronomer governs itself. It does not say",
+    "Astronomer corroborates itself.",
+    "",
+    "WHAT THIS CANNOT CATCH. Whether a listed source project ACTUALLY arrived at the rule",
+    "independently. That judgement was made once, at extraction, by a reader who could see all",
+    "four corpora, and it is not re-derivable from here. A wrongly-credited source would pass",
+    "this gate silently, and the only instrument that would catch it is re-reading the sources."
+  ],
+
+  "grade_bands": {
+    "practice": [1, 1],
+    "converging": [2, 2],
+    "settled": [3, 4]
+  },
+
+  "review_event": "The next installation of Astronomer into a project. An EVENT, not a date -- dates get missed, and an install is the only moment at which a second project is actually available to attest anything. rituals/starting-a-project.md carries the step.",
+
+  "sources": {
+    "VOC": "transcription platform",
+    "OD": "civic mapping service",
+    "FR": "retrieval-architecture proof of concept",
+    "DD": "personal research study"
+  },
+
+  "derived_from": "provenance/lineage.md tally (frozen 2026-07-20), cross-checked against the per-law `Attested` lines in doctrine/01-laws.md. The two agreed on all seventeen seeded laws, independently. L-18 comes from the 2026-07-26T23:07Z addendum.",
+
+  "laws": [
+    {"id": "L-1",  "title": "One document wins",                "sources": ["VOC", "FR", "DD"],        "count": 3, "grade": "settled"},
+    {"id": "L-2",  "title": "Supersede by name",                 "sources": ["VOC", "DD"],              "count": 2, "grade": "converging", "would_attest": "A third project that independently requires a superseding decision to NAME what it replaces, rather than resolving two live rules by recency."},
+    {"id": "L-3",  "title": "Observation is not inference",      "sources": ["VOC", "OD", "FR", "DD"],  "count": 4, "grade": "settled"},
+    {"id": "L-4",  "title": "Scope is mandatory",                "sources": ["FR", "DD"],               "count": 2, "grade": "converging", "would_attest": "A third project that independently makes the conditions of a claim a REQUIRED field rather than a convention, and routes unscoped claims to scrutiny."},
+    {"id": "L-5",  "title": "Co-occurrence is not shared cause", "sources": ["VOC", "OD"],              "count": 2, "grade": "converging", "would_attest": "A third project that independently refuses to group findings by co-occurrence until a shared mechanism is cited at a location."},
+    {"id": "L-6",  "title": "Refutation is a result",            "sources": ["VOC", "OD", "DD"],        "count": 3, "grade": "settled"},
+    {"id": "L-7",  "title": "No changes during observation",     "sources": ["VOC", "OD"],              "count": 2, "grade": "converging", "would_attest": "A third project that independently forbids intervention inside an observation window, including one-line obvious fixes."},
+    {"id": "L-8",  "title": "Validate small first",              "sources": ["FR", "DD"],               "count": 2, "grade": "converging", "would_attest": "A third project that independently gates an expensive run on a sample small enough to check by hand."},
+    {"id": "L-9",  "title": "Falsifier written first",           "sources": ["OD", "FR", "DD"],         "count": 3, "grade": "settled"},
+    {"id": "L-10", "title": "One variable at a time",            "sources": ["VOC", "FR"],              "count": 2, "grade": "converging", "would_attest": "A third project that independently attributes a wrong result to two changes landing together, or designs an experiment down to a single differing variable."},
+    {"id": "L-11", "title": "Measure your own baseline",         "sources": ["VOC"],                    "count": 1, "grade": "practice",   "would_attest": "A second project that independently requires its own baseline measurement rather than a quoted figure. FR's read-only progress dashboard and DD's measured-only-never-inferred invariant were judged at seeding to be the same instinct arriving by a different route and NOT to count. That judgement is the first thing a second look should revisit -- it is the only grade in this registry resting on a close call rather than an absence."},
+    {"id": "L-12", "title": "Verify at the right altitude",      "sources": ["VOC", "OD"],              "count": 2, "grade": "converging", "would_attest": "A third project that independently records a proxy measurement which could not have failed in the way that mattered, or publishes what its own tooling cannot measure."},
+    {"id": "L-13", "title": "Frozen versus living",              "sources": ["VOC", "OD", "DD"],        "count": 3, "grade": "settled"},
+    {"id": "L-14", "title": "Vocabulary has one home",           "sources": ["FR", "DD"],               "count": 2, "grade": "converging", "would_attest": "A third project that independently gives each shared term one enforced home and renders every consumer from it. NOTE: this corpus supplies two negative instances of its own (AMENDS D-015, D-019) and they do NOT count -- see the comment above on why Astronomer cannot attest itself."},
+    {"id": "L-15", "title": "Name the non-delegable",            "sources": ["VOC", "FR"],              "count": 2, "grade": "converging", "would_attest": "A third project that independently names its human-only work in writing before starting, and halts there rather than producing a plausible substitute."},
+    {"id": "L-16", "title": "Never leave the lie",               "sources": ["VOC", "OD", "DD"],        "count": 3, "grade": "settled"},
+    {"id": "L-17", "title": "Gate, do not re-fix",               "sources": ["VOC", "OD"],              "count": 2, "grade": "converging", "would_attest": "A third project that independently converts a recurring defect into a mechanism instead of fixing its next instance."},
+    {"id": "L-18", "title": "An instrument declares its limits", "sources": ["VOC"],                    "count": 1, "grade": "practice",   "would_attest": "A second project that independently requires an instrument -- tool, collaborator, or environment -- to declare what it cannot do before work depends on it. The nearest available signal would be a project adopting a capability inventory or an operator profile WITHOUT being instructed to, which is weaker than an independent arrival and should be recorded as such rather than counted."}
+  ]
+}

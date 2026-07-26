@@ -177,6 +177,26 @@
       "unchecked_reason": "The grades are rendered two ways in the corpus — as bold single words (Direct/Proxy/Derived) and as full phrases (proven in the real environment / checked in a proxy / reasoned from the source). Until one form is canonical this cannot be checked without false positives. Known gap; see tools/README.md."
     },
     {
+      "name": "attestation_grade",
+      "members": ["practice", "converging", "settled"],
+      "home": "doctrine/01-laws.md",
+      "case_sensitive": false,
+      "note": "How much evidence stands behind a rule -- ORTHOGONAL to whether it binds (D-039). Every law binds at every tier regardless of grade. The middle member is the one D-039 added: the charter defined one and three and twelve of eighteen laws sat at two. Per-law values live in provenance/attestation.json and are checked by check_attestation() in tools/check-corpus.py.",
+      "count_nouns": ["attestation grades"],
+      "check_enumerations": false,
+      "unchecked_reason": "Members are ordinary English words -- 'practice' and 'settled' appear constantly in prose across the corpus in unrelated senses. Any tight-run pattern would be almost entirely false positives. Home-membership, counted prose, and the per-law registry check all apply, and the registry check is the strong one.",
+      "exempt_files": [
+        {
+          "file": "DECISIONS.md",
+          "reason": "Append-only, per the authors' rule above: every count_nouns vocabulary needs this. Entries record what was believed when written and are never edited."
+        },
+        {
+          "file": "OBSERVATIONS.md",
+          "reason": "Append-only, same rule. An observation log that cannot quote the count it saw is not a log."
+        }
+      ]
+    },
+    {
       "name": "conditional_artifact",
       "members": ["data boundary", "source manifest", "query log", "capability inventory",
                   "operator profile"],

@@ -23,7 +23,7 @@ WHY THIS EXISTS (the incident is the description; see rituals/recurring-defect.m
 
   The guard is intentional. Fix the cause; do not switch off the check.
 
-THREE CHECKS
+FOUR CHECKS
   1. vocabularies — every registered token set has one home containing every member, and
      every tight enumeration of it anywhere in the corpus carries the full membership.
   2. install manifest — the skill directories on disk match both places that list them.
@@ -31,12 +31,21 @@ THREE CHECKS
      files.
   3. links — every relative markdown link resolves from the file it appears in, including
      its #anchor.
+  4. attestation — every law carries a grade, the grade matches the number of independent
+     source projects behind it, and anything below `settled` states what would raise it.
+     Checks 1-3 ask whether the documents agree with each other. This one asks whether the
+     corpus meets the promotion standard it published for itself, and it was added because
+     they disagreed: the charter defined one source and three, twelve of eighteen laws sat
+     at two, and the counts lived only in a frozen file that cannot carry a correction.
 
 WHAT THIS CANNOT CATCH — stated, not hidden:
   - A vocabulary that is not in tools/vocabularies.json. Adding a token set to the corpus
     without registering it here is invisible to this gate.
   - Drift stated in prose rather than as a tight list ("the three classes are ...").
   - Vocabularies marked check_enumerations:false in the registry, each with its reason.
+  - Whether a source project listed in provenance/attestation.json ACTUALLY arrived at the
+    rule independently. That judgement was made once, by a reader who could see all four
+    corpora, and is not re-derivable here. A wrongly-credited source passes silently.
   Run with --verbose to print every exemption taken. Silence is not coverage.
 
 Usage:  python tools/check-corpus.py [--verbose]
@@ -268,6 +277,104 @@ def check_install_manifest() -> None:
             fail(f"[manifest] {label} lists skill '{phantom}' which does not exist on disk")
 
 
+# ---------------------------------------------------------------- check 4
+
+def check_attestation(registry: dict) -> None:
+    """Every law carries a grade, and the grade matches the evidence behind it.
+
+    This is the first check in this corpus that polices an EPISTEMIC claim rather than a
+    string. The others ask whether the documents agree with each other; this one asks whether
+    the corpus meets the promotion standard it published for itself.
+
+    It exists because they disagreed. CHARTER invariant 4 defined one source as a practice and
+    three as a law, twelve of the eighteen laws sat at two, and nothing anywhere named that
+    grade or noticed it was missing (D-039). The counts themselves lived only in a FROZEN file
+    (L-13), which cannot carry a new law or a correction, so there was no live home to check
+    against at all until provenance/attestation.json.
+
+    The sunset assertion is the load-bearing one. Six sites in this corpus said "provisional"
+    with no expiry and no forcing function, so provisional material accumulated permanently and
+    nothing was ever going to review it. Requiring `would_attest` on anything below `settled`
+    is what converts that from a good intention into a mechanism (L-17).
+    """
+    path = ROOT / "provenance" / "attestation.json"
+    if not path.exists():
+        fail("[attestation] provenance/attestation.json does not exist")
+        return
+
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        fail(f"[attestation] provenance/attestation.json is not valid JSON: {exc}")
+        return
+
+    bands = data.get("grade_bands", {})
+    if not bands:
+        fail("[attestation] no grade_bands declared - nothing to check a grade against")
+        return
+
+    # The review event is stated once, at the top, and every sunset points at it (L-14). A
+    # per-law copy would be twelve identical strings, i.e. twelve places for it to drift.
+    if not str(data.get("review_event", "")).strip():
+        fail("[attestation] review_event is empty - every sunset points at it, so a blank "
+             "one makes every would_attest unreviewable")
+
+    entries = data.get("laws", [])
+    by_id = {e.get("id"): e for e in entries}
+
+    for e in entries:
+        if list(by_id).count(e.get("id")) > 1:
+            fail(f"[attestation] duplicate entry for {e.get('id')}")
+
+    # -- 4a. the registry and the law vocabulary must describe the same set.
+    law_vocab = next(
+        (v for v in registry["vocabularies"] if v["name"] == "law"), None
+    )
+    if law_vocab is None:
+        fail("[attestation] no 'law' vocabulary in the registry to check against")
+        return
+    laws = set(law_vocab["members"])
+
+    for missing in sorted(laws - set(by_id)):
+        fail(f"[attestation] {missing} is a law but has no attestation entry - "
+             f"a law with no grade is a claim with no stated evidence (L-18)")
+    for phantom in sorted(set(by_id) - laws):
+        fail(f"[attestation] entry for {phantom}, which is not in the law vocabulary")
+
+    # -- 4b. count matches the sources listed, and the grade matches the count.
+    for law_id in sorted(laws & set(by_id), key=lambda s: int(s.split("-")[1])):
+        e = by_id[law_id]
+        sources = e.get("sources", [])
+        count = e.get("count")
+        grade = e.get("grade")
+
+        if len(set(sources)) != len(sources):
+            fail(f"[attestation] {law_id} lists a source twice: {sources}")
+
+        if count != len(sources):
+            fail(f"[attestation] {law_id} claims count {count} but lists "
+                 f"{len(sources)} source(s): {sources}")
+            continue
+
+        if grade not in bands:
+            fail(f"[attestation] {law_id} has grade '{grade}', which is not a declared band "
+                 f"({', '.join(bands)})")
+            continue
+
+        low, high = bands[grade]
+        if not low <= count <= high:
+            expected = [g for g, (lo, hi) in bands.items() if lo <= count <= hi]
+            fail(f"[attestation] {law_id} is graded '{grade}' on {count} source(s); "
+                 f"band is {low}-{high}. Correct grade: "
+                 f"{expected[0] if expected else 'none - count is outside every band'}")
+            continue
+
+        # -- 4c. the sunset. Anything not settled owes what would raise it.
+        if grade != "settled" and not str(e.get("would_attest", "")).strip():
+            fail(f"[attestation] {law_id} is graded '{grade}' with no 'would_attest' - "
+                 f"a provisional rule with no stated path out of provisional never leaves it")
+
+
 # ---------------------------------------------------------------- check 3
 
 LINK_RE = re.compile(r"\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
@@ -361,6 +468,7 @@ def main() -> int:
     check_vocabularies(registry)
     check_install_manifest()
     check_links()
+    check_attestation(registry)
 
     if VERBOSE and exemptions:
         print(f"EXEMPTIONS TAKEN ({len(exemptions)}) - every one is a place this gate "
@@ -378,7 +486,8 @@ def main() -> int:
             print("Run with --verbose to see what the gate deliberately does not check.")
         return 1
 
-    print("CORPUS CHECK PASSED - vocabularies, install manifest, and links all consistent.")
+    print("CORPUS CHECK PASSED - vocabularies, install manifest, links, and attestation "
+          "all consistent.")
     if not VERBOSE:
         print(f"({len(exemptions)} exemptions taken; run with --verbose to see them.)")
     return 0

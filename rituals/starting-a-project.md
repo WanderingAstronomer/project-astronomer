@@ -74,6 +74,32 @@ window**, not settled record, however finished it looks.
 9. **Declare the first OBSERVE window.** State what you are observing, over what period, and what
    event closes it. Then stop planning and go look.
 
+## Owed to the framework, on every install
+
+This is the one step that does not serve the project you are starting. It serves the next one, and
+this ritual is where it lands because **an install is the review event** for Astronomer's own
+provisional material ([`doctrine/01-laws.md`](../doctrine/01-laws.md), D-039).
+
+Anything graded `practice` or `converging` in
+[`provenance/attestation.json`](../provenance/attestation.json) carries a `would_attest` field
+naming the specific independent observation that would raise it. Before the first window opens, read
+that list once against the project you are about to run:
+
+1. **Does this project stand to attest any of them?** Not "would it be nice" — does the work
+   genuinely involve the situation the field describes? Most installs will attest nothing, and
+   recording *that* is the honest outcome.
+2. **If it might, note which** in the project's ledger as an expectation, so the observation gets
+   recognised when it happens rather than reconstructed afterward.
+3. **If this project's experience contradicts a rule**, that is worth more than an attestation. A
+   refutation is a result (L-6), and it goes back to Astronomer as an amendment.
+4. **Astronomer's own experience does not count.** The framework applying its own rule to itself is
+   not an independent arrival — see the note in the attestation registry. Only a project that is not
+   Astronomer can raise a grade.
+
+The date is not the trigger and never was. **An install is noticed; a date is missed** — which is
+why the six "provisional" markings in this corpus sat with no expiry and no forcing function until
+this step existed.
+
 ## Record
 
 - The **data boundary** (read tiers *and* egress) and the collaborator's **workspace README**, if

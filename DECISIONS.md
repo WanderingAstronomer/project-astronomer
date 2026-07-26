@@ -448,6 +448,73 @@ answers permission by deciding, and neither may answer the other's question.** `
 promotion is one rung, not two. One project is a practice; three independent arrivals are a law
 (CHARTER invariant 4), and this has one.
 
+`[2026-07-26T23:45Z] D-039:` **"Law" carried two incompatible senses and now carries one, with
+evidence tracked separately as a GRADE.** `01-laws.md` used *law* to mean **binding at every tier**;
+CHARTER invariant 4 used it to mean **attested in three independent projects**. The largest group of
+laws sat at two attestations — a state the invariant did not name at all — so the corpus asserted a
+promotion standard it did not apply to its own vocabulary. **This is an L-14 violation in the most
+load-bearing vocabulary in the framework, and L-14 is itself only `converging`.** Resolved by
+separating the two claims rather than renaming anything: all eighteen laws remain binding, identifiers
+are untouched so no citation breaks, and a grade — `practice` / `converging` / `settled` — records the
+evidence. **Grade does not modulate obedience**; a `practice` law is followed exactly as a `settled`
+one is, because "Lite is smaller, not looser" applies to evidence as well as to tiers. `caveat
+(owned):` this is a **demotion** for the laws now labelled `converging`, and that is the intended
+direction. The alternative — a constitutional layer entrenching them — was considered and dropped,
+because entrenchment protects material that has not earned protection.
+
+`[2026-07-26T23:45Z] D-040:` **This corpus is case law, not statute, and says so in
+`doctrine/01-laws.md`.** `[operator]` — reached by working the analogy properly rather than adopting
+it: a constitution is **text-supreme**, and `00-precedence.md` already puts *reality above the entire
+document stack*, which is a sentence no constitution can contain. Common law fits because every rule
+here exists on the strength of something that happened, and four of its mechanisms were already
+built: the scar is the holding (D-003), single-authored material is dictum, attestation count is
+precedential weight, and L-2's supersede-by-name is overruling-by-name. **What the framing forbids is
+the useful half:** reading the text more carefully is not a way to settle a question — when a rule and
+a measurement disagree, the measurement wins and the rule is amended. No interpretive move is
+available that saves the text. A separate constitutional layer above Astronomer was proposed and
+**dropped** in the same conversation: with the same subject it would be a second home for one fact,
+which is this corpus's sharpest scar.
+
+`[2026-07-26T23:45Z] D-041:` **Definition-of-done condition 6 is named RATIFICATION.** Nothing about
+the requirement changed; what changed is that it stops reading like an unticked checklist item. Under
+D-040 this corpus is case law, and **case law is ratified by practice, not by assent** — which is
+precisely why condition 6 is the only condition that has never moved while the other five were met,
+found to be mis-claimed, corrected, and met again. Neither the operator nor a collaborator can satisfy
+it by agreeing to it. `blocks-on:` a project outside this repository running one full OBSERVE→RECORD
+loop.
+
+`[2026-07-26T23:45Z] D-042:` **Standing is stated: who may change a law, a ritual, a template, a
+runbook, and a grade.** Precedence said which document wins and nothing said who may move one, so it
+defaulted to whoever was at the keyboard. Laws and new templates require the operator, because they
+bind every future project; rituals and template clarifications are a collaborator's call, logged,
+because they are cheap to reverse (B-7). **A grade may be changed by neither party alone** — only an
+independent project's experience raises one, since the author of a rule is the worst-placed party to
+judge how well attested it is. Two cross-cutting rules: **anyone may propose, and proposing is not
+standing** (L-18 arrived that way today — drafted and argued by a collaborator, ratified by the
+operator); and **no document is ever amended to satisfy a gate**, because rewording prose to slip past
+a check is disabling the check with the audit trail removed. The converse is also recorded: a gate
+producing a false positive is a defect in the gate, and *"the guard is intentional"* is not a licence
+for the guard to be wrong.
+
+`[2026-07-26T23:45Z] D-043:` **Attestation gets a living home and the corpus gets its first epistemic
+check.** `provenance/attestation.json` carries the grade, source list and sunset for every law;
+`check_attestation()` in `tools/check-corpus.py` asserts that the registry and the `law` vocabulary
+describe the same set, that each count matches its source list, that each grade matches its band, and
+that **anything below `settled` states what would raise it.** Checks 1–3 ask whether the documents
+agree with each other; this one asks whether the corpus meets the standard it published. It was
+buildable only after D-039, and necessary because the counts lived **only in a frozen file** (L-13)
+that cannot carry a new law or a correction — `provenance/lineage.md` remains the frozen evidence this
+registry was derived from, which is the frozen/living split and not a second home. **The sunset
+assertion is the load-bearing one:** six sites said "provisional" with no expiry and no forcing
+function, so provisional material accumulated permanently. The review trigger is an **event — the next
+install** — carried once at the top of the registry (L-14), with the step in
+`rituals/starting-a-project.md`. Verified per `04-verification.md`: two mutations seeded in
+`verify-gate.py`, both observed firing, seven of seven checks now exercised. `caveat (owned):` the
+check cannot tell whether a credited source project *actually* arrived at the rule independently. That
+judgement was made once by a reader who could see all four corpora and is not re-derivable from the
+registry; a wrongly-credited source passes silently, and only re-reading the sources would catch it.
+Stated in the gate's own docstring rather than left implied.
+
 `[2026-07-24T20:52Z] AMENDS D-033:` **Condition 5 is no longer asserted on survey strength — it was
 run.** The install layer was copied into an empty scratch directory exactly as
 [`install/README.md`](install/README.md) instructs: `CLAUDE.md.template` with its five placeholders

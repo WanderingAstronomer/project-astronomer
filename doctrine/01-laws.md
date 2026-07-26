@@ -23,6 +23,81 @@ Sources are abbreviated: **VOC** (transcription platform), **OD** (civic mapping
 
 ---
 
+## This corpus is case law, not statute
+
+The distinction decides how to read everything below, and it was arrived at rather than chosen
+(D-040).
+
+A statute is authoritative because it was enacted. A case is authoritative because something
+happened. **Every rule here is the second kind** — it exists because a project paid for it, and the
+scar is not illustration, it is the holding. That is why `00-precedence.md` puts **reality above the
+entire document stack**: a statute cannot be overruled by the world, and a case is nothing but the
+world.
+
+Four consequences, all of them already mechanisms in this corpus rather than new ideas:
+
+| Case law | Here |
+|---|---|
+| A holding is bound to its facts | The scar *is* the argument (D-003); a claim without a scope is under suspicion (L-4) |
+| Dictum persuades, it does not bind | Single-authored material is *"the weakest parts of the framework and the first that should change"* |
+| Precedent weight is how many benches arrived independently | One project is a practice; three are settled (CHARTER invariant 4) |
+| Overruling names the case it overrules | Decisions supersede by name, never by recency (L-2) |
+
+**What this framing forbids.** Reading the text more carefully is not a way to settle a question.
+When a rule and a measurement disagree, the measurement wins and the rule is amended — there is no
+interpretive move available that saves the text, and looking for one is the failure this corpus calls
+*"argued away the first time following it is expensive."*
+
+## Two senses of "law", and they are not the same claim
+
+The corpus used one word for both of these until D-039. They are now separated, because twelve of
+the eighteen sat in a gap the older wording did not define at all.
+
+**Binding** — a law holds at every tier, and a project charter cannot repeal one
+(`00-precedence.md`, CHARTER invariant 6). **All eighteen are binding.** That is what the `L-`
+identifier means, and it is why the identifiers are stable and never renumbered.
+
+**Graded** — how much evidence stands behind it. This is a *separate* fact and it varies enormously:
+
+| Grade | Independent source projects | Meaning |
+|---|---|---|
+| `settled` | three or four | Survived contact with unrelated domains. The strongest evidence this corpus can produce (D-006) |
+| `converging` | two | Two independent arrivals. Real, and not yet the standard the charter names |
+| `practice` | one | One project's experience. Binding here, provisional as evidence, **and carrying a sunset** |
+
+`settled` — **L-3** (four sources); **L-1**, **L-6**, **L-9**, **L-13**, **L-16** (three each).
+`practice` — **L-11**, **L-18**. Everything else is `converging`.
+
+Named rather than counted, deliberately. A count in prose here — *"six are settled"* — is a number
+that goes stale the first time a grade changes, and the registry is the live home for it (L-11,
+L-14). The corpus gate caught this sentence doing exactly that on its first draft.
+
+**Grade does not modulate obedience.** A `practice` law is followed exactly as a `settled` one is —
+"Lite is smaller, not looser" applies to evidence as well as to tiers. What the grade governs is how
+readily the rule should be *amended* when a project pushes back on it, and whether it owes a sunset.
+
+The per-law grades live in one place, `provenance/attestation.json`, and the corpus gate checks them
+against this file's own membership (`tools/check-corpus.py`). `provenance/lineage.md` holds the
+frozen 2026-07-20 tally that the registry was derived from and is annotated, never edited (L-13).
+
+## Sunset: a practice does not stay a practice silently
+
+Anything graded `practice` or `converging` carries two fields in the attestation registry, and the
+gate **fails** if either is missing:
+
+- **what would attest it** — the specific, independent observation that would raise its grade
+- **when that gets reviewed** — an *event*, not a date
+
+The review event is **the next installation of Astronomer into a project.** Dates get missed; an
+install gets noticed, and it is the only moment at which a second project is actually available to
+attest anything. `rituals/starting-a-project.md` carries the step.
+
+This exists because six sites in this corpus said "provisional" with no expiry and no forcing
+function, so provisional material accumulated permanently and nothing was ever going to check it. A
+rule that depends on someone remembering is the thing L-17 exists to replace.
+
+---
+
 ## I. Authority
 
 ### L-1. One document wins.

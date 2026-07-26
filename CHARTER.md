@@ -42,9 +42,15 @@ reaches a correct conclusion faster, and knows which of its conclusions are load
    (D-003, inherited from vociferous)
 3. **The framework is a hypothesis until a project proves it.** This corpus is `PROVISIONAL`
    and says so in public. It does not claim validation it has not earned. (D-001)
-4. **Provenance is a first-class column.** Every pattern names the project it came from. A
-   pattern attested in one project is a practice; attested in three independently is a law.
-   (D-006, inherited from data-dating)
+4. **Provenance is a first-class column.** Every pattern names the project it came from, and
+   carries a **grade** for how much evidence stands behind it: `practice` (one independent
+   project), `converging` (two), `settled` (three or four). The grade is separate from whether
+   a rule *binds* — every law binds at every tier regardless of grade
+   ([`doctrine/01-laws.md`](doctrine/01-laws.md)). The middle grade was added by D-039: the
+   original wording named only one and three, and the largest group of laws sat at two, in a
+   category this invariant did not define. Grades live in
+   [`provenance/attestation.json`](provenance/attestation.json) and are checked mechanically.
+   (D-006, inherited from data-dating; extended by D-039)
 5. **Astronomer governs itself.** This repo maintains its own charter and ledger under its own
    rules. Where the framework is inconvenient to its own authors, that is recorded, not
    smoothed. (D-007)
@@ -80,8 +86,15 @@ not a feeling.
    with no unattributed patterns.
 5. The install layer can be dropped into an empty repository and produce a working Lite
    project without editing any file in this repo.
-6. **A real project outside this repo has run one full OBSERVE→RECORD loop on it, and the
-   friction it hit is written back here as a ritual or an amendment.**
+6. **RATIFICATION — a real project outside this repo has run one full OBSERVE→RECORD loop on
+   it, and the friction it hit is written back here as a ritual or an amendment.**
+
+   Named as ratification by D-041, because that is what it is and calling it a checklist item
+   understated it. **This corpus is case law** ([`doctrine/01-laws.md`](doctrine/01-laws.md)),
+   and case law is ratified by practice rather than by assent. Neither the operator nor a
+   collaborator can satisfy this condition by agreeing to it — only a project running the loop
+   can, which is why it is the one condition that has never moved while the other five were
+   met, corrected, and met again.
 
 ### Status — corrected 2026-07-24
 

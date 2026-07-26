@@ -61,6 +61,33 @@ PROJECT LAYER      charter → decisions → ...    yours; domain-specific
   procedure cannot be written without naming your subject, it is a runbook and it belongs in
   your project (D-004).
 
+## Standing — who may change what
+
+Precedence says which document wins. Standing says who may move one. It is stated here because the
+answer differs by layer, and because leaving it unstated means it gets decided by whoever is at the
+keyboard (D-042).
+
+| To change | Who | Why |
+|---|---|---|
+| A **law** — add, amend, or regrade | The **operator**, by explicit recorded decision | It binds every future project, including ones with no relation to the one that prompted it. A collaborator may draft and argue for one; it does not land unratified |
+| A **ritual** | A **collaborator**, on its own judgement, logged | Rituals are living, subordinate to doctrine, and cheap to reverse (B-7). A wrong ritual costs one reading; waiting for permission costs the friction that prompted it |
+| An **artifact template** — adding one | The **operator** | A new template becomes *required* somewhere, which is a change to what every qualifying project owes |
+| An **artifact template** — clarifying one | A **collaborator**, logged | Same reversibility test |
+| A **runbook** | The **project**, never the framework | If the procedure cannot be written without naming your subject, it is not framework material (D-004, D-017) |
+| A **grade** in the attestation registry | **Neither, alone.** Only an independent project's experience raises one | The author of a rule is the worst-placed party to judge how well attested it is, and the framework cannot corroborate itself |
+
+Two rules cut across all of it.
+
+**Anyone may propose. Proposing is not standing.** A collaborator that drafts a law, states its
+scar, and argues for it has done its job correctly; the ratification is a separate act by a separate
+party. Today's L-18 arrived exactly that way.
+
+**No document is ever amended to satisfy a gate.** When a check and a document disagree, one of them
+is wrong *on the merits* — decide which, fix that one, and record the reasoning. Rewording prose to
+slip past a check is the same act as disabling the check, with the audit trail removed. The reverse
+also holds: a gate producing a false positive is a defect in the gate, and *"the guard is
+intentional"* is not a licence for the guard to be wrong.
+
 ## Declaring precedence
 
 Every project states its stack explicitly, in its charter, even if it adopts the default

@@ -113,6 +113,41 @@ def mutate_link() -> tuple[Path, str, str]:
     return path, original, broken
 
 
+def mutate_attestation_grade() -> tuple[Path, str, str]:
+    """Claim `settled` on evidence that does not support it.
+
+    L-3 is the only law in the registry at four sources, so `"count": 4` is unique and this
+    mutation cannot land on the wrong entry. Dropping it to 2 makes the entry claim `settled`
+    on a `converging` count AND desynchronises count from the source list, so it also proves
+    the count-versus-sources assertion. This is the corpus overstating its own evidence, which
+    is the exact defect the check was added for (D-039).
+    """
+    path = ROOT / "provenance" / "attestation.json"
+    original = path.read_text(encoding="utf-8")
+    broken = original.replace('"count": 4', '"count": 2', 1)
+    if broken == original:
+        raise RuntimeError("attestation mutation did not apply - the target text moved")
+    return path, original, broken
+
+
+def mutate_attestation_sunset() -> tuple[Path, str, str]:
+    """Strip the sunset off a provisional law - the accumulation failure D-039 closed.
+
+    L-18's would_attest is targeted by its opening words, which appear nowhere else.
+    """
+    path = ROOT / "provenance" / "attestation.json"
+    original = path.read_text(encoding="utf-8")
+    broken = re.sub(
+        r'"would_attest": "A second project that independently requires an instrument[^"]*"',
+        '"would_attest": ""',
+        original,
+        count=1,
+    )
+    if broken == original:
+        raise RuntimeError("sunset mutation did not apply - the target text moved")
+    return path, original, broken
+
+
 MUTATIONS = [
     ("vocabulary drift   (D-019: a record class goes missing from a list)",
      mutate_vocabulary, r"\[vocab:record_class\].*missing: append-only"),
@@ -124,6 +159,10 @@ MUTATIONS = [
      mutate_link, r"\[link\].*01-laws-renamed\.md"),
     ("template link      (a template link escapes the project root)",
      mutate_template_link, r"\[link\].*escapes the project root"),
+    ("attestation grade  (a law claims settled on converging evidence)",
+     mutate_attestation_grade, r"\[attestation\] L-3 claims count 2 but lists 4 source"),
+    ("attestation sunset (a provisional law loses its path out of provisional)",
+     mutate_attestation_sunset, r"\[attestation\] L-18 is graded 'practice' with no"),
 ]
 
 
