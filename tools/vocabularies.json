@@ -10,7 +10,20 @@
     "the drift recurs.' It recurred. This is the gate.",
     "",
     "Adding a vocabulary to the corpus without adding it here is the failure this file cannot",
-    "catch. That is a known limit, stated rather than hidden."
+    "catch. That is a known limit, stated rather than hidden.",
+    "",
+    "RULE FOR AUTHORS, learned 2026-07-26 (D-036, O-21, O-22): any vocabulary declaring",
+    "count_nouns needs exempt_files for DECISIONS.md and OBSERVATIONS.md from the start. Both are",
+    "append-only. Both quote counts verbatim as their whole purpose - a ledger entry records what",
+    "was true when written, and an observation log that cannot quote the defect it saw is not a",
+    "log. Neither has a legal edit that clears a counted-prose failure, so without the exemption",
+    "the gate cannot go green, and a gate that cannot go green teaches you to ignore it.",
+    "",
+    "This happened TWICE in one sitting: adding L-18 tripped DECISIONS.md, and registering",
+    "conditional_artifact tripped OBSERVATIONS.md via the very observation recording the first",
+    "trip. Two instances is a pattern, not yet a mechanism (L-17 escalates on the THIRD). If it",
+    "recurs, the response is a check that FAILS when a count_nouns vocabulary lacks those two",
+    "exemptions - not a third hand-written exemption."
   ],
 
   "vocabularies": [
@@ -63,12 +76,22 @@
     {
       "name": "law",
       "members": ["L-1", "L-2", "L-3", "L-4", "L-5", "L-6", "L-7", "L-8", "L-9", "L-10",
-                  "L-11", "L-12", "L-13", "L-14", "L-15", "L-16", "L-17"],
+                  "L-11", "L-12", "L-13", "L-14", "L-15", "L-16", "L-17", "L-18"],
       "home": "doctrine/01-laws.md",
-      "note": "Not a token vocabulary but the same failure applies: adding or retiring a law leaves every 'seventeen laws' in the corpus wrong, and nothing announces it.",
+      "note": "Not a token vocabulary but the same failure applies: adding or retiring a law leaves every counted 'laws' sentence in the corpus wrong, and nothing announces it. L-18 arrived 2026-07-26 (D-034) and cost exactly two prose edits plus this line, which is the whole argument for the counted-prose check.",
       "count_nouns": ["laws"],
       "check_enumerations": false,
-      "unchecked_reason": "Law IDs appear as citations on nearly every page. Enumeration matching would be all false positives. Home-membership and the counted-prose check both apply."
+      "unchecked_reason": "Law IDs appear as citations on nearly every page. Enumeration matching would be all false positives. Home-membership and the counted-prose check both apply.",
+      "exempt_files": [
+        {
+          "file": "DECISIONS.md",
+          "reason": "Append-only. D-029 quotes `the seventeen laws` as an EXAMPLE of the counted-prose form the gate learned to read; the count was true when written. Editing it to say eighteen would falsify the incident record (L-13). Added 2026-07-26 when the first law since seeding made the conflict real — see D-036."
+        },
+        {
+          "file": "OBSERVATIONS.md",
+          "reason": "Append-only, for the same reason and by the same pattern as record_class. An observation log that cannot quote the count it saw is not a log."
+        }
+      ]
     },
     {
       "name": "severity",
@@ -152,6 +175,46 @@
       "check_enumerations": false,
       "check_home": false,
       "unchecked_reason": "The grades are rendered two ways in the corpus — as bold single words (Direct/Proxy/Derived) and as full phrases (proven in the real environment / checked in a proxy / reasoned from the source). Until one form is canonical this cannot be checked without false positives. Known gap; see tools/README.md."
+    },
+    {
+      "name": "conditional_artifact",
+      "members": ["data boundary", "source manifest", "query log", "capability inventory",
+                  "operator profile"],
+      "home": "tiers/README.md",
+      "case_sensitive": false,
+      "note": "Gated on circumstance, not stakes — required from Lite upward once the condition holds. Registered 2026-07-26 (D-037) because adding the fifth left 'Four conditional artifacts' wrong in the home file and nothing announced it. That sentence was the ONLY thing that had to change and the gate could not see it, which is precisely the failure this registry exists to close.",
+      "count_nouns": ["conditional artifacts"],
+      "check_enumerations": false,
+      "unchecked_reason": "Members are multi-word phrases rendered as table rows and as prose. No reliable tight-run pattern, same as non_delegable. Home-membership and counted prose both apply.",
+      "exempt_files": [
+        {
+          "file": "OBSERVATIONS.md",
+          "reason": "Append-only. O-22 quotes `up to four conditional artifacts` because that is the drift site it observed. An observation log that cannot quote what it saw is not a log."
+        },
+        {
+          "file": "DECISIONS.md",
+          "reason": "Append-only, pre-emptively and by the same pattern as every other counted vocabulary. Entries record what was believed when written and are never edited."
+        }
+      ]
+    },
+    {
+      "name": "capability_rule",
+      "members": ["K-1", "K-2", "K-3", "K-4", "K-5", "K-6"],
+      "home": "doctrine/08-instruments.md",
+      "note": "Prefixed K- (capability) rather than I- on purpose: the first consuming project numbers six invariants I-1..I-6, and a bare I-3 would resolve to two things (L-2). Same counted-prose hazard as the law set.",
+      "count_nouns": ["capability rules"],
+      "check_enumerations": false,
+      "unchecked_reason": "Rule IDs appear as citations in prose. Enumeration matching would be mostly false positives. Home-membership and the counted-prose check both apply."
+    },
+    {
+      "name": "capability_role",
+      "members": ["Work-item store", "Relation graph", "Working set", "Change record",
+                  "Verification gate", "Durable prose", "Session inheritance"],
+      "home": "doctrine/08-instruments.md",
+      "note": "The DEFAULT set. Projects add and strike roles (D-035); the check enforces internal consistency of the default only, exactly as evidence_tier does. count_nouns is deliberately 'capability roles' and not 'roles' — the latter would collide with the Operator/Coordinator/Executor/Verifier set.",
+      "count_nouns": ["capability roles"],
+      "check_enumerations": false,
+      "unchecked_reason": "Members are multi-word phrases rendered as table rows in the home and as prose elsewhere. No reliable tight-run pattern, same as non_delegable."
     }
   ]
 }

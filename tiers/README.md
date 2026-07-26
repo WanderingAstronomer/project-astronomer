@@ -51,7 +51,7 @@ except the log itself, which is append-only.
 **Lite is the right tier for most personal projects, and it is not a compromise.** Two of the
 four source projects ran effectively at this tier for their first several months.
 
-**Four conditional artifacts, gated on circumstance rather than stakes.** Each is required from
+**Five conditional artifacts, gated on circumstance rather than stakes.** Each is required from
 **Lite** upward once its condition holds, and skipped entirely when it does not:
 
 | Artifact | Required when |
@@ -60,18 +60,26 @@ four source projects ran effectively at this tier for their first several months
 | [source manifest](../artifacts/source-manifest.template.md) | the project takes in material it did not author |
 | [query log](../artifacts/query-log.template.md) | a data boundary exists **and** any outbound channel is permitted |
 | [capability inventory](../artifacts/capability-inventory.template.md) | something other than the operator is doing the observing |
+| [operator profile](../artifacts/operator-profile.template.md) | the operator's input reaches the collaborator through augmentation rather than directly — anything that transcribes, dictates, translates, batches, or otherwise reshapes intent before it arrives |
 
 **These are not tiered, and the reason matters.** Their conditions have nothing to do with how much
 is at stake. A one-person Lite project sitting next to a client's raw files, taking in documents it
-did not write, with an AI collaborator doing the reading, needs all four — while a Full-tier project
-working on a clean repository of its own making needs none of them. Tiering these would have left
+did not write, with an AI collaborator doing the reading, needs all of them — while a Full-tier
+project working on a clean repository of its own making needs none. Tiering these would have left
 the smallest projects the least protected, which is backwards, and it is the case where "Lite is
 smaller, not looser" has actual teeth.
 
-The three conditions after the first all became live at the same moment: when a collaborator has
-standing filesystem access, a network, and a shell at once. None of the four source projects had all
-three, which is why these are the newest and least-attested artifacts in the set
-([`doctrine/07-boundaries.md`](../doctrine/07-boundaries.md)).
+The **source manifest, query log and capability inventory** all became live at the same moment: when
+a collaborator has standing filesystem access, a network, and a shell at once. None of the four
+source projects had all three, which is why these are among the newest and least-attested artifacts
+in the set ([`doctrine/07-boundaries.md`](../doctrine/07-boundaries.md)).
+
+The **operator profile** arrived later and by a different route — not from a collaborator gaining
+reach, but from an *operator* gaining it. Its condition became live when the operator's own input
+began arriving through tooling that reshaped it before the collaborator saw it
+([`doctrine/08-instruments.md`](../doctrine/08-instruments.md), D-037). It is the only artifact in
+the set that declares the error of the human rather than the machine, and it is the least attested
+thing in the corpus.
 
 ---
 

@@ -181,3 +181,59 @@ survey had read. **The instrument under-reports by roughly 30% on exhaustive-enu
 completeness rather than detection should use grep as the instrument and subagents as the
 interpreter, not the reverse. That figure is measured here, once, on one pass, and should be
 re-measured rather than quoted (L-11).
+
+---
+
+`INTAKE OPEN` · `2026-07-26T22:55Z` · **window: the instruments overhaul.**
+
+**Conditions for this window unless an entry says otherwise:** an AI collaborator with standing
+filesystem access to this repository and to one consuming project, a network, and a shell. Work
+performed while adding L-18, `doctrine/08-instruments.md`, the capability-interrogation ritual, and
+the operator profile. Every entry below was found *while doing something else*, which is the pattern
+`O-19`/`O-20` already recorded about this corpus.
+
+### `O-21` · `2026-07-26T23:00Z`
+- **Conditions:** as the window.
+- **Observed:** the `law` vocabulary in `tools/vocabularies.json` carried **no `exempt_files`**, while `confidence` and `record_class` each carried exemptions for `DECISIONS.md` and `OBSERVATIONS.md`. Adding L-18 made the gate fail on `DECISIONS.md:300`, where `D-029` quotes *"the seventeen laws"* as an example of the counted-prose form it had just taught the gate to read.
+- **Initial read:** `UNVERIFIED` — the flagged text is inside an append-only file and is accurate as written; there is no legal edit that clears it. The gate's exemption design had anticipated exactly this conflict for two vocabularies and missed it for the third.
+- **Confidence:** `CONFIRMED`. Fixed by exemption (D-036), not by editing the ledger.
+- **Source:** `python tools/check-corpus.py` during the L-18 edit.
+- **Also:** the gap was undetectable before today. `law` had gained no member since seeding, so the exemption was never exercised. **A guard with an unexercised branch is a hypothesis about that branch** (`04-verification.md`).
+
+### `O-22` · `2026-07-26T23:02Z`
+- **Conditions:** as the window.
+- **Observed:** registering the new `conditional_artifact` vocabulary caused an immediate failure at `install/README.md:158` — *"up to four conditional artifacts"* — a site the author had not found and was not looking for. The author had located and corrected only `tiers/README.md`.
+- **Initial read:** `UNVERIFIED` — one registration, one pre-existing undetected drift site, found in the same minute.
+- **Confidence:** `CONFIRMED`.
+- **Source:** `python tools/check-corpus.py` immediately after editing `vocabularies.json`.
+- **Also:** this is the registry's own stated limit closing on itself. Its comment says *"Adding a vocabulary to the corpus without adding it here is the failure this file cannot catch."* The fifth conditional artifact would have been exactly that failure, and registering it cost one JSON block.
+
+### `O-23` · `2026-07-26T23:01Z`
+- **Conditions:** as the window.
+- **Observed:** the first draft of `artifacts/operator-profile.template.md` referenced framework files as markdown links (`[...](../doctrine/06-delegation.md)`). The gate rejected three of them with *"template link escapes the project root — Templates are copied to a project. Reference framework files by bare backticked path, not by link."*
+- **Initial read:** `UNVERIFIED` — a new author independently reproduced the exact defect the check exists to catch, without having read the convention.
+- **Confidence:** `CONFIRMED`. The existing templates use backticked bare paths throughout; the convention was correct and undocumented outside the gate.
+- **Source:** `python tools/check-corpus.py` on first run against the new template.
+- **Also:** this is the install layer's condition-5 property being defended mechanically rather than by review. `AMENDS D-033` proved the layer installs; this check is what keeps it installing.
+
+### `O-24` · `2026-07-26T23:09Z`
+- **Conditions:** as the window.
+- **Observed:** the exemption added for `O-21` did not generalise. Registering `conditional_artifact` and then *recording that registration* in `O-22` tripped the counted-prose check a second time, at `OBSERVATIONS.md:205`, because `O-22` quotes `up to four conditional artifacts` verbatim — the drift site it exists to record.
+- **Initial read:** `UNVERIFIED` — the same gate-design gap, second instance, in the same sitting, and the second instance was **caused by documenting the first**.
+- **Confidence:** `CONFIRMED`. Fixed by the same exemption pattern, plus an authors' rule written into `tools/vocabularies.json` naming the requirement for any future `count_nouns` vocabulary.
+- **Source:** `python tools/check-corpus.py`, then `python tools/verify-gate.py` refusing to run at all — *"precondition: corpus is not clean to begin with."*
+- **Also:** **two instances is a pattern, not yet a mechanism.** L-17 escalates on the *third*, and the rule it would then demand is written down in advance: a check that fails when a `count_nouns` vocabulary lacks the two append-only exemptions, rather than a third hand-written exemption. Recording the trigger now is cheaper than recognising it later, and it is the one thing L-17 says to do before the third time.
+
+---
+
+`INTAKE CLOSED` · `2026-07-26T23:10Z` · **4 entries** (`O-21`–`O-24`).
+
+**Instrument note recorded at close.** All four entries were found by a **mechanical check**, none by
+reading. `O-21`, `O-22` and `O-24` were found by `check-corpus.py` at the moment of the edit that
+caused them; `O-23` was found by the same gate rejecting a convention the author did not know existed.
+Against the previous window's measured ~30% under-report on exhaustive-enumeration questions
+(`O-19`/`O-20` close note), this window adds a cleaner statement of the same asymmetry: **the author
+of a change is the worst available instrument for finding what the change broke, and the cost of the
+gate is now measured at three defects it caught in one sitting that review had already missed.**
+
+That figure is one sitting, one author, and is stale from the moment it was typed (L-11).

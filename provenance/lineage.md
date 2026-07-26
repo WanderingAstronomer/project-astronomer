@@ -254,3 +254,57 @@ the framework and the first that should change").
 **What would move this:** a second, unrelated project that arrives independently at an egress
 boundary or a source manifest. Not this framework being used again by the same operator — that
 tests whether it is *usable*, which is a different question from whether it is *right*.
+
+---
+
+# Addendum — 2026-07-26T23:07Z
+
+> Like the two addenda above, this **does not re-run or revise** the 2026-07-20 extraction. It
+> records the provenance of material added after that date, so this file does not mislead about
+> what is attested (L-13).
+
+Covers the instruments layer: **L-18**, [`../doctrine/08-instruments.md`](../doctrine/08-instruments.md)
+(K-1…K-6), [`../rituals/capability-interrogation.md`](../rituals/capability-interrogation.md), and
+[`../artifacts/operator-profile.template.md`](../artifacts/operator-profile.template.md). Ledger:
+D-034 through D-038.
+
+| Pattern | Provenance |
+|---|---|
+| **L-18** an instrument declares what it cannot do, before it is used | **VOC**, single-attested. Two scars in one day: thirty-two capability claims overturned by a pass instructed to re-measure rather than re-read; and a project's always-loaded governing instructions absent from version control for over a thousand commits. |
+| **K-1** capability and permission are separate facts | **VOC.** Both errors available in the same hour and in opposite directions — a present mechanism the credential could not reach, and full rights over a subsystem that did not exist on that installation. |
+| **K-2** name the role, then bind the provider | **Original to Astronomer.** Structurally inherited from L-1's own exclusion of toolchain from doctrine, and from the fact that one of the four source projects was not a repository at all. Near miss, not a scar: a vendor-shaped capability study was caught in review before it was folded in, and review is not a mechanism (L-17). |
+| **K-3** every role declares its fallback before it is needed | **VOC**, by extension of a practice rather than a stated rule — the ledger of what was **owed to real devices** (L-12), applied to storage instead of measurement. |
+| **K-4** a capability declaration expires | **VOC.** L-11 applied to an environment rather than a quantity. |
+| **K-5** decision rights are a capability | **VOC.** The rule's two halves already existed — *a stalled session is worse than a documented judgement call*, bounded by *cheap to reverse* — held as a per-session understanding with no home. Roughly sixteen decisions returned in one day, about half of them reserved and about half not. |
+| **K-6** the declaration is written by the instrument being declared | **VOC**, extending B-6. The refutation pass exists because the first pass could not be trusted about itself. |
+| The **capability-role** default set and the fallback ladder | **Original to Astronomer** (D-035). Registered like `evidence_tier`: project-level, projects add and strike rows. |
+| **Operator profile** as an artifact | **Original to Astronomer** (D-037). The condition — the operator's input arriving through augmentation — held in no source project. |
+| The **capability interrogation** ritual, and its division of labour | **Original to Astronomer** (D-038). The division (collaborator measures capability, operator decides permission) is a structural argument from K-1, not an observed practice. |
+
+## Annotation to the boundaries addendum above
+
+That addendum's row reads *"Capability inventory | **Single-authored.** The nearest attested
+statement, 'the operator is the instrument,' is about the human."* **That was accurate when written
+and is now out of date:** the artifact has an incident behind it (D-038). It is annotated here rather
+than corrected there, because the row is accurate evidence of what was attested on 2026-07-24.
+
+## What this addendum does NOT claim
+
+**It does not move any attestation, and the file above already said why.** Its own closing line is
+the constraint: *"Not this framework being used again by the same operator — that tests whether it is
+usable, which is a different question from whether it is right."*
+
+Every row above is **VOC or original**. VOC is the same project and the same operator that supplied
+the largest share of the seeded corpus. So the instruments layer is exactly as weak as the boundaries
+layer it sits beside: one project, no convergence, and a handful of rows resting on argument rather
+than incident. What it gained today is **scars where there were none** — which upgrades a structural
+argument to a practice, and stops nowhere near a law (CHARTER invariant 4).
+
+**Condition 6 of the definition of done remains unmet.** No project outside this repository has run a
+full OBSERVE→RECORD loop on the framework. The consuming project that supplied every scar above does
+not have Astronomer installed at all, which was verified rather than assumed: no charter, no ledger,
+no observation log, and one skill in its collaborator workspace. Installing it there is the next
+piece of work and is deliberately **not** done by this addendum — the framework was overhauled first,
+from outside, precisely so that the install would not collide with decisions that project had already
+made and create the rival-ledger drift this corpus exists to prevent.
+

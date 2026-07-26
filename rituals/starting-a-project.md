@@ -24,11 +24,26 @@ window**, not settled record, however finished it looks.
    one. **A query is derived data** (B-2): anything built *from* restricted material carries
    information out with no copied string in it. If any outbound channel is permitted, open the
    [query log](../artifacts/query-log.template.md).
-0c. **If something other than the operator is doing the observing, write the capability
-   inventory** ([`artifacts/capability-inventory.template.md`](../artifacts/capability-inventory.template.md))
-   — what it can read, run and reach, and **where it is systematically wrong, with a direction**.
-   Every other instrument in this framework declares what it cannot detect; this is the one that
-   was exempt.
+0c. **If something other than the operator is doing the observing, run
+   [capability-interrogation](capability-interrogation.md)** — the procedure that discharges L-18.
+   It produces the
+   [capability inventory](../artifacts/capability-inventory.template.md): the roles this project
+   needs and what actually provides each, with **capability and permission in separate columns**
+   (K-1), a fallback ladder per role (K-3), the decision-rights band (K-5), and **where the
+   collaborator is systematically wrong, with a direction**. Every other instrument in this
+   framework declares what it cannot detect; this is the one that was exempt.
+
+   **Set decision rights here, once, and then hold them.** The non-delegable categories are the
+   floor (step 6); above that floor, what the collaborator settles alone is an operator call made
+   at setup. Left unset it gets re-derived differently every session, and the cost lands on the one
+   instrument that cannot be parallelised.
+0c-bis. **If the operator's input arrives through augmentation rather than directly, write the
+   [operator profile](../artifacts/operator-profile.template.md)** in the same sitting — anything
+   that transcribes, dictates, translates, batches or otherwise reshapes intent before it reaches
+   the collaborator. Not a courtesy: length reads as emphasis, structure reads as deliberation, and
+   a single long message reads as a single ask, and all three are wrong in a knowable direction when
+   a tool shaped the input. Write it **with** the operator — an inferred profile they have never
+   read is a set of assumptions with a filename.
 0d. **If the project is taking in material it did not author, run
    [corpus-intake](corpus-intake.md) before the first window** — count it, check per-item
    readability, and record what could not be read. A failed extraction returns a page count, no
@@ -63,10 +78,10 @@ window**, not settled record, however finished it looks.
 
 - The **data boundary** (read tiers *and* egress) and the collaborator's **workspace README**, if
   Step 0 applied — before anything else, since they gate what may be read while writing everything
-  below. Plus the **query log**, **capability inventory**, and **source manifest** wherever 0b–0d
-  applied. These four are gated on circumstance, not on tier: a Lite project next to a client's
-  files needs all of them, and a Full-tier project on a clean repository of its own making needs
-  none ([`tiers/`](../tiers/README.md)).
+  below. Plus the **query log**, **capability inventory**, **operator profile**, and **source
+  manifest** wherever 0b–0d applied. These are gated on circumstance, not on tier: a Lite project
+  next to a client's files needs all of them, and a Full-tier project on a clean repository of its
+  own making needs none ([`tiers/`](../tiers/README.md)).
 - `CHARTER` — mission, scope, invariants, precedence, vocabularies, definition of done.
 - `DECISIONS` — the tier choice, the precedence adoption, the vocabulary set, the scrutiny gate,
   and the non-delegable list, as separate numbered entries. Separate, because they will be

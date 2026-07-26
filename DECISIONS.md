@@ -365,6 +365,89 @@ was not itself under any recurring check** — and conditions 1, 3, and 5 are as
 strength of that same survey. Condition 6 remains unmet and remains the only thing between this
 corpus and `VALIDATED`.
 
+`[2026-07-26T23:05Z] D-034:` **L-18 — *an instrument declares what it cannot do, before it is used* —
+is added as the eighteenth law.** `[operator]` mandate: *"aggressively promote the capability
+inventory… aggressively overhaul Project Astronomer to fit our needs and the needs of anything in the
+future. Do not treat it as delicate and unmodifiable."* The framework already required a declaration
+of error from the observation log per window and the frozen record per run, and had exempted the two
+instruments doing most of the observing — the collaborator and the environment it acts through. This
+closes that. **Why a law and not only a new doctrine file:** the obligation is domain-neutral, holds
+at every tier, and is cited by four artifacts; a rule that governs the other rules' inputs is not a
+subsection. It is **single-attested (VOC) and provisional**, and says so in place, per condition 1 of
+the definition of done. Placed inside group IV beside L-11 and L-12 rather than appended at the end,
+so numbers are assignment order and file order is meaning — stated in the file to stop a future
+tidy-up from renumbering and silently breaking every citation (L-2). `caveat (owned):` adding the
+first law since seeding cost exactly two prose edits, one registry line, and one exemption — the
+counted-prose check found the third site itself. That is the cheapest possible version of this change
+and it is cheap *because* D-029 built the check; without it, "eighteen laws" and "seventeen laws"
+would now both be live in the corpus.
+
+`[2026-07-26T23:05Z] D-035:` **`doctrine/08-instruments.md` holds the discharge of L-18 as six rules,
+prefixed `K-`, and the default capability-role set is project-level rather than framework-level.**
+K-1 capability and permission are separate facts; K-2 name the role, then bind the provider; K-3 every
+role declares its fallback before it is needed; K-4 a declaration expires; K-5 decision rights are a
+capability; K-6 the declaration is written by the instrument being declared and is not trusted for
+that reason. **`K-` and not `I-`** because the first consuming project already numbers six invariants
+`I-1`…`I-6` and cites them constantly, so a bare `I-3` would resolve to two things — the exact
+ambiguity L-2 exists to prevent and that one source project had to publish a disambiguation rule to
+escape. Choosing the prefix around a known collision cost nothing; discovering it later costs every
+historical reference. **The role set registers like `evidence_tier`:** projects are expected to add
+and strike rows, so the gate enforces internal consistency of the default only (D-021's precedent).
+This is what keeps L-1's exclusion of toolchain intact — the *role* is doctrine, the *provider* is an
+environment fact, and a framework that named a vendor could not survive the vendor or the
+air-gapped case. `caveat (owned):` every K-rule is attested by VOC alone. Two of the six (K-2, and the
+ladder in K-3) rest on argument rather than incident, and say so.
+
+`[2026-07-26T23:05Z] D-036:` **The `law` vocabulary gains `exempt_files` for `DECISIONS.md` and
+`OBSERVATIONS.md`, matching `confidence` and `record_class`.** Adding L-18 failed the gate at
+`DECISIONS.md:300`, where D-029 quotes *"the seventeen laws"* as an example of the counted-prose form
+it had just taught the gate to read. The quoted count was true when written; the file is append-only;
+there is no legal edit that clears the failure. Editing it would falsify the incident record (L-13)
+and satisfy a gate by damaging the evidence it exists to protect — the shape of the D-033 defect, one
+layer down. **The gate's exemption design had anticipated this conflict for two vocabularies and
+missed it for the third**, and the gap was undetectable until a law was actually added, because `law`
+had gained no member since seeding (`O-21`). **An unexercised branch of a guard is a hypothesis about
+that branch** (`04-verification.md`). `caveat (owned):` the exemption is now a place the gate does not
+look — a genuinely wrong law count inside the ledger would pass. Accepted, because the alternative is
+a check that can never go green on an append-only file, and a gate that cannot go green teaches you
+to ignore it.
+
+`[2026-07-26T23:05Z] D-037:` **The operator profile becomes the fifth conditional artifact, and its
+condition is *augmentation*, not stakes.** `[operator]` — required from Lite upward whenever the
+operator's input reaches the collaborator through anything that transcribes, dictates, translates,
+batches or otherwise reshapes intent before it arrives. `06-delegation.md` established first and most
+plainly that **the operator is the instrument** and that the instrument has known error, and then gave
+that instrument nowhere to state it; the collaborator got a capability inventory and the human got
+nothing. This is the twin. It is **the only artifact in the set that declares the error of a human**,
+and the least attested thing in the corpus — single-authored, one project, provisional. Registered as
+a `conditional_artifact` vocabulary in the same commit, which immediately failed the gate at
+`install/README.md:158` — a fifth-artifact drift site the author had not found and was not looking
+for (`O-22`), i.e. the registry's own stated blind spot closing on itself for the cost of one JSON
+block. **Deliberate tension recorded rather than smoothed (CHARTER invariant 5):** the template
+forbids an inferred profile the operator has never read, and the operator explicitly instructed that
+this project's profile be **inferred** — *"honestly you can infer the dictation profile safely."*
+Those reconcile only one way: delegating authorship is itself an elicited Preference, and the drafted
+profile stays `UNVERIFIED` until the operator has read it. Inference is authorized; agreement is
+still required. `blocks-on:` no filled profile exists yet for the consuming project, because
+Astronomer is not installed there.
+
+`[2026-07-26T23:05Z] D-038:` **The capability inventory is promoted from a structural argument to a
+single-attested artifact with a scar, and gains the interrogation ritual that produces it.** Its own
+status note read *"It is a structural argument — the collaborator is an instrument, instruments
+declare their error — not a scar"*, and that sentence is now false. In one day a collaborator with
+standing filesystem access, a network and a shell surveyed a platform it was about to build on and
+reported broad capability read from documentation; a second pass instructed only to **re-measure
+rather than re-read** overturned thirty-two claims, the largest class being documented capability
+that installation did not have. The same survey found the consuming project's own always-loaded
+governing instructions were not in version control, so every fresh session elsewhere inherited none
+of them, and had not for more than a thousand commits. The artifact gains the two-column
+capability/permission table (K-1), the per-role fallback ladder (K-3), and the decision-rights band
+(K-5); `rituals/capability-interrogation.md` is the forward half of `instrument-drift.md` and states
+the division that makes it work — **the collaborator answers capability by measuring, the operator
+answers permission by deciding, and neither may answer the other's question.** `caveat (owned):`
+promotion is one rung, not two. One project is a practice; three independent arrivals are a law
+(CHARTER invariant 4), and this has one.
+
 `[2026-07-24T20:52Z] AMENDS D-033:` **Condition 5 is no longer asserted on survey strength — it was
 run.** The install layer was copied into an empty scratch directory exactly as
 [`install/README.md`](install/README.md) instructs: `CLAUDE.md.template` with its five placeholders

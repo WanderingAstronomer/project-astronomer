@@ -1,7 +1,12 @@
 # 01 — The Laws
 
-Seventeen laws, in six groups. They hold at every tier. [`tiers/`](../tiers/) changes which
+Eighteen laws, in six groups. They hold at every tier. [`tiers/`](../tiers/) changes which
 *artifacts* a project must produce; it never relaxes a law (CHARTER invariant 6, D-008).
+
+**Numbers are assignment order, not file order.** L-18 sits inside group IV because that is where it
+belongs, not at the end because that is where its number falls. The same rule the ledger states
+about itself applies here: renumbering to make the file scan tidily would invalidate every existing
+citation silently, which is worse than reading out of sequence.
 
 **How to read an entry.** Each law states the rule, then three things that make it usable:
 
@@ -229,6 +234,28 @@ way that matters proves nothing.
 - **Off-software:** a scale measures mass, not body composition. A resting heart rate from a
   wrist device at 3 a.m. is not the same instrument as one taken sitting up at 7. Know which
   claim your instrument can actually refute, and record what it cannot.
+
+### L-18. An instrument declares what it cannot do, before it is used.
+
+Every instrument — a tool, a collaborator, the environment they act through — states its limits
+before anything depends on them. The declaration is dated, keeps *what it can do* separate from
+*what it is permitted to do*, and lists what could not be determined as **owed** rather than as
+absent. An instrument that has not declared its error is not yet an instrument.
+
+- **Attested:** VOC. *Single-attested and provisional* — the framework already applied this rule
+  to per-window observations (L-12) and to quoted quantities (L-11), and applies it here to the
+  measuring apparatus itself. The discharge is [`08-instruments.md`](08-instruments.md); this law
+  states only the obligation.
+- **The scar:** two, from one day. A collaborator surveying a platform it was about to build on
+  reported broad capability from documentation; a second pass instructed only to *re-measure rather
+  than re-read* overturned **thirty-two** claims, the largest class being documented capability the
+  installation did not have. In the same survey it found that the project's own always-loaded
+  governing instructions **were not in version control** — so every fresh session elsewhere
+  inherited none of them, and had not for more than a thousand commits. Neither failure was a lie.
+  Both were limits nobody had been required to state, discovered by something else looking.
+- **Off-software:** before the twelve weeks, write down what your instruments cannot see — the meal
+  you will not weigh, the night the watch is off, the symptom you have no scale for. Doing it first
+  costs a paragraph. Doing it after is called explaining the result.
 
 ---
 

@@ -155,7 +155,7 @@ not exist yet.
 - `OBSERVATIONS.md` — `O-<n>` IDs, one entry per item: verbatim, live timestamp, conditions of
   observation, and any interpretation in a separate `UNVERIFIED` field. Append-only — its own
   class, not a flavour of frozen (D-019).
-**Plus up to four conditional artifacts — gated on circumstance, not on tier.** Each is required
+**Plus up to five conditional artifacts — gated on circumstance, not on tier.** Each is required
 from Lite upward once its condition holds:
 
 - `DATA-BOUNDARY.md` — when filesystem access reaches beyond the project's own work product. Read
@@ -165,12 +165,17 @@ from Lite upward once its condition holds:
   document with its extraction state and **what specifically could not be read.** Append-only.
 - `QUERY-LOG.md` — when a data boundary exists and any outbound channel is permitted. One `E-<n>`
   per outbound request, appended *before* the result is read. Append-only.
-- `CAPABILITY-INVENTORY.md` — when something other than the operator is doing the observing. What
-  the collaborator can read, run and reach, and where it is systematically wrong. Living, and
-  re-dated every time.
+- `CAPABILITY-INVENTORY.md` — when something other than the operator is doing the observing. The
+  roles this project needs and what actually provides each, with **capability and permission in
+  separate columns** (K-1), a fallback ladder per role (K-3), the decision-rights band (K-5), and
+  where the collaborator is systematically wrong. Living, and re-dated every time (K-4).
+- `OPERATOR-PROFILE.md` — when the operator's input arrives through augmentation rather than
+  directly. What reshapes their intent before you see it, the shape of what actually arrives, the
+  asymmetry between how much they can produce and how much they can review, and where their
+  reporting is thin. Living, re-dated, and written **with** the operator, never inferred about them.
 
 These are not tiered because their conditions have nothing to do with stakes. A one-person Lite
-project next to a client's raw files needs all four; a Full-tier project on a clean repository of
+project next to a client's raw files needs all of them; a Full-tier project on a clean repository of
 its own making needs none. Tiering them would leave the smallest projects the least protected.
 
 **Also: the collaborator's own workspace** (commonly `.claude/`), opened with a `README.md` that

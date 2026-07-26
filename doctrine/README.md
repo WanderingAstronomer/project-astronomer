@@ -13,13 +13,14 @@ enforceable form a collaborator actually reads each session.
 | | | Read it when |
 |---|---|---|
 | [`00-precedence.md`](00-precedence.md) | Which document wins when two disagree | Setting up a project — it is the shortest and prevents the most expensive failure |
-| [`01-laws.md`](01-laws.md) | The seventeen laws, with attestation and scars | **Start here.** Everything else is derivation |
+| [`01-laws.md`](01-laws.md) | The eighteen laws, with attestation and scars | **Start here.** Everything else is derivation |
 | [`02-epistemics.md`](02-epistemics.md) | Typed claims, scope, the evidence ladder, confidence | Before recording anything. This is the part that does the work |
 | [`03-the-loop.md`](03-the-loop.md) | OBSERVE → TRIAGE → RESOLVE → ACT → RECORD | Whenever something surprises you |
 | [`04-verification.md`](04-verification.md) | Adversarial verification, altitude, instrumentation, gates | Before believing a result — especially your own |
 | [`05-the-record.md`](05-the-record.md) | The four record classes — living, frozen, append-only, disposable; ledgers; identifiers | When deciding where something goes |
 | [`06-delegation.md`](06-delegation.md) | Roles, fences, briefs, the non-delegable categories | Before handing work to anyone, human or otherwise |
 | [`07-boundaries.md`](07-boundaries.md) | What must not leave, and what a collaborator may run | Before a collaborator has filesystem access, a network, and a shell at once |
+| [`08-instruments.md`](08-instruments.md) | Capability versus permission, the roles, the fallback ladder, decision rights | Before planning work that depends on what a tool or a collaborator can actually do |
 
 ## If you read only one thing
 

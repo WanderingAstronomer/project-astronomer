@@ -19,7 +19,9 @@ Everything below is repair. It is written for the moment you *discover* a bad nu
 always after you have already used it — step 1 is "stop using the number," and that presupposes it
 is in use.
 
-The cheap half of this ritual runs at the other end, before the work starts:
+The cheap half of this ritual runs at the other end, before the work starts, and it now has its own
+procedure: [capability-interrogation](capability-interrogation.md). Run that at setup and again
+whenever the environment changes in a way you know about (K-4). What follows is the summary of why:
 
 - **Measure what you are about to change, first.** A baseline you did not take is a baseline you
   are guessing at, and after the change there is no way back to it.

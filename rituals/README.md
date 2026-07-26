@@ -32,6 +32,7 @@ overrides a law.** If one appears to, the ritual is wrong and gets corrected —
 | "That is the third time this has happened." | [recurring-defect](recurring-defect.md) | Conflagration |
 | "I tried to determine the cause and I could not." | [unresolved](unresolved.md) | Friction |
 | "I never measured this number. Someone else did, some time ago." | [instrument-drift](instrument-drift.md) | Friction → Conflagration once a decision rested on it |
+| "Before I plan any of this — what can this environment actually do, and what am I allowed to do with it?" | [capability-interrogation](capability-interrogation.md) | Friction → Conflagration once a plan rests on a capability nobody measured |
 | "The small version worked. Do I commit to the large one?" | [scale-up-gate](scale-up-gate.md) | — |
 
 ## Blast radius
