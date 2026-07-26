@@ -60,30 +60,79 @@ This workspace is the collaborator's, to use freely within the boundary declared
 is not a replacement for the project's own artifacts (Step 7 below), and nothing in it substitutes
 for the charter, the ledger, or the observation log.
 
-## Step 3 — declare your own capabilities and known error
+## Step 3 — interrogate the environment, and declare your own known error
 
 If anything other than the operator is doing the observing — and if you are running this skill, that
-is you — write the capability inventory before the first window opens.
+is you — run the interrogation before the first window opens. Procedure: framework
+`rituals/capability-interrogation.md`. Doctrine: `doctrine/08-instruments.md` (K-1…K-6), obligation
+L-18.
 
 Every other instrument in this framework declares what it cannot detect. The observation log
-requires it per window; the frozen record requires it per run. The collaborator is the only
-instrument that has been exempt, and it is the one doing most of the looking.
+requires it per window; the frozen record requires it per run. The collaborator and the environment
+it acts through were the only instruments exempt, and they are the ones doing most of the looking.
 
-1. **Measure the environment, do not assume it** (L-11). What is installed, at what version, in what
-   shell. A capability list carried over from a previous session is a stale number, and it will be
-   wrong in the direction of claiming too much.
-2. **State what you can read, by format** — and specifically whether a scanned document can be
+**The division of labour is not negotiable: you answer capability by measuring, the operator answers
+permission by deciding, and neither of you may answer the other's question.**
+
+1. **Measure the environment, do not assume it** (L-11, L-18). What is installed, at what version, in
+   what shell. A capability list carried over from a previous session is a stale number, and it will
+   be wrong in the direction of claiming too much.
+2. **List the roles this project needs, then bind a provider to each** (K-2). A role is *a place where
+   work items live with identity and state* — never a product name. The default set is in
+   `doctrine/08-instruments.md`; strike what does not apply and log the strike.
+3. **Record capability and permission in separate columns** (K-1). Both, per role. *Present and
+   forbidden* and *permitted and absent* are different states with different remedies, and one column
+   collapses them into a shrug. Ask the operator the permission questions **in one pass** — asking
+   them one at a time as the work reaches them turns a ten-minute setup into a week of
+   interruptions.
+4. **Probe read-only.** A probe that creates or deletes has changed the thing it was measuring, which
+   is L-7 at the scale of an environment. Where a capability can *only* be proven by writing, describe
+   the write and leave it owed.
+5. **Write each role's fallback ladder** (K-3), ending at a floor you would say out loud. *"Not
+   recorded anywhere, and I know it"* is a legitimate rung; arriving there silently is not.
+6. **Set decision rights now, once** (K-5). What you settle alone, what you settle and log, what you
+   stop for. The non-delegable categories are the floor (Step 7). Left unset, this gets re-derived
+   differently every session and the cost lands on the operator, who cannot be parallelised.
+7. **State what you can read, by format** — and specifically whether a scanned document can be
    extracted at all. That one fails silently.
-3. **State what you may execute and where you may write** (doctrine `07-boundaries.md`, B-5). A
+8. **State what you may execute and where you may write** (doctrine `07-boundaries.md`, B-5). A
    script is a reader with no memory of what it was allowed to read.
-4. **Name your known error with a direction**, not as modesty. *"Roughly a 30% undercount on
+9. **Name your known error with a direction**, not as modesty. *"Roughly a 30% undercount on
    completeness questions"* can be subtracted; *"may be incomplete"* cannot.
-5. **List the instrument debt** — what this environment cannot determine at all, so it is owed
-   rather than guessed (L-12, L-16).
+10. **List the instrument debt** — what this environment cannot determine at all, so it is owed
+    rather than guessed (L-12, L-16).
 
 Then, before trusting any tool you build yourself: its output is `INFERENCE` until the tool has been
 broken on purpose and seen to notice (B-6). This framework's own vocabulary gate reported fourteen
 defects on its first run and nine were artifacts of the gate.
+
+**And do not trust your own declaration about yourself** (K-6). It is written by the instrument being
+declared, and the bias runs toward claiming too much. One collaborator, told a configuration value was
+adjustable, reported that repointing a subsystem needed no code; the value served two subsystems and
+the change would have silently broken the working one. Read correctly in general, never measured at
+the seam.
+
+## Step 3b — if the operator's input is augmented, write the operator profile
+
+Gated on a condition, not on tier: required whenever the operator's input reaches you through
+anything that transcribes, dictates, translates, batches, or otherwise **reshapes intent before it
+arrives.** Typing into a chat window is direct; everything else is augmentation. Template:
+`artifacts/operator-profile.template.md`.
+
+This is not a courtesy. You will otherwise read the tooling as the person, and every inference is
+wrong in a knowable direction:
+
+- **Length reads as emphasis.** Under dictation it is often just fluency.
+- **Structure reads as deliberation.** If a tool imposed it, the deliberation may be the tool's.
+- **One long message reads as one ask.** It is frequently many, and **the items in the middle are the
+  ones that get dropped** — answering the last paragraph feels like answering the message.
+- **High input volume reads as high review capacity.** Those are different resources and are
+  frequently opposite. An operator who can produce far more instruction than they can afford to review
+  is a bottlenecked operator, and you can flood them.
+
+State the augmentation and the shape of what arrives; **derive the implications at read time** rather
+than writing a fixed list, which goes stale against a living operator. Write it *with* the operator —
+an inferred profile they have never read is a set of assumptions with a filename.
 
 ## Step 4 — choose a tier
 
@@ -91,10 +140,11 @@ Lite, Standard, or Full (framework `tiers/README.md`). Choose on stakes and reve
 ambition — when two tiers both fit, take the lower one. This is itself the first entry in the
 ledger you are about to open (Step 8): log it as `D-001` with the reasoning.
 
-Note which of the four **condition-gated** artifacts apply, independently of tier: the data boundary
-(Step 1), the query log (Step 1), the capability inventory (Step 3), and the source manifest —
-required from Lite upward whenever the project takes in material it did not author. If material has
-already been handed over, run `astronomer-intake` before the first observation window.
+Note which of the **condition-gated** artifacts apply, independently of tier: the data boundary
+(Step 1), the query log (Step 1), the capability inventory (Step 3), the operator profile (Step 3b),
+and the source manifest — required from Lite upward whenever the project takes in material it did not
+author. If material has already been handed over, run `astronomer-intake` before the first
+observation window.
 
 ## Step 5 — write the charter
 
@@ -150,9 +200,17 @@ one, it is an observation.
 `DECISIONS` (the tier choice, the precedence adoption, the vocabulary set, the scrutiny gate, the
 non-delegable list, and the data-boundary declaration, as separate numbered entries) ·
 `OBSERVATIONS` (the log, opened and empty, first window declared) · `DATA BOUNDARY` (read tiers
-*and* the egress section) · `CAPABILITY INVENTORY` (dated, with known error stated directionally) ·
-`QUERY LOG` (opened and empty, if any outbound channel is permitted) · the collaborator's own
-workspace `README.md`, pointing to its living state-of-play doc.
+*and* the egress section) · `CAPABILITY INVENTORY` (dated, roles bound to providers, capability and
+permission in separate columns, a ladder per role, the decision-rights band, and known error stated
+directionally) · `OPERATOR PROFILE` (dated, if the operator's input is augmented) · `QUERY LOG`
+(opened and empty, if any outbound channel is permitted) · the collaborator's own workspace
+`README.md`, pointing to its living state-of-play doc.
+
+Plus, owed to the framework rather than to this project: read the `would_attest` fields in
+`provenance/attestation.json` once and record whether this project stands to attest any of them. **An
+install is the review event** for Astronomer's own provisional material (framework
+`rituals/starting-a-project.md`). Most installs attest nothing, and recording that is the honest
+outcome.
 
 Also update the skill's own trigger conditions if the operator's answers changed them — a boundary
 that turns out to reach further than expected is a decision, live-stamped, not a quiet correction.

@@ -237,3 +237,36 @@ of a change is the worst available instrument for finding what the change broke,
 gate is now measured at three defects it caught in one sitting that review had already missed.**
 
 That figure is one sitting, one author, and is stale from the moment it was typed (L-11).
+
+---
+
+`INTAKE OPEN` · `2026-07-26T23:45Z` · **window: the grades and case-law pass.**
+
+**Conditions:** as the previous window. Work performed while separating the two senses of "law",
+building `provenance/attestation.json` and its check, and wiring the install layer.
+
+### `O-25` · `2026-07-26T23:40Z`
+- **Conditions:** as the window.
+- **Observed:** the counted-prose check failed on two sentences that were **not drift**: `doctrine/01-laws.md` *"Six laws are `settled`"* and `CHARTER.md` *"twelve of eighteen laws sat at two"*. Both count a **subset** by grade; the check's model only knows how to compare a count against full membership.
+- **Initial read:** `UNVERIFIED` — a false positive, and the first temptation was to reword the prose to slip past it, which is the act D-042 now forbids.
+- **Confidence:** `CONFIRMED`, and **the resolution was the document's, not the gate's.** A subset count in prose is a stale number waiting to happen: *"six are settled"* is wrong the moment a grade changes, and the registry is the live home for it (L-11, L-14). The grades are now named by member and never counted. The check was suspicious for a better reason than it knew.
+- **Source:** `python tools/check-corpus.py` on the first draft of the grade section.
+- **Also:** this is the only instance so far where the guard fired on non-drift and was still right. Worth keeping distinct from a genuine false positive, because the remedy is opposite: this one improved the document, and a genuine false positive would have required fixing the gate.
+
+### `O-26` · `2026-07-26T23:47Z`
+- **Conditions:** as the window. Found by reading the install layer deliberately, not by a check.
+- **Observed:** two drift sites in `install/`, both invisible to the gate by construction. `install/CLAUDE.md.template` enumerated the laws and **stopped at L-17** — L-18 had been added to the corpus two commits earlier and never reached the file a session actually reads. `install/skills/astronomer-start/SKILL.md` said *"the four **condition-gated** artifacts"* against five.
+- **Initial read:** `UNVERIFIED` — neither is catchable today. The `law` vocabulary has `check_enumerations: false` with a stated reason (law IDs appear as citations everywhere, so matching would be all false positives), and the artifact count survived because the skill writes *"condition-gated"* where the registry's noun is *"conditional artifacts"* — **a paraphrase defeats the noun match.**
+- **Confidence:** `CONFIRMED`. Both corrected in this pass.
+- **Source:** manual sweep of `install/` while wiring Step 3.
+- **Also:** **the gate's blind spots concentrate in the install layer**, which is the worst possible place for them — doctrine drift misleads a reader who can check the source, while install-layer drift misleads a session *before it has read anything else*. Two instances now. L-17 escalates on the third, and the mechanism it would demand is stated in advance: a check that the template's law enumeration matches the `law` vocabulary exactly, which is tractable precisely because the template renders one law per line in a fixed form. Not built. If it recurs, build that.
+
+---
+
+`INTAKE CLOSED` · `2026-07-26T23:48Z` · **2 entries** (`O-25`–`O-26`).
+
+**Instrument note at close.** One entry came from a mechanical check, one from reading — and they
+divide exactly along the line the previous window's note predicted. The check found the thing it was
+built to find, in a form it half-understood. **Reading found the two things no check was watching**,
+and both were in the layer that governs a session's first move. Neither instrument would have found
+the other's finding.

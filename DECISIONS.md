@@ -515,6 +515,23 @@ judgement was made once by a reader who could see all four corpora and is not re
 registry; a wrongly-credited source passes silently, and only re-reading the sources would catch it.
 Stated in the gate's own docstring rather than left implied.
 
+`[2026-07-26T23:48Z] D-044:` **The install layer now carries the instruments material, because
+doctrine a session never reads is not in force.** K-1…K-6, the capability interrogation and the
+operator profile landed in `doctrine/` and `artifacts/` in the previous commit and reached **none** of
+the eight skills — and `install/` is the compressed, enforceable form a collaborator actually reads
+each session (`doctrine/README.md` says so). A rule that exists only in the reasoning layer is a rule
+that runs when someone remembers to go looking, which is the condition L-17 exists to replace.
+`astronomer-start` Step 3 becomes the interrogation — roles bound to providers, capability and
+permission in separate columns, read-only probing, a ladder per role, and **decision rights set once**
+— plus a new Step 3b for the operator profile, and the install's own review of Astronomer's
+`would_attest` fields. `install/CLAUDE.md.template` gains L-18. `caveat (owned):` **two drift sites in
+`install/` were found by reading and neither was catchable** (`O-26`). The template's law enumeration
+stopped at L-17, and the skill counted four condition-gated artifacts against five — the first because
+`law` enumerations are deliberately unchecked, the second because *"condition-gated"* paraphrases the
+registry's *"conditional artifacts"* and a paraphrase defeats the noun match. **The gate's blind spots
+concentrate in the layer that governs a session's first move**, which is the worst place for them.
+Two instances; L-17 escalates on the third, and the mechanism is named in `O-26` rather than built.
+
 `[2026-07-24T20:52Z] AMENDS D-033:` **Condition 5 is no longer asserted on survey strength — it was
 run.** The install layer was copied into an empty scratch directory exactly as
 [`install/README.md`](install/README.md) instructs: `CLAUDE.md.template` with its five placeholders
