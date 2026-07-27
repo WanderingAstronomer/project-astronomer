@@ -13,6 +13,39 @@ only part that requires thought.
 
 ---
 
+## Step 0a — are you adopting over work already in progress?
+
+**Written after the first real install, which was this case and which these instructions did not
+cover** (AST-D-045). Everything below Step 0 assumes a project with nothing declared. A project that
+has been running for a year usually has most of the stack already, under other names — and then the
+install is an act of **declaration**, not creation.
+
+Before copying anything, find what already fills each layer:
+
+| Layer | Look for |
+|---|---|
+| CHARTER | a mission or product document; a list of invariants, however named |
+| DECISIONS | **any existing numbered decision record.** Check this first — see the warning below |
+| SPECIFICATION | whatever the team treats as "what is currently true" |
+| FINDINGS | audits, build records, post-mortems, anything frozen and dated |
+| OBSERVATIONS | usually nothing. This is the layer most projects lack entirely |
+
+Then **declare the mapping in the filled `CLAUDE.md` instead of creating parallel files.** A second
+charter beside an existing one is not an install, it is a fork of the project's authority.
+
+> **⚠ The `D-` collision, and it is the expensive one.** If the project already has a decision
+> ledger using `D-<n>` identifiers, **do not create a `DECISIONS.md`.** You would put two live `D-`
+> namespaces in one corpus, which silently disables the supersession chain — the hazard
+> [`doctrine/00-precedence.md`](../doctrine/00-precedence.md) names, and which one source project
+> had to publish a disambiguation rule to escape *after the fact*.
+>
+> Map layer 2 onto the existing ledger and state the namespacing rule in `CLAUDE.md`: a bare `D-<n>`
+> is the project's, and Astronomer's own entries are cited `AST-D-<n>`.
+>
+> The framework anticipated exactly this for `I-` — the capability rules are prefixed `K-` because
+> the first consuming project numbers six invariants `I-1`…`I-6`. It did not anticipate it for its
+> own ledger, which is the more obvious of the two.
+
 ## Step 0 — the decisions made before anything is copied
 
 These belong to the operator, and go in the ledger as the first entries you write.
@@ -59,6 +92,17 @@ Copy `CLAUDE.md.template` to your project's `.claude/CLAUDE.md` and fill every p
 is the file a collaborator actually reads every session, so it is the file that decides whether
 the install worked.
 
+> **⚠ Check that the destination is TRACKED before you write it** (AST-D-045). `.claude/` is
+> gitignored in a great many repositories, and this instruction names it by default. In the first
+> real install the target was ignored by `.claude/*` with a single `!.claude/skills/` negation — so
+> the file that decides whether the install worked would have been **invisible to every clone**, and
+> the project had already run 1,035 commits with its instruction file untracked and nobody aware.
+>
+> Run `git check-ignore -v <path>` before copying. If the destination is ignored, either negate it
+> or put the filled file at the **repository root** as `CLAUDE.md`, which is tracked by default.
+> **Inheritance is the entire point of this file**; an untracked copy is a local convenience that
+> looks exactly like a working install.
+
 | Placeholder | Fill with |
 |---|---|
 | `<project name>` | the project's name |
@@ -77,6 +121,23 @@ Two rules about the filled file:
 **Vendor or reference the doctrine.** Either copy `doctrine/` into your project (portable,
 drifts) or point `<doctrine path>` at this repo (stays current, requires the checkout). Vendoring
 is the safer default for a project meant to outlive its tooling.
+
+> **⚠ Vendoring `doctrine/` alone leaves it full of dangling links** (AST-D-045). Doctrine cites
+> `../artifacts/`, `../tiers/` and `../provenance/` throughout. Measured on the first real install:
+> copying `doctrine/` and `rituals/` exactly as instructed produced **twenty broken
+> cross-references.**
+>
+> Vendor **`doctrine/` `rituals/` `artifacts/` `tiers/` `provenance/`** as siblings under one
+> parent, plus this repo's `CHARTER.md` and `DECISIONS.md` if you want `AST-D-<n>` citations to
+> resolve. Do **not** vendor `tools/` — it is the framework's self-check gate and it operates on the
+> framework corpus, so a copy would check a copy. Links into `tools/` and `install/` are the only
+> ones expected to dangle.
+>
+> **Write a README at the top of the vendored tree** saying it is a copy, naming the upstream commit
+> it is pinned at, and stating that changes go upstream and are re-vendored. Without it, someone
+> improves the copy, the fork is undeclared, and the divergence is invisible because the files still
+> read as authoritative — the drift this framework exists to prevent, committed against the
+> framework.
 
 ## Step 2 — install the skills
 

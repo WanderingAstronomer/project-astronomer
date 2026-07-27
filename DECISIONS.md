@@ -532,6 +532,52 @@ registry's *"conditional artifacts"* and a paraphrase defeats the noun match. **
 concentrate in the layer that governs a session's first move**, which is the worst place for them.
 Two instances; L-17 escalates on the third, and the mechanism is named in `O-26` rather than built.
 
+`[2026-07-27T00:43Z] D-045:` **The first real install happened, and `install/README.md` was wrong in
+four places — amended from the friction, which is the first half of condition 6.** Astronomer was
+installed into `vociferous-next` at Full tier on 2026-07-27. **Ratification is NOT claimed and the
+corpus stays `PROVISIONAL`:** condition 6 requires a project outside this repository to run a full
+OBSERVE→RECORD loop *and* write the friction back, and only the second half is discharged here. The
+window is open with four entries; the loop is not closed. The four frictions, each now fixed in
+`install/README.md`:
+
+**(a) The instructions had no step for adopting over work already in progress.** They assume a
+project with nothing declared. The consuming project already had a charter, invariants, a living
+specification and frozen findings under other names — only *observations* had no home — so the
+install was an act of **declaration over existing artifacts**, and there was no step for it. New
+Step 0a. Note the `astronomer-start` skill *description* already covered this case, so the gap was
+in the README alone.
+
+**(b) The `D-` namespace collision was not anticipated, and it is the expensive one.** The
+instructions say to create a project `DECISIONS.md`. The consuming project's ledger was already at
+`D-056` and this one is at `D-044`, so obeying would have put **two live `D-` namespaces in one
+corpus** — the exact supersession hazard `00-precedence.md` names, and which it attributes to *that
+same project* having done it once before. Refused at install time; layer 2 was mapped onto the
+existing ledger with a stated namespacing rule (`AST-D-<n>`). `caveat (owned):` **the framework
+anticipated the mirror image and missed this one.** `K-` was chosen over `I-` in D-035 precisely to
+dodge a collision with that project's invariants — while the instruction to create a rival `D-`
+ledger sat unexamined in the install layer. Anticipating the subtle case and shipping the obvious
+one is worth recording as its own lesson.
+
+**(c) Step 1 names a destination that is commonly gitignored.** `.claude/CLAUDE.md` was ignored in
+the consuming project by `.claude/*`, so the file that *"decides whether the install worked"* would
+have been invisible to every clone. That project had run **1,035 commits with its instruction file
+untracked** and nobody aware. The instruction now requires `git check-ignore -v` before copying, and
+offers the repository root as the tracked alternative. **Inheritance is the whole point of that file,
+and an untracked copy is indistinguishable from a working install.**
+
+**(d) Vendoring as instructed produces a doctrine full of dangling links.** Measured: copying
+`doctrine/` and `rituals/` exactly as written left **twenty broken cross-references**, because
+doctrine cites `../artifacts/`, `../tiers/` and `../provenance/` throughout. The instruction now names
+the full vendor set, excludes `tools/` with its reason, and requires a README at the top of the
+vendored tree naming the pinned commit and the do-not-edit rule — because an improved copy is an
+undeclared fork whose divergence is invisible.
+
+`caveat (owned):` all four were found by **performing** the install, not by reading these
+instructions, which had been read carefully twice. A procedure verified only by review is a procedure
+whose failures are still in front of it — `AMENDS D-033` proved the layer *installs* into an empty
+directory, and that test could not have surfaced any of these four, every one of which requires a
+destination that already contains something.
+
 `[2026-07-24T20:52Z] AMENDS D-033:` **Condition 5 is no longer asserted on survey strength — it was
 run.** The install layer was copied into an empty scratch directory exactly as
 [`install/README.md`](install/README.md) instructs: `CLAUDE.md.template` with its five placeholders

@@ -270,3 +270,56 @@ divide exactly along the line the previous window's note predicted. The check fo
 built to find, in a form it half-understood. **Reading found the two things no check was watching**,
 and both were in the layer that governs a session's first move. Neither instrument would have found
 the other's finding.
+
+---
+
+`INTAKE OPEN` · `2026-07-27T00:20Z` · **window: the first real install.**
+
+**Conditions:** Astronomer installed into `vociferous-next` — a running project, 1,035 commits, with
+its own charter, ledger, specification and skills already in place. Everything below was observed
+while performing the install, and **none of it was visible from reading `install/README.md`**, which
+had been read carefully twice.
+
+### `O-27` · `2026-07-27T00:25Z`
+- **Conditions:** as the window.
+- **Observed:** the consuming project's decision ledger already used `D-<n>` and stood at `D-056`. `install/README.md` Step 3 instructs the creation of a project `DECISIONS.md`.
+- **Initial read:** `UNVERIFIED` — following the instruction would have created a second live `D-` namespace in one corpus.
+- **Confidence:** `CONFIRMED`. Refused; layer 2 mapped onto the existing ledger with `AST-D-<n>` declared for this repo's entries.
+- **Also:** the sting is that `00-precedence.md` cites this exact hazard **and attributes it to that same project**, which had already run two `D-` namespaces once and published a disambiguation rule retroactively. The framework quoted the scar and then shipped an instruction that reproduces it. **D-035 dodged the mirror-image collision on `I-` deliberately, four hours earlier.** Anticipating the subtle case while shipping the obvious one is its own lesson.
+
+### `O-28` · `2026-07-27T00:20Z`
+- **Conditions:** as the window.
+- **Observed:** `git check-ignore -v .claude/CLAUDE.md` in the consuming project returned `.gitignore:44:.claude/*`, and `git ls-files .claude/` returned exactly one path. The install target named in Step 1 was **untracked**, and had been for 1,035 commits.
+- **Initial read:** `UNVERIFIED` — a fresh clone inherited one skill file and no operating instructions at all, silently.
+- **Confidence:** `CONFIRMED`. Filled file placed at the repository root instead; Step 1 amended to require `git check-ignore` before copying.
+- **Also:** the framework's own condition-5 test copied the layer into an **empty scratch directory**, where nothing is gitignored and this cannot occur. **The test that proved installability was structurally incapable of finding this.**
+
+### `O-29` · `2026-07-27T00:40Z`
+- **Conditions:** as the window. Measured with a link-resolution script written for the purpose — its output is `INFERENCE` under B-6, so it was exercised against a known-good and a known-bad path before its results were used.
+- **Observed:** vendoring `doctrine/` and `rituals/` exactly as instructed left **20 broken cross-references** in the copy. Doctrine cites `../artifacts/`, `../tiers/` and `../provenance/` throughout. Vendoring those three as well reduced it to 10, all pointing at `tools/` and `install/`.
+- **Initial read:** `UNVERIFIED` — the instruction names two directories and the doctrine depends on five.
+- **Confidence:** `CONFIRMED`, by measurement before and after.
+- **Also:** every link *inside* the vendored doctrine now resolves. The remaining ten are framework-repo references and are expected; `tools/` is deliberately not vendored because it checks the framework corpus and a copy would check a copy.
+
+### `O-30` · `2026-07-27T00:30Z`
+- **Conditions:** as the window.
+- **Observed:** the eight skills registered with the harness **in-session, immediately on copy**, into a `.claude/skills/` that already contained an unrelated project skill.
+- **Initial read:** `UNVERIFIED` — first evidence of installability against a non-empty destination.
+- **Confidence:** `CONFIRMED`, **Direct** grade — observed in the real environment.
+- **Also:** this is the one observation in this window that went the framework's way, and the only one the prior empty-directory test predicted.
+
+---
+
+`INTAKE CLOSED` · `2026-07-27T00:43Z` · **4 entries** (`O-27`–`O-30`).
+
+**Instrument note at close, and it is the finding of the whole window.** Three of four entries are
+defects in `install/README.md`, and **not one was findable by reading it.** The document had been
+read closely twice — once to plan the install, once to execute it — and produced no flags. Every
+defect required a destination that already **contained something**: an existing ledger, an existing
+`.gitignore`, an existing doctrine tree with relative links.
+
+`AMENDS D-033` recorded the install layer passing its condition-5 test by being copied into an empty
+scratch directory, and graded it **Direct** because it ran in a real environment. That grade was
+correct and the test was still blind: **an empty directory cannot collide with anything**, so the one
+property it could never examine is the one that produced every defect here. A verification can be
+Direct, honest, and structurally incapable of failing in the way that matters (L-12).
