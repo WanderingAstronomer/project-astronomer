@@ -1,3 +1,13 @@
+---
+record_class: append-only
+precedence: 2
+confidence: CONFIRMED
+owns:
+  - the-decision-ledger
+verified_by: corpus gate (tools/check-corpus.py) + window 2026-08-01
+last_verified: 2026-08-01
+---
+
 # DECISIONS — Project Astronomer
 
 The append-only decision ledger for this repository. Everything Astronomer says about ledgers
@@ -591,3 +601,121 @@ condition in the definition of done to carry one. Conditions 1 and 3 are still a
 reading, and this entry does not upgrade them. `caveat (owned):` the test proves the layer
 *installs*. It does not prove a session then *follows* it, which is condition 6 and is still
 unmet.
+
+`[2026-08-01T21:34Z] D-046:` **Retrieval is a role, and `K-7` says a shared index has finite signal
+— adding to it can subtract.** `doctrine/08-instruments.md` named seven roles, of which **Durable
+prose** — *"tracked files in the repository"* — is a **storage** claim. Nothing in the corpus named
+the role of *finding* anything in that store: measured 2026-08-01, the whole framework contained
+**zero** occurrences of any retrieval concept (`O-32`). The roles table gains **Corpus retrieval**
+with its own fallback ladder, and section II gains **K-7**. The rule is the one genuinely new shape
+here: every other instrument in that file is additive, and this is the first where a **fully
+successful** acquisition degrades the instrument for every other question. Measured, VOC: one
+vendor's documentation imported at full quality reached **390 of 719 notes — 54%** — after which a
+semantic query for the project's own technology stack ranked a vendor navigation link at `0.611`
+above its own architecture documents, and two further searches returned 364,155 and 224,288
+characters and were abandoned unread (`O-35`). **Two of the three obstructed a correction that was
+already in progress**, which is why the retrieval ritual grades its blast radius Conflagration only
+in that case. A fourth instance of the same class was measured independently three days later, and
+is the sharpest: `search_metadata` for `precedence` returned 797,038 characters, so the one query
+that could navigate a corpus *by rank* is the one that cannot be run (`O-36`). `caveat (owned):`
+**single-attested, VOC, and the corpus cannot corroborate it** — VOC is one of the four source
+projects. `caveat (owned):` the one measured share is **54%**, and that is a point at which the
+instrument had *already* failed, not a threshold. No project has measured where it starts. Quoting
+54% as a limit would be the borrowed number L-11 forbids, and `08-instruments.md` says so under what
+it does not settle. `caveat (owned):` **the obvious remedy is unverified.** Segregating foreign
+material into its own index is what the intake ritual and the install now recommend, and **nobody
+has done it** — the project that hit K-7 responded with a rule its collaborator is asked to
+remember, which `O-39` is direct evidence against.
+
+`[2026-08-01T21:34Z] D-047:` **The header block: this framework's own vocabularies become
+queryable, and `owns:` makes L-14 checkable for the first time.** Every document class in
+`doctrine/05-the-record.md` was *"stated at the top of the file"* as prose — readable, and not
+answerable to a question like *"show me every `CONFIRMED` document nobody has re-verified since
+March."* Measured 2026-08-01: **0 of 16** artifact templates carried any machine-readable metadata
+(`O-34`), while the first consuming project had independently rendered six of this framework's own
+vocabularies as YAML frontmatter across **703 of its 750 documents** (`O-33`) — `confidence:` on
+700, `precedence:` on 310, `owns:` on 309. **This was found, not designed**, and that is the
+strongest argument for it: an outside project reached for the same six concepts without being told
+to. The block ships in all 16 templates and in 34 of this repository's own files (invariant 5).
+**`owns:` is the load-bearing field and the only one that is not a restatement.** L-14 has asserted
+since the beginning that a vocabulary has exactly one home, and until now the rule was enforceable
+only by someone who already knew where the home *was*; `owns:` makes it a claim the document makes
+about itself, so two documents claiming one fact is a mechanical contradiction rather than a
+discovery. Note what the framework already half-believed: `tools/vocabularies.json` maps 17
+vocabularies to one home each, which is the same idea implemented centrally and only for
+vocabularies. `caveat (owned):` **the benefit is `PROVISIONAL` and the counter-evidence is already
+in the record.** The same project that carries the schema also produced `O-37`, where a document's
+`precedence: 6` sat machine-readable in its own header and it was quoted as authority against a
+precedence-2 ruling anyway. **A field nothing reads at the moment of reading is a field nobody
+reads.** The condition that reopens this: a project carries the block for a full loop and no gate,
+query or session ever consults it. `caveat (owned):` two exemptions are taken by name rather than by
+silence — `provenance/lineage.md` is frozen and a retrofitted header is an edit to it, and the eight
+`SKILL.md` files carry harness-required frontmatter that the gate will not trade for a tidier schema.
+An **append-only** file does get a block, which is a stated exception written into the doctrine: the
+append-only rule protects entries, and a header is not an entry.
+
+`[2026-08-01T21:34Z] D-048:` **Two checks added to the corpus gate — the header block, and ID
+collisions — and the ID one is ported on someone else's incidents rather than waiting for our own.**
+The gate went from 7 checks to **14, every one observed firing** by `tools/verify-gate.py` on
+2026-08-01, measured here. The header check validates shape, membership against the registry, and
+one implication that had never cost anything before: **`confidence: CONFIRMED` obliges `verified_by`
+and `last_verified`**, because `02-epistemics.md` defines that token as *independently re-derived,
+cite where* and nothing enforced the second half. **On its first run it found six real problems, two
+of them in the pass that installed it** — `doctrine/05-the-record.md` is the registered home of
+`effort` and did not claim it, and four *templates* claimed to own facts that belong to the
+documents they produce. A template is not a record and cannot be the single home for anything.
+**The ID-collision check is a deliberate exception to `rituals/recurring-defect.md`**, which asks
+for three instances before a gate. This corpus has **zero** and the gate is built anyway, because
+the framework **mandates the structure that collides**: append-only files, permanent addresses, gaps
+never closed, and a next ID that is *"one more than the highest I can see"*, read by branches that
+cannot see each other. VOC paid for it — **four** entries claimed one identifier and two sessions
+allocated one range on the same day (`O-38`). Waiting for our own third instance means waiting to
+damage `DECISIONS.md` and `OBSERVATIONS.md`, which is where the whole framework's authority lives.
+The port is adapted rather than copied: `AMENDS D-<n>` carries the number it amends and must **not**
+count as an allocation, and a naive port flagged all three of this ledger's amendments on the first
+run. It also adds the inverse the original does not have — an amendment naming a decision that was
+never made. `caveat (owned):` it sees **one working tree**. It catches a collision at the moment a
+merge resolution is wrong and **cannot** predict one between branches that have not met; nothing
+local can, and claiming otherwise would be the false-capability defect it exists to catch.
+`caveat (owned):` this session's own first attempt to falsify the two new vocabulary checks was
+**invalid** — renaming `### K-7.` to `### K-7-RENAMED.` left the substring intact, both checks
+reported green, and the gate was briefly believed broken when the test was. That is `O-41`
+reproduced within an hour of recording it, by the session that recorded it.
+
+`[2026-08-01T21:34Z] D-049:` **[operator] Condition 6 is met. The corpus is `VALIDATED`, and the
+word is worth less than it sounds.** `vociferous-next` installed Astronomer at Full tier on
+2026-07-27 and ran a full OBSERVE→RECORD loop on it. The closing loop is its 2026-07-30 window:
+opened `18:32Z`, four entries, `INTAKE CLOSED` at `18:38Z`; one item resolved to a `CONFIRMED` cause
+with a citation; **a gate built rather than a ninth hand-fix** under L-17; the outcome recorded in
+its ledger, its living documents and its operating instructions. Verified here rather than accepted
+— that gate's falsifier suite was run from this session and **8 of 8 passed, measured by me**. The
+second half of the condition, *the friction written back*, is this pass: `O-31`–`O-44`, one
+capability rule, one ritual, two gate checks, five amended documents. Operator's call, taken on the
+record. **Three limits, stated where they cannot be missed.** (1) **Ratification is not
+attestation** — no grade in `provenance/attestation.json` moved and the file was not touched; every
+law still rests on exactly the source projects it names. (2) **The ratifying project is one of the
+four sources.** Condition 6 says *outside this repo* and `vociferous-next` is outside this repo, so
+the condition is met **as written** — but it is not outside the framework's provenance, and a
+framework run by a project it was partly extracted from is the weakest form of ratification that
+still satisfies the condition. The addendum to `provenance/lineage.md` already anticipated exactly
+this and its constraint still binds: *"Not this framework being used again by the same operator —
+that tests whether it is usable, which is a different question from whether it is right."* Condition
+6 asks the **usable** question. The **right** question is open. (3) **`VALIDATED` is not
+`finished`** — the same pass that ratified the corpus added four new unresolved questions to
+`doctrine/08-instruments.md`. `caveat (owned):` the whole of this entry was written by the
+collaborator that also did the work being ratified, which is the non-independence
+`04-verification.md` names, and no second reader has been over it. **What would move this further:**
+a project with no hand in writing this framework installing it and running a loop. Named here so it
+is a target rather than a hope.
+
+`[2026-08-01T21:34Z] AMENDS D-001:` **The corpus no longer ships as `PROVISIONAL`.** D-001 fixed the
+status at `PROVISIONAL` on 2026-07-20 with the reasoning that the framework was reconstructed from
+four projects that were not trying to produce a framework, and that until one ran a full loop every
+claim was a hypothesis about what worked. **That reasoning was right and is now discharged** on
+condition 6 alone (D-049). The six sites that stated the old status are updated: `CHARTER.md`
+invariant 3 and its definition-of-done section, `README.md`, `install/README.md`, and an
+**annotation** — not an edit — appended to the frozen `provenance/lineage.md`, whose closing claim
+that *"Condition 6 of the definition of done remains unmet"* was accurate when written and is now
+historical. `artifacts/charter.template.md` needed no change; it always carried the status as a
+choice for the consuming project to make. `caveat (owned):` D-001's original text is untouched, as
+an amendment requires — it is the record of what was believed on 2026-07-20, and it was correct.

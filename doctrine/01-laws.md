@@ -1,3 +1,14 @@
+---
+record_class: living
+precedence: 3
+confidence: CONFIRMED
+owns:
+  - law
+  - attestation_grade
+verified_by: corpus gate (tools/check-corpus.py) + window 2026-08-01
+last_verified: 2026-08-01
+---
+
 # 01 — The Laws
 
 Eighteen laws, in six groups. They hold at every tier. [`tiers/`](../tiers/) changes which

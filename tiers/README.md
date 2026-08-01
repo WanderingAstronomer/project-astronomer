@@ -1,3 +1,14 @@
+---
+record_class: living
+precedence: 3
+confidence: CONFIRMED
+owns:
+  - conditional_artifact
+  - the-tier-requirements
+verified_by: corpus gate (tools/check-corpus.py) + window 2026-08-01
+last_verified: 2026-08-01
+---
+
 # Tiers
 
 Astronomer scales down. The **laws hold identically at every tier** — tiers change only which

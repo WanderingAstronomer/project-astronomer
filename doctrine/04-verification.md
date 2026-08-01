@@ -1,3 +1,13 @@
+---
+record_class: living
+precedence: 3
+confidence: CONFIRMED
+owns:
+  - verification_grade
+verified_by: corpus gate (tools/check-corpus.py) + window 2026-08-01
+last_verified: 2026-08-01
+---
+
 # 04 — Verification
 
 Verification is not "checking your work." It is the deliberate attempt to **destroy** a claim,

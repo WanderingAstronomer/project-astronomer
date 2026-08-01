@@ -1,3 +1,13 @@
+---
+record_class: living
+precedence: 3
+confidence: CONFIRMED
+owns:
+  - starting-a-project-procedure
+verified_by: corpus gate (tools/check-corpus.py) + window 2026-08-01
+last_verified: 2026-08-01
+---
+
 # Starting a project
 
 > **Doc status:** living.

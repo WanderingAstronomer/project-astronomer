@@ -1,3 +1,13 @@
+---
+record_class: living
+precedence: 3
+confidence: <one of the six confidence tokens; home is doctrine/02-epistemics.md>
+owns:
+  - <the-system-inventory>
+verified_by: <who re-derived it, or blank>
+last_verified: <YYYY-MM-DD, or blank>
+---
+
 # CATALOG — `<project name>`
 
 > **Doc class:** living. Rows change status; **IDs never change.** Retire with a `deprecated`

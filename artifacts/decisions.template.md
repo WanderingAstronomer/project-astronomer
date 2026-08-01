@@ -1,3 +1,13 @@
+---
+record_class: append-only
+precedence: 2
+confidence: <one of the six confidence tokens; home is doctrine/02-epistemics.md>
+owns:
+  - <the-decision-ledger>
+verified_by: <who re-derived it, or blank>
+last_verified: <YYYY-MM-DD, or blank>
+---
+
 # DECISIONS — `<project name>`
 
 > **Doc class:** append-only — its own class, not a flavour of frozen (D-019). Entries are never

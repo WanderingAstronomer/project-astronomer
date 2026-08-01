@@ -1,3 +1,18 @@
+---
+record_class: living
+precedence: 3
+confidence: CONFIRMED
+owns:
+  - record_class
+  - severity
+  - change_size
+  - effort
+  - id_prefix
+  - the-header-block
+verified_by: corpus gate (tools/check-corpus.py) + window 2026-08-01
+last_verified: 2026-08-01
+---
+
 # 05 — The Record
 
 A project's record is not its output. It is the thing that makes the output trustworthy, and it
@@ -138,6 +153,68 @@ charter.
   membership is named here but not redefined, for the same reason confidence is not (L-14). A
   three-member version of this list survived in six places for four days after D-019 added the
   fourth class, which is what the vocabulary gate now checks for.
+
+---
+
+## The header block
+
+Every status above is *stated at the top of the file*, and for most of this framework's life that
+meant a line of prose. A line of prose is readable and is not **queryable** — you cannot ask a
+corpus *"show me every `CONFIRMED` document nobody has re-verified since March"*, and at a few
+hundred documents that is the only way the question gets asked at all.
+
+So the header block is **YAML frontmatter**, and it carries the vocabularies this framework already
+owns rather than inventing parallel ones:
+
+```yaml
+---
+record_class: living          # L-13 · one of the four classes above
+precedence: 3                 # the layer this document occupies in the project's stack
+confidence: CONFIRMED         # 02-epistemics.md · this document's claim about itself
+owns:                         # L-14 · the facts this document is the single home for
+  - fallback-ladder
+  - collaborator-known-errors
+verified_by: <who re-derived it>
+last_verified: 2026-08-01     # K-4 · a grade with no date is a claim about a past environment
+supersedes: [D-075, D-086]    # L-2 · supersession names what it replaces
+---
+```
+
+**`owns:` is the load-bearing one**, and it is the only field here that is not a restatement of
+something already written elsewhere in the file. L-14 says a vocabulary has exactly one home and
+consumers point at it. Until this field there was **no way to ask where the home was** — the rule
+was enforceable only by someone who already knew the answer. `owns:` makes it a claim the document
+makes about itself, which makes two documents claiming the same fact a mechanical contradiction
+rather than a discovery.
+
+Four rules bind it:
+
+- **`confidence: CONFIRMED` obliges `verified_by` and `last_verified`.** The token means
+  *independently re-derived, cite where* ([`02-epistemics.md`](02-epistemics.md)); a `CONFIRMED`
+  with no citation and no date is the assertion the token exists to prevent.
+- **Two documents may not claim the same `owns:` key.** That is an L-14 violation by definition,
+  and it is now findable without reading either document.
+- **The block is not a second home for anything.** Every value is drawn from a vocabulary defined
+  elsewhere and the block cites rather than redefines — the same discipline the four classes get
+  above.
+- **A frozen record's block freezes with it** (L-13). Annotate by addendum; never edit the header
+  of a frozen file to make a gate pass. **A frozen record written before the schema existed does
+  not get one retrofitted** — that is an edit to a frozen file, and the gate exempts it by name
+  rather than by silence.
+- **An append-only file does get one, and this is a stated exception rather than an oversight.**
+  The append-only rule protects *entries*: nothing already written is edited or reordered. A header
+  block is not an entry, makes no claim that could later need correcting, and is maintained in
+  place like any living metadata. If that ever stops being true — if a header block starts carrying
+  a claim worth arguing with — the exception is wrong and this line is where to come and fix it.
+
+> **Provenance and grade.** VOC, single-attested, and it was *found* rather than designed — the
+> first consuming project independently rendered six of this framework's own vocabularies as
+> frontmatter across **703 of its 750 documents** before anything here described a schema
+> (`O-33`). What that project has *not* demonstrated is the benefit: it also produced the case
+> where a document's `precedence: 6` sat in its own header, machine-readable, and was quoted as
+> authority against a precedence-2 ruling anyway (`O-37`). **A field nothing reads at the moment
+> of reading is a field nobody reads.** The schema is `PROVISIONAL` on that: it reopens if a
+> project carries the block for a full loop and no gate, query, or session ever consults it.
 
 ---
 

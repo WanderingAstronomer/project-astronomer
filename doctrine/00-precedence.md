@@ -1,3 +1,13 @@
+---
+record_class: living
+precedence: 3
+confidence: CONFIRMED
+owns:
+  - the-precedence-stack
+verified_by: corpus gate (tools/check-corpus.py) + window 2026-08-01
+last_verified: 2026-08-01
+---
+
 # 00 — Precedence
 
 > **Status:** Authoritative for conflict resolution. Where any other document in an Astronomer

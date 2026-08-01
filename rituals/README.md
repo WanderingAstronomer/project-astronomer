@@ -1,3 +1,14 @@
+---
+record_class: living
+precedence: 3
+confidence: CONFIRMED
+owns:
+  - blast_radius
+  - the-ritual-routing-table
+verified_by: corpus gate (tools/check-corpus.py) + window 2026-08-01
+last_verified: 2026-08-01
+---
+
 # Rituals
 
 > **Doc status:** living.
@@ -22,6 +33,7 @@ overrides a law.** If one appears to, the ritual is wrong and gets corrected —
 |---|---|---|
 | "I am starting something and nothing has been declared yet." | [starting-a-project](starting-a-project.md) | — |
 | "I have been handed a pile of documents I did not write." | [corpus-intake](corpus-intake.md) | Friction → Conflagration once a finding is published from a corpus whose coverage was never recorded |
+| "I am about to search the corpus and act on what comes back." | [corpus-retrieval](corpus-retrieval.md) | Friction → Conflagration when the search is part of a repair already in progress |
 | "I need to look at this properly before I touch it." | [observation-pass](observation-pass.md) | — |
 | "I need to know something the project cannot observe for itself." | [external-research](external-research.md) | Friction |
 | "The window is closed and I have a pile of raw entries." | [triage-pass](triage-pass.md) | — |

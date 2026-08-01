@@ -1,3 +1,14 @@
+---
+record_class: living
+precedence: 3
+confidence: CONFIRMED
+owns:
+  - capability_rule
+  - capability_role
+verified_by: corpus gate (tools/check-corpus.py) + window 2026-08-01
+last_verified: 2026-08-01
+---
+
 # 08 — Instruments
 
 [`06-delegation.md`](06-delegation.md) establishes that **the operator is the instrument** and that
@@ -9,12 +20,18 @@ through, are also instruments — and an instrument that has not declared its er
 instrument.** That obligation is law-grade and is stated once, as L-18
 ([`01-laws.md`](01-laws.md)). What follows is how it is discharged.
 
-> **Status: single-attested and provisional (D-006).** Every rule here is attested by **VOC** only,
-> from a single day in which a collaborator with standing filesystem access, a network and a shell
-> mapped a platform it was about to build on. One project is a practice, not a law (CHARTER
-> invariant 4). The scars are real and are cited; the convergence is absent. Per D-022 no incident
-> is manufactured to satisfy the rule about incidents — where a rule rests only on an argument, it
+> **Status: single-attested and provisional (D-006).** Every rule here is attested by **VOC** only.
+> K-1…K-6 come from a single day in which a collaborator with standing filesystem access, a network
+> and a shell mapped a platform it was about to build on; **K-7 comes from the same project five
+> days later**, which makes it a second occasion and *not* a second attestation — VOC is one
+> project however many times it is asked. One project is a practice, not a law (CHARTER invariant
+> 4). The scars are real and are cited; the convergence is absent. Per D-022 no incident is
+> manufactured to satisfy the rule about incidents — where a rule rests only on an argument, it
 > says so.
+>
+> **The corpus status changing to `VALIDATED` (D-049) does not touch any grade here.** Ratification
+> is a fact about the framework having been run; attestation is a fact about how many independent
+> projects arrived at a given rule. These rules still rest on one.
 
 **Why `K-`.** These rules are prefixed `K-` (capability), not `I-`, because the first project that
 will consume them already numbers six invariants `I-1`…`I-6` and cites them constantly. A bare
@@ -136,6 +153,32 @@ predicts.
 - **Off-software:** self-report is indispensable and is not evidence. It is the only source for how
   something feels and the weakest source for what actually happened.
 
+### K-7. A shared index has finite signal, and adding to it can subtract.
+
+Every other rule in this file treats capability as additive: an instrument you gain is an instrument
+you have. **Retrieval is the exception.** A corpus and the index over it are two instruments, not
+one, and material added to the second competes for a fixed number of answer slots with everything
+already there. A *fully successful* acquisition — nothing corrupted, nothing unread, coverage
+complete — can still degrade the ability to find anything else.
+
+So an index carries a second declaration beside its capability: **what share of it is foreign to the
+project's own thinking**, measured rather than estimated, before the material lands and again after.
+
+- **Attested:** VOC, single, and the corpus cannot corroborate it (`provenance/attestation.json`).
+  Three measured instances in one session (`O-35`), plus a fourth of the same class measured
+  independently three days later (`O-36`).
+- **The scar:** one vendor's documentation was imported at high quality and reached **390 of 719
+  notes — 54% of the corpus**. A semantic query for the project's *own* technology stack then
+  ranked a vendor navigation link above its own architecture documents; two further searches
+  returned 364,155 and 224,288 characters and were abandoned unread. **Two of the three obstructed
+  a correction that was already in progress** — the index failed hardest at the moment it was being
+  used to repair something. Nothing had gone wrong with the intake. `rituals/corpus-intake.md`
+  counted the source and recorded full coverage, exactly as instructed, because it had no step that
+  looks at the destination.
+- **Off-software:** a filing cabinet where one client's papers fill six of eleven drawers. Nothing
+  is lost and every drawer is correctly labelled; finding anything belonging to any other client
+  now takes six times as long, and the person who filed it did nothing wrong.
+
 ---
 
 ## The roles
@@ -151,10 +194,19 @@ project-level, the *rule that each row carries a provider and a fallback* is not
 | **Change record** | what changed, when, why, and reversibly | commits and reviewed merges | dated entries, initialled |
 | **Verification gate** | a check that fails *before* work lands | required automated checks | a second person's signature |
 | **Durable prose** | doctrine, decisions, scars | tracked files in the repository | a binder that leaves the room with you |
+| **Corpus retrieval** | what bears on a question, without knowing its address | an index searched by relevance | a librarian, or a card catalogue |
 | **Session inheritance** | what a new collaborator reads before acting | an always-loaded instruction file | the briefing sheet on top of the binder |
 
 **Session inheritance is the row most often assumed and least often checked**, and it is the row
 whose absence is invisible from inside a session that already has the knowledge.
+
+**Corpus retrieval is the row most often confused with the row above it.** *Durable prose* is where
+the record is kept; *corpus retrieval* is whether anything in it can be found. A project small
+enough that one person knows every filename provides the second role out of that person's memory
+and never notices it is a role at all — which is why the ladder below ends where it does, and why
+this row is the one that fails on a schedule nobody is watching (`O-32`, `O-44`). It is also the only
+row governed by K-7, because it is the only one where **adding** to the instrument can subtract from
+it.
 
 ## The fallback ladder
 
@@ -167,8 +219,19 @@ The worked shape, for the roles above:
   operator names what is next at pick time
 - **Verification gate** → a required automated check → a manual checklist run before landing → a
   post-hoc review, *declared as detection rather than prevention*
+- **Corpus retrieval** → an index that ranks by relevance → exact-match search over the whole
+  corpus → a directory listing read by hand → **not indexed**; whoever wrote it remembers where it
+  is, *declared, and named as a person*
 - **Session inheritance** → an always-loaded tracked file → a file the collaborator is told to read
   → re-briefing every session, *declared, and budgeted*
+
+**Two notes on the retrieval ladder specifically**, both measured (`O-35`, `O-36`). The rungs are
+ordered by *power*, and power is not the same as reliability: relevance ranking is the top rung and
+the **first** to fail under K-7, because it is the only rung that silently returns a *worse* answer
+rather than no answer. Exact-match below it fails loudly, by returning too much. And the floor here
+is worse than the floor of any other role — *not recorded* is a state you can plan around, while
+**not findable** looks exactly like *not written*, which is how a project rediscovers what it
+already knew.
 
 **The floor is a legitimate rung.** What is forbidden is arriving at it without saying so — an
 undeclared floor is indistinguishable from a working mechanism until the moment it is needed, which
@@ -198,3 +261,16 @@ for the human half.
   and it is unsolved here for the same reason.
 - **Any specific platform, credential model, or probe.** Implementation, excluded from doctrine for
   the reason L-1 excludes every other toolchain question.
+- **What share of an index may be foreign before K-7 bites.** The one measured figure is 54%, and it
+  is a point at which the instrument had *already* failed — not a threshold, and the corpus has no
+  observation of the share at which it starts to. A project pre-registers its own number
+  (`rituals/corpus-intake.md`) and reports what it measured; quoting 54% as a limit would be exactly
+  the borrowed number L-11 forbids.
+- **Whether segregating an index actually restores it.** The obvious response to K-7 is to hold
+  foreign material in a separate index, or behind a path the default query does not reach. **Nobody
+  has done it.** The one project that hit K-7 responded with a rule its collaborator is asked to
+  remember, which `O-39` is the direct evidence against. The remedy is `UNVERIFIED` and is owed.
+- **How a monotonic change triggers K-4.** A declaration expires on an *event*, and an index that
+  grows every day presents none. `O-44` measured a corpus 2.35× its declared size with nothing
+  having "changed" in the sense K-4 names. Whether the trigger should be a magnitude, a period, or
+  a check at read time is unsettled.

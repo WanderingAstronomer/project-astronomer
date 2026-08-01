@@ -1,3 +1,13 @@
+---
+record_class: living
+precedence: 3
+confidence: CONFIRMED
+owns:
+  - the-boundary-rules
+verified_by: corpus gate (tools/check-corpus.py) + window 2026-08-01
+last_verified: 2026-08-01
+---
+
 # 07 — Boundaries
 
 The framework already names two boundaries. [`06-delegation.md`](06-delegation.md) names work a

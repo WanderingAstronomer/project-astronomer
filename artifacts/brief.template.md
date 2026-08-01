@@ -1,3 +1,13 @@
+---
+record_class: disposable
+precedence: 6
+confidence: <one of the six confidence tokens; home is doctrine/02-epistemics.md>
+owns:
+  - <the scope of this one piece of work>
+verified_by: <who re-derived it, or blank>
+last_verified: <YYYY-MM-DD, or blank>
+---
+
 # BRIEF — `<lane id>` — `<scope name>`
 
 > **Doc class:** disposable until executed, then frozen. On completion, banner it

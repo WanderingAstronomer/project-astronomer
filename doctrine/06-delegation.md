@@ -1,3 +1,14 @@
+---
+record_class: living
+precedence: 3
+confidence: CONFIRMED
+owns:
+  - non_delegable
+  - role
+verified_by: corpus gate (tools/check-corpus.py) + window 2026-08-01
+last_verified: 2026-08-01
+---
+
 # 06 — Delegation
 
 Astronomer assumes you are working with collaborators — AI, human, or both — and that the

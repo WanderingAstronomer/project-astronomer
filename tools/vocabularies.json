@@ -219,7 +219,7 @@
     },
     {
       "name": "capability_rule",
-      "members": ["K-1", "K-2", "K-3", "K-4", "K-5", "K-6"],
+      "members": ["K-1", "K-2", "K-3", "K-4", "K-5", "K-6", "K-7"],
       "home": "doctrine/08-instruments.md",
       "note": "Prefixed K- (capability) rather than I- on purpose: the first consuming project numbers six invariants I-1..I-6, and a bare I-3 would resolve to two things (L-2). Same counted-prose hazard as the law set.",
       "count_nouns": ["capability rules"],
@@ -229,7 +229,7 @@
     {
       "name": "capability_role",
       "members": ["Work-item store", "Relation graph", "Working set", "Change record",
-                  "Verification gate", "Durable prose", "Session inheritance"],
+                  "Verification gate", "Durable prose", "Corpus retrieval", "Session inheritance"],
       "home": "doctrine/08-instruments.md",
       "note": "The DEFAULT set. Projects add and strike roles (D-035); the check enforces internal consistency of the default only, exactly as evidence_tier does. count_nouns is deliberately 'capability roles' and not 'roles' — the latter would collide with the Operator/Coordinator/Executor/Verifier set.",
       "count_nouns": ["capability roles"],

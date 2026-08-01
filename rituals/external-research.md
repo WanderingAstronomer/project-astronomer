@@ -1,3 +1,13 @@
+---
+record_class: living
+precedence: 3
+confidence: CONFIRMED
+owns:
+  - external-research-procedure
+verified_by: corpus gate (tools/check-corpus.py) + window 2026-08-01
+last_verified: 2026-08-01
+---
+
 # External research
 
 > **Doc status:** living.

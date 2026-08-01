@@ -1,3 +1,13 @@
+---
+record_class: living
+precedence: 3
+confidence: CONFIRMED
+owns:
+  - capability-interrogation-procedure
+verified_by: corpus gate (tools/check-corpus.py) + window 2026-08-01
+last_verified: 2026-08-01
+---
+
 # Capability interrogation
 
 > **Doc status:** living.
@@ -6,7 +16,7 @@ The forward half of [instrument drift](instrument-drift.md). That ritual is repa
 moment you discover a limit you have already relied on. This one runs before the work and costs a
 paragraph per row.
 
-Doctrine: [`../doctrine/08-instruments.md`](../doctrine/08-instruments.md) (K-1…K-6), obligation
+Doctrine: [`../doctrine/08-instruments.md`](../doctrine/08-instruments.md) (K-1…K-7), obligation
 L-18. Output: [capability inventory](../artifacts/capability-inventory.template.md) for the
 environment and the collaborator, [operator profile](../artifacts/operator-profile.template.md) for
 the human.
@@ -50,6 +60,13 @@ the same hour.
 3. **Record capability and permission in separate columns** (K-1). Both, for every role. "Present
    and forbidden" and "permitted and absent" are different states with different remedies, and a
    single column collapses them into a shrug.
+
+   **Corpus retrieval takes a third measurement** (K-7): what share of the index is foreign to this
+   project's own thinking. Probe it, do not assume it — the question is not *"can I search?"* but
+   *"when I search for something this project wrote, does this project's own material come back?"*
+   The cheap probe is to query for a thing you know the project owns and read what outranks it. A
+   retrieval role that reports **yes** on capability and never measured the share has answered the
+   easy half; the corpus that produced K-7 could search perfectly and could not find itself.
 
 4. **Ask the operator the permission questions, in one pass, plainly.** Not one at a time as the
    work reaches them — that converts a ten-minute setup into a week of interruptions, which is

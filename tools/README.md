@@ -1,3 +1,13 @@
+---
+record_class: living
+precedence: 6
+confidence: CONFIRMED
+owns:
+  - the-corpus-gate
+verified_by: corpus gate (tools/check-corpus.py) + window 2026-08-01
+last_verified: 2026-08-01
+---
+
 # tools — the corpus self-check
 
 > **Doc class:** living.
@@ -55,6 +65,27 @@ of the readers; it is the reason this file is a script.
 | **install manifest** | The skill directories on disk match both lists that name them — `install/README.md` and `install/CLAUDE.md.template` | Adding a skill needs lockstep edits in three files; nothing else detects an omission, and a framework-side rename leaves installed projects routing to a dead name |
 | **links** | Every relative markdown link resolves, `#anchor` included | Five broken `../../doctrine/…` links in the newest skill, resolving to a directory that has never existed |
 | **template links** | A `*.template.md` link resolves from the **project root** it will be copied to, and never contains `../` | Templates were linking to two different base locations at once; both could not be right |
+| **header blocks** | Every living and append-only markdown file carries the block from `doctrine/05-the-record.md`; `record_class` and `confidence` are drawn from the registry; `precedence` is a layer number; **`CONFIRMED` obliges `verified_by` and `last_verified`**; no two documents claim the same `owns:` key; every registered vocabulary is claimed by the home the registry names | Six on first run, and two of them were the check catching the pass that installed it: `doctrine/05-the-record.md` is the registered home of `effort` and did not claim it, and four **templates** claimed to own facts that belong to the documents they produce |
+
+| **ID collisions** | No `D-` or `O-` address is allocated twice; an `AMENDS D-<n>` names a decision that exists; and the entry pattern still matches *something* | Nothing here yet — it was ported before this corpus paid for it. The consuming project paid: **four** entries claimed one identifier, and two sessions allocated one range on the same day |
+
+**The ID check is the one gate in this file that is not an incident report**, and that is a
+deliberate exception to `rituals/recurring-defect.md`. It was ported on the strength of *someone
+else's* three instances (`O-38`) because this framework **mandates the structure that collides** —
+append-only files, permanent addresses, gaps never closed, and a next ID that is "one more than the
+highest I can see." Two branches that cannot see each other produce two locally valid files and one
+silent collision at merge. Waiting for our own third instance would mean waiting to damage the two
+files the whole framework rests on.
+
+Note what it **cannot** do, because the docstring says so and this is the honest half: it sees one
+working tree. It catches the collision at the moment a merge resolution is wrong; it cannot predict
+one between branches that have not met, and nothing local can.
+
+**`owns:` is why the header check earns its place**, and it is worth stating plainly. The other four
+checks catch a vocabulary that has drifted *between* two places. This one catches the prior
+question — **where is the home at all?** — which L-14 has asserted since the beginning and which
+was, until now, answerable only by someone who already knew. The last two rows of that cell are the
+registry and the corpus auditing each other rather than the corpus auditing itself.
 
 **The template-link convention**, since the gate now enforces it:
 

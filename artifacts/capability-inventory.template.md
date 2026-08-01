@@ -1,3 +1,16 @@
+---
+record_class: living
+precedence: 6
+confidence: <one of the six confidence tokens; home is doctrine/02-epistemics.md>
+owns:
+  - <collaborator-capability-roster>
+  - <fallback-ladder>
+  - <collaborator-known-errors>
+  - <decision-rights-reserved-list>
+verified_by: <who re-derived it, or blank>
+last_verified: <YYYY-MM-DD, or blank>
+---
+
 # CAPABILITY INVENTORY — `<collaborator>` — `<YYYY-MM-DD>`
 
 > **Doc class:** living. Rewritten whenever the environment changes, and **re-dated every time**. A
@@ -8,7 +21,7 @@ something other than the operator is doing the observing. A solo human project d
 project where an AI collaborator reads the sources, runs the searches, and drafts the findings needs
 it before the first window opens.
 
-**Doctrine:** `doctrine/08-instruments.md` holds the reasoning and the rules (K-1…K-6) and owns the
+**Doctrine:** `doctrine/08-instruments.md` holds the reasoning and the rules (K-1…K-7) and owns the
 default **role** set. The obligation is L-18. The procedure that produces this file is
 `rituals/capability-interrogation.md`. Its human twin is
 `artifacts/operator-profile.template.md` — write both in the same sitting.
@@ -63,12 +76,26 @@ single column collapses "present and forbidden" into "absent," which have differ
 | `<change record>` | | | | |
 | `<verification gate>` | | | | |
 | `<durable prose>` | | | | |
+| `<corpus retrieval>` | | | | |
 | `<session inheritance>` | | | | |
 
 Two failure states to name explicitly rather than average away:
 
 - **Permitted and absent** — full rights over something that does not exist on this installation.
 - **Present and forbidden** — the mechanism is right there and the credential cannot reach it.
+
+**Corpus retrieval carries a third column the others do not** (K-7). Beside capability and
+permission, record **what share of the index is foreign to this project's own thinking** — material
+imported from a vendor, a client, or another team — as a measured fraction with the date it was
+taken. An index is the one instrument here where a successful acquisition can make every unrelated
+question harder to answer, and the share is the only number that sees it coming.
+
+| | |
+|---|---|
+| Items in the index, total | `<measured>` |
+| Of those, foreign to this project | `<measured>` · `<%>` · as of `<YYYY-MM-DD>` |
+| Largest single foreign corpus | `<name>` · `<%>` |
+| Pre-registered ceiling | `<the share at which this project stops importing>` — see `rituals/corpus-intake.md` |
 
 **Never name a vendor in the Role column** (K-2). The role is durable; the provider is a fact about
 today's environment and belongs in the second column, where it can change without amending the

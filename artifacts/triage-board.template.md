@@ -1,3 +1,13 @@
+---
+record_class: disposable
+precedence: 6
+confidence: <one of the six confidence tokens; home is doctrine/02-epistemics.md>
+owns:
+  - <this pass's buckets and clusters>
+verified_by: <who re-derived it, or blank>
+last_verified: <YYYY-MM-DD, or blank>
+---
+
 # TRIAGE — `<project name>` — `<window / pass name>`
 
 > **Doc class:** disposable. This document is permitted to be blunt, opinionated, addressed to

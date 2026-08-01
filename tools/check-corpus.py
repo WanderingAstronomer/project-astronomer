@@ -462,6 +462,215 @@ def check_links() -> None:
 
 # ---------------------------------------------------------------- main
 
+# ---------------------------------------------------------------- check 6
+
+# Files that legitimately carry no header block, each for a stated reason. Silence is not a
+# reason -- an unexplained omission here is indistinguishable from a file nobody got to.
+HEADER_EXEMPT = {
+    "provenance/lineage.md":
+        "FROZEN (L-13). Retrofitting a header onto a frozen record is an edit to it. "
+        "doctrine/05-the-record.md states this exemption; do not 'fix' it.",
+    "install/CLAUDE.md.template":
+        "Copied to a consuming project's root as CLAUDE.md. Whether that file carries a "
+        "header block is the consuming project's call, not this repo's.",
+}
+
+# The eight skills carry harness-required frontmatter (name/description) and are validated by
+# check_install_manifest instead. Adding record_class to them risks skill registration, which
+# is a live capability -- the gate does not trade a working instrument for a tidier schema.
+HEADER_SKIP_GLOBS = ("install/skills/",)
+
+HEADER_REQUIRED = ("record_class", "precedence", "confidence", "owns")
+PLACEHOLDER = re.compile(r"^<.*>$")
+
+
+def parse_header(text: str):
+    """Return the raw frontmatter block as a dict of str -> str|list, or None if absent.
+
+    Deliberately a line reader and not a YAML parser: the gate must run with no third-party
+    dependency, and the block is fixed-shape by doctrine. A file whose header needs a real
+    YAML parser has already left the shape this checks.
+    """
+    if not text.startswith("---\n") and not text.startswith("---\r\n"):
+        return None
+    end = text.find("\n---", 3)
+    if end == -1:
+        return None
+    body = text[3:end]
+    out, key = {}, None
+    for line in body.splitlines():
+        if not line.strip() or line.lstrip().startswith("#"):
+            continue
+        if line.startswith("  - ") and key:
+            out.setdefault(key, [])
+            if isinstance(out[key], list):
+                out[key].append(line[4:].strip())
+            continue
+        if ":" in line and not line.startswith(" "):
+            key, _, val = line.partition(":")
+            key, val = key.strip(), val.strip()
+            out[key] = val if val else []
+    return out
+
+
+def check_header_blocks(registry: dict) -> None:
+    """Every living/append-only markdown file declares its class, rank and confidence.
+
+    WHY THIS EXISTS. The framework spent its whole life stating a document's class in prose --
+    `> **Doc status:** living.` -- which is readable and not queryable. The first consuming
+    project independently rendered six of these vocabularies as frontmatter across 703 of its
+    750 documents before anything here described a schema (O-33), and separately produced the
+    case this check is really aimed at: a document whose `precedence: 6` sat machine-readable
+    in its own header while it was quoted as authority against a precedence-2 ruling (O-37).
+
+    WHAT IT CANNOT DO. It cannot tell you a header is TRUE. `last_verified` is a date someone
+    typed; `owns:` is a claim, not a proof. It checks shape, membership, and one implication
+    (CONFIRMED obliges a citation and a date) -- which is the mechanically checkable subset,
+    exactly as the docstring at the top of this file says of the whole gate.
+    """
+    classes = next(v for v in registry["vocabularies"] if v["name"] == "record_class")["members"]
+    tokens = next(v for v in registry["vocabularies"] if v["name"] == "confidence")["members"]
+    owners: dict[str, str] = {}
+
+    for path in md_files():
+        r = rel(path)
+        if any(r.startswith(g) for g in HEADER_SKIP_GLOBS):
+            continue
+        if r in HEADER_EXEMPT:
+            exempt(f"[header:{r}] no header block -- {HEADER_EXEMPT[r]}")
+            continue
+
+        text = path.read_text(encoding="utf-8", errors="replace")
+        head = parse_header(text)
+        if head is None:
+            fail(f"[header] {r} has no header block (doctrine/05-the-record.md)")
+            continue
+
+        for field in HEADER_REQUIRED:
+            if field not in head:
+                fail(f"[header] {r} header is missing required field '{field}'")
+
+        klass = head.get("record_class", "")
+        if isinstance(klass, str) and klass and not PLACEHOLDER.match(klass):
+            if klass not in classes:
+                fail(f"[header] {r} record_class '{klass}' is not in the record_class "
+                     f"vocabulary ({', '.join(classes)})")
+
+        prec = head.get("precedence", "")
+        if isinstance(prec, str) and prec and not PLACEHOLDER.match(prec):
+            if not prec.isdigit() or not 1 <= int(prec) <= 6:
+                fail(f"[header] {r} precedence '{prec}' is not a layer number 1-6")
+
+        conf = head.get("confidence", "")
+        if isinstance(conf, str) and conf and not PLACEHOLDER.match(conf):
+            if conf not in tokens:
+                fail(f"[header] {r} confidence '{conf}' is not a confidence token")
+            elif conf == "CONFIRMED":
+                # 02-epistemics.md: CONFIRMED means independently re-derived -- CITE WHERE.
+                for owed in ("verified_by", "last_verified"):
+                    v = head.get(owed, "")
+                    if not v or (isinstance(v, str) and PLACEHOLDER.match(v)):
+                        fail(f"[header] {r} claims confidence: CONFIRMED but has no "
+                             f"'{owed}'. The token means re-derived from the source; "
+                             f"without a citation and a date it is UNVERIFIED.")
+
+        # L-14, made mechanical: a fact has exactly one home, and now says so out loud.
+        for key in head.get("owns", []) or []:
+            if PLACEHOLDER.match(key) or key.startswith("<"):
+                continue
+            if key in owners:
+                fail(f"[header] L-14: '{key}' is claimed by both {owners[key]} and {r}. "
+                     f"A vocabulary has exactly one home.")
+            else:
+                owners[key] = r
+
+    # Every registered vocabulary's declared home should claim it in owns:. This is the
+    # registry and the corpus checking each other rather than the corpus checking itself.
+    for vocab in registry["vocabularies"]:
+        home, name = vocab["home"], vocab["name"]
+        if home in HEADER_EXEMPT or any(home.startswith(g) for g in HEADER_SKIP_GLOBS):
+            continue
+        claimed = owners.get(name)
+        if claimed is None:
+            fail(f"[header] vocabulary '{name}' declares its home as {home}, but no "
+                 f"document claims it in owns:")
+        elif claimed != home:
+            fail(f"[header] vocabulary '{name}' declares its home as {home}, but "
+                 f"{claimed} claims it in owns:")
+
+
+# ---------------------------------------------------------------- check 7
+
+# (file, human label, regex whose group(1) is the ID, how the ID is written)
+ID_SOURCES = [
+    ("DECISIONS.md", "ledger entry",
+     re.compile(r"^`\[[^\]]*\]\s*(D-\d+):", re.M), "D-NNN"),
+    ("OBSERVATIONS.md", "observation",
+     re.compile(r"^###\s+`(O-\d+)`", re.M), "O-N"),
+]
+
+# An amendment carries the number it amends and does NOT consume a new one (DECISIONS.md,
+# Conventions). A naive port of this check flagged all three of them as collisions on the
+# first run, which is the shape a gate fails in when it is copied instead of adapted.
+AMENDS_RX = re.compile(r"^`\[[^\]]*\]\s*AMENDS\s+(D-\d+):", re.M)
+
+
+def check_id_collisions() -> None:
+    """One address, one entry. Never renumber, never reuse (05-the-record.md, hard rule 11).
+
+    WHY THIS IS HERE AND NOT ONLY IN A CONSUMING PROJECT. This framework mandates the exact
+    structure that collides: append-only files, permanent IDs, gaps never closed, and a next
+    ID that is "one more than the highest I can see." Read by two branches that cannot see
+    each other, that produces two valid-looking files and one silent collision at merge. The
+    consuming project hit it four times on a single identifier (O-38). DECISIONS.md and
+    OBSERVATIONS.md have the identical exposure and had no check at all.
+
+    WHAT IT CANNOT DO (L-18). It sees one working tree. It catches a collision at the moment
+    a merge resolution is wrong -- which is where the damage would otherwise be committed --
+    and it CANNOT predict a collision between two branches that have not met. Nothing local
+    can, and claiming otherwise would be the false-capability defect it exists to catch.
+    """
+    for relpath, label, rx, form in ID_SOURCES:
+        path = ROOT / relpath
+        if not path.exists():
+            fail(f"[id] {relpath} does not exist")
+            continue
+        text = path.read_text(encoding="utf-8", errors="replace")
+        matches = list(rx.finditer(text))
+
+        # A regex that stops matching must fail loudly rather than pass vacuously. This is
+        # the check most likely to rot silently: the entry form changes, nothing matches,
+        # and a gate reporting "0 collisions" is indistinguishable from one that is blind.
+        if not matches:
+            fail(f"[id] {relpath}: found no {label} IDs at all. The '{form}' entry form "
+                 f"changed, or this check is now blind. Fix the pattern, do not delete it.")
+            continue
+
+        seen: dict[str, list[int]] = {}
+        for m in matches:
+            line = text[:m.start()].count("\n") + 1
+            seen.setdefault(m.group(1), []).append(line)
+
+        for ident, lines in sorted(seen.items()):
+            if len(lines) > 1:
+                fail(f"[id] {relpath}: {label} '{ident}' is allocated {len(lines)} times "
+                     f"(lines {', '.join(map(str, lines))}). An ID is a permanent address. "
+                     f"The entry already in the record keeps '{ident}'; the one that never "
+                     f"entered it is numbered FORWARD. That is numbering, not renumbering.")
+
+        # The inverse, which the consuming project's version does not check: an amendment
+        # pointing at a decision that was never made. Same class of damage, opposite sign --
+        # a dangling amendment resolves to nothing rather than to the wrong thing.
+        if relpath == "DECISIONS.md":
+            allocated = set(seen)
+            for m in AMENDS_RX.finditer(text):
+                if m.group(1) not in allocated:
+                    line = text[:m.start()].count("\n") + 1
+                    fail(f"[id] {relpath}:{line} amends '{m.group(1)}', which was never "
+                         f"allocated. An amendment carries the number it amends; if that "
+                         f"number does not exist the amendment has no subject.")
+
+
 def main() -> int:
     registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
 
@@ -469,6 +678,8 @@ def main() -> int:
     check_install_manifest()
     check_links()
     check_attestation(registry)
+    check_header_blocks(registry)
+    check_id_collisions()
 
     if VERBOSE and exemptions:
         print(f"EXEMPTIONS TAKEN ({len(exemptions)}) - every one is a place this gate "

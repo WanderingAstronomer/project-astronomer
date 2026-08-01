@@ -1,3 +1,14 @@
+---
+record_class: append-only
+precedence: 5
+confidence: <one of the six confidence tokens; home is doctrine/02-epistemics.md>
+owns:
+  - <corpus-coverage>
+  - <what-could-not-be-read>
+verified_by: <who re-derived it, or blank>
+last_verified: <YYYY-MM-DD, or blank>
+---
+
 # SOURCE MANIFEST — `<project name>` — `<intake name>`
 
 > **Doc class:** append-only — its own class, not a flavour of frozen (D-019). An entry records what

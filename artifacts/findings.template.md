@@ -1,3 +1,16 @@
+---
+# NOTE: this block freezes with the record (L-13). Annotate by addendum;
+# never edit a frozen header to make a gate pass.
+record_class: frozen
+precedence: 4
+confidence: <one of the six confidence tokens; home is doctrine/02-epistemics.md>
+owns:
+  - evidence_tier
+  - <what this study settled>
+verified_by: <who re-derived it, or blank>
+last_verified: <YYYY-MM-DD, or blank>
+---
+
 # FINDINGS — `<project name>` — `<pass / stage name>` — `<YYYY-MM-DD>`
 
 > **Doc class:** frozen. **Point-in-time record — do not edit to reflect later truth.**

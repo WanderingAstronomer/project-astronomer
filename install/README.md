@@ -1,3 +1,13 @@
+---
+record_class: living
+precedence: 6
+confidence: CONFIRMED
+owns:
+  - the-install-procedure
+verified_by: corpus gate (tools/check-corpus.py) + window 2026-08-01
+last_verified: 2026-08-01
+---
+
 # Install
 
 This directory makes Astronomer **executable** rather than merely readable. Doctrine that lives
@@ -7,9 +17,15 @@ of skills, the rules are load-bearing where the decisions actually happen (D-009
 Installing takes about twenty minutes. Most of that is the two decisions in step 0, which are the
 only part that requires thought.
 
-> **Status.** Astronomer is `PROVISIONAL`. No project has run a full loop on it yet. Install it
-> and use it — but when it produces friction, that friction is data owed back to the framework,
-> not a defect in your project.
+> **Status.** Astronomer is `VALIDATED` as of `2026-08-01` (D-049) — one project has installed it,
+> run a full loop on it, and sent the friction back. **That obligation did not end with the status
+> change; it is what produced it.** When this install produces friction, that friction is data owed
+> back to the framework, not a defect in your project — and the second project to send it back is
+> worth more than the first, because the first helped write this.
+>
+> The parts most likely to be wrong for you are the newest, and they are the ones a single project
+> found: the corpus-retrieval role (K-7), the header block, and Steps 4 and 5 below. All three are
+> single-attested. If they do not fit your project, say so — that is the useful outcome.
 
 ---
 
@@ -272,6 +288,66 @@ not a substitute for the three files above.
 Reach Full tier for the catalog and the fences long before you reach it for the concurrency —
 parallelism carries a real correctness cost (L-10), and the source project that ran the largest
 concurrent effort concluded two lanes was the recommended default.
+
+---
+
+## Step 4 — decide how this corpus will be *found*, not just stored
+
+**Added after the first consumer's first five days** (`O-32`). Every step above puts documents on
+disk. None of them asks the question that decides whether any of it survives contact with month
+three: **when a session needs the document that settles something, how does it get there?**
+
+Skipping this step does not fail. It produces a project whose record is complete and whose sessions
+re-derive things that are already written down, because finding them costs more than re-deriving
+them. `doctrine/08-instruments.md` names **Corpus retrieval** as a role with its own fallback
+ladder for exactly this reason, and it is the role most often assumed rather than measured.
+
+**Answer three questions and write the answers into the capability inventory.**
+
+1. **What actually searches this corpus?** An index that ranks by relevance, an exact-match search,
+   a directory listing, or a person who remembers. Name the rung you are actually on — not the one
+   you could get to. A project of forty documents is genuinely fine at the bottom of the ladder;
+   what is not fine is being there without knowing it.
+2. **What is the smallest corpus at which your answer stops working?** You will pass it, and the
+   crossing is silent. There is no day on which searching gets hard.
+3. **Will anything foreign live in the same index?** Vendor documentation, a client's files, another
+   team's material. If yes, you now owe `rituals/corpus-intake.md` step 3 **before** any of it
+   lands, and a share in the capability inventory (K-7). One measured case: a vendor corpus reached
+   54% of the index and the project's own architecture documents stopped ranking first for queries
+   about its own architecture.
+
+**The known-good default, and its honest caveat.** Keeping the corpus as plain markdown in one
+tracked tree, searchable by both an index and plain `grep`, is what the consuming project does and
+it works. What that project has *not* demonstrated is segregation — it holds foreign material in the
+same index as its own and compensates with a rule its collaborator is asked to remember, which
+`O-39` is direct evidence against. **If you are importing a foreign corpus, prefer a separate index
+from the start.** That is advice from the shape of the failure, not from a project that has done it,
+and it is `UNVERIFIED` on purpose.
+
+**If a collaborator will search this corpus, give it the retrieval ritual.**
+`rituals/corpus-retrieval.md` is the one that keeps *"I searched and found nothing"* from being
+written down as *"the project never decided that."*
+
+---
+
+## Step 5 — bound your roles by construction where you can
+
+**Also from the first consumer** (`O-42`). Where the environment lets you declare what tools a role
+holds, a role that **cannot** do the thing is stronger than a role instructed not to — there is
+nothing to prompt around, and nothing to forget. A read-only auditor defined by holding no writer at
+all is enforced by absence; the same auditor defined by being *told* not to write is enforced by its
+own cooperation, and `O-39` measured what that is worth: a rule read, agreed to, and restated was
+violated four times in one session, the fourth within an hour of re-committing to it out loud.
+
+This is optional, environment-dependent, and worth ten minutes if your environment supports it at
+all. Two cautions, both measured rather than reasoned:
+
+- **Check what the role actually holds, do not read what it was configured to hold.** A vendor's
+  own "read-only" profile served every tool it had, including one that creates documents.
+- **A shell is a writer.** A role holding a general-purpose command runner is read-only *by
+  construction* at best, never by enforcement, and its description must say which of the two it is.
+
+---
 
 **Version control is optional.** No law requires it. Three of the four source projects used it;
 one was not a repository at all and achieved provenance through a frozen specification plus

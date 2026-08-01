@@ -1,3 +1,14 @@
+---
+record_class: living
+precedence: 1
+confidence: <one of the six confidence tokens; home is doctrine/02-epistemics.md>
+owns:
+  - <the-mission>
+  - <the-invariants>
+verified_by: <who re-derived it, or blank>
+last_verified: <YYYY-MM-DD, or blank>
+---
+
 # CHARTER — `<project name>`
 
 > **Doc class:** living. **Corpus status:** `<PROVISIONAL | VALIDATED | ...>`

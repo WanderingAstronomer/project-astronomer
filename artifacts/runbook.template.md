@@ -1,3 +1,13 @@
+---
+record_class: living
+precedence: 6
+confidence: <one of the six confidence tokens; home is doctrine/02-epistemics.md>
+owns:
+  - <the procedure this runbook owns>
+verified_by: <who re-derived it, or blank>
+last_verified: <YYYY-MM-DD, or blank>
+---
+
 # RUNBOOK — `<situation name>`
 
 > **Doc class:** living. Rewritten freely to match what actually works now. It states what to

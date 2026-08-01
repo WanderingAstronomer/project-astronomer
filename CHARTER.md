@@ -1,3 +1,15 @@
+---
+record_class: living
+precedence: 1
+confidence: CONFIRMED
+owns:
+  - the-mission
+  - the-invariants
+  - the-definition-of-done
+verified_by: corpus gate (tools/check-corpus.py) + window 2026-08-01
+last_verified: 2026-08-01
+---
+
 # CHARTER — Project Astronomer
 
 > This is the top of the authority stack. If anything else in this corpus conflicts with this
@@ -40,8 +52,11 @@ reaches a correct conclusion faster, and knows which of its conclusions are load
 2. **Every law carries its scar.** No rule is stated without the concrete failure that
    produced it. A rule without its incident gets argued away the first time it is expensive.
    (D-003, inherited from vociferous)
-3. **The framework is a hypothesis until a project proves it.** This corpus is `PROVISIONAL`
-   and says so in public. It does not claim validation it has not earned. (D-001)
+3. **The framework is a hypothesis until a project proves it.** One has now: this corpus is
+   `VALIDATED` as of `2026-08-01` (D-049, `AMENDS D-001`), on condition 6 and nothing wider.
+   It does not claim validation it has not earned — and **ratification is not attestation.**
+   Every law still rests on exactly the source projects it names, and the framework's newest
+   rules still rest on one. (D-001, D-049)
 4. **Provenance is a first-class column.** Every pattern names the project it came from, and
    carries a **grade** for how much evidence stands behind it: `practice` (one independent
    project), `converging` (two), `settled` (three or four). The grade is separate from whether
@@ -118,8 +133,34 @@ has not met is precisely the defect class L-16 puts above breakage — *a thing 
 says so is safe; a thing that is broken and reports success is not* — and silently satisfying the
 conditions afterward would have been the same defect in a quieter form.
 
-**Condition 6 is not met and remains the only thing standing between this corpus and `VALIDATED`.**
-Until it is met, this framework is a well-argued guess.
+### Condition 6 — met `2026-08-01`
+
+**All six conditions are now met, and the corpus is `VALIDATED`** (D-049). What discharged it,
+stated precisely enough to be argued with:
+
+`vociferous-next` installed Astronomer at Full tier on `2026-07-27` and ran a full
+OBSERVE→RECORD loop on it between then and `2026-08-01`. The loop that closes the condition is its
+`2026-07-30` window: opened `18:32Z`, four entries, `INTAKE CLOSED` at `18:38Z`; one item resolved
+to a `CONFIRMED` cause with a citation; a **gate built rather than a ninth hand-fix** under L-17;
+and the outcome recorded in its ledger, its living documents, and its operating instructions.
+Verified here rather than accepted: that gate's falsifier suite was run from this session on
+`2026-08-01` and **8 of 8 passed, measured**. The friction is written back as `O-31`–`O-44`, one
+new capability rule, one new ritual, two new gate checks and five amended documents.
+
+**Three things this does not mean**, each of which would be easy to read into it:
+
+1. **Ratification is not attestation.** Condition 1 is about how many independent projects arrived
+   at each law; this is about whether the framework survives being *used*. No grade in
+   `provenance/attestation.json` moves, and the file was not touched.
+2. **The ratifying project is one of the four sources.** Condition 6 says *outside this repo*, and
+   `vociferous-next` is outside this repo — the condition is met as written. But it is not outside
+   the framework's provenance, and a framework being run by a project it was partly extracted from
+   is the weakest form of ratification that still satisfies the condition. **Recorded rather than
+   smoothed** (invariant 5). The strong form — a project with no hand in writing this — has not
+   happened, and `D-049` names it as what would raise the grade further.
+3. **`VALIDATED` is not `finished`.** It is the status the definition of done defines, nothing
+   more. The corpus acquired four new unresolved questions in the same pass that ratified it; they
+   are listed in `doctrine/08-instruments.md` under what that file does not settle.
 
 ### Checking conditions 2, 3, and 4 mechanically
 

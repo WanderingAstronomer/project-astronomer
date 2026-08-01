@@ -148,9 +148,114 @@ def mutate_attestation_sunset() -> tuple[Path, str, str]:
     return path, original, broken
 
 
+def mutate_header_missing() -> tuple[Path, str, str]:
+    """Strip a living document's header block entirely."""
+    path = ROOT / "rituals" / "corpus-retrieval.md"
+    original = path.read_text(encoding="utf-8")
+    end = original.find("\n---", 3)
+    if not original.startswith("---") or end == -1:
+        raise RuntimeError("header mutation did not apply - no block to strip")
+    broken = original[end + 5:].lstrip("\n")
+    return path, original, broken
+
+
+def mutate_header_class() -> tuple[Path, str, str]:
+    """Put a value in record_class that is not in the record_class vocabulary."""
+    path = ROOT / "rituals" / "corpus-retrieval.md"
+    original = path.read_text(encoding="utf-8")
+    broken = original.replace("record_class: living", "record_class: evergreen", 1)
+    if broken == original:
+        raise RuntimeError("header class mutation did not apply - the target text moved")
+    return path, original, broken
+
+
+def mutate_header_confirmed_uncited() -> tuple[Path, str, str]:
+    """Claim CONFIRMED and delete the citation it obliges.
+
+    This is the one that matters. 02-epistemics.md defines CONFIRMED as independently
+    re-derived, CITE WHERE -- and until this check existed, nothing anywhere made the second
+    half of that sentence cost anything.
+    """
+    path = ROOT / "rituals" / "corpus-retrieval.md"
+    original = path.read_text(encoding="utf-8")
+    broken = re.sub(r"(?m)^verified_by: .*\n", "", original, count=1)
+    if broken == original:
+        raise RuntimeError("header citation mutation did not apply")
+    return path, original, broken
+
+
+def mutate_header_two_homes() -> tuple[Path, str, str]:
+    """Two documents claim the same fact -- L-14, made mechanical.
+
+    The defect this whole corpus keeps re-committing (AMENDS D-015, D-019), aimed at for the
+    first time by a check that does not need a reader to already know where the home is.
+    """
+    path = ROOT / "rituals" / "corpus-retrieval.md"
+    original = path.read_text(encoding="utf-8")
+    broken = original.replace(
+        "  - corpus-retrieval-procedure",
+        "  - corpus-retrieval-procedure\n  - corpus-intake-procedure",
+        1,
+    )
+    if broken == original:
+        raise RuntimeError("two-homes mutation did not apply - the target text moved")
+    return path, original, broken
+
+
+def mutate_id_collision() -> tuple[Path, str, str]:
+    """Two ledger entries claim one address - the four-way D-103 collision, in miniature."""
+    path = ROOT / "DECISIONS.md"
+    original = path.read_text(encoding="utf-8")
+    broken = original.replace("] D-002:", "] D-001:", 1)
+    if broken == original:
+        raise RuntimeError("id collision mutation did not apply - the entry form moved")
+    return path, original, broken
+
+
+def mutate_id_blind() -> tuple[Path, str, str]:
+    """Change the entry form so the pattern matches nothing.
+
+    The failure this guards is a gate reporting `0 collisions` because it can no longer see
+    any IDs -- which reads exactly like a clean corpus. O-41: a passing suite is evidence
+    about the suite before it is evidence about the code.
+    """
+    path = ROOT / "OBSERVATIONS.md"
+    original = path.read_text(encoding="utf-8")
+    broken = re.sub(r"(?m)^### `O-(\d+)`", r"### O-\1", original)
+    if broken == original:
+        raise RuntimeError("id blindness mutation did not apply")
+    return path, original, broken
+
+
+def mutate_id_dangling_amendment() -> tuple[Path, str, str]:
+    """Amend a decision that was never made."""
+    path = ROOT / "DECISIONS.md"
+    original = path.read_text(encoding="utf-8")
+    broken = original.replace("AMENDS D-015:", "AMENDS D-999:", 1)
+    if broken == original:
+        raise RuntimeError("dangling amendment mutation did not apply")
+    return path, original, broken
+
+
 MUTATIONS = [
     ("vocabulary drift   (D-019: a record class goes missing from a list)",
      mutate_vocabulary, r"\[vocab:record_class\].*missing: append-only"),
+    ("id collision       (two ledger entries claim one address)",
+     mutate_id_collision, r"\[id\] DECISIONS\.md: ledger entry 'D-001' is allocated 2 times"),
+    ("id blindness       (the entry form moves and the check sees nothing)",
+     mutate_id_blind, r"\[id\] OBSERVATIONS\.md: found no observation IDs at all"),
+    ("id dangling amend  (an amendment with no subject)",
+     mutate_id_dangling_amendment, r"\[id\] DECISIONS\.md:\d+ amends 'D-999'"),
+    ("header absent      (a living document carries no header block)",
+     mutate_header_missing, r"\[header\] rituals/corpus-retrieval\.md has no header block"),
+    ("header class       (record_class is not in the vocabulary)",
+     mutate_header_class, r"\[header\].*record_class 'evergreen' is not in"),
+    ("header citation    (CONFIRMED with nothing to cite)",
+     mutate_header_confirmed_uncited,
+     r"\[header\].*claims confidence: CONFIRMED but has no 'verified_by'"),
+    ("header two homes   (L-14: one fact claimed by two documents)",
+     mutate_header_two_homes,
+     r"\[header\] L-14: 'corpus-intake-procedure' is claimed by both"),
     ("counted prose      (a sentence miscounts a vocabulary)",
      mutate_prose_count, r"\[vocab:record_class\].*prose counts 3 'classes'"),
     ("install manifest   (a listed skill has no directory)",

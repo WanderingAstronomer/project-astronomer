@@ -1,3 +1,13 @@
+---
+record_class: living
+precedence: 6
+confidence: <one of the six confidence tokens; home is doctrine/02-epistemics.md>
+owns:
+  - <the-red-yellow-green-classification>
+verified_by: <who re-derived it, or blank>
+last_verified: <YYYY-MM-DD, or blank>
+---
+
 # DATA BOUNDARY — `<project name>`
 
 > **Doc class:** living. Rewritten whenever what the collaborator may access changes — never

@@ -64,7 +64,7 @@ for the charter, the ledger, or the observation log.
 
 If anything other than the operator is doing the observing — and if you are running this skill, that
 is you — run the interrogation before the first window opens. Procedure: framework
-`rituals/capability-interrogation.md`. Doctrine: `doctrine/08-instruments.md` (K-1…K-6), obligation
+`rituals/capability-interrogation.md`. Doctrine: `doctrine/08-instruments.md` (K-1…K-7), obligation
 L-18.
 
 Every other instrument in this framework declares what it cannot detect. The observation log

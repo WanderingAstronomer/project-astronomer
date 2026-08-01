@@ -1,3 +1,13 @@
+---
+record_class: living
+precedence: 6
+confidence: <one of the six confidence tokens; home is doctrine/02-epistemics.md>
+owns:
+  - <the-shared-preamble>
+verified_by: <who re-derived it, or blank>
+last_verified: <YYYY-MM-DD, or blank>
+---
+
 # SHARED PREAMBLE — `<project name>`
 
 > **Doc class:** living. **Deploy as `_SHARED-PREAMBLE.md`** — the underscore sorts it to the top

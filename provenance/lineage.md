@@ -308,3 +308,32 @@ piece of work and is deliberately **not** done by this addendum — the framewor
 from outside, precisely so that the install would not collide with decisions that project had already
 made and create the rival-ledger drift this corpus exists to prevent.
 
+
+---
+
+# Annotation — 2026-08-01T21:32Z
+
+> **This is an annotation, not a revision** (L-13). Nothing above is edited. The 2026-07-20
+> extraction and all three addenda stand exactly as written; what follows records one fact that
+> has since changed, so that a reader landing here is not misled by a statement that was true when
+> it was made.
+
+**Condition 6 is now met, and the corpus is `VALIDATED` (D-049, `AMENDS D-001`, 2026-08-01).** The
+addendum above closes with *"Condition 6 of the definition of done remains unmet"* and with
+*"Installing it there is the next piece of work."* Both were accurate on 2026-07-26. The install
+happened on 2026-07-27, the loop ran, and the friction came back on 2026-08-01. The current status
+lives in [`../CHARTER.md`](../CHARTER.md), which is living and outranks this file on fact.
+
+**Nothing in this annotation moves an attestation, and the tally above is unchanged.** That is the
+distinction the whole file exists to protect: ratification asks whether the framework survives being
+used; attestation asks how many independent projects arrived at a given rule. The ratifying project
+is `vociferous-next` — **the same project that supplied the largest share of the seeded corpus** —
+so the closing constraint quoted in the addendum above still binds, and still says what it said:
+
+> *"Not this framework being used again by the same operator — that tests whether it is usable,
+> which is a different question from whether it is right."*
+
+Condition 6 asks the **usable** question and asks it of a project outside this repository, which is
+what was answered. The **right** question is still open, and no addendum here can close it. The one
+new capability rule added on 2026-08-01 (`K-7`) is VOC-attested, single, and graded exactly as
+weakly as every row above it.

@@ -1,3 +1,14 @@
+---
+record_class: living
+precedence: 6
+confidence: <one of the six confidence tokens; home is doctrine/02-epistemics.md>
+owns:
+  - <operator-known-errors>
+  - <operator-preferences>
+verified_by: <who re-derived it, or blank>
+last_verified: <YYYY-MM-DD, or blank>
+---
+
 # OPERATOR PROFILE — `<operator>` — `<YYYY-MM-DD>`
 
 > **Doc class:** living. Rewritten when the operator's tooling or condition changes, and **re-dated

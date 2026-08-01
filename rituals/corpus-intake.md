@@ -1,3 +1,13 @@
+---
+record_class: living
+precedence: 3
+confidence: CONFIRMED
+owns:
+  - corpus-intake-procedure
+verified_by: corpus gate (tools/check-corpus.py) + window 2026-08-01
+last_verified: 2026-08-01
+---
+
 # Corpus intake
 
 > **Doc status:** living.
@@ -20,19 +30,39 @@ how many there are in total.
    This is cheap, it is mechanical, and it is the number every later claim about coverage rests on.
    Forty documents and four thousand are different projects, and you cannot tell which you are in
    from the first ten.
-3. **Assess readability per item, and do not trust the extension.** A `.pdf` is either extractable
+3. **Count the destination too, and work out the share** (K-7). Steps 1 and 2 look at the material.
+   This step looks at what it is landing *in*. If the incoming corpus will be searched alongside
+   the project's own material — one index, one default query surface — then compute
+   `incoming ÷ (existing + incoming)` **before** the import, and **pre-register the share at which
+   you would not do it.** Write the number down first; a threshold chosen afterward is chosen to
+   permit whatever you already did.
+
+   This is the only step in this ritual that can tell you an intake should not happen. Everything
+   else here makes an intake *honest*; this one asks whether it is *free*, and it is not. One
+   measured case: a vendor corpus reached **54%** of the index, after which a query for the
+   project's own architecture returned that vendor's navigation links above it. Nothing about the
+   intake was wrong. **A successful import is the case K-7 is about** — a failed one damages
+   nothing, because nothing lands.
+
+   If the share is uncomfortable and the material is still wanted, the response is **segregation,
+   not omission**: a separate index, or a path the default query does not reach, with retrieval
+   from it done by explicit path (`rituals/corpus-retrieval.md`). Record which you chose. Note that
+   segregation is `UNVERIFIED` as a remedy — it is the obvious answer and no project in this corpus
+   has yet demonstrated it works.
+
+4. **Assess readability per item, and do not trust the extension.** A `.pdf` is either extractable
    text or a picture of text; those are different instrument problems with different failure modes,
    and only one of them announces itself. Record `FULL` / `PARTIAL` / `NONE` per document.
-4. **Name what could not be read, specifically.** *"Pages 40–61 are scans with no text layer"* is a
+5. **Name what could not be read, specifically.** *"Pages 40–61 are scans with no text layer"* is a
    usable record. *"Mostly worked"* is not. This is the field the whole artifact exists for — see
    why below.
-5. **Give every item a permanent ID** (`S-<n>`), including the ones you were not allowed to open.
+6. **Give every item a permanent ID** (`S-<n>`), including the ones you were not allowed to open.
    A boundary-excluded document still gets a row, so that six months later its absence reads as a
    recorded decision rather than an unexplained gap.
-6. **Change nothing.** Do not rename, reorganize, convert, or normalize the source material during
+7. **Change nothing.** Do not rename, reorganize, convert, or normalize the source material during
    intake. It is someone else's record; moving it destroys the link to whoever handed it over, and
    a conversion you performed is now between you and the evidence (L-7, L-13).
-7. **Close the intake explicitly** before drawing anything from it, the same way an observation
+8. **Close the intake explicitly** before drawing anything from it, the same way an observation
    window closes. Then, and only then, open the first observation window over the material.
 
 ## Why the "not read" field is the point
@@ -58,6 +88,17 @@ recorded. At that point you cannot tell which conclusions were drawn from the wh
 re-establishing that means re-reading everything — the same recovery cost as an observation window
 that was contaminated mid-pass.
 
+**Conflagration of a second, slower kind when step 3 was skipped**, and this one does not announce
+itself at all. The damage is not to conclusions drawn from the imported corpus — those may be
+perfect. It is to every *unrelated* question the project asks afterward, each of which now competes
+with the import for the same answer slots. There is no failed intake to point at and no finding to
+re-check. What you get instead is a project that gradually stops being able to find its own
+thinking, and reads that as *not having written it down*.
+
+The recovery cost is asymmetric with the import cost, which is the part worth knowing in advance:
+importing is one afternoon, and separating an index afterward means re-deciding, per document, what
+should have been two collections from the start.
+
 ## Record
 
 - `SOURCE MANIFEST` — one `S-<n>` per document, including excluded ones, with extraction state and
@@ -70,3 +111,10 @@ that was contaminated mid-pass.
 - Any claim later drawn from a `PARTIAL` corpus carries that in its **scope** (L-4). "Established
   from the 68% of the corpus that was machine-readable" is a scoped claim; without the scope it is
   `ASSERTED-UNIVERSAL`.
+- `CAPABILITY INVENTORY` — the **share** from step 3, measured before and after, in the corpus
+  retrieval row, with the date (K-7, K-4). This is the one number that makes the next intake
+  decidable rather than arguable, and the project that has it can answer *"can we take another
+  one?"* without re-measuring the whole index.
+- `DECISIONS` — if the material was **segregated** rather than merged, that is a decision with a
+  reason and a stated retrieval path, not an implementation detail. A future session searching the
+  default surface and finding nothing needs to know the other collection exists.

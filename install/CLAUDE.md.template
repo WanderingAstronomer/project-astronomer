@@ -120,7 +120,9 @@ Skills run the loop's phases. **Rituals** handle recurring frictions — full ro
 | Situation | Route to |
 |---|---|
 | Nothing has been declared yet | `astronomer-start` · ritual `starting-a-project` |
-| Handed documents this project did not write | `astronomer-intake` · ritual `corpus-intake` — count and check readability before reading |
+| Handed documents this project did not write | `astronomer-intake` · ritual `corpus-intake` — count the source, and the share of the index it becomes (K-7) |
+| About to search the corpus and act on what comes back | ritual `corpus-retrieval` — a capped result is a floor, never an inventory |
+| A search found nothing, and you are about to conclude the project never decided it | ritual `corpus-retrieval` — *not findable* and *not written* are different claims |
 | Something surprised you | `astronomer-observe` · ritual `observation-pass` |
 | You need something the project cannot observe for itself | `astronomer-research` · ritual `external-research` — clear the query before it goes out |
 | Window closed, items piled up | `astronomer-triage` · ritual `triage-pass` |

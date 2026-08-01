@@ -1,3 +1,13 @@
+---
+record_class: append-only
+precedence: 5
+confidence: CONFIRMED
+owns:
+  - the-observation-log
+verified_by: corpus gate (tools/check-corpus.py) + window 2026-08-01
+last_verified: 2026-08-01
+---
+
 # OBSERVATIONS — Project Astronomer
 
 > **Doc class:** append-only — its own class, not a flavour of frozen (D-019). **Nothing in this
@@ -323,3 +333,138 @@ scratch directory, and graded it **Direct** because it ran in a real environment
 correct and the test was still blind: **an empty directory cannot collide with anything**, so the one
 property it could never examine is the one that produced every defect here. A verification can be
 Direct, honest, and structurally incapable of failing in the way that matters (L-12).
+
+---
+
+`INTAKE OPEN` · `2026-08-01T20:54Z` · **window: the first consumer's five days of practice,
+transferred back.**
+
+| | |
+|---|---|
+| **Scope** | Everything `vociferous-next` (VOC) grew *around* the Astronomer install between `2026-07-27` and `2026-08-01`, compared against this corpus at `4a33900`. Not the application — only the collaborator layer, the corpus, and the instruments |
+| **Opened** | `2026-08-01T20:54Z` |
+| **Closing condition** | Every artifact present in the consuming install and absent here identified, and every claim about a difference measured rather than read |
+| **Purpose** | Discharge the obligation `install/README.md` states — *"when it produces friction, that friction is data owed back to the framework"*. `D-045` discharged that for the install **procedure**; this window is for the install's **first five days of use** |
+| **Instrument(s)** | One session with filesystem access to both repositories, `git`, `python`, and the consuming project's Obsidian MCP over its own `docs/` tree. Byte-level diff for the drift baseline; direct measurement for every count |
+| **Known instrument error** | (1) **Most entries here are transfers, not first-hand observations.** Where an entry restates something VOC observed, it is cited `VOC-O-<n>` and its grade is *this corpus reading that log*, not this corpus re-deriving the finding. Entries marked **measured here** were taken by this session directly. (2) **VOC is one of the four source projects** (`provenance/attestation.json`), so nothing in this window is independent corroboration of a rule already attested to VOC — it raises no grade, and `attestation.json` is not touched by this window. (3) The reader taking these measurements is the one who will write the amendments, which is the non-independence `04-verification.md` names. (4) The comparison is against **one** consuming install; every generalisation below is `INFERENCE` and labelled |
+
+---
+
+### `O-31` · `2026-08-01T20:56Z` — measured here
+- **Conditions:** byte-level diff of every file this repository and the consuming install share, after normalising line endings.
+- **Observed:** all 10 `doctrine/`, 15 `rituals/`, 16 `artifacts/`, and 8 `install/skills/` files are **identical**. Not one was edited in place.
+- **Initial read:** `UNVERIFIED` — either the framework needed no local correction, or local correction went somewhere else.
+- **Confidence:** `CONFIRMED` by diff. The second reading is the right one: **every difference between the two is net-new practice that grew beside the vendored copy rather than inside it.** A framework that is never edited by its consumers is not thereby validated; it may simply be being routed around.
+- **Also:** this is what made the rest of the window cheap. There is no merge to untangle — only a transfer.
+
+### `O-32` · `2026-08-01T20:57Z` — measured here
+- **Conditions:** `grep -rin` across the whole corpus for `obsidian`, `semantic`, `embedding`, `wikilink`, `backlink`, `knowledge graph`, `vault`.
+- **Observed:** **zero** occurrences in any sense relevant to retrieval. The single hit is `doctrine/04-verification.md:31`, using *"semantic equivalence"* about inter-rater agreement.
+- **Initial read:** `UNVERIFIED`.
+- **Confidence:** `CONFIRMED`. `doctrine/08-instruments.md`'s roles table carries **Durable prose** — *"tracked files in the repository"* — which is a **storage** claim. There is no role for **finding** anything in that store, and no ladder for what to do when you cannot.
+- **Also:** the omission is invisible at small scale and only appears past the size at which a human stops knowing every filename. That is the shape K-4 describes for a capability declaration, applied to the corpus itself.
+
+### `O-33` · `2026-08-01T21:02Z` — measured here
+- **Conditions:** measured mechanically over the consuming project's `docs/` tree.
+- **Observed:** **750** markdown files, **703** carrying YAML frontmatter. Field frequency: `confidence:` **700** · `title:` **391** · `provenance:` **391** · `precedence:` **310** · `verified_by:` **310** · `last_verified:` **310** · `status:` **310** · `owns:` **309**. Also present: `supersedes:`.
+- **Initial read:** `UNVERIFIED` — a local documentation convention.
+- **Confidence:** `CONFIRMED`, and that first reading is wrong. Six of those fields are **this framework's own vocabulary**: `confidence:` is the six tokens (`02-epistemics.md`), `precedence:` the layer number (`00-precedence.md`), `status:` the record class (L-13), `owns:` the single-home rule (**L-14**), `verified_by:`/`last_verified:` the grade and its expiry (`04-verification.md`, K-4), `supersedes:` supersession-by-naming (**L-2**). The consuming project independently rendered the doctrine as a **queryable schema**.
+- **Also:** `tools/vocabularies.json` already maps 17 vocabularies to one home each. That *is* `owns:` — implemented centrally, for vocabularies only. The consuming project found the distributed form: 309 documents each declaring the fact it is canonical for. The framework already believed the idea and shipped the narrow version.
+
+### `O-34` · `2026-08-01T21:02Z` — measured here
+- **Conditions:** first line of every `artifacts/*.template.md`.
+- **Observed:** **0 of 16** artifact templates carry YAML frontmatter. The only occurrence of the word in this corpus is `install/README.md:189`, about *skill* frontmatter.
+- **Initial read:** `UNVERIFIED`.
+- **Confidence:** `CONFIRMED`. Every artifact this framework ships is prose-only, so every fact in `O-33`'s schema is unavailable to any mechanical reader of a project that follows the templates as written.
+
+### `O-35` · `2026-08-01T20:59Z` — transferred, `VOC-O-15`
+- **Conditions:** read from the consuming project's observation log, not re-derived. VOC measured it in one session on `2026-07-30`.
+- **Observed:** retrieval poisoning, three measured instances. (1) A semantic query for *"technology stack: backend framework, database, frontend framework…"* returned a vendor navigation link at **0.611**, ranked above several of the project's own architecture documents. (2) A full-text search for a decision ID returned **364,155 characters across 1,694 lines** and was abandoned. (3) A regex search for a provider name returned **224,288 characters across 4,742 lines** and was abandoned. Corpus at the time: **719 notes, 390 of them one vendor's documentation — 54%**.
+- **Initial read:** `UNVERIFIED` here — this corpus did not take the measurements.
+- **Confidence:** `CONFIRMED` **as a faithful transfer** (the log is quoted). The *finding* carries VOC's own grade, which was `CONFIRMED` by three independent instances, **two of which obstructed a correction already in progress**.
+- **Also:** this is the first instrument in the framework where a **fully successful** intake degrades the instrument for every other question. Every role in `08-instruments.md` is additive; this one is not.
+
+### `O-36` · `2026-08-01T21:05Z` — measured here, and a fourth instance of `O-35`'s class
+- **Conditions:** measured this session against the consuming project's vault via its MCP.
+- **Observed:** `search_metadata` returns **full note bodies**, not paths. `field=confidence, operator=exists` returned **2,693,553 characters across 91,689 lines**. `field=precedence, operator=exists` returned **797,038 characters across 32,658 lines**. Both exceeded the tool's own output ceiling and were unusable; the counts in `O-33` were taken with `grep` instead.
+- **Initial read:** `UNVERIFIED` — possibly a defect in one MCP build.
+- **Confidence:** `CONFIRMED` by two instances in one session. **The sharpest form of the class:** the one query that could navigate a corpus *by precedence* — this framework's central organising concept — is the one that cannot be run. `O-35`'s three instances were content searches, where volume is at least expected; a metadata query has no reason to return bodies at all.
+- **Also:** by L-17 this is past the threshold for a gate rather than a fourth workaround. It also belongs upstream to the MCP implementation, which is outside this corpus.
+
+### `O-37` · `2026-08-01T21:00Z` — transferred, `VOC-O-14`
+- **Conditions:** read from the consuming project's log and its gate's docstring.
+- **Observed:** a session quoted `product/05-tech-stack.md` as authority on a provider choice. That file carries **`precedence: 6` in its own frontmatter** and contradicted a precedence-2 ruling stamped nine hours earlier. VOC's summary: *"The document announced its own rank while I was reading it."*
+- **Initial read:** `UNVERIFIED`.
+- **Confidence:** `CONFIRMED` — VOC graded it a recurrence, the **ninth** of its documentation-drift class, and built a gate rather than a ninth fix.
+- **Also:** the machine-readable rank existed and was ignored, which cuts both ways. It is evidence *for* `O-33`'s schema — the field was there to be checked — and evidence that a field nothing surfaces at read time is a field nobody reads. `00-precedence.md` has no instruction to check the rank of a document before quoting it, because until `O-33` there was nowhere for a rank to be written.
+
+### `O-38` · `2026-08-01T21:00Z` — transferred
+- **Conditions:** read from the consuming project's operating instructions and its ID-collision gate, whose docstring records the incidents.
+- **Observed:** **four** ledger entries independently claimed the identifier `D-103`; one reached the trunk and three sat on unmerged branches. Separately, two sessions allocated the range `E-48`…`E-52` in one research log on the same day. Every copy was locally valid; the collision appeared only at merge.
+- **Initial read:** `UNVERIFIED`.
+- **Confidence:** `CONFIRMED` — the gate's docstring cites the four entries with timestamps, and the repair is recorded.
+- **Also, and this is why it is in *this* log:** the shape is *an append-only file whose next ID is "one more than the highest I can see", read by branches that cannot see each other.* **This framework mandates exactly that structure** — permanent IDs that are never reused (`05-the-record.md`), append-only ledgers, gaps never closed — and warns about none of its failure modes. `DECISIONS.md` and this file have the identical exposure. The first of the three instances the gate cites is the two-`D-`-namespace scar this corpus already quotes in `00-precedence.md`.
+
+### `O-39` · `2026-08-01T21:00Z` — transferred
+- **Conditions:** read from the consuming project's capability inventory, section 8, where it is recorded as measured on `2026-07-28`.
+- **Observed:** a procedural rule the collaborator had read, agreed to, and restated was **violated four times in one session — the fourth within an hour of explicitly re-committing to it out loud**. VOC's own reading: *"This is not a knowledge failure — the rule was known, correct, and recently rehearsed at the moment of each violation."*
+- **Initial read:** `UNVERIFIED`.
+- **Confidence:** `CONFIRMED` as transferred; VOC graded it measured and built a `PreToolUse` gate in response.
+- **Also:** this is the most general thing in the window and the most uncomfortable. K-6 already says a collaborator's self-declaration is biased toward claiming too much. This is the operational form: **a collaborator's agreement to a rule is not evidence that the rule will bind it.** The framework's entire install layer is rules a collaborator agrees to.
+
+### `O-40` · `2026-08-01T21:00Z` — transferred
+- **Conditions:** read from the consuming project's operating instructions, recorded `2026-07-29`.
+- **Observed:** an enforcement hook resolved its own script by a relative path. When the path failed to resolve, the hook exited with the refuse code and **refused every tool needed to repair it.** The gate jammed shut on its own repair.
+- **Initial read:** `UNVERIFIED`.
+- **Confidence:** `CONFIRMED` — the response is recorded and load-bearing: *everything fails open; any exit code other than the refuse code permits the call.*
+- **Also:** general to any gate, including `tools/check-corpus.py`, which is run by hand and therefore cannot jam anything. The lesson survives the difference: **a gate that fails closed can lock you out of its own repair**, and the safe default for a gate whose job is raising the cost of a slip is to fail open.
+
+### `O-41` · `2026-08-01T21:00Z` — transferred
+- **Conditions:** read from the consuming project's capability inventory, section 8, recorded `2026-07-29`.
+- **Observed:** in bringing up that hook's falsifier suite, three defects were found **in the test harness** rather than in the code under test. The worst: a repository-root variable resolved two directory levels up instead of three, so **45 of 46 probes ran green against a directory that was not the repository.** Relative paths were joined onto the wrong root consistently, so no assertion could see it. Only the single probe that `stat`s a real file exposed it.
+- **Initial read:** `UNVERIFIED`.
+- **Confidence:** `CONFIRMED` as transferred.
+- **Also:** this corpus ships `tools/verify-gate.py` on exactly this principle and has no scar of its own for it. **A passing suite is evidence about the suite before it is evidence about the code** — L-12 aimed at the harness rather than at the subject.
+
+### `O-42` · `2026-08-01T21:00Z` — transferred
+- **Conditions:** read from the consuming project's capability inventory, section 9, where three subagent roles are recorded as measured by probe on `2026-07-29`.
+- **Observed:** a read-only auditing role was defined by giving it **nine tools and no writer of any kind**. VOC's note: read-only *by absence*, which *"is stronger than a permission refusal because there is nothing to prompt around, and it is the enforcement the MCP's own `read` profile promised and failed to deliver"* — that profile served all 18 tools and permitted note creation under both documented routes.
+- **Initial read:** `UNVERIFIED`.
+- **Confidence:** `CONFIRMED` as transferred, **with the honest half carried across**: a second role, intended as read-only, holds a shell and can therefore write. It is read-only by construction, not by enforcement. **The role itself reported that gap unprompted and declined to run the bypass because doing so would have created the file.**
+- **Also:** `06-delegation.md` describes roles by responsibility and says nothing about constructing one so that it *cannot* exceed its role. Absence is a stronger mechanism than instruction, and it is available wherever a role's tools are declared rather than described.
+
+### `O-43` · `2026-08-01T21:00Z` — transferred
+- **Conditions:** read from the consuming project's operating instructions; the figures are VOC's, measured `2026-07-31`.
+- **Observed:** three properties of a work-item queue, each measured. (1) With a required-check policy that invalidates every open change whenever any change lands, the cost of a queue is **quadratic in its depth** — 103 unmerged items produced 122 runs at about 5.4 job-minutes, roughly **662 job-minutes**, plus about 550 more for one refresh pass. (2) Batch boundaries come from **overlapping line ranges, not shared filenames**: on a 94-item queue that turned 69 shared files into **86** genuinely conflicting pairs and freed **29** items to land in any order. (3) During a discovery pass the open-item count ran **86 to 117** while **70 of the 117** closed on merge.
+- **Initial read:** `UNVERIFIED` — plausibly properties of one hosting platform.
+- **Confidence:** `CONFIRMED` as transferred. The **generalisation past that platform is `INFERENCE`** and is labelled so wherever it is used: a verification gate with a freshness requirement makes queue cost quadratic; a conflict graph is computed on ranges rather than containers; and during a discovery pass the item count measures *looking*, not progress.
+- **Also:** (3) is an anti-metric. Read as progress it inverts the signal, and `08-instruments.md` currently names a **Working set** role with no warning that its most obvious number lies during exactly the phase this framework spends most of its time in.
+
+### `O-44` · `2026-08-01T21:04Z` — measured here
+- **Conditions:** `vault_info` against the consuming project's corpus, compared against the figure its own capability inventory records for `2026-07-29T06:37Z`.
+- **Observed:** the inventory records **319 notes / 342 files / 9,921,029 bytes**. Measured now: **751 notes / 774 files / 16,538,294 bytes**. The corpus **2.35 times'd in three days**, and the declaration does not know. The same file's containers, databases and language versions are dated `2026-07-27` and are described in it as *"two days stale"*; they are five.
+- **Initial read:** `UNVERIFIED`.
+- **Confidence:** `CONFIRMED` by direct measurement against the file's own recorded figure.
+- **Also:** K-4 says a declaration is re-measured *when the environment changes*, and names the changes as *"a granted permission, a new tool, a different machine, a moved account."* **Corpus growth is not on that list**, and it is the one that happens continuously without any event to notice. A rule whose trigger is a discrete event cannot catch a change that is monotonic.
+
+---
+
+`INTAKE CLOSED` · `2026-08-01T21:14Z` · **14 entries** (`O-31`–`O-44`).
+
+**What this window did not look at.** The consuming application — no source outside its `docs/`,
+`.claude/` and `scripts/` trees was read, and no test of its was run except the two falsifier suites
+cited in `O-37`. The consuming project's own `CLAUDE.md` was read as evidence but not audited against
+its sources. `install/CLAUDE.md.template` was **not** diffed against the filled file it produced;
+that comparison is owed and would answer a question this window only raises — which of the consumer's
+additions had no slot in the template versus which had a slot and outgrew it.
+
+**Instrument note at close.** Ten of fourteen entries are **transfers**, and the framework did not
+observe them. That is the correct grade and it is also the finding: this corpus has no channel for a
+consuming project's practice except a session that goes and reads it. `D-045` established that
+install-procedure friction comes back by amendment. **Nothing establishes how five days of *use*
+comes back**, and the answer here was one operator noticing that his two repositories had drifted.
+
+**The one thing that went the framework's way** is `O-31`. Nothing was edited in place, so the
+vendored doctrine is still the doctrine — the divergence is entirely additive and every item above
+transfers cleanly. Had the consumer improved its local copy instead, this window would have been a
+merge, and `install/README.md`'s do-not-edit rule for vendored trees is what prevented it.

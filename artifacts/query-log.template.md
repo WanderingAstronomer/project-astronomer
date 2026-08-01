@@ -1,3 +1,13 @@
+---
+record_class: append-only
+precedence: 5
+confidence: <one of the six confidence tokens; home is doctrine/02-epistemics.md>
+owns:
+  - <the-external-query-log>
+verified_by: <who re-derived it, or blank>
+last_verified: <YYYY-MM-DD, or blank>
+---
+
 # QUERY LOG — `<project name>`
 
 > **Doc class:** append-only — its own class, not a flavour of frozen (D-019). **Nothing in this

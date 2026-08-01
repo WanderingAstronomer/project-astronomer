@@ -1,3 +1,13 @@
+---
+record_class: living
+precedence: 6
+confidence: CONFIRMED
+owns:
+  - the-public-description
+verified_by: corpus gate (tools/check-corpus.py) + window 2026-08-01
+last_verified: 2026-08-01
+---
+
 # Project Astronomer
 
 **A framework for doing rigorous work on subjects you cannot run experiments on.**
@@ -121,11 +131,21 @@ inconvenient, that is recorded rather than smoothed over.
 
 ## Status
 
-**Seeded 2026-07-20.** The doctrine, artifact set, tier definitions, and install layer are
-written. No project has been built on it yet. The first will be a physical-health project in a
-separate repository — kept separate deliberately, so the framework has to generalize rather
-than quietly grow health-shaped assumptions.
+**Seeded 2026-07-20. `VALIDATED` 2026-08-01** (D-049), on the sixth and last condition in the
+[charter's](CHARTER.md) definition of done: *a real project outside this repo has run one full
+OBSERVE→RECORD loop on it, and the friction it hit is written back here.* `vociferous-next`
+installed it at Full tier on 2026-07-27, ran the loop, and the friction came back as fourteen
+observations, one new capability rule (K-7), one new ritual, and two new checks in the corpus gate.
 
-Until a real project has run a full loop on it, every claim in here is a **hypothesis about
-what worked**, reconstructed from four projects that were not trying to produce a framework at
-the time. Treated under this framework's own rules, that makes this corpus `PROVISIONAL`.
+**What that status is worth, stated plainly, because the word oversells itself.** It means the
+framework has been used and survived. It does **not** mean the laws are settled — every law still
+rests on exactly the source projects it names, no attestation grade moved, and the newest rules
+rest on one project. It also does not mean much about *generality*: the project that ratified it is
+one of the four this framework was extracted from, which satisfies the condition as written and is
+the weakest form of ratification that does. A project with no hand in writing this has still not
+run it. That is the next thing that would move the needle, and it is named as such in the ledger.
+
+Much of the corpus remains a **hypothesis about what worked**, reconstructed from four projects
+that were not trying to produce a framework at the time. The difference between 2026-07-20 and now
+is that one of those hypotheses has been tested by being followed for five days, and it produced
+fourteen findings — most of them about what the framework had never thought about at all.

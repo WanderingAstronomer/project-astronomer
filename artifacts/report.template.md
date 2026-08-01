@@ -1,3 +1,15 @@
+---
+# NOTE: this block freezes with the record (L-13). Annotate by addendum;
+# never edit a frozen header to make a gate pass.
+record_class: frozen
+precedence: 4
+confidence: <one of the six confidence tokens; home is doctrine/02-epistemics.md>
+owns:
+  - <what this report concluded>
+verified_by: <who re-derived it, or blank>
+last_verified: <YYYY-MM-DD, or blank>
+---
+
 # `<lane id>` — `<scope name>` — RETURN
 
 > **Doc class:** frozen. Submitted once. Not edited afterward — disputes, corrections, and
