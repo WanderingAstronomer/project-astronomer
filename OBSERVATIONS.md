@@ -534,3 +534,36 @@ and reported back.** The subject is that project's report, not that project.
 read, no claim about its state was verified at the source, and `O-49` is `UNRESOLVED` precisely
 because settling it needs one directory listing this session did not take. Every finding here is
 about **this corpus**, derived from a report about it.
+
+---
+
+`INTAKE OPEN` · `2026-08-01T22:55Z` · **window: the second consuming project measured its own
+retrieval surface and found most of its corpus missing.** Its report is the subject; its filesystem
+is `RED` under this session's data boundary and was not read.
+
+### `O-50` · `2026-08-01T23:02Z` — measured here
+- **Conditions:** the reporting project claimed *"the root cause is that `install/README.md` names `.claude/` as the default home for the governance corpus."* Checking that against the file rather than accepting it.
+- **Observed:** **`install/README.md` names no home for the vendored tree at all.** It says vendor the five directories *"as siblings under one parent"* and stops. It does name `.claude/` repeatedly — for `CLAUDE.md` (line 107), for the eight skills (line 160–170), and as the collaborator's workspace (line 258, *"commonly `.claude/`"*).
+- **Confidence:** the claim as stated is `REFUTED`. **The defect underneath it is `CONFIRMED` and is worse:** the one location a reader is repeatedly shown is `.claude/`, the location that actually matters is left blank, and nothing anywhere warns that a hidden directory is invisible to default tooling. Two installs, two different answers — one chose `docs/astronomer/`, one chose `.claude/`.
+- **Also:** this is what an unspecified default looks like from the outside. Nobody made a wrong decision; the framework declined to make one and both readings were defensible.
+
+### `O-51` · `2026-08-01T23:00Z` — measured here
+- **Conditions:** the same report's tooling claim, re-derived on this machine against a two-directory fixture rather than accepted from its figures (L-11).
+- **Observed:** `rg` without `--hidden` returns **only** the non-hidden file. `rg --hidden` returns both. Python `glob("**/*.md", recursive=True)` returns **only** the non-hidden file. `os.walk` returns both. `find` returns both. The report adds Obsidian's indexer to the blind list, which this session did not test.
+- **Confidence:** `CONFIRMED` for the four tools measured here; `CITED` for Obsidian. **Three of five common instruments cannot see a corpus under a dotted path**, and the two that can are the two nobody reaches for first.
+- **Also, and it is the sharpest part of the report:** its **second** instance was its own measurement script, written *minutes after* it documented the first. Knowing about the blind spot did not prevent it. That is `O-39`'s finding in a new domain — a rule known, correct and freshly rehearsed does not thereby bind — and it is the strongest argument yet that this class wants a mechanism rather than a warning.
+
+### `O-52` · `2026-08-01T23:02Z` — inference, labelled
+- **Conditions:** relating `O-50` to `K-7` and to `AST-D-045`.
+- **Observed (the two facts):** `AST-D-045` recorded that `.claude/` is gitignored in many repositories, which made a filled `CLAUDE.md` invisible to every clone. `O-50` records that `.claude/` is invisible to most search tooling, which makes a vendored corpus unfindable.
+- **Initial read:** `INFERENCE`, and it is the useful one — these are **one class, not two coincidences**: *`.claude/` is a directory other tools treat specially, and the install layer keeps putting load-bearing material there without saying so.* Two instances.
+- **Confidence:** `PROVISIONAL`. **Reopens on a third instance**, at which point L-17 requires a mechanism rather than a third warning. Not built now, deliberately — `tools/README.md` records that this corpus builds gates on the third and argues itself into them earlier at its own cost.
+- **Also:** it interacts badly with the role added today. A poisoned index ranks your own material low; a hidden directory means it is **not in the index at all**, and `corpus-retrieval.md` step 6 already names *not findable* / *not written* as indistinguishable. **K-7 assumed the corpus was in the index.** Nothing said so.
+
+---
+
+`INTAKE CLOSED` · `2026-08-01T23:03Z` · **3 entries** (`O-50`–`O-52`).
+
+**What this window did not look at:** the reporting project. Its folder is `RED` and was not read;
+every claim about it here is quoted from its report and labelled as such. Obsidian's indexer was not
+tested. Whether any *other* framework instruction points at a hidden path was not swept for.

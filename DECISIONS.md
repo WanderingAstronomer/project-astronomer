@@ -799,3 +799,35 @@ someone else. **Nothing in the gate can catch this**: `tools/` is exempt from th
 check, and no check counts the checks. That exemption has now produced two defects in one day — the
 `"FOUR CHECKS"` docstring and this — which is the second instance of a class, not yet the third.
 Named here so the third is recognisable.
+
+`[2026-08-01T23:03Z] D-052:` **The vendored tree gets a stated home, and it must not be a hidden
+directory — because three of five common instruments cannot see one.** A second consuming project
+put the vendored corpus under `.claude/` and found **64 of its 84 markdown files invisible to its
+own search**. Its root-cause claim — that `install/README.md` names `.claude/` as the governance
+home — is `REFUTED` (`O-50`): **the file names no home at all**. It says *"as siblings under one
+parent"* and stops, while naming `.claude/` three separate times for `CLAUDE.md`, for the skills,
+and for the collaborator's workspace. The defect is the blank, not a wrong default: two installs
+read it two ways, both defensibly, and one of them is unsearchable.
+
+**Measured here rather than accepted** (`O-51`, L-11): `rg` without `--hidden` and Python's
+`glob(recursive=True)` both skip dot-directories entirely; `os.walk` and `find` do not. The report
+adds Obsidian's indexer, `CITED` and not re-derived. The instruction now names `docs/astronomer/` as
+the known-good shape, requires a non-hidden parent, and carries the measurement.
+
+**Why this is worse than it sounds, and it is `D-046`'s blind spot.** K-7 says a shared index has
+finite signal and adding to it can subtract — **which assumed the corpus was in the index.** A
+poisoned index ranks your own material low; a hidden directory means it is not there at all, and
+`corpus-retrieval.md` step 6 already names *not findable* and *not written* as indistinguishable
+from the symptom. The role shipped this morning with a ladder, and did not consider that the corpus
+might be invisible to every rung of it.
+
+`caveat (owned):` **not gated, and that is a judgement call.** This is the **second** instance of
+the class *`.claude/` is a directory other tools treat specially, and this layer keeps putting
+load-bearing material there without saying so* — `AST-D-045` was the first, where `.claude/` being
+gitignored made the filled `CLAUDE.md` invisible to every clone. L-17 fires on the third. Recorded
+as `PROVISIONAL` at `O-52` with the reopening condition named, rather than built now.
+`caveat (owned):` the reporting project's own second instance was **its measurement script, written
+minutes after it documented the first** — knowing about the blind spot did not prevent it, which is
+`O-39` in a new domain and argues the third instance will arrive sooner than a warning can stop it.
+`caveat (owned):` this session did not sweep the corpus for *other* instructions pointing at hidden
+paths. Owed.

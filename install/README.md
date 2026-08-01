@@ -149,6 +149,30 @@ is the safer default for a project meant to outlive its tooling.
 > framework corpus, so a copy would check a copy. Links into `tools/` and `install/` are the only
 > ones expected to dangle.
 >
+> **⚠ Put that parent somewhere NOT hidden, and this instruction used to say only "one parent"**
+> (AST-D-052). A path beginning with a dot is invisible to a large share of default tooling, and
+> that is measured, not folklore: `rg` without `--hidden` and Python's `glob(recursive=True)` both
+> skip dot-directories entirely, as does Obsidian's indexer. `find` and `os.walk` do not. **Three of
+> five common instruments cannot see a corpus you put in `.claude/`.**
+>
+> The second consuming install put the vendored tree under `.claude/` — a reasonable read, because
+> this file names `.claude/` repeatedly for `CLAUDE.md` and the skills and named no home for the
+> doctrine — and **64 of its 84 markdown files were invisible to its own search.** It found this by
+> having the same blind spot bite three separate tools in one day, one of them a measurement script
+> written minutes after it documented the first.
+>
+> `docs/astronomer/` is the known-good shape; any non-hidden directory works. **This matters more
+> since K-7:** a project whose governance corpus is invisible to its own retrieval instrument is
+> worse off than one with a poisoned index. A poisoned index ranks your material low. A hidden
+> directory means it does not exist to the search at all — and *not findable* is indistinguishable
+> from *not written* (`rituals/corpus-retrieval.md`, step 6).
+>
+> **This is the second time `.claude/` has quietly eaten something load-bearing.** AST-D-045 was the
+> first: it is gitignored in a great many repositories, so the filled `CLAUDE.md` was invisible to
+> every clone. The class is *`.claude/` is a directory other tools treat specially, and this layer
+> keeps putting important things there without saying so.* Two instances. **The third gets a
+> mechanism** (L-17), and it is named here so the third is recognisable rather than discovered.
+>
 > **Write a README at the top of the vendored tree** saying it is a copy, naming the upstream commit
 > it is pinned at, and stating that changes go upstream and are re-vendored. Without it, someone
 > improves the copy, the fork is undeclared, and the divergence is invisible because the files still
