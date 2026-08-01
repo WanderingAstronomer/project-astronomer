@@ -237,9 +237,26 @@ def mutate_id_dangling_amendment() -> tuple[Path, str, str]:
     return path, original, broken
 
 
+def mutate_template_rule() -> tuple[Path, str, str]:
+    """Drop the namespacing rule from the always-loaded file, leaving it only in the README.
+
+    That is not a hypothetical: it was the corpus's actual state until 2026-08-01, and it took a
+    consuming project's session writing a bare `D-044` beside an `AST-D-049` to surface it.
+    """
+    path = ROOT / "install" / "CLAUDE.md.template"
+    original = path.read_text(encoding="utf-8")
+    broken = re.sub(r"AST-D-", "D-", original)
+    if broken == original:
+        raise RuntimeError("template rule mutation did not apply - the rule text moved")
+    return path, original, broken
+
+
 MUTATIONS = [
     ("vocabulary drift   (D-019: a record class goes missing from a list)",
      mutate_vocabulary, r"\[vocab:record_class\].*missing: append-only"),
+    ("template rule      (a session-critical rule lives only in the README)",
+     mutate_template_rule,
+     r"\[template\].*does not carry the AST- ledger namespacing rule"),
     ("id collision       (two ledger entries claim one address)",
      mutate_id_collision, r"\[id\] DECISIONS\.md: ledger entry 'D-001' is allocated 2 times"),
     ("id blindness       (the entry form moves and the check sees nothing)",

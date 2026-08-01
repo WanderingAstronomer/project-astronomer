@@ -505,3 +505,32 @@ whether the excluded corpus is reachable by every tool or only the two that were
 embeddings feature is absent. The window tested **one** remedy on **one** instrument, immediately
 after writing the rule it tests, by the session that wrote it — which is the non-independence
 `04-verification.md` names and is the reason none of this raises a grade.
+
+---
+
+`INTAKE OPEN` · `2026-08-01T22:25Z` · **window: a second consuming project re-vendored the corpus
+and reported back.** The subject is that project's report, not that project.
+
+### `O-48` · `2026-08-01T22:32Z` — measured here
+- **Conditions:** a second project with Astronomer installed re-vendored from `4a33900` to `6cd9f65` and sent back a written report. Reading the report, and checking its two falsifiable claims against this corpus directly rather than accepting them.
+- **Observed:** the report's sentence *"Left open as `D-044`"* appears one paragraph after it cites `AST-D-049`. **`D-044` is an allocated entry in this repository's own ledger.** Checked here: the `AST-D-<n>` convention appears in `install/README.md` at five places, and **zero times in `install/CLAUDE.md.template`** — the file a session actually loads. Also checked: the report's claim that `L-18` sits between `L-12` and `L-13` is **correct** (file order is `L-1`…`L-12`, `L-18`, `L-13`…`L-17`), and it had self-corrected an earlier `tail`-induced misreading before asserting it.
+- **Initial read:** `UNVERIFIED` — possibly one session being loose with a prefix.
+- **Confidence:** `CONFIRMED` as the **third instance of the namespace class**, not a slip. (1) A source project ran two live `D-` namespaces and published a disambiguation rule after the fact — the scar `00-precedence.md` cites. (2) `install/README.md` instructed the first real install to create a rival `DECISIONS.md`; caught only by refusing it (`D-045b`). (3) This. **The rule existed and was correct; it was in the wrong file.**
+- **Also, and this is the part worth keeping:** this is `D-044`'s own finding recurring, on `D-044`'s own number, by coincidence. That entry moved the instruments material into the install layer because *"doctrine a session never reads is not in force"* — and the same defect was two files away the whole time, on a different rule, unnoticed for as long as the framework has had two ledgers. **A fix that relocates one rule does not relocate the class.**
+- **Action:** gate, not a fourth restatement (L-17). `check_template_carries()` asserts that rules load-bearing at session time appear in the always-loaded file, and that the README still explains anything the template carries — both directions, because the mirror image is the same gap.
+
+### `O-49` · `2026-08-01T22:32Z` — measured here
+- **Conditions:** the same report states it re-measured dangling links in its vendored copy at **2, "both expected."** Measuring the same thing here rather than accepting or disputing it.
+- **Observed:** a real five-directory vendored copy — this framework's other consumer — carries **11 dangling relative links across 9 distinct targets**. Nine originate in `CHARTER.md` and `DECISIONS.md` and point at `tools/` and `install/`; two are unfilled template placeholders. `O-29` recorded **10** for the same shape on 2026-07-27.
+- **Initial read:** `INFERENCE`, and it is not that either measurement is wrong — the reporting project probably vendored a **smaller set**, omitting `CHARTER.md`, `DECISIONS.md` and `artifacts/`, which is permitted (`install/README.md` makes the first two conditional on *"if you want `AST-D-<n>` citations to resolve"*).
+- **Confidence:** `UNRESOLVED`. **What would settle it:** the vendor set that project actually copied — one directory listing, which this session does not have.
+- **Also:** if the inference holds, the two findings are the same finding. **A project that skips the optional ledger has no `AST-D-` citation that resolves anywhere in its tree**, which removes the last thing that would have made the missing prefix visible — and `O-48` is what that looks like from the outside. The install layer treats vendoring the ledger as a convenience; it is also the only local evidence that a second namespace exists.
+
+---
+
+`INTAKE CLOSED` · `2026-08-01T22:33Z` · **2 entries** (`O-48`–`O-49`).
+
+**What this window did not look at:** the reporting project itself. Nothing of its filesystem was
+read, no claim about its state was verified at the source, and `O-49` is `UNRESOLVED` precisely
+because settling it needs one directory listing this session did not take. Every finding here is
+about **this corpus**, derived from a report about it.

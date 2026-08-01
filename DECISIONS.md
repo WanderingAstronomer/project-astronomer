@@ -751,3 +751,31 @@ re-measurement in the same pass found **three capability *gains*** the declarati
 (`O-47`), including a credential scope whose absence it recorded as operator-owned debt after the
 operator had already granted it. **K-4 is written as though drift means decay; it does not**, and
 that is now an open question in `08-instruments.md` rather than a fix.
+
+`[2026-08-01T22:33Z] D-051:` **A rule that bites at session time lives in the file a session
+loads — and that is now a gate, because relocating one rule never relocated the class.** `D-044`
+moved the instruments material into the install layer on the finding that *"doctrine a session
+never reads is not in force."* Measured 2026-08-01 (`O-48`): the `AST-D-<n>` namespacing rule
+appears **five times in `install/README.md` and zero times in `install/CLAUDE.md.template`** — so
+for as long as this framework has had two ledgers, the rule preventing their confusion lived only
+in a document read once, at install time, by someone who then never opens it again. A second
+consuming project's session duly wrote a bare `D-044` one paragraph after citing `AST-D-049`, and
+**could not have known better from the file it actually reads.** That is the **third** instance of
+the namespace class — after the original two-`D-`-namespace scar `00-precedence.md` cites, and
+`D-045(b)`, where the install layer told the first real install to build a rival ledger and was
+caught only by refusing it. L-17 says the third instance gets a mechanism. The template gains the
+rule; `check_template_carries()` asserts it stays there, **and asserts the reverse** — that the
+README still explains anything the template carries, because an installer told to fill in a rule
+nothing explains is the same gap pointing the other way. Gate is 7 checks → 8, falsifier suite 14
+mutations → 15, all observed firing.
+
+`caveat (owned):` the check tests that a **string** is present. It cannot tell whether the rule is
+stated well, and it certainly cannot make a session obey it — `O-39` measured a rule read, agreed
+to and restated out loud being violated four times in one hour. This raises the floor from *absent*
+to *present*, which is the whole claim. `caveat (owned):` `TEMPLATE_MUST_CARRY` has **one** row and
+must stay near one. Every row is an incident that already happened; adding rows because they seem
+wise is how the template stops being compact, which `install/README.md` names as the way the
+install fails in practice. `caveat (owned):` **found by an outside reader, not by this corpus.** The
+gate's own docstring had said *"FOUR CHECKS"* while running eight, uncaught, because `tools/` is
+exempt from the counted-prose check — corrected in the same commit, and it is the same class one
+level up.

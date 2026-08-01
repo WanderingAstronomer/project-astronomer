@@ -23,7 +23,10 @@ WHY THIS EXISTS (the incident is the description; see rituals/recurring-defect.m
 
   The guard is intentional. Fix the cause; do not switch off the check.
 
-FOUR CHECKS
+THE CHECKS (this header is itself the drift class it guards -- it read "FOUR CHECKS" while
+listing four, for as long as there were four, and then stopped being true. tools/ is exempt
+from the counted-prose check, so nothing but a reader catches it.)
+
   1. vocabularies — every registered token set has one home containing every member, and
      every tight enumeration of it anywhere in the corpus carries the full membership.
   2. install manifest — the skill directories on disk match both places that list them.
@@ -37,6 +40,14 @@ FOUR CHECKS
      corpus meets the promotion standard it published for itself, and it was added because
      they disagreed: the charter defined one source and three, twelve of eighteen laws sat
      at two, and the counts lived only in a frozen file that cannot carry a correction.
+  5. header blocks — every living and append-only file carries the block from
+     05-the-record.md; record_class and confidence come from the registry; CONFIRMED obliges
+     verified_by and last_verified; no two documents claim the same owns: key.
+  6. ID collisions — no D- or O- address is allocated twice, an AMENDS names a decision that
+     exists, and the entry pattern still matches something (a check that has gone blind
+     reports zero collisions, which reads exactly like a clean corpus).
+  7. template carries — rules that bite at SESSION time live in the always-loaded file, not
+     only in install/README.md, which is read once and never again (D-044).
 
 WHAT THIS CANNOT CATCH — stated, not hidden:
   - A vocabulary that is not in tools/vocabularies.json. Adding a token set to the corpus
@@ -671,6 +682,65 @@ def check_id_collisions() -> None:
                          f"number does not exist the amendment has no subject.")
 
 
+# ---------------------------------------------------------------- check 8
+
+# Rules that are LOAD-BEARING AT SESSION TIME must live in the always-loaded file, not only in
+# install/README.md. The README is read once, during an install, by someone who then never opens
+# it again; CLAUDE.md.template is what a collaborator actually has in front of it every session.
+#
+# THIS IS D-044's FINDING, RECURRING. That entry moved the instruments material into the install
+# layer because "doctrine a session never reads is not in force" -- and the SAME defect was sitting
+# two files away the whole time, on the namespacing rule, unnoticed until a consuming project's
+# session wrote a bare `D-044` next to an `AST-D-049` and could not have known better.
+#
+# Each row is (regex, human name, the incident). A row with no incident does not belong here --
+# this list is for rules that have already been missed, not for everything anyone considers
+# important. Adding one because it seems wise is how a compact template stops being compact,
+# which install/README.md names as the way the install fails in practice.
+TEMPLATE_MUST_CARRY = [
+    (r"AST-D-",
+     "the AST- ledger namespacing rule",
+     "Third instance of the namespace class. (1) A source project ran two live `D-` namespaces "
+     "and had to publish a disambiguation rule after the fact -- the scar 00-precedence.md "
+     "cites. (2) install/README.md then instructed the first real install to create a rival "
+     "`DECISIONS.md`, caught only by refusing it (D-045b). (3) 2026-08-01, a consuming project's "
+     "session wrote a bare `D-044` one paragraph after citing `AST-D-049`; the convention existed "
+     "in install/README.md and was absent from the file that session actually reads."),
+]
+
+
+def check_template_carries() -> None:
+    """The always-loaded file carries the rules that bite at session time.
+
+    WHAT THIS CANNOT DO. It checks that the STRING is present, not that the rule is stated well,
+    and certainly not that a session then follows it -- O-39 measured a rule read, agreed to and
+    restated out loud being violated four times in one session. This raises the floor from
+    "absent" to "present." That is the whole claim.
+    """
+    template = ROOT / "install" / "CLAUDE.md.template"
+    if not template.exists():
+        fail("[template] install/CLAUDE.md.template does not exist")
+        return
+    text = template.read_text(encoding="utf-8", errors="replace")
+    for pattern, name, incident in TEMPLATE_MUST_CARRY:
+        if not re.search(pattern, text):
+            fail(f"[template] install/CLAUDE.md.template does not carry {name}. "
+                 f"A rule that lives only in install/README.md is read once and never again "
+                 f"(D-044). Incident: {incident}")
+
+    # The mirror image: the README must not be the ONLY home either way round. If the README
+    # dropped the rule while the template kept it, an installer following the README would not
+    # know to fill it in -- the same gap, pointing the other direction.
+    readme = ROOT / "install" / "README.md"
+    if readme.exists():
+        rtext = readme.read_text(encoding="utf-8", errors="replace")
+        for pattern, name, _ in TEMPLATE_MUST_CARRY:
+            if not re.search(pattern, rtext):
+                fail(f"[template] install/README.md no longer explains {name}, which "
+                     f"install/CLAUDE.md.template carries. The installer is told to fill in a "
+                     f"rule nothing explains.")
+
+
 def main() -> int:
     registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
 
@@ -680,6 +750,7 @@ def main() -> int:
     check_attestation(registry)
     check_header_blocks(registry)
     check_id_collisions()
+    check_template_carries()
 
     if VERBOSE and exemptions:
         print(f"EXEMPTIONS TAKEN ({len(exemptions)}) - every one is a place this gate "

@@ -24,6 +24,12 @@ Correct it or annotate it. Two absolutes: **reality outranks every document** (s
 to the subject, however high they sit), and **frozen records are outranked but never corrected**
 (annotate in place).
 
+**Two `D-` namespaces exist and confusing them is the hazard L-2 is for.** A bare `D-<n>` resolves
+to **this project's ledger only**. Astronomer's own entries are cited `AST-D-<n>`, always, including
+in conversation. Same for `AST-O-<n>` against this project's `O-<n>`. Write the prefix even when the
+context looks obvious — it stops looking obvious the moment anyone quotes the sentence somewhere
+else, and a citation that resolves to the wrong ledger is worse than one that resolves to nothing.
+
 ## The laws
 
 - **L-1** One document wins; the precedence order decides which.
