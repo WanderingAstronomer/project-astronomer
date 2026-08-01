@@ -321,8 +321,11 @@ tracked tree, searchable by both an index and plain `grep`, is what the consumin
 it works. What that project has *not* demonstrated is segregation — it holds foreign material in the
 same index as its own and compensates with a rule its collaborator is asked to remember, which
 `O-39` is direct evidence against. **If you are importing a foreign corpus, prefer a separate index
-from the start.** That is advice from the shape of the failure, not from a project that has done it,
-and it is `UNVERIFIED` on purpose.
+from the start** — or, if your retrieval provider supports exclusion globs, exclude it from the
+default index and reach it by explicit path. That second form is now **measured once** (`O-45`):
+one project took its search index from 52.5% foreign to 0% by configuration, kept read-by-path
+working, and turned an abandoned 364,155-character query into 22 ranked documents. It is one
+project and one provider, so it is `CONFIRMED` at that scope and nothing wider.
 
 **If a collaborator will search this corpus, give it the retrieval ritual.**
 `rituals/corpus-retrieval.md` is the one that keeps *"I searched and found nothing"* from being

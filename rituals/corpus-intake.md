@@ -46,9 +46,14 @@ how many there are in total.
 
    If the share is uncomfortable and the material is still wanted, the response is **segregation,
    not omission**: a separate index, or a path the default query does not reach, with retrieval
-   from it done by explicit path (`rituals/corpus-retrieval.md`). Record which you chose. Note that
-   segregation is `UNVERIFIED` as a remedy — it is the obvious answer and no project in this corpus
-   has yet demonstrated it works.
+   from it done by explicit path (`rituals/corpus-retrieval.md`). Record which you chose.
+
+   **Segregation is measured, once** (`O-45`): one project excluded a 52.5% vendor corpus from
+   its search index and the foreign share of what search could see went to zero, while
+   read-by-path still reached the excluded material. **It did not fix everything**, and the
+   part it missed is the part worth knowing — a search whose volume comes from the project's
+   *own* material is untouched by excluding anything foreign, and the two are indistinguishable
+   from the symptom.
 
 4. **Assess readability per item, and do not trust the extension.** A `.pdf` is either extractable
    text or a picture of text; those are different instrument problems with different failure modes,

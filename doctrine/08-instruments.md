@@ -266,11 +266,27 @@ for the human half.
   observation of the share at which it starts to. A project pre-registers its own number
   (`rituals/corpus-intake.md`) and reports what it measured; quoting 54% as a limit would be exactly
   the borrowed number L-11 forbids.
-- **Whether segregating an index actually restores it.** The obvious response to K-7 is to hold
-  foreign material in a separate index, or behind a path the default query does not reach. **Nobody
-  has done it.** The one project that hit K-7 responded with a rule its collaborator is asked to
-  remember, which `O-39` is the direct evidence against. The remedy is `UNVERIFIED` and is owed.
+- ~~**Whether segregating an index actually restores it.**~~ **Partly settled `2026-08-01`
+  (`O-45`, `D-050`) — and the interesting half is what it did *not* fix.** The project that hit
+  K-7 excluded the foreign corpus from its search index by configuration, replacing the rule its
+  collaborator was asked to remember. Measured before and after: indexed notes 752 → 358, foreign
+  share of what search can see 52.5% → 0%, and the query that had returned 364,155 characters and
+  been abandoned returned 22 ranked project documents. **Read-by-explicit-path still reaches the
+  excluded material**, which is what makes this segregation rather than deletion. `CONFIRMED` for
+  one project, one index, one query shape. **What it did not fix:** the same corpus's regex search
+  for a decommitted vendor's name fell only 54%, from 224,288 characters to 102,483, and is still
+  unusable — because the residual is *the project's own notes*. **Exclusion cures a foreign-share
+  problem and does nothing for a corpus that is genuinely large about its own subject**, and those
+  two present identically at the point of failure.
 - **How a monotonic change triggers K-4.** A declaration expires on an *event*, and an index that
   grows every day presents none. `O-44` measured a corpus 2.35× its declared size with nothing
   having "changed" in the sense K-4 names. Whether the trigger should be a magnitude, a period, or
   a check at read time is unsettled.
+- **Which *direction* K-4 drift runs in.** The rule is written as though a stale declaration
+  over-claims — that is what K-6 predicts and what the scars show. `O-47` measured the opposite:
+  of four facts that had moved under one declaration, **three were capability *gains***, including
+  a credential scope whose absence that file recorded as debt *"stopped at, operator-owned"* after
+  the operator had already granted it. A declaration stale in the direction of under-claiming is
+  still wrong, and it fails in a way nothing here anticipates: the project routes around a
+  capability it already has, and the instrument-debt list — the honest part of the artifact —
+  becomes the thing that is lying. No rule addresses it.

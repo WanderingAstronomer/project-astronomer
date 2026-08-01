@@ -719,3 +719,35 @@ that *"Condition 6 of the definition of done remains unmet"* was accurate when w
 historical. `artifacts/charter.template.md` needed no change; it always carried the status as a
 choice for the consuming project to make. `caveat (owned):` D-001's original text is untouched, as
 an amendment requires — it is the record of what was believed on 2026-07-20, and it was correct.
+
+`[2026-08-01T22:03Z] D-050:` **K-7's remedy is no longer a recommendation nobody has tried — and
+the half that failed is the more useful half.** `D-046` shipped K-7 with its remedy marked
+`UNVERIFIED`, on the grounds that segregating a foreign corpus out of an index is the obvious
+answer and no project had done it. Within the hour the project that produced K-7 did it, by
+configuration rather than by a rule: the foreign corpus is excluded from the **search index only**,
+and reached by explicit path. **Measured before and after** (`O-45`): indexed notes 752 → 358,
+excluded 0 → 394, foreign share of what search can see **52.5% → 0%**, and a query that had returned
+364,155 characters and been abandoned returned **22 ranked project documents**. Read-by-path into
+the excluded tree still works, which is what makes it segregation and not deletion. `08-instruments.md`,
+`corpus-intake.md` and `install/README.md` are updated from *"nobody has done it"* to `CONFIRMED` at
+one project, one provider, one glob — **and no attestation grade moves**, because this is the same
+project that produced the rule (`provenance/attestation.json` untouched, again).
+
+**The finding is the row that did not improve.** A regex search on the same corpus fell only 54% —
+224,288 characters to 102,483 — and is still unusable, because **its residual is the project's own
+notes rather than the vendor's**. Exclusion cures a foreign-share problem and does nothing for a
+corpus that is simply large about its own subject, **and the two are indistinguishable from the
+symptom** — both present as a search returning more than anyone will read. A project that fixes its
+share and expects search to work will be wrong for a reason the failure cannot show it. That
+sentence is now in the doctrine, and it is worth more than the success above it.
+
+`caveat (owned):` measured by the session that wrote the rule, on the instrument it wrote the rule
+about, minutes later. Non-independence, named. `caveat (owned):` **the retrieval ladder's top rung
+turned out to be absent on that very instrument** (`O-46`) — semantic search errors with *"compiled
+without embeddings"* — so the "after" figures describe a two-rung ladder, and the rung `O-35`'s
+worst instance came from could not be re-tested at all. The improvement is real and it is measured
+on a smaller instrument than the one the rule was written from. `caveat (owned):` a `K-4`
+re-measurement in the same pass found **three capability *gains*** the declaration had missed
+(`O-47`), including a credential scope whose absence it recorded as operator-owned debt after the
+operator had already granted it. **K-4 is written as though drift means decay; it does not**, and
+that is now an open question in `08-instruments.md` rather than a fix.

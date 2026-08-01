@@ -468,3 +468,40 @@ comes back**, and the answer here was one operator noticing that his two reposit
 vendored doctrine is still the doctrine — the divergence is entirely additive and every item above
 transfers cleanly. Had the consumer improved its local copy instead, this window would have been a
 merge, and `install/README.md`'s do-not-edit rule for vendored trees is what prevented it.
+
+---
+
+`INTAKE OPEN` · `2026-08-01T21:50Z` · **window: K-7's remedy, measured on the project that produced
+K-7.** Narrow by design — one question, asked because the rule had just been written with its remedy
+marked `UNVERIFIED`, and the instrument to test it was sitting right there.
+
+### `O-45` · `2026-08-01T22:00Z` — measured here
+- **Conditions:** measured on the consuming project's own retrieval instrument, before and after a single configuration change. The provider supports exclusion globs; the corpus was excluded from the **search index only**, not moved or deleted. One variable (L-10).
+- **Observed:** indexed notes **752 → 358**; excluded **0 → 394**, which is the vendor corpus exactly. Foreign share of what search can see: **52.5% → 0%**. On the three queries `O-35` recorded: `search_text` for a decision ID went from **364,155 characters across 1,694 lines, abandoned** to **22 ranked project documents, read in full**. `search_regex` for a decommitted vendor's name went from **224,288 characters** to **102,483** — **down 54%, and still unusable**. `search_semantic` **could not be run at all** (see `O-46`). **Read-by-explicit-path still reaches excluded material**, verified against a note inside the excluded tree.
+- **Initial read:** `UNVERIFIED` — one change, one instrument, one session.
+- **Confidence:** `CONFIRMED` for the first two rows, by direct before/after measurement on the real instrument. **Scope: one project, one retrieval provider, one exclusion glob** (L-4). It is not evidence that segregation works in general, and it raises no attestation grade — this is the same project that produced K-7.
+- **Also, and this is the finding rather than the headline:** **the regex row did not improve enough to matter, and the reason generalises.** Its residual is **the project's own notes**, not the vendor's. Exclusion cures a *foreign-share* problem and does nothing for a corpus that is simply large about its own subject — and **the two are indistinguishable from the symptom**, which is a search returning more than anyone will read. A project that fixes its foreign share and expects search to work will be wrong for a reason it has no way to see from the failure.
+
+### `O-46` · `2026-08-01T22:00Z` — measured here
+- **Conditions:** as `O-45`, attempting to re-run the first of `O-35`'s three queries.
+- **Observed:** `search_semantic` **fails outright** — *"daemon binary compiled without embeddings feature"*. The provider is at version `2.3.2` and its embeddings default is off. `O-35`'s instance (1) recorded a semantic query returning a specific similarity score on `2026-07-30`, so the capability existed then.
+- **Initial read:** `UNVERIFIED` — possibly a version change, possibly a hybrid path that never needed embeddings.
+- **Confidence:** `UNRESOLVED`. **What would settle it:** the provider version that produced `O-35`, which nobody recorded. Until then the fact stands and the cause does not.
+- **Also:** this is the retrieval ladder's **top rung**, absent, on the instrument of the project that wrote the ladder — discovered only because something went looking. It is the exact shape `08-instruments.md` warns about in the ladder note: relevance ranking is *"the only rung that silently returns a worse answer rather than no answer"*, and here it does not even fail silently, it simply is not there. **A ladder is a claim about rungs, and a rung nobody has stood on this week is a hypothesis.**
+
+### `O-47` · `2026-08-01T22:00Z` — measured here
+- **Conditions:** the same session's K-4 re-measurement of the consuming project's capability inventory, its first full pass since `2026-07-27`.
+- **Observed:** four facts had changed underneath a declaration that reported none of them. Repository **1,035 → 1,093** commits. Open work items **31 → 48**. The refinement endpoint **200 → 401**. And the credential **gained a scope** — `project` — whose absence that file recorded as instrument debt, with a note that re-scoping was the operator's to do. It had been done; nothing told the file.
+- **Initial read:** `UNVERIFIED`.
+- **Confidence:** `CONFIRMED` by direct measurement against the figures the file itself recorded.
+- **Also:** **three of the four are capability *gains*, and K-4 is written as though drift means decay.** A declaration that is stale in the direction of under-claiming is still wrong, and it is worse than it looks: it makes a project route around a capability it already has, and it produces exactly the `UNRESOLVED` debt entry that says *"stopped at, operator-owned"* about something the operator already granted. K-4 says re-measure when the environment changes; **nothing says the change might be in your favour.**
+
+---
+
+`INTAKE CLOSED` · `2026-08-01T22:03Z` · **3 entries** (`O-45`–`O-47`).
+
+**What this window did not look at.** Whether segregation holds on any other retrieval provider,
+whether the excluded corpus is reachable by every tool or only the two that were tried, and why the
+embeddings feature is absent. The window tested **one** remedy on **one** instrument, immediately
+after writing the rule it tests, by the session that wrote it — which is the non-independence
+`04-verification.md` names and is the reason none of this raises a grade.
