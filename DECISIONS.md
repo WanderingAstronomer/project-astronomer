@@ -779,3 +779,23 @@ install fails in practice. `caveat (owned):` **found by an outside reader, not b
 gate's own docstring had said *"FOUR CHECKS"* while running eight, uncaught, because `tools/` is
 exempt from the counted-prose check — corrected in the same commit, and it is the same class one
 level up.
+
+`[2026-08-01T22:41Z] AMENDS D-051:` **The count in that entry is wrong: the gate went from six
+check functions to seven, not "7 → 8".** Measured now, and this time by counting rather than by
+recalling: `main()` calls **7** `check_*` functions; `verify-gate.py` seeds **15** mutations; a real
+run emits **15** `FIRED` lines. `D-051`'s *"falsifier suite 14 mutations → 15"* is correct. Its
+*"Gate is 7 checks → 8"* is not, under either reading — there were six functions before
+`check_template_carries()` and there are seven now, and if "checks" meant distinct exercised
+behaviours the figures were 14 and 15, which the same sentence already gave. `D-048`'s *"7 checks to
+14"* is correct and refers to falsifier-exercised checks, which is the sense `D-043` and
+`tools/README.md` already use; the two entries were counting different things in the same word,
+which is how the error got in.
+
+**Kept rather than corrected in place, and worth the space:** this is L-11 committed by the entry
+that was congratulating itself for building a gate — a number I did not measure, written into an
+append-only record, in a corpus whose own hard rule 6 says every count is stale on sight. It was
+found while assembling a brief for another project, by checking a figure before quoting it to
+someone else. **Nothing in the gate can catch this**: `tools/` is exempt from the counted-prose
+check, and no check counts the checks. That exemption has now produced two defects in one day — the
+`"FOUR CHECKS"` docstring and this — which is the second instance of a class, not yet the third.
+Named here so the third is recognisable.
