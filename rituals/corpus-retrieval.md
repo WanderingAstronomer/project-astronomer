@@ -80,6 +80,20 @@ the role is exercised without lying to yourself about what it returned.
   returned the wrong thing want opposite corrections; widening the second is how a session ends up
   reading a vendor's documentation to answer a question about its own architecture.
 - **Do not conclude the project is silent on something** from one instrument (step 6).
+- **Do not adopt an error message's framing as a property of your environment.** An error reports
+  what one component believed at one moment. *"Compiled without embeddings"* was read as *the
+  feature is absent from this installation* and was actually *the wrong one of two binaries is
+  pinned* — the other, same version number, larger, sat unused on the same machine. Four hours and
+  five documents later the operator refused the claim and it took twenty minutes to break
+  (`O-54`). **Retrieval providers are frequently more than one process**, and an error relayed
+  through the one you can see is often about the one you cannot. Follow the error to the component
+  that raised it before you write down what it means.
+- **Do not quote another corpus's diagnosis as settled.** L-11 says trust no quoted *number*,
+  including your own project's. The same applies to a quoted *cause*, and it is less obvious
+  because a diagnosis arrives already reasoned. `O-55` measured a false diagnosis travelling from a
+  framework into a consuming project and **overriding a correct local finding**, because consumers
+  defer upstream by design. A cause you did not derive carries the grade of *the derivation you did
+  not see*.
 
 ## Blast radius
 

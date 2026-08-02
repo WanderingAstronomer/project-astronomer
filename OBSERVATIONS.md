@@ -588,3 +588,29 @@ provider see the framework's own install location?**
 exposes `OBSIDIAN_EXCLUDE_PATHS` but nothing about *including* hidden paths, and that was not
 pursued), and whether Obsidian's own application behaves identically — still `CITED` from the
 consuming project's report, not re-derived here.
+
+---
+
+`INTAKE OPEN` · `2026-08-02T01:00Z` · **window: the operator refused a claim in this log, and was
+right.** Opened because `O-46` was challenged, not because anything new happened.
+
+### `O-54` · `2026-08-02T01:35Z` — measured here. **`O-46` is `REFUTED`.**
+- **Conditions:** the operator said the semantic-search claim *"cannot possibly be true"* and that the instrument works. Re-testing rather than defending, then following the error rather than the conclusion.
+- **Observed:** `search_semantic` still failed with the same text, so the symptom was real. But the text says *"**Daemon** RPC error"*, and the provider is **two processes, not one**. Enumerating them found **two `obsidian-semanticd.exe` binaries, both version `2.3.2`**: one at `AppData/Roaming/obsidian-semantic/bin/` of **9,923,072 bytes**, one at `~/.cargo/bin/` of **12,845,568 bytes**. `manifest.json` **pins `binary_path` and `binary_sha256` to the smaller one**, and the MCP server bootstraps whatever the manifest names. Swapping in the larger binary moved the error to `vault not ready; call ensure_vault first`, then — with embeddings enabled — to `API key required: set OBSIDIAN_EMBEDDING_API_KEY or OPENAI_API_KEY`. Also measured: the MCP **server** binary reports `local embedding backend not compiled`, so its local path is genuinely absent; the daemon's `fastembed-cache` is **empty**; and a `5,092,054`-byte `embeddings.bin` from `2026-07-29` exists for one vault, which is when `O-35`'s semantic query worked.
+- **Confidence:** `REFUTED` for `O-46`. The feature is **not** absent from the installation. The wrong binary was pinned, and behind it the remaining blocker is a **credential** — which is custody, was not supplied, and was not sought. **Semantic search has still not been observed working**, so the correct statement is *"blocked on an operator-supplied credential,"* not *"unavailable,"* and certainly not *"compiled without embeddings."*
+- **Also — the failure is not the wrong answer, it is the shape of the reasoning.** `O-46` quoted an error message and adopted its framing as a property of the environment. It then graded itself `UNRESOLVED` and named *"the version that produced `O-35`"* as what would settle it — which sounds like rigour and was the wrong question, because **both binaries are version `2.3.2`**. A version string cannot distinguish them; only size and behaviour can. **The honest-looking `UNRESOLVED` was worse than a bare guess**, because it closed the question with a plausible investigation nobody would re-open.
+
+### `O-55` · `2026-08-02T01:35Z` — measured here
+- **Conditions:** tracing where `O-46`'s claim travelled before it was refuted, roughly four hours later.
+- **Observed:** it reached **five documents and one outbound brief** — this log (`O-46`), the ledger (`D-050`'s caveat), the consuming project's capability inventory (twice) and its always-loaded `CLAUDE.md`, and a written handoff to a **second** consuming project that had independently and correctly identified the credential as its blocker. That brief told it the credential was moot.
+- **Confidence:** `CONFIRMED` by grep across both repositories.
+- **Also, and this is the entry worth keeping:** the second project had the right answer and was told by this one that it was wrong. **A false claim from an upstream corpus does not merely sit there — it overrides correct local findings**, because the consumer defers to the framework by design. `L-11` says trust no quoted number *including this file's*; this is the same rule for a quoted **diagnosis**, and the corpus had no equivalent warning. The install layer now carries the diagnostic ladder itself (`install/retrieval-setup.md`) so the next project reads error text against a table instead of against a conclusion someone else drew.
+
+---
+
+`INTAKE CLOSED` · `2026-08-02T01:36Z` · **2 entries** (`O-54`–`O-55`).
+
+**What is still not known.** Whether the local-embedding path can be made to work on this machine at
+all (the server binary lacks the feature; whether a build with it exists was not pursued), and
+whether semantic search functions once a credential is supplied — **nobody has seen it work**, and
+this window did not change that. The credential is custody and was not sought.

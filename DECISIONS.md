@@ -854,3 +854,47 @@ sooner is the same error as ignoring the count. `caveat (owned):` whether the pr
 opt-in for hidden paths was **not** pursued; its `--help` exposes an exclusion variable and nothing
 about inclusion. If one exists, the fix is a documented setting rather than a relocation, and this
 entry is then over-stated.
+
+`[2026-08-02T01:36Z] AMENDS D-050:` **Its closing caveat is `REFUTED` and must not be read as
+written.** That caveat says *"the retrieval ladder's top rung turned out to be absent on that very
+instrument (`O-46`) — semantic search errors with 'compiled without embeddings'"*. The rung is
+**not absent**. Measured (`O-54`): the provider is two processes, a `manifest.json` pins which
+semantic-daemon binary is used, and it pinned a **9,923,072**-byte build without embeddings while a
+**12,845,568**-byte build *with* them sat unused on the same machine — **both version `2.3.2`**.
+Swapping it moved the error twice more, ending at `API key required`. So the true statement is
+**blocked on an operator-supplied credential**, which is custody and was not sought. Everything
+`D-050` says about *exclusion* — 752 → 358 indexed, 52.5% → 0% foreign, 364,155 characters → 22
+ranked documents, read-by-path preserved — was measured correctly and stands unchanged.
+
+**What this costs `D-050`'s figures:** its "after" numbers describe a **two-rung ladder** because
+the third rung was misconfigured, not missing. That does not make them wrong — BM25 and regex were
+measured directly — but the entry's framing of them as the ladder's full extent is now known to be
+an artifact of a defect, not a property of the tool.
+
+`[2026-08-02T01:36Z] D-053:` **The retrieval provider gets a written bring-up, because every
+project that has filled this role got it wrong in a different way and none of the three failures is
+in any vendor's documentation.** New: [`install/retrieval-setup.md`](install/retrieval-setup.md), a
+**reference implementation and explicitly not doctrine** — CHARTER invariant 1 keeps tooling out of
+the laws, so the *role* stays in `08-instruments.md` (K-7), the *procedure* in
+`rituals/corpus-retrieval.md`, and one worked example lives in the install layer where `.claude/`,
+`gh` and `git check-ignore` already live. It carries what is not written down anywhere else: **the
+provider is two processes** and semantic can be broken while search is healthy; **a manifest pins
+which binary is used**, so a more capable one elsewhere is silently ignored; **two binaries of the
+same version can differ in features** and only size and behaviour distinguish them; and **the
+ladder of error messages**, each naming a different layer, as a table to read against instead of a
+conclusion to adopt.
+
+Three failures answered, one per project: a corpus 52.5% foreign displacing its own architecture
+documents from its own searches (`O-35`); a corpus placed under a dotted path where four of six
+instruments cannot see it (`O-50`, `O-53`); and taking an error message's framing as a property of
+the environment for four hours (`O-54`).
+
+`caveat (owned):` **the document stops at `API key required` and says so in a box.** Steps 0–2 are
+`CONFIRMED` end to end; step 3 is `CONFIRMED` as a diagnosis and `UNVERIFIED` as a completion,
+because **nobody has observed semantic search working** and the credential is non-delegable
+(`06-delegation.md`). A guide that implied otherwise would be the L-16 defect it exists to prevent.
+`caveat (owned):` single-attested, one provider, one machine, one operating system. The **failure
+shapes** are claimed to generalize; the commands are not. `caveat (owned):` the framework had no
+warning that a **quoted diagnosis** is as unreliable as a quoted number — `O-55` measured a false
+claim from this corpus overriding a *correct* finding in a consuming project, because consumers
+defer to the framework by design. L-11 covers numbers and did not cover this.

@@ -355,6 +355,15 @@ project and one provider, so it is `CONFIRMED` at that scope and nothing wider.
 `rituals/corpus-retrieval.md` is the one that keeps *"I searched and found nothing"* from being
 written down as *"the project never decided that."*
 
+**A worked, reproducible bring-up is [`retrieval-setup.md`](retrieval-setup.md)** — one provider,
+end to end, with the failure modes that are not in any vendor's documentation: the two-process
+split (search and semantic are different binaries, and the second can be missing while the first is
+healthy), a manifest that pins which binary is used so a more capable one elsewhere is silently
+ignored, two same-version binaries with different features, and the ladder of error messages that
+tells you which layer is actually failing. It is a **reference implementation, not doctrine** —
+CHARTER invariant 1 keeps tooling out of the laws — but the failure shapes generalize to any
+provider.
+
 ---
 
 ## Step 5 — bound your roles by construction where you can
