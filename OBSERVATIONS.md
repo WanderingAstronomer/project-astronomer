@@ -567,3 +567,24 @@ is `RED` under this session's data boundary and was not read.
 **What this window did not look at:** the reporting project. Its folder is `RED` and was not read;
 every claim about it here is quoted from its report and labelled as such. Obsidian's indexer was not
 tested. Whether any *other* framework instruction points at a hidden path was not swept for.
+
+---
+
+`INTAKE OPEN` · `2026-08-02T00:50Z` · **window: one question — can the framework's own retrieval
+provider see the framework's own install location?**
+
+### `O-53` · `2026-08-02T00:52Z` — measured here
+- **Conditions:** a purpose-built fixture vault in scratch space, served by the same `obsidian-mcp` binary this project uses, on a spare port so the live server was untouched. Three markdown files: **two** under `.claude/doctrine/`, **one** under `notes/`. The binary's own startup log reports the index size, so the measurement needed no client.
+- **Observed:** `tantivy BM25 index built notes=1`. **The indexer saw one file of three.** Both files under the dotted path were skipped. The live server was verified unaffected afterward (362 notes, exclusions intact).
+- **Initial read:** `UNVERIFIED` — possibly a fixture artifact.
+- **Confidence:** `CONFIRMED`. The count is exact and the fixture is trivial. This makes **four** instruments measured here with the same blind spot — `rg` (default), Python `glob(recursive=True)`, Obsidian's own app (`CITED`, still not re-derived), and now the MCP server. Against two that see through it: `os.walk` and `find`.
+- **Also, and this is why it is its own entry rather than a line in `O-51`:** the other three are general-purpose tools this framework does not recommend. **This one is the retrieval provider a project would stand up *because* `08-instruments.md` told it to fill the corpus-retrieval role.** So the framework points at a home in one file and at an instrument that cannot read that home in another, and a project following both correctly ends up with a search engine over the fraction of its corpus that is not governance. **That is worse than no index**, because an index confers authority: `corpus-retrieval.md` step 6 says *not findable* and *not written* are indistinguishable, and an empty result from a real search engine reads as settled.
+
+---
+
+`INTAKE CLOSED` · `2026-08-02T00:53Z` · **1 entry** (`O-53`).
+
+**What this did not look at:** whether the provider has a setting that changes this (its `--help`
+exposes `OBSIDIAN_EXCLUDE_PATHS` but nothing about *including* hidden paths, and that was not
+pursued), and whether Obsidian's own application behaves identically — still `CITED` from the
+consuming project's report, not re-derived here.

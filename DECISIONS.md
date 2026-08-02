@@ -831,3 +831,26 @@ minutes after it documented the first** — knowing about the blind spot did not
 `O-39` in a new domain and argues the third instance will arrive sooner than a warning can stop it.
 `caveat (owned):` this session did not sweep the corpus for *other* instructions pointing at hidden
 paths. Owed.
+
+`[2026-08-02T00:53Z] AMENDS D-052:` **Stronger than recorded, and the reason is worse: the
+instrument the framework tells you to stand up cannot read the location the framework most often
+names.** `D-052` counted *"three of five common instruments"* blind to dotted paths. Measured since
+(`O-53`): the `obsidian-mcp` server — the exact provider a project would install to fill the
+**corpus retrieval** role `D-046` added this morning — indexed **1 of 3** files in a fixture whose
+other two sat under `.claude/`. That is **four of six**, and the fourth is not a general-purpose
+tool the framework is silent about. It is the recommended one.
+
+**So the framework contradicts itself across two files.** `install/README.md` names `.claude/` three
+times and, until `D-052`, named no home for the vendored corpus. `doctrine/08-instruments.md` tells
+a project to stand up a retrieval provider. Follow both correctly and you get a search engine over
+the fraction of your corpus that is *not* governance — **which is worse than having no index at
+all**, because a real search engine returning nothing reads as an answer. `corpus-retrieval.md` step
+6 already names that failure and did not anticipate it arriving by construction on day one.
+
+`caveat (owned):` this does **not** make it a third instance. It is more evidence inside `O-50`'s
+instance, not a new one, and the `PROVISIONAL` at `O-52` stands with its reopening condition
+unchanged — L-17 fires on a third *instance*, and inflating evidence into instances to reach a gate
+sooner is the same error as ignoring the count. `caveat (owned):` whether the provider has an
+opt-in for hidden paths was **not** pursued; its `--help` exposes an exclusion variable and nothing
+about inclusion. If one exists, the fix is a documented setting rather than a relocation, and this
+entry is then over-stated.
