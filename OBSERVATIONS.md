@@ -614,3 +614,94 @@ right.** Opened because `O-46` was challenged, not because anything new happened
 all (the server binary lacks the feature; whether a build with it exists was not pursued), and
 whether semantic search functions once a credential is supplied — **nobody has seen it work**, and
 this window did not change that. The credential is custody and was not sought.
+
+---
+
+`INTAKE OPEN` · `2026-08-19T22:04Z` · **window: the fleet that a design brief proposed shipping an
+installer to, measured before anything was shipped.** Opened because
+`design/distribution-and-scope.md` §11 instructed that the
+normalised comparison be run across the whole fleet *"before step 1"* and that two runtime unknowns
+be settled with a fixture — *"Do this first"* — and neither had been done. Nothing in any instance
+was modified during the pass (L-7). Instrument: [`tools/fleet-census.py`](tools/fleet-census.py),
+written for this window and verified by [`tools/verify-census.py`](tools/verify-census.py) before
+its clean output was used.
+
+### `O-56` · `2026-08-19T22:11Z` — measured here. **The brief's fleet size is `REFUTED`.**
+- **Conditions:** the brief opens *"Astronomer lives in ~30 project instances maintained by hand"* and repeats the figure in `D11` and §9. It cites no measurement for it. Searching `~/Documents` for any directory holding `.claude/skills/astronomer-*`.
+- **Observed:** **9 install points**, in `Photopipe`, `<instance-C>`, `<worktree-A>`, `<worktree-B>`, `vociferous-next`, `Franklin`, `<instance-E>`, `Presentations/The Engineer's Dilemma`, `<instance-D>`. Four of the nine are **outside `DevSlop/` entirely** and would have been missed by a sweep of the directory the brief was written in. Of the nine, `<worktree-A>` and `<worktree-B>` carry a `.git` **file**, not a directory, reading `gitdir: .../vociferous-next/.git/worktrees/...`; `git worktree list` confirms all three are checkouts of one repository. **Distinct projects: 7.**
+- **Confidence:** `CONFIRMED`. Exact count, reproducible by `python tools/fleet-census.py`.
+- **Also, and this is why the worktree finding is not a footnote:** the same drift is present in all three checkouts, so a census that treats them as instances reports one project's four artifacts as nine and **triples the apparent cost of the very problem the installer exists to solve**. It also means an installer would write to three working copies backed by **one git index**. The brief's §5.5 fan-out loop (`for d in ~/Documents/DevSlop/*/`) does exactly that, and would additionally have missed the four install points outside `DevSlop/`.
+
+### `O-57` · `2026-08-19T22:11Z` — measured here. **`stale` and `drifted` are different things, and the brief's design cannot tell them apart.**
+- **Conditions:** the brief's §5.3 lockfile classifies every managed file as **clean** or **drifted**, and §5.4 has `astro update` refuse to touch anything drifted. Classifying all 444 managed files across the 9 install points against upstream, on LF-normalised content, and — where a file did not match `HEAD` — against **every commit in upstream's history** for that path.
+- **Observed:** **387 match `HEAD`.** Of the 57 that do not, **48 are byte-identical to a commit upstream actually shipped** — 45 of them in `<instance-C>` alone, all matching `4a33900e` (2026-07-26). That project has **edited nothing**; it is simply 45 files behind. Only **9** files match no upstream version that ever existed, and those fold to **4 distinct artifacts across 2 of the 7 projects**.
+- **Confidence:** `CONFIRMED`. The classifier was observed failing first: `tools/verify-census.py` removes the history lookup and confirms the stale check goes red.
+- **Also — the cost of the two-way split, stated concretely.** Under §5.4 as written, adopting the installer in `<instance-C>` refuses 45 files, writes 45 `.incoming` files, and hands the operator **45 decisions that are all the same decision**. That is the failure the brief names for itself in §4.2 — *"the operator learns to ignore the one signal the system exists to produce"* — reached by a second route it did not check. **The brief diagnosed the disease and missed the second vector.**
+
+### `O-58` · `2026-08-19T22:11Z` — measured here. **The largest drift the brief reported is not in the fleet.**
+- **Conditions:** the brief names `install/retrieval-setup.md` as the one drift *"large enough to be a real divergence rather than an addition"* (20 lines) and schedules it for hand review in §8 step 1. Diffing each instance's copy against upstream `HEAD` rather than against upstream's working tree.
+- **Observed:** **four of five instances that carry the file are identical to `HEAD`** — zero diff lines. The fifth, `Photopipe`, does not have the file at all. The 20 lines are the `PROMOTED 2026-08-04` block recording `COAW-D-041`, and they are an **uncommitted change in upstream's own working tree**, visible in `git status` as a modified `install/retrieval-setup.md` at the moment the brief was written.
+- **Confidence:** `CONFIRMED` by diff against `git show HEAD:install/retrieval-setup.md`.
+- **Also:** the brief measured a **dirty working tree** against the fleet and attributed the difference to the fleet. The direction of the error matters more than its size — it reported that *the fleet had diverged from upstream* when in fact *upstream had unpublished work*. The remedy is not review; it is a commit. `O-57`'s reclassification has the same root: `skills/astronomer-start`, the brief's third drift, is **stale** — it matches `4a33900e`, and upstream later added `K-7`.
+
+### `O-59` · `2026-08-19T22:11Z` — measured here
+- **Conditions:** the brief records **2** orphaned capabilities, both found in `vociferous-next`, and notes *"drift is bidirectional; the mechanism must be two-way."* Checking every install point rather than one.
+- **Observed:** **4.** The two named (`rituals/deliberation-thread.md`, `skills/astronomer-supervise/`) plus `rituals/README.md`'s row for the first — and a **fourth in a project the brief never opened**: `<instance-D>`' `astronomer-intake/SKILL.md` carries a 27-line addition, *"Step 2a — scan for what expires, before you scan for what is readable,"* stamped `TRIAL — added 2026-08-03T12:20Z, operator tentatively approved (<instance-D> D-029)`. It carries its own scar: an 8-file corpus was counted, converted, manifested and closed before anyone read the handoff note saying the deliverable was due **that same day**.
+- **Confidence:** `CONFIRMED`.
+- **Also:** it is a rule with a scar and an operator approval, living in exactly one directory on this machine, in a project outside the one the brief surveyed. An installer that ran before harvesting would have overwritten it — the brief's own §8 ordering (*harvest precedes installation*) was right, for a reason it had only half-measured. **A survey of one instance cannot find what only another instance learned**, which is the same shape as `O-55`: the framework's reach is wider than the window that measures it.
+
+### `O-60` · `2026-08-19T22:15Z` — measured here. **Both runtime unknowns settled; the brief's `D4` and `D5` are `REFUTED`.**
+- **Conditions:** the brief calls these *"the two highest-value unknowns"*, says to settle them by building a two-level fixture and observing what a session actually reads *"before implementing"*, and to **re-brief rather than work around** an answer that goes against the design. Two fixtures built: `parent/` and `parent/child/`, each with a distinct `CLAUDE.md` token and a distinctly-named skill. In fixture A the git repository root is at `parent/`; in fixture B it is at `child/`. A real `claude` session was run in `parent/child/` in each.
+- **Observed:** **A** — both `PARENTMD_7Q4X` and `CHILDMD_9R2Y` present; `parentprobe` listed *and invoked*, returning `PARENTSKILL_5T8Z`. **B** — both `CLAUDE.md` tokens still present, but the skill probe returned the sentinel **`NOSKILL`**. So `CLAUDE.md` walks up to the **filesystem root and crosses repository boundaries**, while `.claude/skills/` walks up only to the **repository root** and does not cross.
+- **Confidence:** `CONFIRMED`, falsified in both directions — the negative case was made to return a sentinel rather than merely omit a name from a list, so a silent listing failure could not be mistaken for absence. Corroborated by the vendor's published behaviour, which was read **after** the fixture, not before.
+- **Also — the answer is neither branch the brief prepared for, and that is the finding.** §7.1 anticipated two outcomes: skills resolve from ancestors (so "everything once per chain") or they do not (so "skills at every scope"). Measured, **both docs and skills resolve upward and stop in different places**, so the correct unit is not the chain but **the repository**. The measured fleet already shows both shapes: `<instance-D>` is one repository spanning two scopes, so one skills install serves both; the seven projects under `DevSlop/` are seven repositories at one scope each. **A design shipped on either anticipated branch would have been wrong for half the fleet.**
+
+### `O-61` · `2026-08-19T22:15Z` — measured here
+- **Conditions:** running `tools/check-corpus.py` after the design directory joined the corpus. Not planned; the gate was run only to confirm nothing had been broken.
+- **Observed:** **three failures, all pre-existing in the brief as delivered.** Two are the counted-prose check reading *"### 5.1 Ownership classes"* and reporting *"prose counts 1 'classes', registry has 4"* — the `1` is the **section number** `5.1`, matched because a word boundary sits between the period and the digit. The third is real: the brief declares *"supersedes: design/nested-scopes.md"* in prose while **both files still claimed `owns: scope-resolution`**, so a vocabulary had two homes in violation of `L-14`.
+- **Confidence:** `CONFIRMED`. The false positive reproduces on any heading of the form `N.M <count-noun>`; the ownership collision was fixed by releasing the superseded file's claims.
+- **Also, and it cuts both ways:** the gate caught a genuine `L-14` defect **in the document proposing to distribute the corpus**, which is the gate working. It also produced a false positive that `00-precedence.md` names in advance — *"a gate producing a false positive is a defect in the gate, and 'the guard is intentional' is not a licence for the guard to be wrong."* Both were fixed on the merits, neither by exemption: the regex now refuses a digit glued to a preceding period or digit, and `verify-gate.py` still passes. **A brief proposing to ship the corpus to nine projects did not itself pass the corpus gate**, and nothing would have caught that except running it.
+
+---
+
+`INTAKE CLOSED` · `2026-08-19T22:15Z` · **6 entries** (`O-56`–`O-61`).
+
+**What this did not look at.** Whether the 7 projects want to nest at all — `<instance-D>` is the
+only measured two-level structure, and it arrived without a design. Whether `<instance-E>`'s
+skills-without-a-vendored-tree is deliberate or an incomplete install; it is clean either way, which
+is precisely why the census cannot tell. Whether the fixture result holds for a repository boundary
+established by something other than `.git` — only git was tested. And **nothing was measured about
+whether an installer would work**, because none exists: this window measured the ground it would
+land on, not the landing.
+
+---
+
+`INTAKE OPEN` · `2026-08-19T22:22Z` · **window: CHARTER definition-of-done condition 5, run as a
+test instead of read as an assertion.** Condition 5 says *"The install layer can be dropped into an
+empty repository and produce a working Lite project without editing any file in this repo."* It has
+been claimed met since `2026-07-24` and had never been executed end to end from an empty directory.
+A throwaway repository was created and `install/README.md` followed literally, then a real `claude`
+session was run inside the result.
+
+### `O-62` · `2026-08-19T22:26Z` — measured here. **Condition 5 holds, and is now `CONFIRMED` by execution.**
+- **Conditions:** an empty `git init` directory. `install/README.md` steps 1–3 followed as written: vendor `doctrine/ rituals/ artifacts/ tiers/ provenance/` under the non-hidden parent `docs/astronomer/`, do not vendor `tools/`, fill `CLAUDE.md.template` at the repository root, copy the eight skills to `.claude/skills/`. No file in this repository was edited to make it work.
+- **Observed:** the collaborator layer, the skills and the doctrine are all **tracked by git** — the `AST-D-045` failure mode did not recur, because the template landed at the repository root rather than under `.claude/`. All five documented placeholders exist in the template and all five are documented in the README; none survived unfilled. A session started in the result **knew the project name and tier from `CLAUDE.md`**, listed **all eight `astronomer-*` skills**, and answered *"What does `L-9` require?"* with *"The falsifier is written first — numeric, calibrated on the real measuring condition"* — which is `01-laws.md` `L-9` correctly, not a plausible invention. Asked mid-window to *"just go fix"* an obvious cause, it **refused under `L-7`**, quoted *"Not one line. Not the obvious thing,"* named hard rule 4, and said the apparent cause might mask another.
+- **Confidence:** `CONFIRMED`. Two rows of this file's own *"Verify the install"* table were executed against a real session rather than assumed, and both passed.
+- **Also:** the install is **twenty minutes of copying and produces a project that behaves**, which is the claim the framework has been making about itself for four weeks without anyone running it from empty. It was worth running. It also found three defects that only appear when you actually do it — `O-63`.
+
+### `O-63` · `2026-08-19T22:26Z` — measured here
+- **Conditions:** the same install, checked for unfilled placeholders and for markdown links that do not resolve **in the vendored copy** rather than upstream.
+- **Observed:** three defects, none fatal, all invisible from inside this repository. **(1)** `install/README.md`'s closing section read *"CHARTER definition-of-done §6 is the only condition standing between this framework and `VALIDATED`"* — **four hundred lines below a status box in the same file saying `VALIDATED` as of `2026-08-01`**. One file, two answers about its own status. **(2)** The vendoring instruction offered *"plus this repo's `CHARTER.md` and `DECISIONS.md`"*; taking exactly that leaves the copied ledger citing an `OBSERVATIONS.md` that was never copied — a citation that resolves upstream and silently does not in the consuming project. **(3)** The stated exemption *"links into `tools/` and `install/` are the only ones expected to dangle"* omits **template-relative links**: `artifacts/charter.template.md` links to the `DECISIONS.md` the *filled* charter will sit beside, which cannot resolve until the template is copied out.
+- **Confidence:** `CONFIRMED`. All three reproduce on a clean install; all three are fixed, and the fix for (2) is *take all three governance files or none*.
+- **Also, and it is the same shape as `O-58`:** every one of these is a defect **you cannot see from where the document is written.** `tools/check-corpus.py` verifies every link *in this repository*, and all three of these links are fine here — they only break after the corpus is copied somewhere with a different shape. **The corpus gate checks the corpus; nothing checked the copy**, and the install layer is precisely the part of this framework whose correctness lives in the copy. A one-off harness found them in minutes; it is deliberately not shipped, because CHARTER "Out of scope" bars tooling that validates projects (`D-005`) and this window was not the place to test that bar.
+
+---
+
+`INTAKE CLOSED` · `2026-08-19T22:30Z` · **2 entries** (`O-62`–`O-63`).
+
+**What this did not look at.** The remaining ten rows of the *"Verify the install"* table — two were
+executed, the rest are still assumed. Step 0a (adoption over work in progress), Step 4 (retrieval)
+and Step 5 (role bounds) were **not** exercised; the test was a greenfield Lite install and says
+nothing about the adoption path, which is the harder one and the one `AST-D-045` came from. Whether
+the install works on a non-Windows filesystem, and whether it works for a project that already has a
+`D-` ledger, are both untested.

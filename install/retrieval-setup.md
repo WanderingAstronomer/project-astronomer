@@ -143,6 +143,26 @@ with that feature and a model cache) or any OpenAI-compatible endpoint
 > `CONFIRMED` end-to-end. Step 3 is `CONFIRMED` as a diagnosis and `UNVERIFIED` as a completion.
 > A future session that supplies a credential and sees it work should promote that here and say so.
 
+> **PROMOTED 2026-08-04T04:40:08Z — step 3 is now `CONFIRMED` end to end.** Semantic search has been observed
+> working, by a consuming project (Chronicles of a Wanderer / `coaw`), on Windows 11.
+>
+> **No credential was required and none left the machine.** The `API key required` state is
+> satisfied by any OpenAI-compatible endpoint on loopback: LM Studio serving
+> `text-embedding-qwen3-embedding-8b` at `http://localhost:1234/v1`, with
+> `OBSIDIAN_EMBEDDING_API_KEY` set to an ignored placeholder. Measured:
+> `API embedding backend ready base_url=http://localhost:1234/v1 dim=4096`, then
+> `embedding store ready notes=33 dim=4096`.
+>
+> This resolves the open question the section names — the honest floor was *"nobody supplied a
+> key"*, and the answer is that a hosted key was never the only path. A local inference server
+> satisfies the API branch **and** keeps the corpus off the network, which is strictly better than
+> the local-model branch this document treats as the privacy-preserving option.
+>
+> Verified by three checks, not by the process starting: index count from the server's own log
+> against an independent `os.walk`; `vault_info` echoing exclusions with a non-zero
+> `excluded_notes`; and a query whose answer was known returning the project's own material first.
+> — `COAW-D-041`, operator-approved.
+
 ---
 
 ## 4. Verify — and do not accept a process starting as proof

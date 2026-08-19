@@ -1,0 +1,344 @@
+{
+  "generated_utc": "2026-08-28T19:44:21Z",
+  "root": "C:\\Users\\drew\\AppData\\Local\\Temp\\verify-skill-census-dncpthc4\\06-d6",
+  "run": {
+    "wall_clock_s": 0.032,
+    "files_scanned": 6,
+    "files_with_spans": 4,
+    "bytes_read": 52840,
+    "lines_read": 76,
+    "lines_gated": 33,
+    "lines_parsed": 33,
+    "lines_unparseable": 0,
+    "lines_blank": 0,
+    "lines_malformed": 2,
+    "lines_skipped_total": 2,
+    "lines_with_decode_replacement": 0,
+    "files_failed": [],
+    "gate_selectivity_pct": 43.421,
+    "lines_per_s": 2369.8,
+    "output_bytes": 7402,
+    "spans_ndjson": "C:\\Users\\drew\\Documents\\DevSlop\\project-astronomer\\tools\\skill-spans.ndjson",
+    "summary_json": "C:\\Users\\drew\\Documents\\DevSlop\\project-astronomer\\tools\\skill-summary.json"
+  },
+  "totals": {
+    "spans": 9,
+    "assistant_records": 42,
+    "attributed_records": 24,
+    "attributed_share_pct": 57.143,
+    "distinct_skills_fired": 8,
+    "roster_size": 0,
+    "roster_source": "derived from skill_listing attachments in the corpus"
+  },
+  "anomalies": [
+    {
+      "kind": "null-attribution",
+      "file": "sessB.jsonl",
+      "uuid": "bbbbbbbb-asst------0017-bbbbbbbb-222",
+      "session_id": "bbbbbbbb-2222-4bbb-8bbb-bbbbbbbbbbbb",
+      "detail": null
+    },
+    {
+      "kind": "null-attribution",
+      "file": "sessB.jsonl",
+      "uuid": "bbbbbbbb-asst------0019-bbbbbbbb-222",
+      "session_id": "bbbbbbbb-2222-4bbb-8bbb-bbbbbbbbbbbb",
+      "detail": null
+    }
+  ],
+  "anomaly_counts": {
+    "total": 2,
+    "listed": 2,
+    "capped_at": 2000,
+    "null_or_empty_attribution_records": 2,
+    "nonstring_attribution_records": 0,
+    "duplicate_records_suppressed": 0
+  },
+  "spans_closed_by_human_turn": 6,
+  "activation_turn_window": {
+    "unknown": 2,
+    "auto-trigger": 5,
+    "span-at-file-head": 1,
+    "inherited-subagent": 1
+  },
+  "activation_fixed15_window": {
+    "tool-call": 2,
+    "resumed-after-compaction": 3,
+    "unknown": 2,
+    "span-at-file-head": 1,
+    "inherited-subagent": 1
+  },
+  "per_skill": {
+    "deep-research": {
+      "spans": 1,
+      "attributed_records": 4,
+      "sidechain_spans": 0,
+      "main_spans": 1,
+      "files": 1,
+      "projects": {
+        "sessB.jsonl": 1
+      },
+      "entrypoints": {
+        "claude-desktop": 1
+      },
+      "activation": {
+        "unknown": 1
+      },
+      "activation_window15": {
+        "tool-call": 1
+      },
+      "harness_versions": {
+        "2.1.229": 1
+      },
+      "first_ts": "2026-08-27T10:00:28.000Z",
+      "last_ts": "2026-08-27T10:01:03.000Z",
+      "top_tools": {}
+    },
+    "astronomer-supervise": {
+      "spans": 2,
+      "attributed_records": 5,
+      "sidechain_spans": 0,
+      "main_spans": 2,
+      "files": 1,
+      "projects": {
+        "sessB.jsonl": 2
+      },
+      "entrypoints": {
+        "claude-desktop": 2
+      },
+      "activation": {
+        "auto-trigger": 2
+      },
+      "activation_window15": {
+        "resumed-after-compaction": 2
+      },
+      "harness_versions": {
+        "2.1.229": 2
+      },
+      "first_ts": "2026-08-27T10:01:17.000Z",
+      "last_ts": "2026-08-27T10:02:06.000Z",
+      "top_tools": {}
+    },
+    "behavioral-audit": {
+      "spans": 1,
+      "attributed_records": 2,
+      "sidechain_spans": 0,
+      "main_spans": 1,
+      "files": 1,
+      "projects": {
+        "sessB.jsonl": 1
+      },
+      "entrypoints": {
+        "claude-desktop": 1
+      },
+      "activation": {
+        "auto-trigger": 1
+      },
+      "activation_window15": {
+        "resumed-after-compaction": 1
+      },
+      "harness_versions": {
+        "2.1.229": 1
+      },
+      "first_ts": "2026-08-27T10:02:20.000Z",
+      "last_ts": "2026-08-27T10:02:27.000Z",
+      "top_tools": {}
+    },
+    "feature-spawn": {
+      "spans": 1,
+      "attributed_records": 2,
+      "sidechain_spans": 0,
+      "main_spans": 1,
+      "files": 1,
+      "projects": {
+        "sessC.jsonl": 1
+      },
+      "entrypoints": {
+        "claude-desktop": 1
+      },
+      "activation": {
+        "unknown": 1
+      },
+      "activation_window15": {
+        "tool-call": 1
+      },
+      "harness_versions": {
+        "2.1.229": 1
+      },
+      "first_ts": "2026-08-27T11:00:28.000Z",
+      "last_ts": "2026-08-27T11:00:35.000Z",
+      "top_tools": {}
+    },
+    "data:analyze": {
+      "spans": 1,
+      "attributed_records": 2,
+      "sidechain_spans": 0,
+      "main_spans": 1,
+      "files": 1,
+      "projects": {
+        "sessC.jsonl": 1
+      },
+      "entrypoints": {
+        "claude-desktop": 1
+      },
+      "activation": {
+        "auto-trigger": 1
+      },
+      "activation_window15": {
+        "unknown": 1
+      },
+      "harness_versions": {
+        "2.1.229": 1
+      },
+      "first_ts": "2026-08-27T11:00:49.000Z",
+      "last_ts": "2026-08-27T11:00:56.000Z",
+      "top_tools": {}
+    },
+    "product-management:write-spec": {
+      "spans": 1,
+      "attributed_records": 2,
+      "sidechain_spans": 0,
+      "main_spans": 1,
+      "files": 1,
+      "projects": {
+        "sessC.jsonl": 1
+      },
+      "entrypoints": {
+        "claude-desktop": 1
+      },
+      "activation": {
+        "auto-trigger": 1
+      },
+      "activation_window15": {
+        "unknown": 1
+      },
+      "harness_versions": {
+        "2.1.229": 1
+      },
+      "first_ts": "2026-08-27T11:01:10.000Z",
+      "last_ts": "2026-08-27T11:01:17.000Z",
+      "top_tools": {}
+    },
+    "dataviz": {
+      "spans": 1,
+      "attributed_records": 3,
+      "sidechain_spans": 0,
+      "main_spans": 1,
+      "files": 1,
+      "projects": {
+        "sessD.jsonl": 1
+      },
+      "entrypoints": {
+        "claude-desktop": 1
+      },
+      "activation": {
+        "span-at-file-head": 1
+      },
+      "activation_window15": {
+        "span-at-file-head": 1
+      },
+      "harness_versions": {
+        "2.1.229": 1
+      },
+      "first_ts": "2026-08-27T12:00:14.000Z",
+      "last_ts": "2026-08-27T12:00:28.000Z",
+      "top_tools": {}
+    },
+    "engineering:debug": {
+      "spans": 1,
+      "attributed_records": 4,
+      "sidechain_spans": 1,
+      "main_spans": 0,
+      "files": 1,
+      "projects": {
+        "sessF.jsonl": 1
+      },
+      "entrypoints": {
+        "claude-desktop": 1
+      },
+      "activation": {
+        "inherited-subagent": 1
+      },
+      "activation_window15": {
+        "inherited-subagent": 1
+      },
+      "harness_versions": {
+        "2.1.229": 1
+      },
+      "first_ts": "2026-08-27T14:00:14.000Z",
+      "last_ts": "2026-08-27T14:00:49.000Z",
+      "top_tools": {}
+    }
+  },
+  "per_project": {
+    "sessB.jsonl": {
+      "spans": 4,
+      "attributed_records": 11,
+      "files_with_spans": 1,
+      "assistant_records": 14,
+      "spans_per_1000_assistant_records": 285.714,
+      "skills": {
+        "deep-research": 1,
+        "astronomer-supervise": 2,
+        "behavioral-audit": 1
+      }
+    },
+    "sessC.jsonl": {
+      "spans": 3,
+      "attributed_records": 6,
+      "files_with_spans": 1,
+      "assistant_records": 7,
+      "spans_per_1000_assistant_records": 428.571,
+      "skills": {
+        "feature-spawn": 1,
+        "data:analyze": 1,
+        "product-management:write-spec": 1
+      }
+    },
+    "sessD.jsonl": {
+      "spans": 1,
+      "attributed_records": 3,
+      "files_with_spans": 1,
+      "assistant_records": 3,
+      "spans_per_1000_assistant_records": 333.333,
+      "skills": {
+        "dataviz": 1
+      }
+    },
+    "sessF.jsonl": {
+      "spans": 1,
+      "attributed_records": 4,
+      "files_with_spans": 1,
+      "assistant_records": 4,
+      "spans_per_1000_assistant_records": 250.0,
+      "skills": {
+        "engineering:debug": 1
+      }
+    }
+  },
+  "per_entrypoint": {
+    "claude-desktop": {
+      "assistant_records": 42,
+      "spans": 9,
+      "attributed_records": 24,
+      "spans_per_1000_assistant_records": 214.286,
+      "attributed_share_pct": 57.143
+    }
+  },
+  "never_fired": [],
+  "fired_but_not_in_roster": [
+    "astronomer-supervise",
+    "behavioral-audit",
+    "data:analyze",
+    "dataviz",
+    "deep-research",
+    "engineering:debug",
+    "feature-spawn",
+    "product-management:write-spec"
+  ],
+  "selftest": {
+    "records_checked": 0,
+    "mismatches": 0,
+    "examples": []
+  }
+}

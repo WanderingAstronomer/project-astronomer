@@ -149,6 +149,39 @@ a gate that is silent about where it does not look reads as coverage it does not
 Run `verify-gate.py` after any change to the gate itself. A check you have modified and not
 re-broken is a check you are trusting on faith.
 
+### The fleet instruments — a different question from the gate
+
+The two files above ask *"does this corpus agree with itself?"* These two ask *"what is actually
+installed out there, and what would an update destroy?"* They read; they never write.
+
+- **`fleet-census.py`** — finds every install point carrying `astronomer-*` skills, folds git
+  worktrees into their repository, and classifies every managed file **three** ways on LF-normalised
+  content: `current` (matches `HEAD`), `stale` (matches an earlier upstream commit — and it names
+  which), `drifted` (matches no version upstream ever shipped). Exit `0` when nothing is genuinely
+  drifted, `1` when something is.
+
+  **The third class is the whole point.** A two-way clean/drifted split reports a project that is
+  merely *behind* as one that has been *customised*: measured on 2026-08-19, 48 files across the
+  fleet were clean older releases and only 9 were local edits, so a two-way split would have handed
+  the operator 48 decisions that were all the same decision (D-054, `O-57`). It reads upstream's git
+  history to date a stale file, so **it must run from this repository** and cannot run from inside an
+  instance.
+
+- **`verify-census.py`** — the same discipline `verify-gate.py` applies to the gate. It copies the
+  census into a throwaway tree, removes LF normalisation, then the history lookup, then worktree
+  detection, and asserts the matching check goes red each time. Nothing in this repository is
+  modified.
+
+```bash
+python tools/fleet-census.py            # census the fleet under ~/Documents
+python tools/fleet-census.py --verbose  # every file, not just the drifted ones
+python tools/verify-census.py           # break the census on purpose, confirm it notices
+```
+
+**Run `verify-census.py` before believing a clean census.** The census was written to correct a
+design brief that had measured the fleet wrong in four ways; an instrument written to catch someone
+else's counting error is exactly the instrument nobody re-checks.
+
 ---
 
 ## The rule for the guards

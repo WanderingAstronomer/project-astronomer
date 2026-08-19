@@ -898,3 +898,144 @@ shapes** are claimed to generalize; the commands are not. `caveat (owned):` the 
 warning that a **quoted diagnosis** is as unreliable as a quoted number — `O-55` measured a false
 claim from this corpus overriding a *correct* finding in a consuming project, because consumers
 defer to the framework by design. L-11 covers numbers and did not cover this.
+
+`[2026-08-19T22:18Z] D-054:` **The fleet was measured before anything was shipped to it, and the
+design brief's `§3` is superseded by the measurement.** `design/distribution-and-scope.md` proposed
+a vendoring installer on the strength of a section headed *"Verified current state"* whose numbers
+it called *"the only load-bearing facts."* Four were wrong (`O-56`–`O-59`): the fleet is **9 install
+points across 7 projects**, not ~30; two of the nine are **git worktrees** of a third, so one
+project's drift was counted three times; the largest reported drift was an **uncommitted change in
+upstream's own working tree**, not instance drift at all; and there are **4** orphaned capabilities,
+not 2 — the fourth carrying an operator approval (`<instance-D> D-029`) and living in exactly one
+directory on this machine.
+
+**The ruling is not "the numbers were wrong."** It is that the brief's `§5.3` lockfile classifies a
+managed file **two** ways — clean or drifted — and that split cannot distinguish *an old release*
+from *a local edit*. Measured: of 57 managed files not matching `HEAD`, **48 are byte-identical to a
+commit upstream actually shipped**, 45 of them in one project that has edited nothing. Under `§5.4`
+as written, adopting the installer there refuses 45 files and hands the operator **45 decisions that
+are all the same decision** — the exact failure the brief names for CRLF in its own `§4.2`, arriving
+by a route it did not check. **Managed files classify three ways from here on: `current`, `stale`,
+`drifted`**, and `stale` names the commit it matches.
+
+The instrument is [`tools/fleet-census.py`](tools/fleet-census.py), and it is a **measuring
+instrument, not an installer** — it writes nothing. It is verified by
+[`tools/verify-census.py`](tools/verify-census.py), which seeds three defects (LF normalisation
+removed, history lookup removed, worktree detection disabled) and confirms each is caught, because
+`04-verification.md` does not let a check be trusted until it has been seen failing.
+
+`caveat (owned):` the census dates a stale file against **upstream's** git history, so it cannot run
+from inside an instance that lacks that history. This means `tools/` is **not one shippable group**,
+and the brief's open question about distributing `tools/` is now sharper rather than answered.
+`caveat (owned):` one machine, one operator, one operating system — the fleet is what is on this
+disk, and a project on another machine is not in the count.
+
+`[2026-08-19T22:18Z] D-055:` **`D4` and `D5` of `design/distribution-and-scope.md` are `REFUTED` by
+fixture, and the hosting unit is the *repository*, not the chain.** The brief named these two
+runtime questions its highest-value unknowns, said to settle them with a two-level fixture *before
+implementing*, and instructed that an answer against the design be met by **re-briefing rather than
+working around**. Both were settled (`O-60`) and both went against the design, so the brief was
+re-briefed: it now opens with a `§0` correction, and `§3`, `§6.7`, `§7.1`, `§10` and `§11` are
+corrected in place with each correction stating itself.
+
+Measured: **`CLAUDE.md` walks up to the filesystem root and crosses repository boundaries, loaded in
+full at launch. `.claude/skills/` walks up only to the repository root and does not cross.** `D4`
+split core on *how a file is reached* (path citation versus runtime) and concluded skills must
+install at every scope; they must not. `D5` made the **chain** the hosting unit; the correct unit is
+**one docs host per chain, one skills host per repository the chain spans**. The measured fleet
+already contains both shapes, which is why either anticipated branch would have been wrong for half
+of it.
+
+Two consequences worth stating separately from the rule. **First**, the brief's `§6.7` proposed
+composition-by-reference so that depth cost would be *"sublinear"*; ancestors are loaded eagerly by
+the runtime, so **depth cost is linear and unavoidable**, no `--budget` flag can refuse what has
+already been loaded, and the brief's acceptance criterion 12 was withdrawn because it could never
+have passed. **Second**, a descendant in its own repository inherits its ancestors' `CLAUDE.md` but
+**not** their skills — so the always-loaded file will cite rituals the session cannot invoke. That
+gap is now the first question Part B has to answer, and it did not exist before this was measured.
+
+`caveat (owned):` only a `.git`-established repository boundary was tested. `caveat (owned):` this
+refutes a **brief**, which is precedence 6 — no law, ritual or template moved, and no grade in
+`provenance/attestation.json` was touched.
+
+`[2026-08-19T22:18Z] D-056:` **The counted-prose check no longer reads a section number as a count,
+and a superseded document no longer owns a vocabulary.** Running the corpus gate over the design
+directory produced three failures, all pre-existing in the brief as delivered (`O-61`). Two were a
+**false positive**: `### 5.1 Ownership classes` matched on the `1` of `5.1`. `00-precedence.md`
+already rules on this case — *"a gate producing a false positive is a defect in the gate, and 'the
+guard is intentional' is not a licence for the guard to be wrong"* — so the gate was fixed, not
+exempted: the pattern now refuses a digit glued to a preceding period or digit. `verify-gate.py`
+still passes, so the check was not merely quieted. The third failure was real and is an `L-14`
+violation: `design/nested-scopes.md` declared itself superseded in prose while still claiming
+`owns: scope-resolution` alongside the document that superseded it. **A superseded document owns
+nothing**; its claims were released and the file kept.
+
+Separately and on the merits, the brief's *"ownership classes"* were renamed **ownership roles**.
+Minting a second `class` vocabulary beside `record_class` is a genuine collision hazard for a
+reader, not only for the gate, and `L-14` is about homes rather than words. This is a rename to
+remove the ambiguity, **not** a rewording to slip past a check — the distinction `00-precedence.md`
+draws, and the reason the gate defect was fixed in the same pass rather than left to absorb it.
+
+`[2026-08-19T22:18Z] D-057:` **`astro` is not built, and is blocked on the operator, not on
+design.** CHARTER "Out of scope" bars *"tooling that generates or validates projects"* and cites
+`D-005`, which reads *"No scaffolding CLI in v0 ... Revisit once condition 6 of the definition of
+done is met."* **Condition 6 was met on `2026-08-01` (`D-049`)**, so `D-005`'s own sunset has fired
+and the bar is revisitable — but it has not been revisited, and a design brief cannot lift a charter
+bar by proposing work that violates it. Under `00-precedence.md` the charter is the top of the
+stack and is amended only by explicit dated decision; under its Standing table, *"anyone may
+propose; proposing is not standing."*
+
+So: `§9`'s `IN` list is **not implemented**, deliberately. What was built instead is the measurement
+the brief itself demanded first, which is not tooling that generates or validates a *project* — it
+reads a fleet and writes nothing, in the same class as `check-corpus.py`, whose own ledger entry
+took care to note that automating it *"moves toward the tooling `D-005` bars."*
+
+`blocks-on:` an operator decision on whether `D-005`'s sunset is exercised. Until that entry exists,
+`astro install` / `update` / `contribute` / `raise` remain out of scope. `next:` if the operator
+lifts it, `§8` step 1 — **harvest the four artifacts** — runs before anything is written to any
+instance, because one of the four exists in a single directory on this machine and an install would
+overwrite it.
+
+`[2026-08-19T22:30Z] D-058:` **The install layer was executed from an empty directory for the first
+time, and the vendoring instruction is corrected to what a copy actually needs.** CHARTER
+definition-of-done condition 5 — *"the install layer can be dropped into an empty repository and
+produce a working Lite project without editing any file in this repo"* — has been claimed met since
+`2026-07-24` on inspection. It is now `CONFIRMED` **by execution** (`O-62`): a throwaway repository,
+`install/README.md` followed literally, then a real session in the result which knew its project and
+tier, listed all eight skills, cited `L-9` correctly, and **refused a mid-window fix under `L-7`**
+quoting *"Not one line. Not the obvious thing."* Two rows of this file's own verification table,
+run rather than assumed.
+
+Three defects surfaced that are invisible from inside this repository (`O-63`), and all three are
+fixed here:
+
+1. **`install/README.md` contradicted itself about the framework's own status** — its closing
+   section still said condition 6 was *"the only condition standing between this framework and
+   `VALIDATED`"*, four hundred lines below a status box saying `VALIDATED` as of `2026-08-01`. The
+   stale claim sat in the section a new project reads **last**, when it is deciding what it owes
+   back. Corrected under CHARTER invariant 7, in place and marked, rather than quietly.
+2. **The vendoring instruction produced a dangling citation.** It offered *"plus this repo's
+   `CHARTER.md` and `DECISIONS.md`"*; the ledger cites the observation log constantly, so taking
+   exactly those two leaves a copied ledger pointing at an `OBSERVATIONS.md` that was never copied.
+   **The rule is now: take `CHARTER.md`, `DECISIONS.md` and `OBSERVATIONS.md` together, or none of
+   them.**
+3. **The dangle exemption was incomplete.** *"Links into `tools/` and `install/` are the only ones
+   expected to dangle"* omits **template-relative** links — `artifacts/charter.template.md` points
+   at the ledger the *filled* charter will sit beside, which resolves only after the template is
+   copied out. Three kinds are now named, and anything else that dangles is called a vendoring
+   mistake rather than a known exception.
+
+**The finding under all three is one finding, and it is the same shape as `O-58`.**
+`tools/check-corpus.py` verifies every link **in this repository**, and all three of these were fine
+here — they break only after the corpus is copied into a differently-shaped tree. **The corpus gate
+checks the corpus; nothing checked the copy**, and the install layer is exactly the part of this
+framework whose correctness lives in the copy.
+
+`caveat (owned):` a **greenfield Lite** install is what was tested. Step 0a (adoption over work
+already in progress), Step 4 (retrieval) and Step 5 (role bounds) were not exercised, and adoption
+is the harder path — it is where `AST-D-045` came from. Ten of the twelve *"Verify the install"*
+rows remain assumed. `caveat (owned):` one operating system, one filesystem.
+`caveat (owned):` the harness that found these was a throwaway and is **not** shipped — CHARTER "Out
+of scope" bars tooling that validates projects (`D-005`), and whether that bar should hold for an
+install self-check is a live question this entry does not decide. `next:` run the adoption path
+(Step 0a) against a project that already has a `D-` ledger, which is the untested half.

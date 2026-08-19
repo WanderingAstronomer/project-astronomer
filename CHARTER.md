@@ -78,13 +78,13 @@ reaches a correct conclusion faster, and knows which of its conclusions are load
 
 | Inherited pattern (source) | Mapping here |
 |---|---|
-| Precedence clause — "this document wins" (fractalized-rag, data-dating, vociferous) | This charter, and [`doctrine/00-precedence.md`](doctrine/00-precedence.md) |
+| Precedence clause — "this document wins" (<instance-F>, data-dating, vociferous) | This charter, and [`doctrine/00-precedence.md`](doctrine/00-precedence.md) |
 | Append-only decision ledger, supersede-by-name (data-dating, vociferous) | [`DECISIONS.md`](DECISIONS.md), verbatim format |
 | Frozen vs living records (all four) | This charter and doctrine are living; `provenance/` is frozen |
 | Epistemic typing of claims (all four, independently) | [`doctrine/02-epistemics.md`](doctrine/02-epistemics.md) — the framework's core |
 | Observe read-only before intervening (OpenDrop, vociferous) | [`doctrine/03-the-loop.md`](doctrine/03-the-loop.md) |
-| Pre-registered numeric acceptance criteria (fractalized-rag, OpenDrop) | Definition of done, below |
-| "What this does NOT specify" (fractalized-rag §11) | Scope, above, and the Status note in the README |
+| Pre-registered numeric acceptance criteria (<instance-F>, OpenDrop) | Definition of done, below |
+| "What this does NOT specify" (<instance-F> §11) | Scope, above, and the Status note in the README |
 | Shared preamble included by reference (vociferous) | [`artifacts/shared-preamble.template.md`](artifacts/shared-preamble.template.md) |
 
 ## Definition of done (v0)

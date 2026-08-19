@@ -172,8 +172,14 @@ def check_vocabularies(registry: dict) -> None:
         # vocabulary is asserting its membership just as firmly as a list is.
         for noun in vocab.get("count_nouns", []):
             expected = len(members)
+            # (?<![.\d]) — a section number is not a count. Without it "### 5.1 Ownership
+            # classes" matched on the "1" of "5.1" and the gate reported prose counting one
+            # record_class. doctrine/00-precedence.md: a gate producing a false positive is a
+            # defect in the gate, and "the guard is intentional" does not licence a wrong
+            # guard. Digit-word counts ("three") are unaffected; only a digit glued to a
+            # preceding period or digit is excluded.
             count_re = re.compile(
-                r"\b(" + "|".join(NUMWORDS) + r"|\d{1,2})\s+"
+                r"(?<![.\d])\b(" + "|".join(NUMWORDS) + r"|\d{1,2})\s+"
                 r"(?:[A-Za-z][A-Za-z-]*\s+){0,2}?" + re.escape(noun) + r"\b",
                 re.IGNORECASE,
             )

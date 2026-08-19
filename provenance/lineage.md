@@ -21,7 +21,7 @@ doing all the epistemic work.**
 |---|---|---|---|
 | **VOC** | `vociferous-next` | Transcription and refinement platform; medical/compliance posture | ~20 doc trees, 19 catalogued systems, 452 catalogued items, multi-session concurrent workstreams |
 | **OD** | `OpenDrop` | Civic donation-location mapping service, publicly deployed | 61 commits, 8 blocking CI gates, four permanent docs plus disposable working docs |
-| **FR** | `fractalized-rag` | Retrieval-architecture proof of concept | 986-line authoritative specification written before any code; not a git repository |
+| **FR** | `<instance-F>` | Retrieval-architecture proof of concept | 986-line authoritative specification written before any code; not a git repository |
 | **DD** | `data-dating` | Personal research study — **non-software** | 4 commits, 23 files, four-tier authority stack |
 
 **DD matters disproportionately.** It is the only source project that was not software, and it

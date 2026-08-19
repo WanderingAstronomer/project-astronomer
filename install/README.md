@@ -144,10 +144,22 @@ is the safer default for a project meant to outlive its tooling.
 > cross-references.**
 >
 > Vendor **`doctrine/` `rituals/` `artifacts/` `tiers/` `provenance/`** as siblings under one
-> parent, plus this repo's `CHARTER.md` and `DECISIONS.md` if you want `AST-D-<n>` citations to
-> resolve. Do **not** vendor `tools/` — it is the framework's self-check gate and it operates on the
-> framework corpus, so a copy would check a copy. Links into `tools/` and `install/` are the only
-> ones expected to dangle.
+> parent. Do **not** vendor `tools/` — it is the framework's self-check gate and it operates on the
+> framework corpus, so a copy would check a copy.
+>
+> **If you want `AST-D-<n>` citations to resolve, take `CHARTER.md`, `DECISIONS.md` *and*
+> `OBSERVATIONS.md` — all three or none of them** (AST-D-058). The ledger cites the observation log
+> constantly, by design: a decision names the entries that produced it. Vendoring the first two and
+> not the third was this file's instruction until `2026-08-19`, and it was measured to leave a
+> dangling `OBSERVATIONS.md` link in the copied ledger — a citation that resolves upstream and
+> silently does not in your project, which is the exact defect the ledger's own namespacing rules
+> exist to prevent.
+>
+> **Three kinds of link are expected to dangle in a vendored copy, and no others:**
+> links into `tools/`, links into `install/`, and **template-relative links** — a
+> `[…](DECISIONS.md)` inside `artifacts/charter.template.md` points at the ledger the *filled*
+> charter will sit beside, so it resolves once you copy the template out and not before. Anything
+> else that dangles is a vendoring mistake, not a known exception.
 >
 > **⚠ Put that parent somewhere NOT hidden, and this instruction used to say only "one parent"**
 > (AST-D-052). A path beginning with a dot is invisible to a large share of default tooling, and
@@ -421,10 +433,23 @@ template's size rather than adding emphasis.
 
 ## After the first loop
 
-CHARTER definition-of-done §6 is the only condition standing between this framework and
-`VALIDATED`, and it can only be met from outside: **a real project runs one full OBSERVE→RECORD
-loop, and the friction it hit is written back to Astronomer** as a ritual or an amendment.
+CHARTER definition-of-done §6 — **a real project runs one full OBSERVE→RECORD loop, and the
+friction it hit is written back to Astronomer** — was met on `2026-08-01` by `vociferous-next`
+(D-049), and the corpus has been `VALIDATED` since.
 
-So keep a note of where the framework was inconvenient, where a skill misfired, and where you
-were tempted to skip a step. That note is the deliverable this repo is waiting on. Where the
-framework was inconvenient to you, record it — do not smooth it over (D-007).
+> **This paragraph read *"§6 is the only condition standing between this framework and
+> `VALIDATED`"* until `2026-08-19`, four hundred lines below a status box in this same file that
+> already said `VALIDATED`.** One file, two answers, and the stale one sat in the section a new
+> project reads *last* — after installing, when it is deciding what it owes back. Corrected under
+> CHARTER invariant 7 (**no fiction**) rather than quietly, because a document that contradicts
+> itself about its own status is the defect class `L-16` puts above breakage.
+
+**What did not change is the obligation.** `VALIDATED` is the status the definition of done
+defines, and nothing more — it is not `finished`, and it rests on **one** project that also helped
+write the framework. The strong form of ratification, a project with no hand in authoring this, has
+still not happened. So the note is still the deliverable:
+
+Keep a record of where the framework was inconvenient, where a skill misfired, and where you were
+tempted to skip a step. **The second project to send friction back is worth more than the first,
+because the first helped write this.** Where the framework was inconvenient to you, record it — do
+not smooth it over (D-007).
