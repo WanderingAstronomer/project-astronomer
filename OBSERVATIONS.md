@@ -705,3 +705,116 @@ and Step 5 (role bounds) were **not** exercised; the test was a greenfield Lite 
 nothing about the adoption path, which is the harder one and the one `AST-D-045` came from. Whether
 the install works on a non-Windows filesystem, and whether it works for a project that already has a
 `D-` ledger, are both untested.
+
+---
+
+## `2026-08-28` — the first measured pass over skill usage
+
+**Window:** the whole archived transcript corpus, `2026-06-15`–`2026-08-28`: 3,286 files, 1.63 GB,
+235,147 assistant records, 96 project directories. **Instrument:** `tools/skill-census.py`
+(`D-059`), run after its falsifier had been observed going red. Nothing was changed during the
+window; every figure below is measured by that instrument on this machine.
+
+### `O-64` — the loop still does not run, and the trigger written to fix that did not fix it
+
+- **Observed:** the five loop phases fire at rates that cannot describe a loop. Corpus-wide:
+  `astronomer-observe` **9**, `astronomer-triage` **1**, `astronomer-verify` **1**,
+  `astronomer-decide` **21**, `astronomer-record` **1**. Inside the consuming project the shape is
+  the same and sharper — observe **7**, triage **1**, verify **0**, decide **20**, record **1**.
+  **Decisions are appended twenty times while the phases that should precede and follow them fire
+  once or never.** A loop whose RESOLVE and RECORD steps are absent is not a loop; it is a ledger
+  with a habit.
+- **Confidence:** `CONFIRMED` for the counts, from `census-final-summary.json` `per_skill`.
+  `INFERENCE` for the reading that this means the phases were skipped rather than performed without
+  their skills — the census sees skill invocations, not conduct. A session can OBSERVE properly
+  while never invoking `astronomer-observe`.
+- **And this is the part that matters.** The consuming project's `CLAUDE.md` recorded exactly this
+  on `2026-08-11`, in capitals — *"THE LOOP HAD NO TRIGGER, AND SO IT DID NOT RUN"* — and shipped a
+  remedy in the same breath: **name the phase in your first message.** Seventeen days later the
+  distribution is unchanged. The remedy was a rule addressed to the same instrument that was already
+  failing to follow the rule above it, which is `AST-O-39`'s finding in a new place: a rule read,
+  agreed to and restated out loud was violated four times in one session. **This is the second
+  instance of the class *"the fix for a behavioural gap was another instruction"*.** L-17 fires on
+  the third.
+
+### `O-65` — a skill the model has never once chosen
+
+- **Observed:** `astronomer-supervise` fired **10** times and **all 10 were slash-command
+  activations**. Not one was model-invoked. Every other Astronomer skill that fired more than twice
+  was activated by tool call: `astronomer-decide` 21/21, `astronomer-research` 25/25,
+  `astronomer-observe` 9/9.
+- **Confidence:** `CONFIRMED`, from the `activation` histogram per skill.
+- **Why it is worth an entry rather than a shrug:** a skill only the operator can reach is a slash
+  command wearing a skill's costume. The supervise skill exists precisely for the case where nobody
+  is watching — an unattended run in flight — and it is the one skill that requires somebody to be
+  watching in order to fire. Its description is the only thing standing between it and selection,
+  and the description is losing.
+
+### `O-66` — the unattended entrypoint has no skill system
+
+- **Observed:** by entrypoint, `claude-desktop` produced **453 spans across 185,573 assistant
+  records** — `2.441` spans per thousand. `sdk-cli`, which is the night loop, produced **1 span
+  across 49,573** — `0.020` per thousand. A **122× gap**, on a quarter of all assistant work in the
+  corpus.
+- **Confidence:** `CONFIRMED` for the rates. `UNRESOLVED` for the cause: whether skills are not
+  offered under that entrypoint, not selected, or suppressed by its permission configuration was not
+  determined, and the three have different fixes. What would settle it: one instrumented iteration
+  that dumps the skill listing it actually receives.
+- **The consequence is doctrinal, not cosmetic.** Every phase skill, every ritual routing rule and
+  every safeguard the framework encodes as a skill is inert for the largest single block of
+  autonomous work this operator runs. AILS is governed by prose in a brief, and by nothing the
+  framework ships.
+
+### `O-67` — 135 of 163 skills never fired, and they are not free
+
+- **Observed:** of the 163 skills actually offered to the model somewhere in the corpus, **135 never
+  fired once**. They are not scattered: whole namespaces are entirely unused —
+  `data` 10/10, `engineering` 9/9, `operations` 9/9, `product-management` 9/9, `sales` 9/9,
+  `marketing` 8/8, `design` 7/7, and `ob1-chops-*` 23 across five namespaces. Roughly **90 skills
+  from vertical packs, zero uses between them.** Also never fired: `code-review`, `security-review`,
+  `simplify`, `run`, `init`, `dataviz`, and — in a speech-transcription project — `assemblyai`.
+- **Confidence:** `CONFIRMED` for the counts; the roster is derived from `skill_listing` attachments
+  found in the corpus, so it is bounded by what the transcripts happened to record.
+- **Why this is a finding and not an inventory.** An unused skill is not inert. Claude Code injects a
+  listing of every skill name and description on **every turn**, capped at
+  `skillListingBudgetFraction` (default **1%** of the context window), and **when that listing
+  overflows it drops the descriptions of the least-invoked skills first.** A skill with no
+  invocation history is first against the wall, and a skill without a description is far less likely
+  to be chosen — which keeps its history empty. Measured in one session during this pass: **108 skill
+  entries, 73 with descriptions, 35 name-only.** So the ninety never-used vertical skills are not
+  merely noise; they are spending the budget that would otherwise carry the descriptions of the
+  framework's own phase skills. `O-64`, `O-65` and this entry are plausibly one mechanism seen three
+  ways, and that is a hypothesis, not a conclusion.
+
+### `O-68` — the false-success hook has 710 records and has never been used for the thing it was built for
+
+- **Observed:** `.claude/false-success-log.jsonl` holds **710 turns**, every one `mode: log`. **138
+  of them (19.4%)** carry at least one finding: `unsubstantiated-number` **226** hits and
+  `completion-claim-with-zero-tool-calls` **15**, with **21** turns carrying a finding while making
+  **zero** tool calls. `.claude/stop-payload.jsonl` holds a further **1,897** shape records
+  (1,182 `SubagentStop`, 715 `Stop`).
+- **Confidence:** `CONFIRMED` for the counts. **`REFUTED` for treating 226 as a defect count**: the
+  rule demonstrably fires on legitimately derived figures — one sampled hit is *"at the observed ~158
+  runs/month"*, a number the same turn had computed — so 226 is an upper bound with an unmeasured
+  false-positive rate.
+- **The finding is the gap between the two.** The consuming project's `CLAUDE.md` states the hook is
+  *"log-only until calibrated on this project's own transcripts."* The transcripts exist. The log
+  exists, at 710 records across 61 sessions. **The calibration has never been run**, so the stated
+  precondition for the gate ever becoming a gate has been satisfiable for weeks and unsatisfied. A
+  control that has never been seen to fire is a hypothesis about a control; this one has never been
+  allowed to fire at all.
+
+---
+
+`INTAKE CLOSED` · `2026-08-28T20:02Z` · **5 entries** (`O-64`–`O-68`).
+
+**What this did not look at.** Conduct, as distinct from invocation — the census sees which skills
+fired, never whether the work was done well or whether a phase was performed without its skill, and
+every reading above is bounded by that. Rituals were not measured at all: they are documents reached
+through `CLAUDE.md` injection, and the only available proxy (a tool input naming
+`rituals/<name>.md`) counts consultation, not compliance. The `sdk-cli` cause was not determined.
+The false-positive rate of the false-success rules was not measured, only demonstrated to be
+non-zero. Skill *descriptions* were not compared against what fired, so the claim in `O-67` that
+eviction is the mechanism is a hypothesis with a plausible mechanism and no controlled test — the
+test would be to raise `skillListingBudgetFraction` and re-run this census. And the whole pass is one
+operator, one machine, one 75-day window.
