@@ -184,6 +184,42 @@ else's counting error is exactly the instrument nobody re-checks.
 
 ---
 
+
+### The skill census — what the framework's own skills actually did
+
+`fleet-census.py` asks what is *installed*. This one asks what was *used*, which turns out to be a
+very different question, and until 2026-08-28 nobody here had an instrument that could answer it.
+
+- **`skill-census.py`** — streams every Claude Code `.jsonl` transcript under a root and emits one
+  record per **skill span**: which skill, in which project and session, under which entrypoint, for
+  how many records, activated how, and which tools ran inside it. Reads; writes only its own two
+  output files. Pure stdlib.
+- **`make-skill-fixture.py`** — builds synthetic transcripts containing a **known** span count,
+  including the awkward shapes: a span with no activating `Skill` call, one straddling a compaction
+  boundary, one in a subagent lane, a file that ends mid-span, and a corrupt line.
+- **`verify-skill-census.py`** — the falsifier. Seeds defects into fresh fixture copies and refuses
+  to certify the census until each is caught. `--selftest` breaks the *verifier* on purpose, running
+  it against an honest reference, against a liar that hardcodes the right answer, and against a
+  count-only extractor; a suite that greenlights the liar has no teeth.
+
+**The decisive field is `attributionSkill`**, a top-level string on `assistant` records marking the
+whole span a skill was active. Counting `Skill` tool calls instead undercounts by roughly six-fold,
+because most spans have no `Skill` call anywhere near them — measured, not assumed.
+
+**Run `verify-skill-census.py` before believing a clean census, and read what it caught the first
+time.** Against the initial implementation it went red: 13 spans on a fixture holding 12, with two
+seeded defects unnoticed — a duplicated session double-counted, and a structurally corrupt
+attribution dropped in silence. Both are the false-success class L-16 names. The census only became
+believable after it had been observed failing.
+
+**One correction is worth carrying, because the fixture could not have caught it.** The rule that a
+human turn closes a span is right for the main conversation and wrong for a subagent, whose
+`type: "user"` records are the harness feeding it rather than a person speaking. Applied
+indiscriminately it fragmented single activations into per-turn slivers — measured on the real
+corpus, 3,174 of 3,404 spans closed on a "human turn" and 3,315 of those were subagent lanes. The
+fixture passed throughout, because it contained no subagent records at all. That is L-12 exactly: a
+check that cannot fail as it matters proves nothing. The fixture now carries a subagent case.
+
 ## The rule for the guards
 
 From `rituals/recurring-defect.md`, and it is not negotiable:

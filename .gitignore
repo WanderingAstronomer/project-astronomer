@@ -18,3 +18,11 @@ Thumbs.db
 *.swp
 .idea/
 .vscode/
+
+# skill-census default outputs and fixture, and the __pycache__ a subprocess-invoked
+# tool never makes but an accidental import would (measured: an import of check-corpus.py
+# dirtied this tree on 2026-08-28).
+tools/skill-spans.ndjson
+tools/skill-summary.json
+tools/skill-census-fixture/
+__pycache__/
