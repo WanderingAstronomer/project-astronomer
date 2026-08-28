@@ -31,6 +31,7 @@ enforceable form a collaborator actually reads each session.
 | [`06-delegation.md`](06-delegation.md) | Roles, fences, briefs, the non-delegable categories | Before handing work to anyone, human or otherwise |
 | [`07-boundaries.md`](07-boundaries.md) | What must not leave, and what a collaborator may run | Before a collaborator has filesystem access, a network, and a shell at once |
 | [`08-instruments.md`](08-instruments.md) | Capability versus permission, the roles, the fallback ladder, decision rights | Before planning work that depends on what a tool or a collaborator can actually do |
+| [`09-unattended.md`](09-unattended.md) | The iteration contract, context tiers, stop conditions, selection and decomposition when nobody is watching | Before letting a loop run for hours unattended — and it is `UNVERIFIED`, from one implementation |
 
 ## If you read only one thing
 
