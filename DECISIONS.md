@@ -1082,3 +1082,101 @@ not from an authoritative registry, so *"135 never fired"* is bounded by what th
 to record. `caveat (owned):` measured on one machine, one operator, one 75-day window.
 `next:` the census is the input to a triage pass over what the absences mean; it does not interpret
 them, and this entry does not either.
+
+`[2026-08-28T20:12Z] D-060:` **Astronomer ships through BOTH channels, and the deciding constraint is
+not that the plugin channel failed — it is that 150 existing citations live in records L-13 forbids
+rewriting.** `design/distribution-and-scope.md` chose a vendoring installer (`D1`) after evaluating
+four mechanisms, and — measured — never evaluated a fifth: the words *"plugin"* and *"marketplace"*
+appear **zero times** in its 823 lines and zero times across all 63 markdown files in this corpus. The
+gap mattered, because the stated reason for rejecting packaging (*"installs into `node_modules` /
+`site-packages`, not where the runtime must find it"*) is precisely the objection a plugin does not
+have, and the *"lands at two directories"* objection that killed submodules dissolves too, since one
+plugin serves both roles.
+
+**Three gates were pre-registered before the probe was built, with the decision rule written first:
+3/3 → single channel, 2/3 → plugin ships skills and doctrine stays vendored, ≤1/3 → vendored only.**
+A real marketplace and plugin were built carrying `doctrine/` and `rituals/` — 26 files, 244 KB —
+validated (`claude plugin validate`, both manifests), installed, and then removed.
+
+- **`G1` resolution — PASS.** The payload travels: `doctrine/`, `rituals/` and `skills/` all land at
+  `~/.claude/plugins/cache/<marketplace>/<plugin>/<version>/`, and `01-laws.md` arrives intact at
+  27,441 bytes (**MEASURED**). That `${CLAUDE_PLUGIN_ROOT}` substitutes inside a skill's markdown body
+  is **CITED**, not measured — `reference/claude-code/skills.md:409`, *"In a plugin skill, Claude Code
+  substitutes `${CLAUDE_PLUGIN_ROOT}` … in the same two places"*.
+- **`G2` permission — PASS, with a design requirement rather than a yes.** The same line continues:
+  *"Using the same variable in both places lets a skill run a bundled script **without a permission
+  prompt**."* So the no-prompt path is real and conditional: a skill must declare the same
+  `${CLAUDE_PLUGIN_ROOT}` path in its `allowed-tools` frontmatter as it names in its body. **CITED,
+  not measured** — the runtime check needs a session that did not exist when the plugin was installed,
+  and `claude -p` could not authenticate to spawn one.
+- **`G3` citation — PASS, by admitting there are two audiences.** The machine form
+  `${CLAUDE_PLUGIN_ROOT}/doctrine/01-laws.md` is version-stable *as a string*, which is what matters;
+  the resolved path is not, and `plugins-reference.md:724` says so outright — *"changes when the plugin
+  updates … treat it as ephemeral"*. Measured: the cache carries a bare `0.0.1/` with **no symlink and
+  no `latest` alias**, so no stable literal path exists. The human form is the upstream public URL,
+  which a reader of a GitHub issue can actually follow.
+
+**Two measurements decided more than the gates did.** A 244 KB corpus costs **~72 tokens always-on**
+(`claude plugin details`), because inert payload is reachable without being loaded — the plugin channel
+is nearly free, and `K-7`'s poisoning concern does not apply to it at all. And a `grep` rooted in a
+consuming repository finds **nothing** in that corpus: readable by path, invisible to search. That is
+the same trade the vault exclusion makes, and it is a cost, not a defect.
+
+**So the ruling is both channels, and the reason is migration, not capability.** New consumers install
+the plugin: no vendoring step, central updates, 72 tokens. `vociferous-next` keeps its vendored tree,
+because **150 `doctrine/NN-*.md` citations across 40 files** point at relative paths, many of them
+inside frozen records that `L-13` forbids rewriting. A corpus cannot be migrated by repointing
+citations it is not permitted to touch. The vendored tree is therefore not a fallback for a failed
+mechanism; it is what a live consumer with a history looks like.
+
+`caveat (owned):` **`G1`'s runtime half and the whole of `G2` are CITED, never observed.** The
+documentation is the version installed on this machine and it is unambiguous, but this corpus's own
+hard rule 8 asks that grades of verification be distinguished, and a documented capability is not a
+measured one. **`PROVISIONAL`**, and the condition that reopens it is named: Phase 4 builds the real
+marketplace, and the first thing it must do is run the probe from a session in an unrelated repository
+under default permissions, and record whether the read prompts. If it prompts despite a correct
+`allowed-tools` declaration, this entry is wrong and the single-channel half of it collapses.
+
+`caveat (owned):` the probe carried 26 files. A full install is larger, and nothing here measured
+whether payload size changes install behaviour, the 256 MiB copy ceiling, or update cost.
+`caveat (owned):` `D-005` was not engaged and is not settled by this entry. A marketplace distributes;
+it does not generate or validate projects. `AST-D-057` still leaves that bar to the operator.
+`next:` Phase 4 — build `astronomer-market`, and measure `G1b` and `G2` on it before anything else.
+
+`[2026-08-28T20:14Z] D-061:` **`O-67`'s eviction hypothesis gets a controlled test, and the criterion
+is written here before any of its data exists.** The claim is that the per-turn skill listing budget —
+which drops the descriptions of the **least-invoked** skills first when it overflows — is why 135 of
+163 offered skills never fire, because a skill with no history loses its description, which keeps its
+history empty. That is a plausible mechanism attached to a real measurement, and plausible mechanisms
+attached to real measurements are exactly what this corpus exists to distrust.
+
+**One variable.** `skillListingBudgetFraction` raised from its default `0.01` to `0.04` at
+`2026-08-28T20:0xZ`, user settings, previous file preserved at `settings.json.bak-2026-08-28`. Nothing
+else changed: no skill was rewritten, no plugin enabled or disabled, no description touched. A second
+change before the re-measurement makes the result unattributable (`L-10`) and the honest response then
+is to say so rather than to interpret it.
+
+**Baseline, measured before the change:** 135 of 163 offered skills never fired across the whole
+corpus; in one session sampled during the same pass, the listing carried **108 entries, 73 with
+descriptions, 35 name-only**, interleaved rather than truncated at the tail.
+
+**Criterion, pre-registered.** Re-run `tools/skill-census.py` after **at least seven days** of ordinary
+use, then:
+
+- **CONFIRMED** if the name-only share falls toward zero **and** `astronomer-triage`,
+  `astronomer-verify` and `astronomer-record` each fire at least once in the new window. Both halves
+  are required.
+- **REFUTED** if the name-only share falls but the never-fired set is materially unchanged. That
+  outcome says eviction is real and is **not** what suppresses selection — which would be the more
+  valuable result, because it would send the router work in Phase 6 somewhere else entirely.
+- **UNRESOLVED** if the window is too quiet to judge. State the volume rather than reading a trend
+  into three sessions.
+
+`caveat (owned):` the roster of 163 comes from `skill_listing` attachments found in transcripts, not
+from an authoritative registry, so both the baseline and the re-measurement are bounded by what the
+harness happened to record. `caveat (owned):` seven days of one operator's ordinary use is not a
+controlled workload, and a week that happens to contain a different kind of work will move these
+numbers for reasons that have nothing to do with the budget. Say so if it does.
+`caveat (owned):` **this test was approved before it was run, which means the temptation it guards
+against is mine** — the criterion above is the one to be held to, not a better one discovered after
+seeing the result.
