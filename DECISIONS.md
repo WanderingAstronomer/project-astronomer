@@ -1180,3 +1180,37 @@ numbers for reasons that have nothing to do with the budget. Say so if it does.
 `caveat (owned):` **this test was approved before it was run, which means the temptation it guards
 against is mine** — the criterion above is the one to be held to, not a better one discovered after
 seeing the result.
+
+`[2026-08-28T21:24Z] AMENDS D-061:` **The test returned `REFUTED`, four hours after it was
+pre-registered and without waiting the seven days — because a better instrument existed than the
+one the entry planned to use.** `D-061` proposed to raise `skillListingBudgetFraction` from `0.01`
+to `0.04`, wait a week of ordinary use, and re-run the skill census. That design had a flaw the
+entry did not see: it would have measured *whether the never-fired set changed*, which is a
+downstream proxy, when the mechanism itself is directly observable. The `skill_listing` attachment
+is recorded in every transcript, so **which names lost their descriptions has been measurable all
+along, historically, for 2,831 listings going back to June.** `tools/listing-census.py` reads it.
+
+**The result is the branch `D-061` named as the more valuable one, and it is (`O-69`):** eviction
+is real, it is a cliff at 80 offered skills, it reaches 40% of entries in the largest listings —
+**and it never touched the framework's own skills.** Seven Astronomer skills lost a description in
+2 listings each; four never lost one at all. They were visible, described, and unchosen.
+
+**The setting has been reverted.** `skillListingBudgetFraction` is removed from user settings and
+the file is byte-identical to the backup taken before the change. Keeping a 4× listing budget on a
+refuted rationale would be paying real context for no measured benefit — the population it would
+protect is the one that never fires.
+
+**What this changes downstream.** A per-turn router built to defeat eviction would have been built
+against a cause that does not exist, and the plan had it as the next phase. The open question is
+now narrower and better posed: *why does a present, well-formed description still lose selection?*
+`O-65` is the sharpest instance — `astronomer-supervise`, ten invocations, all ten by slash
+command, zero model-invoked, description present in every listing.
+
+`caveat (owned):` the refutation is about the FRAMEWORK's skills. Eviction genuinely governs the
+vertical packs, and a project whose important skills are rarely invoked would sit on the other side
+of that ratchet. This says the mechanism is not operating *here*, not that it is harmless.
+`caveat (owned):` `listing-census.py` ships **without the paired verifier** `tools/README.md`
+requires in three separate statements. That is a deviation, stated rather than hidden, and it is
+the immediate next action — until it exists, every figure in `O-69` rests on an instrument that has
+not been observed failing. `next:` write it, seed it with a fixture whose eviction count is known,
+and re-run `O-69`'s numbers against a checked instrument.

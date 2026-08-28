@@ -818,3 +818,55 @@ non-zero. Skill *descriptions* were not compared against what fired, so the clai
 eviction is the mechanism is a hypothesis with a plausible mechanism and no controlled test — the
 test would be to raise `skillListingBudgetFraction` and re-run this census. And the whole pass is one
 operator, one machine, one 75-day window.
+
+---
+
+## `2026-08-28` — the eviction hypothesis, refuted by its own instrument
+
+**Window:** the same corpus, read for a different attachment. **Instrument:**
+`tools/listing-census.py`, which reads the `skill_listing` attachment out of transcripts rather
+than asking `/context` — non-interactive, historical, and it records what the model was actually
+given rather than what the configuration implies. 2,831 listings across 3,227 files,
+`2026-06-16` to `2026-08-28`.
+
+### `O-69` — description eviction is real, is a cliff, and is not what suppresses the framework's own skills
+
+- **Observed, and it is a cliff rather than a gradient.** Of 2,831 injected listings, **1,062
+  (37.5%) dropped at least one description.** By listing size: below 80 skills offered, eviction
+  is essentially absent (0–7% of listings); **at 80 or more, it is 100% of listings, without
+  exception.** The budget's practical ceiling is visible at **~30,000 characters** — the 80–99
+  and 100–119 buckets both average 29,975 and the largest observed is 29,999. The worst single
+  listing stripped **46 of 115 entries, 40% of them.**
+- **Confidence:** `CONFIRMED` for every figure above, from `listing-census.ndjson`.
+- **And this REFUTES `O-67`'s mechanism.** The hypothesis was that the ~90 never-used vertical
+  skills spend the budget that would otherwise carry the framework's own descriptions, so a
+  skill with no history loses its description and therefore stays unchosen. Measured against the
+  1,062 listings that evicted something: `astronomer-start`, `-intake`, `-observe`, `-triage`,
+  `-verify`, `-decide` and `-record` each lost a description in **2** listings — 0% — and
+  `astronomer-research`, `astronomer-supervise`, `behavioral-audit` and `feature-spawn`
+  **never once**. What is actually evicted is `anthropic-skills` (10,041 name-only appearances),
+  `design` (7,098), `data` (5,314), unnamespaced (2,284), `sales` (146), `engineering` (26).
+- **So the Astronomer skills had their descriptions present, essentially always, and were still
+  not chosen.** Whatever suppresses them, it is not that the model could not see what they were
+  for. `REFUTED` is the right token for `O-67`'s mechanism, and the entry stays with the
+  refutation attached rather than being rewritten (`L-6`).
+- **The eviction ordering does hold, which is worth separating from the refutation.** The
+  least-invoked skills are the ones stripped, exactly as documented — the never-fired vertical
+  packs are the population that loses descriptions. The rule works; it simply does not reach the
+  skills the framework cares about, because those are invoked often enough to survive it.
+- **Where this sends the work.** `O-65` is now the sharper lead, not a curiosity:
+  `astronomer-supervise` fired 10 times, all 10 by slash command, zero model-invoked — **with its
+  description present in every listing.** That is a description-QUALITY problem, or a
+  selection problem, and it is not a budget problem. A per-turn router built to defeat eviction
+  would have been built against a cause that does not exist.
+
+---
+
+`INTAKE CLOSED` · `2026-08-28T21:2xZ` · **1 entry** (`O-69`).
+
+**What this did not look at.** Why the descriptions that survived still did not win selection —
+which is now the open question and needs a different instrument, most plausibly
+`claude plugin eval`'s two-arm ablation against a rewritten description. Whether the ~80
+account-side skills that have no on-disk presence are listed under the same rules as local ones.
+And the two post-change listings recorded before the setting was reverted offered 16 and 15 skills
+respectively, far below the eviction cliff, so they test nothing and are not evidence either way.
