@@ -1039,3 +1039,46 @@ rows remain assumed. `caveat (owned):` one operating system, one filesystem.
 of scope" bars tooling that validates projects (`D-005`), and whether that bar should hold for an
 install self-check is a live question this entry does not decide. `next:` run the adoption path
 (Step 0a) against a project that already has a `D-` ledger, which is the untested half.
+
+`[2026-08-28T19:43Z] D-059:` **The framework had no way to tell whether its own skills were ever
+used, so every claim about them was quoted rather than measured.** `fleet-census.py` answers *what is
+installed*; nothing answered *what fired*. `tools/skill-census.py` does, keyed on `attributionSkill`
+— a top-level string on `assistant` records marking the whole span a skill was active. It ships with
+`make-skill-fixture.py` (synthetic transcripts with a **known** span count) and
+`verify-skill-census.py` (the falsifier, with `--selftest` to break the verifier itself). Read-only in
+the sense `tools/README.md` draws the line, so `D-005` is not engaged: a measuring instrument is not
+tooling that generates or validates projects, which is the argument both existing instruments already
+carry.
+
+**Counting `Skill` tool calls would have undercounted about six-fold**, because most spans have no
+`Skill` call anywhere near them. Measured across 3,286 files / 1.63 GB in 10.6 s, parsing 2.6% of
+lines: **454 spans across 26 skills**, from 235,147 assistant records. **135 of the 163 skills the
+model was actually offered never fired once.** By entrypoint, `claude-desktop` **453** spans against
+`sdk-cli` **one** — an unattended loop whose skill system is effectively inert. In the consuming
+project specifically, `astronomer-start`, `astronomer-intake` and `astronomer-verify` never fired at
+all, while firing 18/2/1 times elsewhere in the corpus: reachable, never reached for.
+
+**The falsifier went red first, which is the only reason any of the above is reportable.** Against
+the initial implementation: 13 spans on a fixture holding 12, and two seeded defects unnoticed — a
+session duplicated across two files was double-counted, and a structurally corrupt attribution was
+dropped in silence. Both are `L-16`'s false-success class.
+
+`caveat (owned):` **the largest correction is one the fixture could not have caught, and it is `L-12`
+verbatim.** *"A human turn closes a span"* is right for the main conversation and wrong for a
+subagent, whose `type: "user"` records are the harness feeding it rather than a person speaking.
+Applied indiscriminately it fragmented single activations into slivers — **3,174 of 3,404 spans
+closing on a "human turn", 3,315 of those in subagent lanes, 967 of them one record long** — while
+the fixture passed throughout, because it contained no subagent records at all. The fixture now
+carries one and the corrected corpus reports 454. A check that cannot fail as it matters proves
+nothing, and this one could not, for the rule that mattered most.
+
+`caveat (owned):` one of the four fixes was an interface defect in the census's own output. Anomalies
+were first emitted as a dict of counters, and a consumer taking `len()` of that reads the number of
+counter *names* — a constant, however many anomalies occur. That is precisely how a silent drop stays
+silent. They are now a list of records, each naming its file.
+
+`caveat (owned):` the roster of 163 is derived from `skill_listing` attachments found in the corpus,
+not from an authoritative registry, so *"135 never fired"* is bounded by what the transcripts happened
+to record. `caveat (owned):` measured on one machine, one operator, one 75-day window.
+`next:` the census is the input to a triage pass over what the absences mean; it does not interpret
+them, and this entry does not either.
