@@ -870,3 +870,60 @@ which is now the open question and needs a different instrument, most plausibly
 account-side skills that have no on-disk presence are listed under the same rules as local ones.
 And the two post-change listings recorded before the setting was reverted offered 16 and 15 skills
 respectively, far below the eviction cliff, so they test nothing and are not evidence either way.
+
+---
+
+## `2026-08-29` — the calibration that had been possible for weeks
+
+**Window:** `.claude/false-success-log.jsonl` in the consuming project — 714 turns, 241 findings
+across 35 sessions, every one reachable to its transcript. **Instrument:**
+`.claude/hooks/calibrate_false_success.py`, written for this pass.
+
+### `O-70` — the gate's own precondition, measured at last, and it says do not turn it on
+
+- **Observed.** The consuming project's `CLAUDE.md` states its Stop hook is *"log-only until
+  calibrated on this project's own transcripts."* `O-68` recorded that the calibration had never
+  run. It has now. Scoring a flagged value as **substantiated** when that literal appears in the
+  session's own evidence — any tool result or user message, at or before the flagged turn:
+
+  | rule | hits | substantiated | false-positive rate |
+  |---|---:|---:|---:|
+  | `unsubstantiated-number` | 226 | 204 | **90%** |
+  | `completion-claim-with-zero-tool-calls` | 15 | n/a | n/a |
+
+- **Confidence:** `CONFIRMED` for the counts. The substantiation test is a **proxy** and errs in
+  two knowable directions, both stated in the instrument: it *undercounts* substantiation for
+  derived figures (683 → 937 tests, therefore 254 more, is earned by arithmetic without the literal
+  appearing), and it *overcounts* for short values, because `17` occurs in unrelated text
+  constantly. It measures a band, not a point.
+- **The rule is really two rules, and only one of them works.** Split by digit length: **1–2
+  digits, 104 hits, 100% substantiated** — pure noise, exactly as the caveat predicts. **3–4
+  digits, 89 hits, 98%.** **5 or more digits, 33 hits, 39% substantiated — so 61% genuinely
+  unsubstantiated.** The rule has real signal at long values and none at short ones. Excluding
+  1–2 digit values the false-positive rate is **82%**.
+- **`n/a` is not a missing measurement, it is a refused one.** The check asks whether the finding's
+  VALUE appears in evidence, which is meaningful only when the value *is* the claim. For
+  `completion-claim-with-zero-tool-calls` the value is a word like *"verified"*, and locating that
+  word in a tool result says nothing about whether the claim was earned. A rate there would be a
+  number that looks like a measurement. The instrument reported one in its first run and was
+  corrected before this entry was written.
+- **What that rule DOES support:** 15 hits, and in **15 of 15** the turn genuinely made zero tool
+  calls. Its own premise held every time. Low volume, internally sound, semantically unjudged.
+- **So `C3` on the triage board is answered, and the answer is no.** A gate that is wrong four
+  times in five gets disabled by whoever it interrupts, which is worse than one that never
+  existed — and `unsubstantiated-number` as written would be wrong 82–90% of the time. It should
+  stay log-only.
+- **And there is a cheap fix rather than a retirement.** Raising the rule's minimum to **5 digits**
+  discards the 193 hits that are noise and keeps the 33 where it is right 61% of the time. That is
+  not good enough to block on, and it is good enough to be worth reading. Whether to make it
+  blocking after that change is an operator call, because it changes how every session ends.
+
+---
+
+`INTAKE CLOSED` · `2026-08-29T14:47Z` · **1 entry** (`O-70`).
+
+**What this did not look at.** Whether the 22 numbers at 5+ digits that the evidence does not
+contain are genuinely unsubstantiated or merely derived — that is a reading task, not a regex one,
+and it is the difference between "61% true positive" and something lower. The
+`completion-claim-with-zero-tool-calls` rule's semantic correctness, which needs a different
+instrument entirely. And the whole calibration is one project, one operator, 714 turns.
