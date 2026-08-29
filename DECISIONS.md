@@ -1260,3 +1260,52 @@ measured; the remedy is reasoned. A rewrite that reads better to its author is t
 the world to believe, which is precisely why the criterion is written above the change rather than
 after it. `next:` re-run the census on or after `2026-09-05`; and if `plugin eval` becomes available,
 run the ablation instead — it would settle in an hour what this settles in a week.
+
+`[2026-08-29T17:07Z] D-063:` **The framework now ships, and the thing that made it shippable was
+being wrong in public four times.** Closing the rollout that began 2026-08-28: Astronomer is
+installable as three Claude Code plugins from a private marketplace, its unattended-loop contract is
+doctrine (`09-unattended.md`), and the implementation that produced that contract is under version
+control for the first time in its life.
+
+**What exists now that did not.** `astronomer-market` with `astronomer-core` (six loop skills plus
+`doctrine/` and `rituals/` as payload), `astronomer-instruments`, and `ails`; a self-check with four
+assertions `claude plugin validate` does not make, proved against five seeded defects; `ails-harness`
+holding the rescued loop, scrubbed for publication and verified by a pass written against the leak
+categories rather than the scrub's own expressions. Two measuring instruments this corpus did not
+have — `skill-census.py` and `listing-census.py`, each with its falsifier.
+
+**The rollout's own acceptance, measured 2026-08-29 against the installed marketplace:** nine shared
+skills, **9 of 9 identical after LF normalisation** — and **9 of 9 DIFFERENT raw**, which is the trap
+the whole effort opened with, reproduced live at the end of it. The single genuine difference was a
+consumer running `K-1…K-6` against the framework's `K-1…K-7`: the capability rules had grown by one
+and the install never learned. That is precisely the failure a distribution mechanism exists to
+prevent, found by the mechanism built to prevent it.
+
+**Four refutations, and they are the load-bearing part of this entry.**
+
+- *"All eight shared skills have drifted"* — `REFUTED`. Seven were byte-identical after
+  normalisation; the raw diff was line endings. `.gitattributes` now pins them, which makes the check
+  trustworthy by construction rather than by memory.
+- *"The unexplained skill spans are a too-narrow lookback"* — `REFUTED`. Widening the window changed
+  the split by exactly zero; the cause was structural.
+- *"Unused vertical skills evict the framework's descriptions and that is why it goes unchosen"*
+  (`O-67`) — `REFUTED` by `O-69`. Eviction is real, is a cliff at 80 offered skills, and **never
+  touched these skills**: they were visible, described, and unchosen. A per-turn router built to
+  defeat eviction would have been built against a cause that does not exist, and it was the next
+  phase.
+- *"226 unsubstantiated-number findings"* — `REFUTED` as a defect count by `O-70`. 90% false
+  positive; the rule is really two rules and only the one above five digits works.
+
+**`caveat (owned):`** the whole rollout is one operator, one machine, one 75-day corpus. `D-006`
+accepts independent convergence as the only validation signal and there is one attestation for every
+new claim here. **`caveat (owned):`** `astronomer-github` is written, tested, and deliberately NOT in
+the marketplace listing: 1,040 lines of PowerShell across 13 verbs would exclude every non-Windows
+consumer, and the fix is replacement rather than parameterisation. **`caveat (owned):`** the
+marketplace is private at the operator's instruction — *use it before committing to maintain it in
+public* — so nothing here has been exercised by anyone else. **`caveat (owned):`** `D-062`'s window
+does not close until 2026-09-05, and `D-060`'s two residuals need one session started after the
+marketplace was installed. Neither is closed by this entry and neither is pretended to be.
+
+`next:` replace `astronomer-github`'s PowerShell with `gh` steps and settings; re-run the census on
+or after 2026-09-05; and take `D-060`'s runtime residuals in the first session that starts with the
+plugins already loaded.
