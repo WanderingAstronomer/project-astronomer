@@ -71,7 +71,17 @@ def parse_listing(content):
         m = ENTRY_RE.match(line.strip())
         if not m:
             continue
-        name, desc = m.group(1), m.group(2).strip()
+        # A trailing colon must not become part of the NAME. The character class admits
+        # `:` because plugin skills are `namespace:skill`, which means a greedy match on
+        # `- gamma:` yields `gamma:` -- and every downstream comparison is by name, so the
+        # skill would silently never match and read as "never evicted". A false negative,
+        # in the one direction that flatters the result.
+        #
+        # Measured before fixing: the live harness renders an evicted entry as `- name`
+        # with NO trailing colon, and 0 of 64 distinct evicted names in the real census
+        # carried one. So O-69's figures were unaffected. This closes the trap rather than
+        # correcting a published number.
+        name, desc = m.group(1).rstrip(":"), m.group(2).strip()
         if desc:
             withd += 1
         else:
