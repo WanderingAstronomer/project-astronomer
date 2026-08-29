@@ -1,0 +1,11 @@
+# Every file stored and checked out LF.
+#
+# Added 2026-08-29 because its absence produced a FALSE FINDING. A comparison of this
+# corpus against a consuming install reported all 8 shared skills as drifted; 7 of the 8
+# were byte-identical after LF normalisation, and the eighth differed by one line. The
+# repo is pure LF in its blobs and the consumer checks out CRLF, so the raw diff was
+# noise wearing the costume of evidence.
+#
+# This makes that comparison trustworthy by construction rather than by remembering to
+# normalise -- which is the L-17 move: on the recurring instance, build the mechanism.
+* text=auto eol=lf

@@ -220,6 +220,39 @@ corpus, 3,174 of 3,404 spans closed on a "human turn" and 3,315 of those were su
 fixture passed throughout, because it contained no subagent records at all. That is L-12 exactly: a
 check that cannot fail as it matters proves nothing. The fixture now carries a subagent case.
 
+
+### The listing census — what the model was actually offered
+
+`skill-census.py` asks which skills *fired*. This one asks which skills the model could
+plausibly have chosen, which turns out to be a different set — and answering it refuted a
+hypothesis the other instrument had made attractive.
+
+- **`listing-census.py`** — reads the `skill_listing` attachment out of every transcript and
+  reports, per injected listing: its size in characters, how many entries kept their
+  description, and **which names were reduced to a bare name**. Reads; writes only the file
+  the caller names.
+- **`verify-listing-census.py`** — the falsifier. Five cases against synthetic transcripts
+  whose eviction count is known, including the shapes that break a naive parser: a
+  description containing colons, an evicted entry written both with and without its trailing
+  colon, a corpus with no listing at all, and a truncated line.
+
+**Why not `/context` or `/doctor`.** Both report the listing, and both are interactive. This
+is non-interactive, it is *historical* — so a configuration change can be measured against
+what came before rather than against a memory — and it records what the model was **given**
+rather than what the configuration implies it should have been. It also reaches skills with
+no on-disk presence: measured 2026-08-28, one machine carried 54 `SKILL.md` files on disk
+against ~163 offered in-session, so a disk-based census would have missed half of it.
+
+**Run `verify-listing-census.py` before believing a clean census — it caught a real defect
+on its first run.** The entry pattern admits `:` because plugin skills are
+`namespace:skill`, so a greedy match on an evicted entry written `- name:` captured the
+colon *into the name*. Every downstream comparison is by name, so such a skill would never
+match and would read as **never evicted** — a false negative, in the direction that flatters
+the result. The live harness happens to render evicted entries without a trailing colon, and
+0 of 64 distinct names in the real census carried one, so no published figure was wrong; the
+fix closes a trap rather than correcting a number. That distinction was established by
+re-running the full census after the fix and comparing, not by assuming.
+
 ## The rule for the guards
 
 From `rituals/recurring-defect.md`, and it is not negotiable:
