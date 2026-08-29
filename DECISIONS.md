@@ -1214,3 +1214,49 @@ requires in three separate statements. That is a deviation, stated rather than h
 the immediate next action — until it exists, every figure in `O-69` rests on an instrument that has
 not been observed failing. `next:` write it, seed it with a fixture whose eviction count is known,
 and re-run `O-69`'s numbers against a checked instrument.
+
+`[2026-08-29T09:12Z] D-062:` **A skill's description was waiting for a question that arrives as its
+own invocation, and the fix is pre-registered against a weaker instrument than intended because the
+intended one is not available.** `O-65` recorded that `astronomer-supervise` fired ten times and all
+ten were slash-command activations — zero model-invoked — while every other Astronomer skill firing
+more than twice was 100% tool-call. `O-69` then removed the obvious explanation: its description was
+never evicted from the listing, not once. It was present, well-formed, and unchosen.
+
+**The discriminating feature, measured across the descriptions rather than guessed.** The skills that
+win selection are triggered by **the model's own imminent act**: `astronomer-research` (25 spans) says
+*"use before any web search, external lookup, or outbound request"*; `astronomer-decide` (21) says
+*"use whenever a call is made."* `astronomer-supervise` was triggered by **the operator asking** —
+*"use when the operator asks how a background loop … is doing."* But when the operator wants that,
+what they type is `/astronomer-supervise`. **The description described its own slash command**, so
+the trigger it named could only ever be satisfied by the invocation it was supposed to cause. Length
+is not the variable: `research` and the old `supervise` were both 287 characters.
+
+**Rewritten to lead with the act.** *"…use before reporting that a background loop, agent, cron job
+or overnight process succeeded, before merging or acting on work it produced, before describing the
+state of a run you did not watch, and whenever the operator asks how one is doing."* The operator's
+question survives as the last clause rather than the only one. Changed in both the live copy and the
+marketplace copy, because a test of the live behaviour needs the live file to change.
+
+**THE INTENDED FALSIFIER IS UNAVAILABLE, and that is stated rather than worked around.**
+`claude plugin eval` is exactly the right instrument — `--ablation with-without` is its default and
+`tool_used: Skill` is a built-in grader for *did the skill fire* — but it is **in early access and
+not enabled on this account**: it prints that notice and exits 0 without running. So the pre-registered
+criterion falls back to the instrument this project does have.
+
+**Pre-registered, before the edit was made:**
+
+- **Baseline, measured:** 10 spans, 10 slash-command, **0 tool-call**.
+- **CONFIRMED** if, after at least seven days, `tools/skill-census.py` records **any**
+  `astronomer-supervise` span with `activation: tool-call`.
+- **REFUTED** if it remains 0 of N with N ≥ 5. The description was then not the cause, and the next
+  hypothesis is the selection surface itself rather than the text.
+- **UNRESOLVED** if the situation did not arise — report N rather than reading a trend into silence.
+
+`caveat (owned):` the operator may simply keep typing the slash command, which would hold
+model-invocation at zero for a reason unrelated to the description. That confound is not controlled
+and cannot be, short of asking them to stop.
+`caveat (owned):` `UNVERIFIED` and it will stay so until the window closes. The diagnosis is
+measured; the remedy is reasoned. A rewrite that reads better to its author is the cheapest thing in
+the world to believe, which is precisely why the criterion is written above the change rather than
+after it. `next:` re-run the census on or after `2026-09-05`; and if `plugin eval` becomes available,
+run the ablation instead — it would settle in an hour what this settles in a week.
