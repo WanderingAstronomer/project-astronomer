@@ -1,0 +1,340 @@
+<title>Maestro System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single reading column (max 980px); the diagram and tables break wider inside their own scrollers. */
+:root{
+  --bg:#f5f6f7; --surface:#ffffff; --ink:#1a2028; --muted:#59636e; --rule:#d8dde2;
+  --accent:#0e6767; --accent-soft:#e3f0ef; --brass:#8f6310; --brass-soft:#f6eedd;
+  --stop:#b42318; --stop-soft:#fbe9e7;
+  --f-display:"Instrument Serif", Georgia, "Times New Roman", serif;
+  --f-body:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#11151a; --surface:#192027; --ink:#e5e9ed; --muted:#9ba6b2; --rule:#2b333c;
+  --accent:#55b8b4; --accent-soft:#16302f; --brass:#d6a64c; --brass-soft:#2f2614;
+  --stop:#f2735f; --stop-soft:#3a1d19; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#11151a; --surface:#192027; --ink:#e5e9ed; --muted:#9ba6b2; --rule:#2b333c;
+  --accent:#55b8b4; --accent-soft:#16302f; --brass:#d6a64c; --brass-soft:#2f2614;
+  --stop:#f2735f; --stop-soft:#3a1d19; color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;padding-inline:16px;padding-block:32px 64px}
+main{max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:56px}
+section{display:flex;flex-direction:column;gap:16px;min-width:0}
+h1,h2{font-family:var(--f-display);font-weight:400;text-wrap:balance;margin:0;line-height:1.1}
+h1{font-size:clamp(2.6rem,6vw,4rem)}
+h2{font-size:clamp(1.7rem,3.4vw,2.2rem)}
+h3{margin:0;font-size:1.05rem;font-weight:600}
+p{margin:0;max-width:68ch}
+.eyebrow{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.lede{font-size:1.15rem;color:var(--muted);max-width:62ch}
+header{display:flex;flex-direction:column;gap:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--f-mono);font-size:.75rem;padding:3px 10px;border-radius:999px;border:1px solid var(--rule);color:var(--muted);background:var(--surface)}
+.chip.warn{border-color:var(--brass);color:var(--brass);background:var(--brass-soft)}
+.quote{border-left:3px solid var(--accent);padding:4px 0 4px 16px;color:var(--ink);font-style:italic;max-width:68ch}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--rule);border-radius:10px;background:var(--surface)}
+.diagram svg{display:block;min-width:720px;width:100%;height:auto}
+.legend{display:flex;flex-wrap:wrap;gap:18px;font-size:.85rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.sw{width:28px;height:0;border-top:2.5px solid var(--ink)}
+.sw.x{border-top-color:var(--accent)}
+.sw.no{border-top:2.5px dashed var(--stop)}
+.sw.op{border-top:2px dotted var(--muted)}
+.sizes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.size{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.size .name{font-family:var(--f-display);font-size:1.7rem;line-height:1}
+.size .who{font-size:.9rem;color:var(--muted)}
+.size dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:.9rem}
+.size dt{color:var(--muted);font-family:var(--f-mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;padding-top:3px}
+.size dd{margin:0}
+.forbid{background:var(--stop-soft);border:1px solid var(--stop);border-radius:10px;padding:14px 18px;font-size:.95rem}
+.forbid b{color:var(--stop)}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;vertical-align:top;padding:10px 14px;border-bottom:1px solid var(--rule)}
+th{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500;background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td code,p code,li code{font-family:var(--f-mono);font-size:.85em;background:var(--accent-soft);color:var(--ink);padding:1px 5px;border-radius:4px}
+.tag{font-family:var(--f-mono);font-size:.72rem;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.tag.ok{background:var(--accent-soft);color:var(--accent)}
+.tag.no{background:var(--stop-soft);color:var(--stop)}
+ol.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0;counter-reset:s}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:44px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--rule);min-width:0}
+ol.steps li:last-child{border-bottom:0}
+ol.steps li::before{content:counter(s);font-family:var(--f-display);font-size:1.6rem;line-height:1;color:var(--accent)}
+ol.steps .who{font-family:var(--f-mono);font-size:.75rem;color:var(--muted);display:block}
+pre{margin:0;padding:16px;font-family:var(--f-mono);font-size:.8rem;line-height:1.55;white-space:pre;color:var(--ink)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.grid2>*{min-width:0}
+ul.rules{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;max-width:72ch}
+.ask{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:16px 18px;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;align-items:baseline}
+.ask .n{font-family:var(--f-mono);font-size:.8rem;color:var(--brass)}
+.ask .q{font-weight:600}
+.ask .r{grid-column:2;color:var(--muted);font-size:.92rem}
+.asks{display:flex;flex-direction:column;gap:10px}
+.files{font-family:var(--f-mono);font-size:.82rem;display:flex;flex-direction:column;gap:6px}
+.files span{color:var(--muted)}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+/* svg tokens */
+.g-box{fill:var(--bg);stroke:var(--rule);stroke-width:1.5}
+.g-title{fill:var(--muted);font-family:var(--f-mono);font-size:12px;letter-spacing:.06em}
+.n-box{fill:var(--surface);stroke:var(--ink);stroke-width:1.4}
+.n-box.m{stroke:var(--accent);stroke-width:2}
+.n-box.o{stroke:var(--brass);stroke-dasharray:4 3}
+.n-box.op{fill:var(--ink);stroke:var(--ink)}
+.n-t{fill:var(--ink);font-family:var(--f-body);font-size:13px;font-weight:600}
+.n-t.inv{fill:var(--bg)}
+.n-s{fill:var(--muted);font-family:var(--f-mono);font-size:10.5px}
+.e{stroke:var(--ink);stroke-width:1.6;fill:none}
+.e.x{stroke:var(--accent);stroke-width:2.6}
+.e.no{stroke:var(--stop);stroke-width:2;stroke-dasharray:7 5}
+.e.op{stroke:var(--muted);stroke-width:1.5;stroke-dasharray:2 4}
+.e-l{font-family:var(--f-mono);font-size:11px;fill:var(--muted)}
+.e-l.x{fill:var(--accent)}
+.e-l.no{fill:var(--stop)}
+.ar{fill:var(--ink)} .ar.x{fill:var(--accent)} .ar.no{fill:var(--stop)}
+</style>
+
+<main>
+<header>
+  <div class="eyebrow">Project Astronomer · doctrine · ratified 2026-10-10 (D-064 to D-067)</div>
+  <h1>The Maestro System</h1>
+  <p class="lede">One operator, many sidebar groups, a Maestro over each. Every group is grounded in a folder, its workspace, and its Maestro presides over it. Workspaces ask each other questions Maestro to Maestro, and each answer comes back up through that workspace's own Conductor and sections.</p>
+  <div class="chips">
+    <span class="chip">Doctrine: doctrine/06-delegation.md</span>
+    <span class="chip">New law: L-19</span>
+    <span class="chip warn">Gate built and tested, not installed</span>
+  </div>
+  <div class="forbid" style="border-color:var(--accent);background:var(--accent-soft)"><b style="color:var(--accent)">To found a new workspace:</b> make the sidebar group, open a session in its folder, and hand it <code>project-astronomer/install/FOUNDING.md</code>. It renames itself Maestro (&lt;Group&gt;), asks you four questions with recommendations (tier, size, purpose, data boundary), writes the precedent as D-1 to D-4, and registers itself.</div>
+  <p class="quote">"a maestro of one group should never talk directly to the conductor or sessions of another group unless the operator explicitly permits it." Drew, 2026-10-10</p>
+</header>
+
+<section class="diagram">
+  <div class="eyebrow">Who talks to whom</div>
+  <h2>Two groups, one channel between them</h2>
+  <div class="scroll">
+  <svg viewBox="0 0 960 520" role="img" aria-label="Diagram: the operator above two groups. Each group has a Maestro over a Conductor over sections. The two Maestros are joined by an exchange line. A dashed red line from Health's Maestro to Vociferous Next's Conductor is marked blocked. Brand is an outlier linked straight to the operator.">
+    <defs>
+      <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ar" d="M0,0 L10,5 L0,10 z"/></marker>
+      <marker id="ax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="ar x" d="M0,0 L10,5 L0,10 z"/></marker>
+      <marker id="an" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ar no" d="M0,0 L10,5 L0,10 z"/></marker>
+    </defs>
+    <!-- groups -->
+    <rect class="g-box" x="24" y="112" width="400" height="388" rx="14"/>
+    <text class="g-title" x="44" y="138">HEALTH · CHAMBER</text>
+    <rect class="g-box" x="500" y="112" width="436" height="388" rx="14"/>
+    <text class="g-title" x="520" y="138">VOCIFEROUS NEXT · ORCHESTRA</text>
+
+    <!-- operator -->
+    <rect class="n-box op" x="400" y="22" width="160" height="44" rx="8"/>
+    <text class="n-t inv" x="480" y="49" text-anchor="middle">Operator (Drew)</text>
+
+    <!-- edges: operator to maestros -->
+    <path class="e" d="M440,66 L254,154" marker-end="url(#a)" marker-start="url(#a)"/>
+    <path class="e" d="M520,66 L700,154" marker-end="url(#a)" marker-start="url(#a)"/>
+    <!-- operator to outlier -->
+    <path class="e op" d="M560,52 C800,52 870,120 862,254"/>
+
+    <!-- maestro exchange -->
+    <path class="e x" d="M308,178 L630,178" marker-end="url(#ax)" marker-start="url(#ax)"/>
+    <text class="e-l x" x="469" y="168" text-anchor="middle">X-4 exchange: question and answer</text>
+
+    <!-- forbidden -->
+    <path class="e no" d="M290,196 L632,284" marker-end="url(#an)"/>
+    <g transform="translate(461,240)"><circle r="10" fill="var(--stop-soft)" stroke="var(--stop)" stroke-width="1.6"/><path d="M-4,-4 L4,4 M4,-4 L-4,4" stroke="var(--stop)" stroke-width="2"/></g>
+    <text class="e-l no" x="476" y="266" text-anchor="start">blocked without a permit</text>
+
+    <!-- group A nodes -->
+    <rect class="n-box m" x="144" y="156" width="164" height="44" rx="8"/>
+    <text class="n-t" x="226" y="183" text-anchor="middle">Maestro (Health)</text>
+    <rect class="n-box" x="144" y="262" width="164" height="44" rx="8"/>
+    <text class="n-t" x="226" y="289" text-anchor="middle">Conductor (Health)</text>
+    <path class="e" d="M226,200 L226,260" marker-end="url(#a)" marker-start="url(#a)"/>
+    <rect class="n-box" x="58" y="400" width="150" height="52" rx="8"/>
+    <text class="n-t" x="133" y="422" text-anchor="middle">Meal planning</text>
+    <text class="n-s" x="133" y="440" text-anchor="middle">section</text>
+    <rect class="n-box" x="244" y="400" width="150" height="52" rx="8"/>
+    <text class="n-t" x="319" y="422" text-anchor="middle">Training log</text>
+    <text class="n-s" x="319" y="440" text-anchor="middle">section</text>
+    <path class="e" d="M206,306 L150,398" marker-end="url(#a)" marker-start="url(#a)"/>
+    <path class="e" d="M246,306 L302,398" marker-end="url(#a)" marker-start="url(#a)"/>
+    <path class="e" d="M208,426 L242,426" marker-end="url(#a)" marker-start="url(#a)"/>
+    <text class="e-l" x="225" y="474" text-anchor="middle">seam, Conductor copied</text>
+
+    <!-- group B nodes -->
+    <rect class="n-box m" x="632" y="156" width="196" height="44" rx="8"/>
+    <text class="n-t" x="730" y="183" text-anchor="middle">Maestro (Vociferous Next)</text>
+    <rect class="n-box" x="632" y="262" width="196" height="44" rx="8"/>
+    <text class="n-t" x="730" y="289" text-anchor="middle">Conductor (Vociferous Next)</text>
+    <path class="e" d="M730,200 L730,260" marker-end="url(#a)" marker-start="url(#a)"/>
+    <rect class="n-box o" x="846" y="256" width="76" height="56" rx="8"/>
+    <text class="n-t" x="884" y="280" text-anchor="middle">Brand</text>
+    <text class="n-s" x="884" y="298" text-anchor="middle">outlier</text>
+    <rect class="n-box" x="520" y="400" width="128" height="52" rx="8"/>
+    <text class="n-t" x="584" y="422" text-anchor="middle">Landing &amp; Review</text>
+    <text class="n-s" x="584" y="440" text-anchor="middle">lander</text>
+    <rect class="n-box" x="666" y="400" width="128" height="52" rx="8"/>
+    <text class="n-t" x="730" y="422" text-anchor="middle">Cloud Ops</text>
+    <text class="n-s" x="730" y="440" text-anchor="middle">section</text>
+    <rect class="n-box" x="812" y="400" width="110" height="52" rx="8"/>
+    <text class="n-t" x="867" y="422" text-anchor="middle">Vertex</text>
+    <text class="n-s" x="867" y="440" text-anchor="middle">outlier</text>
+    <path class="e" d="M700,306 L600,398" marker-end="url(#a)" marker-start="url(#a)"/>
+    <path class="e" d="M730,306 L730,398" marker-end="url(#a)" marker-start="url(#a)"/>
+    <path class="e op" d="M846,296 L830,296"/>
+    <text class="e-l" x="884" y="330" text-anchor="middle">rulings to</text>
+    <text class="e-l" x="884" y="344" text-anchor="middle">Conductor</text>
+  </svg>
+  </div>
+  <div class="legend">
+    <span><i class="sw"></i>inside a group</span>
+    <span><i class="sw x"></i>exchange, Maestro to Maestro only</span>
+    <span><i class="sw no"></i>forbidden unless the operator grants a permit</span>
+    <span><i class="sw op"></i>operator steers an outlier directly</span>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">Sizes</div>
+  <h2>Pick the size the work needs</h2>
+  <p>The same rules hold at every size. A bigger size adds roles and pages and never relaxes a rule. Changing size is a ruling in the group's ledger.</p>
+  <div class="sizes">
+    <div class="size">
+      <div class="name">Solo</div>
+      <div class="who">Maestro alone, doing the work with its own helpers.</div>
+      <dl><dt>Pages</dt><dd>None required</dd><dt>When</dt><dd>One stream of work at a time</dd></dl>
+    </div>
+    <div class="size">
+      <div class="name">Chamber</div>
+      <div class="who">Maestro, a Conductor, up to three sections. The Conductor lands the work.</div>
+      <dl><dt>Pages</dt><dd>Decisions, Board</dd><dt>When</dt><dd>Two streams touch the same files, or you catch yourself relaying between sessions</dd></dl>
+    </div>
+    <div class="size">
+      <div class="name">Orchestra</div>
+      <div class="who">Adds a lander, outliers, one-way cloud sessions and many sections.</div>
+      <dl><dt>Pages</dt><dd>Console, Decisions, Briefs, Board, Roadmap</dd><dt>When</dt><dd>A live service, users or money; a bad merge is expensive</dd></dl>
+    </div>
+  </div>
+  <div class="forbid"><b>The one size that's not allowed:</b> a Maestro with sections and no Conductor. That's the setup that leaked every session's traffic to you on 10-09. A Solo Maestro that needs a second session becomes a Chamber first.</div>
+</section>
+
+<section>
+  <div class="eyebrow">Routing</div>
+  <h2>The edge table</h2>
+  <p>Any edge not in this table is forbidden. A group may remove edges for itself, but only your permit adds one, and only for a while.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>From → to</th><th>For</th><th></th></tr></thead>
+    <tbody>
+      <tr><td>You → anyone, in any group</td><td>Anything</td><td><span class="tag ok">allowed</span></td></tr>
+      <tr><td>Maestro (G) ↔ Conductor (G)</td><td>Your rulings going down; batched escalations coming up</td><td><span class="tag ok">allowed</span></td></tr>
+      <tr><td>Maestro (G) ↔ Maestro (H)</td><td>Exchanges only: inquiry, notice, request, answer</td><td><span class="tag ok">allowed</span></td></tr>
+      <tr><td>Conductor (G) ↔ its sections and outliers</td><td>Everything inside the group, addressed by session id</td><td><span class="tag ok">allowed</span></td></tr>
+      <tr><td>Section ↔ section, same group</td><td>A shared seam, copying the Conductor</td><td><span class="tag ok">allowed</span></td></tr>
+      <tr><td>Outlier → Conductor, copying the Maestro</td><td>Recording your rulings</td><td><span class="tag ok">allowed</span></td></tr>
+      <tr><td>Maestro (G) → Conductor or section of H</td><td>Only with your permit, naming the edge, topic and end</td><td><span class="tag no">forbidden</span></td></tr>
+      <tr><td>Conductor or section → anything outside its group</td><td>Never, with or without a permit</td><td><span class="tag no">forbidden</span></td></tr>
+      <tr><td>Section → Maestro</td><td>Goes through the Conductor</td><td><span class="tag no">forbidden</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">Exchanges</div>
+  <h2>How a question waterfalls</h2>
+  <div class="grid2">
+    <ol class="steps">
+      <li><div><span class="who">You</span>Tell Maestro (Health): "ask Vociferous whether the tester form went out."</div></li>
+      <li><div><span class="who">Maestro (Health)</span>Logs X-4 with your words verbatim, looks up Maestro (Vociferous Next) in the registry, and sends an INQUIRY.</div></li>
+      <li><div><span class="who">Maestro (Vociferous Next)</span>Answers from its own pages and ledger if it can. If not, it passes X-4 to its Conductor.</div></li>
+      <li><div><span class="who">Conductor (Vociferous Next)</span>Answers from the Board, or asks the owning sections by session id, then hands one answer back up.</div></li>
+      <li><div><span class="who">Maestro (Vociferous Next)</span>Checks the answer against its data boundary and replies with sources and a confidence label.</div></li>
+      <li><div><span class="who">Maestro (Health)</span>Closes X-4 and tells you in one line, or on its page.</div></li>
+    </ol>
+    <div class="scroll"><pre>X-4 INQUIRY from Maestro (Health) to
+  Maestro (Vociferous Next): did the tester
+  issue form go out?
+Operator's words: "ask Vociferous whether the
+  tester form went out" (2026-10-10)
+Blocking: no
+
+X-4 ANSWER from Maestro (Vociferous Next):
+  not sent yet; sending is your hands.
+Confidence: CONFIRMED
+Sources: Decisions page, "Only your hands"
+Could not determine: nothing
+Withheld by data boundary: nothing</pre></div>
+  </div>
+  <ul class="rules">
+    <li><b>Questions only, never orders.</b> A REQUEST to do work becomes an item on the other group's Decisions page for you to rule on. A Maestro's word counts as yours only inside its own group.</li>
+    <li><b>No recursion.</b> A question goes down one group and no further. A section never starts an exchange, and a repeated X-ID isn't passed on again.</li>
+    <li><b>Silence is never an answer.</b> If nobody can answer, the reply says "could not determine" and who would know.</li>
+    <li><b>Nothing is written because of an exchange.</b> Answering is read-only.</li>
+    <li><b>Permits come from your own words</b> in the session that will use them. A permit relayed by another Maestro doesn't count.</li>
+  </ul>
+</section>
+
+<section>
+  <div class="eyebrow">Naming</div>
+  <h2>Names are addresses</h2>
+  <ul class="rules">
+    <li><code>Maestro (&lt;Group&gt;)</code> and <code>Conductor (&lt;Group&gt;)</code>, using the exact sidebar group name, so you can see at a glance who presides where.</li>
+    <li><b>Group names must be unique.</b> Your sidebar has two groups called "Vociferous Next" right now: one with 59 sessions, one empty.</li>
+    <li><b>Sections are named by goal</b>, not by date or persona. The Conductor addresses them by session id, because the same goal name can turn up in two groups.</li>
+    <li><b>A fork isn't a Maestro.</b> A forked Maestro has the original's memory but none of its standing. It messages nobody but you until you rename it and file it in a group. This session is one: "Maestro (fork)", in no group.</li>
+    <li><b>IDs are local.</b> D375 inside Vociferous Next is <code>VOC:D375</code> from any other group.</li>
+  </ul>
+</section>
+
+<section>
+  <div class="eyebrow">Holding the line</div>
+  <h2>Instructions alone won't hold the boundary</h2>
+  <p>Astronomer measured that a session agreeing to a rule isn't evidence the rule will bind it. So the plan is a gate: a hook that runs before every cross-session message, reads the registry, and blocks any edge the table doesn't allow, unless a live permit covers it. Sessions that aren't in the registry, including forks, can message only you. It catches accidents and drift, not a session working to get past it. <b>It's built and tested</b> (62 tests, and all 19 seeded defects caught), but <b>not installed</b>. Installing it means one hook entry in your user settings, and that's your call. Until then, the boundary holds only by habit.</p>
+</section>
+
+<section>
+  <div class="eyebrow">Astronomer</div>
+  <h2>Where it fits</h2>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Astronomer piece</th><th>What this adds</th></tr></thead>
+    <tbody>
+      <tr><td>Delegation doctrine</td><td>The Coordinator role splits in two: Maestro faces you, Conductor faces the sections. Section is the Executor, the lander is the Verifier, and Outlier is an Executor you coordinate yourself.</td></tr>
+      <tr><td>Boundaries doctrine</td><td>An answer leaving a group counts as egress, so the data boundary applies. The registry is the list of allowed destinations.</td></tr>
+      <tr><td>The record</td><td>New prefix <code>X-&lt;n&gt;</code> for exchanges (currently unused). References across groups carry a group prefix.</td></tr>
+      <tr><td>Tiers</td><td>Size becomes a third axis beside tier and scope. Solo, Chamber and Orchestra deliberately avoid clashing with the existing tier called Full.</td></tr>
+      <tr><td>Install layer or a new plugin</td><td>The Claude Code parts: the routing hook, a registry checker, and the Maestro and Conductor skills. Doctrine stays domain-neutral.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">Ruled 2026-10-10</div>
+  <h2>Your rulings, and what was done</h2>
+  <div class="asks">
+    <div class="ask"><span class="n">R1</span><span class="q">Into Astronomer, superseding aggressively.</span><span class="r">The delegation doctrine is rewritten. The four old roles are replaced by Operator, Maestro, Conductor, Section, Outlier and Verifier. New: law L-19, boundary B-8, charter invariant 8, the X- and P- IDs, a size axis beside tier, and install/FOUNDING.md.</span></div>
+    <div class="ask"><span class="n">R2</span><span class="q">Requests carry no authority.</span><span class="r">A request from another workspace becomes a Decisions item for you over there.</span></div>
+    <div class="ask"><span class="n">R3</span><span class="q">The cap counts writers, not sessions.</span><span class="r">At most two sections write to one shared target per Conductor. Above two, a Lander takes over.</span></div>
+    <div class="ask"><span class="n">R4</span><span class="q">Registry under your profile; gate first.</span><span class="r">The registry is at C:\Users\drew\.maestro\registry, one JSON file per workspace. The gate is built and tested, and waits for your go to install.</span></div>
+    <div class="ask"><span class="n">R5</span><span class="q">Duplicate group removed.</span><span class="r">The empty "Vociferous Next" group (0 sessions) was deleted.</span></div>
+    <div class="ask"><span class="n">R6</span><span class="q">Renamed and filed.</span><span class="r">The Conductor is now "Conductor (Vociferous Next)". This session is Maestro (project-astronomer), the first workspace founded (D-067). Vociferous Next got notice X-1.</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">Files</div>
+  <h2>Where everything is</h2>
+  <div class="files">
+    <div>project-astronomer/install/FOUNDING.md <span>the one file you hand to a new session: constitution, founding steps, procedures, every template</span></div>
+    <div>project-astronomer/doctrine/06-delegation.md <span>the doctrine and its reasoning</span></div>
+    <div>project-astronomer/install/maestro/ <span>the routing gate, its tests, and its install snippet</span></div>
+    <div>project-astronomer/DECISIONS.md <span>D-064 to D-067</span></div>
+    <div>C:\Users\drew\.maestro\registry\ <span>one row per workspace; AST.json is the first</span></div>
+  </div>
+</section>
+</main>

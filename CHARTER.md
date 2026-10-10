@@ -22,6 +22,10 @@ Extract, name, and make installable the operating methodology that four unrelate
 independently converged on, so that it can be applied to a new project on day one instead of
 rediscovered over eighteen months.
 
+It is also, from 2026-10-10 (D-064 to D-066), how one operator runs many such projects at once:
+every project is a **workspace**, a folder presided over by a **Maestro**, and workspaces speak to
+each other only through their Maestros.
+
 The measure of success is not that the framework is admired. It is that a project built on it
 reaches a correct conclusion faster, and knows which of its conclusions are load-bearing.
 
@@ -30,6 +34,9 @@ reaches a correct conclusion faster, and knows which of its conclusions are load
 **In scope**
 
 - The doctrine: laws, epistemics, the operating loop, verification, recording, delegation.
+- The ensemble: workspaces, their Maestros, Conductors and sections, and how workspaces exchange
+  questions (D-064). Its Claude Code reference implementation, including the routing gate and the
+  founding file, lives in `install/`, so the doctrine stays domain-neutral (invariant 1).
 - The artifact set: templates with a stated purpose, structure, and lifecycle.
 - Tiering: which artifacts are required at which stakes level.
 - The install layer: making an AI collaborator enforce the doctrine in-session.
@@ -73,6 +80,10 @@ reaches a correct conclusion faster, and knows which of its conclusions are load
    (D-008)
 7. **No fiction.** A document describing something not yet built says so, in that document,
    at the top. (Inherited from vociferous: "strip fiction; state current truth.")
+8. **Every workspace has one Maestro, and the interface never controls.** A workspace is one
+   folder. Its Maestro presides over it and faces the operator. From Chamber size up, a Conductor
+   faces the work, and across workspaces only Maestros speak (L-19, D-064, D-066). A workspace that
+   runs sections without a Conductor is in breach of this invariant, whatever its tier.
 
 ## Methodology — inherited patterns and how they map
 

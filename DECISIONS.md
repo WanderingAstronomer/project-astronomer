@@ -1309,3 +1309,120 @@ marketplace was installed. Neither is closed by this entry and neither is preten
 `next:` replace `astronomer-github`'s PowerShell with `gh` steps and settings; re-run the census on
 or after 2026-09-05; and take `D-060`'s runtime residuals in the first session that starts with the
 plugins already loaded.
+
+`[2026-10-10T06:17Z] D-064:` **[operator] The Maestro system is Astronomer's delegation model, and it
+supersedes the four-role table outright.** The operator's words, in full: *"R1 into Astronomer, go with
+your recommendations on the rest. be outrageously aggressive in superseding astronomer. I want to be
+able to hand a file to a brand new session in a brand new group and establish precedent."* The brief
+was `design/maestro-system.md` (2026-10-10). It is now doctrine. What this entry supersedes, each by
+name (L-2):
+
+- **The role table in `06-delegation.md`.** Operator / Coordinator / Executor / Verifier becomes
+  Operator / Maestro / Conductor / Section / Outlier / Verifier. The Coordinator is split in two,
+  because one party acting as both the operator's interface and the controller of the work is the
+  defect (VOC, 2026-10-09: every session's traffic reached the operator). The `role` vocabulary
+  changes membership accordingly.
+- **The concurrency cap** — *"Three concurrent sessions is the honest safe maximum. Two is the
+  recommended default"* — stated in `06-delegation.md` without a ledger number of its own. It is
+  replaced by a cap on **writers to one shared target per Conductor** (see D-065, R3). The measurement
+  that produced it stands as a scar; the rule does not.
+- **`design/maestro-system.md` as a design brief.** Superseded by `doctrine/06-delegation.md`; it owns
+  nothing from this entry on.
+- **A new law, L-19:** *the voice that speaks to the operator does not direct the work, and only that
+  voice speaks across workspaces.* Graded `practice`, VOC only. Single-attested and carrying a sunset
+  like every `practice` law.
+- **New identifiers:** `X-<n>` (an exchange between workspaces) and `P-<n>` (an operator permit).
+  **New vocabularies:** `ensemble_size` (Solo, Chamber, Orchestra) and `exchange_kind` (INQUIRY,
+  NOTICE, REQUEST, ANSWER), both homed in `06-delegation.md`.
+- **A new boundary, B-8:** an answer leaving a workspace is egress.
+- **The install layer gains `install/FOUNDING.md`:** the one file handed to a new session in a new
+  group. It founds the workspace, makes that session its Maestro, and records the first precedent.
+
+`caveat (owned):` everything above rests on one project's three weeks of practice (VOC, 2026-09-22
+to 2026-10-10) and its night-run ancestors in the same archive. That is one attestation, not two.
+`caveat (owned):` the routing gate that holds the workspace boundary is being built
+(`install/maestro/gate.py`). Until it is installed, the boundary is held by instruction alone, which
+O-39 says is not evidence that it binds. `blocks-on:` the gate's test suite and its mutation check,
+both observed failing on seeded defects before being trusted.
+
+`[2026-10-10T06:17Z] D-065:` **[operator] Five rulings, each taken as recommended** (*"go with your
+recommendations on the rest"*):
+
+- **R2: requests carry no authority.** A REQUEST from another workspace's Maestro becomes a Decisions
+  item for the operator in the receiving workspace. Nothing runs on another Maestro's word. A Maestro's
+  word counts as the operator's only inside its own workspace, and only as far as the operator granted.
+- **R3: the concurrency cap counts writers, not sessions.** It counts sections writing to the same
+  shared target under one Conductor. Read-only sections, outliers and one-way sessions don't count.
+  Above two such writers, a Lander serialises the target.
+- **R4: the registry location, and gate first.** The registry is
+  `%USERPROFILE%\.maestro\registry\<SLUG>.json`, one file per group, and only that group's Maestro
+  writes it. The gate is built before a second workspace grows past Solo.
+- **R5: the duplicate sidebar group.** The empty duplicate "Vociferous Next" group was deleted at
+  06:14Z (0 sessions). Group names are unique.
+- **R6: renames and filing.** The VOC Conductor is retitled "Conductor (Vociferous Next)". The session
+  that wrote the brief, a fork of Maestro (Vociferous Next), is filed under the `project-astronomer`
+  group as **Maestro (project-astronomer)**, and so presides over this repository. Its first exchange
+  was X-1, a NOTICE to Maestro (Vociferous Next) about the rename, sent 06:16Z.
+
+`[2026-10-10T06:17Z] D-066:` **[operator] Every group is grounded in a folder, and its Maestro presides
+over that folder.** The operator's words: *"Every group will be grounded within a folder. I will do my
+best to name those folders after the groups themselves. That will be their workspace. They will
+preside over it like a god."* This entry settles four things:
+
+- **What a workspace is.** It's the group's folder, and it is a scope in the sense of
+  `design/distribution-and-scope.md` §6.
+- **Who rules it.** Inside its workspace, the Maestro's ledger is the top authority below the operator
+  and the framework's laws. A workspace charter still cannot repeal a law.
+- **Who writes in it.** Only that group writes inside its workspace. No session of another group writes
+  there, whatever it is asked.
+- **Nesting.** A workspace nested inside another workspace belongs to the group whose folder is
+  deepest.
+
+This settles what the brief recorded as unresolved: "groups are not directories". **They are now, by
+ruling.** The folder carries the group's name where the operator manages it, and the registry records
+both names when they differ.
+
+`[2026-10-10T06:24Z] D-067:` **[operator] This folder is the workspace of the `project-astronomer`
+group, and Maestro (project-astronomer) presides over it.** It's the first workspace founded under
+`install/FOUNDING.md`, by its adoption path (Part 4 §8), because this repository already had a charter,
+a ledger and a corpus gate. The operator's words are D-065 R6, accepted as recommended: *"File this
+fork under project-astronomer as its Maestro if you want the build to happen here."* Four things are
+set:
+
+- **Size:** Solo.
+- **Slug:** `AST`, which this ledger already used for its namespace.
+- **Tier:** this repository has never declared one in its ledger. That's recorded here as undeclared
+  rather than assumed.
+- **Data boundary:** an answer from this workspace may quote the corpus. Nothing from another
+  workspace that passes through this one leaves it, and no source client is named beyond what the
+  corpus already publishes.
+
+The workspace instructions are in `CLAUDE.md`, the operations folder is `.maestro/`, and the registry
+row is `%USERPROFILE%\.maestro\registry\AST.json`. `caveat (owned):` the founding questions in Part 1
+step 8 weren't asked one by one. The operator's "go with your recommendations" was taken as the "go"
+that step allows, and that is a judgement call. Reverse it if wrong.
+
+
+`[2026-10-10T07:40Z] AMENDS D-064:` **[operator] The routing gate is installed, and it was observed blocking in a
+live session before it was trusted.** The operator's words: *"install the gate and commit
+everything."* It's in `~/.claude/settings.json` as a PreToolUse hook on `SendMessage|mcp__ccd_session_mgmt__send_message`.
+The previous settings are backed up beside the file as `settings.json.bak-20261010-maestro`. Three
+checks before trusting it:
+
+- **The suites.** `install/maestro/test_gate.py` passes 62 tests. `verify_gate_mutations.py` catches
+  all 19 seeded defects.
+- **A live block.** A throwaway registry row (`ZZTEST.json`, group "Gate Test") was written, and this
+  session's message to `Conductor (Gate Test)` was **blocked** by the hook with the permit reason. The
+  hook named this session correctly as Maestro (project-astronomer). A message to
+  `Maestro (Gate Test)` passed the gate and failed only at delivery, as no such session exists. The
+  row was then deleted.
+- **A dry run against the live registry.** It gave the right verdict in four of four cases, with
+  nothing written to the error log.
+
+`caveat (owned):` the first dry run, at 06:25Z, fed the gate input whose backslashes the shell had
+mangled. Every "allowed" it printed was the gate **failing open on a parse error**, not a rule. The
+gap that run appeared to find is real anyway: a governed member could reach the Maestro of an
+unregistered group, because an unresolved target was allowed. It's closed by the title-pattern rule
+and its own mutant. Two lessons: fail-open makes a crash look like a pass, and this shell's heredocs
+eat backslashes. `blocks-on` in D-064 is discharged for the gate. The two-workspace waterfall in
+`06-delegation.md` "Acceptance" is still owed, because only one workspace is registered.

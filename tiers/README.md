@@ -143,7 +143,25 @@ long horizons, or consequences you cannot walk back.
 eight of them the class where two independently correct changes combine into a wrong result that
 nothing flags. Against a proposal for ten concurrent workstreams its conclusion was *"three is
 the honest safe maximum. Two is the recommended default."* Reach Full tier for the catalog and
-the fences long before you reach it for the concurrency.
+the fences long before you reach it for the concurrency. *That cap has since been restated: it
+counts sections **writing to one shared target**, not sessions (D-065, R3).*
+
+---
+
+## Size is a third axis
+
+**Tier** says what a mistake costs. **Scope** says where the rules apply. **Size** says how many
+voices a workspace runs (D-064, [`../doctrine/06-delegation.md`](../doctrine/06-delegation.md)):
+
+| Size | Voices |
+|---|---|
+| Solo | The Maestro alone |
+| Chamber | Maestro and a Conductor, with sections |
+| Orchestra | Chamber, plus a Lander, outliers and one-way sessions |
+
+The three are independent. A health journal can be Solo at Standard tier. A product with a live
+service is usually Orchestra at Full tier, and Orchestra below Full tier should make you ask what the
+extra voices are coordinating without a catalog or fences. Size, like tier, is a ledger decision.
 
 ---
 

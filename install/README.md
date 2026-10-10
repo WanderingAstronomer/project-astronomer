@@ -10,6 +10,11 @@ last_verified: 2026-08-01
 
 # Install
 
+> **Founding a workspace for a new sidebar group?** Hand the new session
+> [`FOUNDING.md`](FOUNDING.md) and nothing else. It runs the parts of this procedure that a new
+> workspace needs, makes that session the group's Maestro, and records the precedent (D-064). This
+> file stays the full reference for installing the collaborator layer and the skills.
+
 This directory makes Astronomer **executable** rather than merely readable. Doctrine that lives
 only in prose gets re-litigated at the start of every session; encoded in a `CLAUDE.md` and a set
 of skills, the rules are load-bearing where the decisions actually happen (D-009).

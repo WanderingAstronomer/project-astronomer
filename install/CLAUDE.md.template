@@ -50,6 +50,7 @@ else, and a citation that resolves to the wrong ledger is worse than one that re
 - **L-16** Make it work or tell the truth. False success outranks breakage as a defect class.
 - **L-17** On the third instance of a defect class, build a gate — not a third fix.
 - **L-18** An instrument declares what it cannot do, before it is used. Capability is measured; permission is asked. What could not be determined is *owed*, not absent.
+- **L-19** The voice that speaks to the operator does not direct the work, and only that voice speaks across workspaces. A Maestro faces the operator, a Conductor faces the work, and workspaces talk Maestro to Maestro.
 
 ## The loop
 

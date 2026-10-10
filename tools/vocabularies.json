@@ -76,7 +76,7 @@
     {
       "name": "law",
       "members": ["L-1", "L-2", "L-3", "L-4", "L-5", "L-6", "L-7", "L-8", "L-9", "L-10",
-                  "L-11", "L-12", "L-13", "L-14", "L-15", "L-16", "L-17", "L-18"],
+                  "L-11", "L-12", "L-13", "L-14", "L-15", "L-16", "L-17", "L-18", "L-19"],
       "home": "doctrine/01-laws.md",
       "note": "Not a token vocabulary but the same failure applies: adding or retiring a law leaves every counted 'laws' sentence in the corpus wrong, and nothing announces it. L-18 arrived 2026-07-26 (D-034) and cost exactly two prose edits plus this line, which is the whole argument for the counted-prose check.",
       "count_nouns": ["laws"],
@@ -131,7 +131,7 @@
     },
     {
       "name": "id_prefix",
-      "members": ["D-", "O-", "C-", "Q-", "F-", "S-", "E-"],
+      "members": ["D-", "O-", "C-", "Q-", "F-", "S-", "E-", "X-", "P-"],
       "home": "doctrine/05-the-record.md",
       "note": "Record IDs are permanent addresses and are never reused — distinct from filename slots, which may be refilled. S- (source document) and E- (outbound request) arrived with the source manifest and query log.",
       "check_enumerations": false,
@@ -148,8 +148,9 @@
     },
     {
       "name": "role",
-      "members": ["Operator", "Coordinator", "Executor", "Verifier"],
+      "members": ["Operator", "Maestro", "Conductor", "Section", "Outlier", "Verifier"],
       "home": "doctrine/06-delegation.md",
+      "note": "Membership changed by D-064 (2026-10-10): the Coordinator split into Maestro (faces the operator) and Conductor (faces the work), Executor became Section, and Outlier was added.",
       "case_sensitive": false,
       "allowed_subsets": []
     },
@@ -231,10 +232,24 @@
       "members": ["Work-item store", "Relation graph", "Working set", "Change record",
                   "Verification gate", "Durable prose", "Corpus retrieval", "Session inheritance"],
       "home": "doctrine/08-instruments.md",
-      "note": "The DEFAULT set. Projects add and strike roles (D-035); the check enforces internal consistency of the default only, exactly as evidence_tier does. count_nouns is deliberately 'capability roles' and not 'roles' — the latter would collide with the Operator/Coordinator/Executor/Verifier set.",
+      "note": "The DEFAULT set. Projects add and strike roles (D-035); the check enforces internal consistency of the default only, exactly as evidence_tier does. count_nouns is deliberately 'capability roles' and not 'roles' — the latter would collide with the role set (Operator, Maestro, Conductor, Section, Outlier, Verifier).",
       "count_nouns": ["capability roles"],
       "check_enumerations": false,
       "unchecked_reason": "Members are multi-word phrases rendered as table rows in the home and as prose elsewhere. No reliable tight-run pattern, same as non_delegable."
+    },
+    {
+      "name": "ensemble_size",
+      "members": ["Solo", "Chamber", "Orchestra"],
+      "home": "doctrine/06-delegation.md",
+      "note": "How many voices a workspace runs (D-064). A third axis beside tier and scope, named to avoid colliding with the tier called Full.",
+      "allowed_subsets": []
+    },
+    {
+      "name": "exchange_kind",
+      "members": ["INQUIRY", "NOTICE", "REQUEST", "ANSWER"],
+      "home": "doctrine/06-delegation.md",
+      "note": "The four kinds of message one workspace's Maestro may send another (D-064).",
+      "allowed_subsets": []
     }
   ]
 }

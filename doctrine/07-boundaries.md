@@ -95,6 +95,23 @@ an inference from a similar channel.
 - **Off-software:** an address you have not been told to send to is not an address you may send to
   because it looks like the others.
 
+### B-8. An answer that leaves a workspace is egress, and the registry is its destination list.
+
+*Numbered B-8 and placed here because it belongs with egress. B-5 to B-7 were assigned first, and
+numbers are never reordered.* One workspace asking another is outbound traffic for the one that
+answers. The answering Maestro checks the answer against its own data boundary before it sends it,
+says what it withheld, and sends it only to a workspace listed in the registry (D-064,
+[`06-delegation.md`](06-delegation.md)).
+
+- **Attested:** VOC, by direct extension of B-1 and B-4 to the ensemble. *Single-authored; the
+  incident it guards against has not happened yet.*
+- **Why it needs saying:** a workspace holding tenants' or clients' records will be asked questions
+  by a workspace that has no right to them, and the question will be innocent. "How many testers have
+  sent feedback?" is answerable. "What did they say?" may not be. The asking Maestro can't know which
+  is which. Only the answering one can.
+- **Off-software:** a family member asks the nurse how the patient is doing. "Resting comfortably" is
+  an answer the nurse may give. The chart is not.
+
 ---
 
 ## II. Self-authored tooling

@@ -46,6 +46,9 @@ overrides a law.** If one appears to, the ritual is wrong and gets corrected —
 | "I never measured this number. Someone else did, some time ago." | [instrument-drift](instrument-drift.md) | Friction → Conflagration once a decision rested on it |
 | "Before I plan any of this — what can this environment actually do, and what am I allowed to do with it?" | [capability-interrogation](capability-interrogation.md) | Friction → Conflagration once a plan rests on a capability nobody measured |
 | "The small version worked. Do I commit to the large one?" | [scale-up-gate](scale-up-gate.md) | — |
+| "I've just been handed FOUNDING.md in a new sidebar group." | [FOUNDING, Part 1](../install/FOUNDING.md) | — |
+| "I need something another workspace knows." | [FOUNDING, Part 4 §5](../install/FOUNDING.md): an exchange, Maestro to Maestro | Friction → Conflagration if it's sent to anyone but that workspace's Maestro |
+| "This workspace needs a second session." | [scale-up-gate](scale-up-gate.md), then [FOUNDING, Part 4 §1](../install/FOUNDING.md) | Conflagration if sections run without a Conductor |
 
 ## Blast radius
 

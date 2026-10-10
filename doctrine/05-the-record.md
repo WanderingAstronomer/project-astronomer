@@ -126,9 +126,12 @@ A workable scheme, adapted from the source projects:
 | `F-<n>` | finding | findings |
 | `S-<n>` | source document taken in from outside | the source manifest |
 | `E-<n>` | outbound request — something that left the machine | the query log |
+| `X-<n>` | exchange — one question asked of another workspace, and its answer | the Maestro's exchange log |
+| `P-<n>` | operator permit — a forbidden edge opened for a while | the exchange log, and the registry row while live |
 
 Bare references resolve to the **local** ledger only. Cross-project references are namespaced
-(`VOC-D-4`). An item that splits keeps its ID and gains a suffix (`O-14a`, `O-14b`) rather than
+(`VOC-D-4`), and across workspaces the namespace is the workspace's registry slug (`VOC-X-12`,
+`AST-D-64`), so a bare ID always means this workspace's record ([`06-delegation.md`](06-delegation.md)). An item that splits keeps its ID and gains a suffix (`O-14a`, `O-14b`) rather than
 being renumbered. An item that migrates between buckets **keeps both addresses** — OD wrote
 `E4→B9` as a heading, which preserves every earlier reference while recording the movement.
 

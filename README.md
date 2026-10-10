@@ -102,9 +102,28 @@ evidence for every observation after it.
 | Understand the rules | [`doctrine/01-laws.md`](doctrine/01-laws.md) — start here, it is short |
 | Understand *why* those rules | [`doctrine/02-epistemics.md`](doctrine/02-epistemics.md) |
 | Know how heavy this is going to be | [`tiers/README.md`](tiers/README.md) |
+| **Found a new workspace** (hand this one file to a new session) | [`install/FOUNDING.md`](install/FOUNDING.md) |
+| Understand how sessions are organised | [`doctrine/06-delegation.md`](doctrine/06-delegation.md) — the ensemble |
 | Start a project on it | [`install/README.md`](install/README.md) |
 | See the receipts | [`provenance/lineage.md`](provenance/lineage.md) |
 | Know what governs this repo itself | [`CHARTER.md`](CHARTER.md) |
+
+## The ensemble
+
+From 2026-10-10 (D-064 to D-066), Astronomer is also how one operator runs many projects at once.
+**Every project is a workspace:** a folder, grounded in one sidebar group, with a **Maestro**
+presiding over it. The Maestro faces the operator. From Chamber size up, a **Conductor** faces the
+work, and **sections** do it. **Outliers** are threads the operator steers personally. Workspaces
+ask each other questions only Maestro to Maestro, as numbered exchanges. A question is never an
+order. One file founds a workspace: hand [`install/FOUNDING.md`](install/FOUNDING.md) to a new
+session in a new group, and it becomes that group's Maestro and records the first precedent. A
+gate in [`install/maestro/`](install/maestro/README.md) holds the boundary between workspaces.
+
+| Size | Voices |
+|---|---|
+| **Solo** | The Maestro alone |
+| **Chamber** | Maestro and a Conductor, with sections |
+| **Orchestra** | Chamber, plus a Lander, outliers and one-way sessions |
 
 ## Tiers
 
@@ -125,7 +144,8 @@ in the ledger.
 ## This repo runs on itself
 
 Astronomer has its own [`CHARTER.md`](CHARTER.md) and its own [`DECISIONS.md`](DECISIONS.md),
-maintained under its own rules. That is not a cute flourish — it is the only honest way to
+maintained under its own rules. It is also a workspace: **Maestro (project-astronomer)** presides
+over this folder (D-065, R6). That is not a cute flourish — it is the only honest way to
 find out whether the framework survives contact with a real project. Where it has been
 inconvenient, that is recorded rather than smoothed over.
 

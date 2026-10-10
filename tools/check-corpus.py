@@ -526,7 +526,10 @@ def parse_header(text: str):
         if ":" in line and not line.startswith(" "):
             key, _, val = line.partition(":")
             key, val = key.strip(), val.strip()
-            out[key] = val if val else []
+            # `owns: []` is the declared form for a document that owns nothing (a superseded
+            # brief). Read as a string it iterated as the two claims '[' and ']', so two superseded
+            # briefs collided under L-14 the day a second one existed (2026-10-10, D-064).
+            out[key] = [] if val in ("", "[]") else val
     return out
 
 

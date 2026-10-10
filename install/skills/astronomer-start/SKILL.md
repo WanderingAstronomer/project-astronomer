@@ -5,6 +5,10 @@ description: Stand up a new Astronomer project, or adopt the framework over work
 
 # Starting a project
 
+> **If this project is a new sidebar group's workspace,** the founding procedure is
+> `install/FOUNDING.md` in the Astronomer repository (D-064). Run that instead. It calls the steps
+> below where they apply, and also makes this session the group's Maestro.
+
 Purpose: get the declarations made before any work happens, so the first surprise has somewhere
 to land. This operationalizes ritual `starting-a-project` and runs once, before the loop's first
 `astronomer-observe` window opens.

@@ -11,11 +11,11 @@ last_verified: 2026-08-01
 
 # 01 — The Laws
 
-Eighteen laws, in six groups. They hold at every tier. [`tiers/`](../tiers/) changes which
+Nineteen laws, in six groups. They hold at every tier. [`tiers/`](../tiers/) changes which
 *artifacts* a project must produce; it never relaxes a law (CHARTER invariant 6, D-008).
 
-**Numbers are assignment order, not file order.** L-18 sits inside group IV because that is where it
-belongs, not at the end because that is where its number falls. The same rule the ledger states
+**Numbers are assignment order, not file order.** L-18 sits inside group IV and L-19 inside group I because that is where they
+belong, not at the end because that is where its number falls. The same rule the ledger states
 about itself applies here: renumbering to make the file scan tidily would invalidate every existing
 citation silently, which is worse than reading out of sequence.
 
@@ -65,7 +65,7 @@ The corpus used one word for both of these until D-039. They are now separated, 
 the eighteen sat in a gap the older wording did not define at all.
 
 **Binding** — a law holds at every tier, and a project charter cannot repeal one
-(`00-precedence.md`, CHARTER invariant 6). **All eighteen are binding.** That is what the `L-`
+(`00-precedence.md`, CHARTER invariant 6). **All nineteen are binding.** That is what the `L-`
 identifier means, and it is why the identifiers are stable and never renumbered.
 
 **Graded** — how much evidence stands behind it. This is a *separate* fact and it varies enormously:
@@ -77,7 +77,7 @@ identifier means, and it is why the identifiers are stable and never renumbered.
 | `practice` | one | One project's experience. Binding here, provisional as evidence, **and carrying a sunset** |
 
 `settled` — **L-3** (four sources); **L-1**, **L-6**, **L-9**, **L-13**, **L-16** (three each).
-`practice` — **L-11**, **L-18**. Everything else is `converging`.
+`practice` — **L-11**, **L-18**, **L-19**. Everything else is `converging`.
 
 Named rather than counted, deliberately. A count in prose here — *"six are settled"* — is a number
 that goes stale the first time a grade changes, and the registry is the live home for it (L-11,
@@ -140,6 +140,26 @@ Timestamps order the ledger; they do not resolve it.
 - **Off-software:** "I decided in June to do X" does not beat "I decided in March to do Y"
   unless the June entry says it is replacing the March one. Otherwise you have two live rules
   and will follow whichever you remember.
+
+### L-19. The voice that speaks to the operator does not direct the work, and only that voice speaks across workspaces.
+
+One party is the operator's interface: it carries rulings down and batched questions up. A different
+party controls the work: who does what, in what order, on which files. When one party does both,
+everything the work produces reaches the operator. And when a second workspace needs to know
+something, it asks the first workspace's interface, never its workers.
+
+- **Attested:** VOC. *Single-attested and provisional.* The discharge is
+  [`06-delegation.md`](06-delegation.md), which names the interface the Maestro and the controller
+  the Conductor (D-064).
+- **The scar:** one session acted as both the operator's interface and the controller of eight
+  others. Every question, landing and blocker from every session came through it to the operator,
+  who wrote *"orchestrate instead of scramble"* and split the role in two (VOC, 2026-10-09). The
+  older version of the same failure: a batching agent that every lane routed its questions through
+  never ran at all, *"heartbeat: never"*, and because the lanes kept checkpointing, the board read as
+  a live system rather than a stopped one.
+- **Off-software:** a family managing a parent's care names one person who talks to the doctors and
+  a different person who keeps the schedule of who visits when. The doctor's office calls the first
+  person, never the cousin on Tuesday's shift.
 
 ---
 
