@@ -27,4 +27,10 @@ workspace (`AST-X-<n>` from elsewhere). An incoming exchange is logged under the
   asked internally: none
   closed: [2026-10-10T06:28Z] no reply owed (NOTICE)
 [2026-10-10T06:28Z] X-2 CORRECTION (corrects the X-2 entry above): X-2 said the installed gate would block VOC's Conductor and sections from addressing other groups' Maestro or Conductor titles. That's wrong while VOC is unregistered, because ungoverned senders aren't held by that rule. A correction was sent the same minute.
+[2026-10-13T20:32Z] LIFE-X-4 INQUIRY in from Maestro (Lifestyle)
+  operator's words (as relayed): "You might want to message the other maestros to figure out what they've been up to." (2026-10-13)
+  question: work since 10-10; anything waiting on Andrew; schedule impact; whether the gate is installed
+  asked internally: none (answered from git log, settings.json and the registry)
+  answer: quiet since 10-10; nothing urgent waits on Andrew; the waterfall acceptance test is now runnable; the gate is installed  confidence: CONFIRMED  withheld: nothing
+  closed: [2026-10-13T20:32Z] ANSWER sent
 ```
