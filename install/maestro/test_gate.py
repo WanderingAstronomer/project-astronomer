@@ -299,6 +299,17 @@ class SameGroup(GateCase):
     def test_conductor_to_maestro_allowed(self):
         self.assertAllowed(self.send(VOC_CONDUCTOR, "Maestro (Vociferous Next)"))
 
+    def test_conductor_with_empty_hook_gets_field_hint(self):
+        # O-71: VOC's conductor.hook_session sat null for a week and every send was refused.
+        self.groups["VOC"]["conductor"]["hook_session"] = None
+        self.assertBlocked(self.send(VOC_CONDUCTOR, "Maestro (Vociferous Next)"),
+                           "conductor.hook_session", "is empty", "set it to c0nd0001-aaaa")
+
+    def test_conductor_with_stale_hook_gets_field_hint(self):
+        self.groups["VOC"]["conductor"]["hook_session"] = "0ld0ld00-aaaa"
+        self.assertBlocked(self.send(VOC_CONDUCTOR, "Maestro (Vociferous Next)"),
+                           "conductor.hook_session", "is stale")
+
     def test_maestro_to_member_allowed(self):
         self.assertAllowed(self.send(VOC_MAESTRO, "Section A"))
 

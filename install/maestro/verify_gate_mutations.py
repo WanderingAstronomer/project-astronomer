@@ -30,6 +30,9 @@ TESTS = os.path.join(HERE, "test_gate.py")
 
 # (name, target string in gate.py, replacement)
 MUTANTS = [
+    ("conductor hook_session hint dropped (O-71)",
+     '"conductor.hook_session in %s is %s; set it to %s."',
+     '"(hint removed %s %s %s)."'),
     ("unregistered workspaces not governed (pattern rule dropped)",
      '        if (m and s_group is not None and sr != "maestro"\n',
      '        if (False and m and s_group is not None and sr != "maestro"\n'),

@@ -1426,3 +1426,22 @@ unregistered group, because an unresolved target was allowed. It's closed by the
 and its own mutant. Two lessons: fail-open makes a crash look like a pass, and this shell's heredocs
 eat backslashes. `blocks-on` in D-064 is discharged for the gate. The two-workspace waterfall in
 `06-delegation.md` "Acceptance" is still owed, because only one workspace is registered.
+
+
+`[2026-10-17T09:05Z] D-068:` **Maestro's call: VOC-X-5's two lessons go into the doctrine, the founding file and
+the gate as clarifications, not new law.** Maestro (Vociferous Next) sent them as a NOTICE on its
+operator's words (*"We should send the astronomer lessons."*). A notice carries no authority
+(D-065 R2), so this entry is the receiving Maestro's own call, made within its delegation, which
+covers fixes that keep the corpus gate green. **Reverse this if wrong.** Four changes:
+
+- `install/FOUNDING.md`: Part 2 step 2 and Procedure 1 steps 5 and 6. The row is written at once,
+  a restart changes the id, and the channel is tested both ways.
+- `install/FOUNDING.md` Procedure 4: the Orchestra send budget.
+- `doctrine/06-delegation.md` Routing: "the controller's sends are budgeted, so prefer pull over
+  push".
+- `install/maestro/gate.py`: the same-group refusal names `conductor.hook_session`, says whether
+  it's empty or stale, and gives the id to write. Now 64 tests, and 20 of 20 mutants caught.
+
+Evidence: `O-71`, `O-72`. `caveat (owned):` the ten-send threshold is VOC's report, not a
+measurement made here. No law changes, and none is proposed until `O-71` recurs a third time
+(L-17).

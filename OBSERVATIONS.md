@@ -927,3 +927,50 @@ contain are genuinely unsubstantiated or merely derived — that is a reading ta
 and it is the difference between "61% true positive" and something lower. The
 `completion-claim-with-zero-tool-calls` rule's semantic correctness, which needs a different
 instrument entirely. And the whole calibration is one project, one operator, 714 turns.
+
+
+---
+
+## `2026-10-17` — two lessons from a 25-session ensemble, reported by its Maestro
+
+**Window:** exchange `VOC-X-5`, a NOTICE from Maestro (Vociferous Next), received 2026-10-17T09:05Z, plus this
+workspace's own registry row, checked the same minute. **Instrument:** the reporting Maestro's
+account (relayed, not re-measured here, except where marked).
+
+### `O-71` — a stale or missing `hook_session` silently cuts a Conductor off from its Maestro
+
+- **Observed (relayed).** In VOC, `conductor.hook_session` was null in the registry from 2026-10-10
+  to 2026-10-17. The gate therefore read the Conductor as a member and refused every
+  Conductor-to-Maestro send with "sections don't message the Maestro". The channel was down for a
+  week, and nothing announced it.
+- **Observed (measured here, 2026-10-17).** This workspace's own row still carried the Maestro's
+  pre-restart hook session (`604640a3…`). The session was restarted under `46855bbc…`. The same
+  defect class has now appeared twice in two workspaces. That's a pattern, not yet a mechanism
+  (L-17 escalates on the third).
+- **Confidence:** `CONFIRMED` for this workspace's row. `UNVERIFIED` for VOC's week, which was
+  reported and not re-derived.
+- **Response, short of a gate:**
+  - FOUNDING Part 2 and Procedure 1 now say a restart changes the id, that the row is written at
+    once, and that the channel is tested both ways.
+  - The gate's refusal now names the `conductor.hook_session` field and the session id to write.
+- **`next:`** a third instance gets a mechanism. For example, a SessionStart check that compares
+  the row with the live id, rather than another sentence.
+
+### `O-72` — the controller layer exhausts the app's cross-session send budget first
+
+- **Observed (relayed).** The desktop app pauses a session's outgoing cross-session messages after
+  roughly ten in a row with nothing typed by the operator in that session. No setting lifts it. A
+  Conductor routing about 20 sections hit it within minutes.
+- **Confidence:** `UNVERIFIED`. The threshold is VOC's estimate and has not been measured here.
+- **Response:** `06-delegation.md` now treats the controller's sends as budgeted and prefers pull
+  over push. FOUNDING's Orchestra procedure carries the design VOC adopted:
+  - gos only from the Conductor;
+  - seams talk directly;
+  - the Lander batches its landing reports;
+  - a paused session keeps an Outbox in its state file.
+- **Never route around the pause**, and never relay a paused session's messages. Both would be
+  laundering, by B-4 and the refusal rule in `06-delegation.md`.
+
+---
+
+`INTAKE CLOSED` · `2026-10-17T09:05Z` · **2 entries** (`O-71`, `O-72`).

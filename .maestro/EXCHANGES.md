@@ -33,4 +33,11 @@ workspace (`AST-X-<n>` from elsewhere). An incoming exchange is logged under the
   asked internally: none (answered from git log, settings.json and the registry)
   answer: quiet since 10-10; nothing urgent waits on Andrew; the waterfall acceptance test is now runnable; the gate is installed  confidence: CONFIRMED  withheld: nothing
   closed: [2026-10-13T20:32Z] ANSWER sent
+[2026-10-17T09:05Z] VOC-X-5 NOTICE in from Maestro (Vociferous Next)
+  operator's words (as relayed): "We should send the astronomer lessons." (10-17)
+  notice: (1) register the Conductor's hook_session at once and test both ways; (2) the app's cross-session send budget hits the controller first
+  asked internally: none
+  answer: none owed; absorbed as O-71, O-72 and D-068 (Maestro's call)  withheld: nothing
+  closed: [2026-10-17T09:05Z] no reply owed (NOTICE)
+[2026-10-17T09:05Z] housekeeping: AST.json maestro.hook_session refreshed 604640a3… → 46855bbc… after a restart (O-71, second instance)
 ```

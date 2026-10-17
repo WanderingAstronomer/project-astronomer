@@ -244,8 +244,12 @@ def evaluate(s_group, sr, sid, t, requested):
     same_group = s_group is tg
     if same_group:
         if sr == "member" and tr == "maestro" and tg["conductor"] is not None:
-            return ("send this to %s; sections don't message the Maestro."
-                    % tg["conductor"]["title"])
+            # O-71: a Conductor whose hook_session is missing or stale is read as a member and
+            # was silently cut off from its Maestro for a week. Name the field so it self-heals.
+            return ("send this to %s; sections don't message the Maestro. If you are %s, "
+                    "conductor.hook_session in %s is %s; set it to %s."
+                    % (tg["conductor"]["title"], tg["conductor"]["title"], tg["file"],
+                       "empty" if not tg["conductor"].get("hook_session") else "stale", sid))
         return None
 
     if sr == "maestro":

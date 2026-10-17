@@ -170,6 +170,23 @@ It sends one batched message, not a stream.
 The pages are the main channel. This is the operator-as-instrument rule below applied to
 attention: the scarce resource is not to be spent on narration.
 
+**The controller's sends are budgeted, so prefer pull over push.** At Orchestra size the
+controller layer is the first to run out of messages. VOC's Conductor, routing about 20 sections,
+hit the desktop app's pause on outgoing cross-session messages within minutes. The app pauses a
+session after roughly ten sends in a row with nothing typed by the operator (O-72). It's a safety
+guard. Never route around it, and never relay a paused session's messages for it.
+
+Design for the budget:
+
+- The Conductor sends **gos** and little else: one go per section, covering several queue items.
+- Answers, status and queues are **published** (the Board, state files) for sections to read.
+- Sections sharing a seam message each other and the Lander directly, without copying the
+  Conductor.
+- The Lander reports landings in one batch per round.
+
+The operator's own check-ins are what release a paused Conductor, which is one more reason the
+operator's attention is the scarcest resource in the ensemble.
+
 ---
 
 ## Exchanges

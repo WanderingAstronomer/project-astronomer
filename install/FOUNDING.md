@@ -151,9 +151,11 @@ At the start of every session, after compaction, and after a restart:
 1. **Re-measure.** Call `get_session` on `"self"`. Has your title, group or `cwd` changed? If your
    title isn't `Maestro (<Group>)`, you may be a fork. **A fork is not a Maestro.** It messages
    nobody but the operator until the operator renames it and files it.
-2. **Check your registry row.** Its `hook_session` must match your current hook session id. If the
-   gate ever blocks you with a message giving a session id, that's your current id. Update the row,
-   then retry.
+2. **Check your registry row.** Its `hook_session` must match your current hook session id: the
+   UUID in your scratchpad and transcript paths. **A restart changes it**, and the row doesn't
+   update itself. Update the row before you send anything. If the gate ever blocks you with a
+   message giving a session id, that's your current id. Update the row, then retry. Your
+   Conductor does the same for `conductor.hook_session`, and tells you so you can write it (O-71).
 3. **Re-read your own record before you believe your memory.** Read the ledger, the Board and the
    exchange log. What you last believed is `UNVERIFIED` until it's checked.
 4. **Look for open exchanges** in `EXCHANGES.md`. Any X-ID without a `closed:` line is still owed.
@@ -242,9 +244,12 @@ Rules:
 2. `{AGENT}` Write the Conductor's first message (Template G1) and put it on your page.
 3. `{OPERATOR'S HANDS}` The operator starts that session in this folder and group.
 4. `{AGENT}` The Conductor renames itself `Conductor (<Group>)` and opens the Board.
-5. `{AGENT}` Record the Conductor in your registry row (`title`, `session`, `hook_session`). Set
-   `size` to `Chamber`.
-6. `{AGENT}` From now on, every section talks to the Conductor. You stop directing work.
+5. `{AGENT}` Record the Conductor in your registry row (`title`, `session`, `hook_session`) **at
+   once**. Set `size` to `Chamber`. A Conductor whose `hook_session` is missing or stale looks like
+   a section to the gate, so every message it sends you is refused (O-71).
+6. `{AGENT}` **Test the channel both ways before relying on it.** You send the Conductor one
+   message, and it sends you one. Do the same whenever either session is restarted or replaced.
+7. `{AGENT}` From now on, every section talks to the Conductor. You stop directing work.
 
 ### 2. Start a section
 
@@ -261,7 +266,13 @@ operator archives the session. Remove it from the registry roster.
 
 ### 4. Promote to Orchestra
 
-Make a ledger entry. Add a Lander section. Add the page set (Console, Decisions, Session Briefs,
+Make a ledger entry. **Plan around the controller's send budget** (O-72): the desktop app
+pauses a session's outgoing cross-session messages after a run of roughly ten with nothing typed by
+the operator in that session. Never route around it, and never relay a paused session's messages
+for it. Design so the Conductor mostly *publishes* (the Board, state files) and sends only gos:
+sections that share a seam talk to each other and to the Lander directly, the Lander reports
+landings in one batch per round, and a paused session writes its unsent message to an Outbox in
+its own state file. Add a Lander section. Add the page set (Console, Decisions, Session Briefs,
 Board, Roadmap), built from markdown sources and republished to the same addresses. Add outliers
 wherever the operator wants to steer a thread personally.
 
