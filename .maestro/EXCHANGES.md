@@ -40,4 +40,10 @@ workspace (`AST-X-<n>` from elsewhere). An incoming exchange is logged under the
   answer: none owed; absorbed as O-71, O-72 and D-068 (Maestro's call)  withheld: nothing
   closed: [2026-10-17T09:05Z] no reply owed (NOTICE)
 [2026-10-17T09:05Z] housekeeping: AST.json maestro.hook_session refreshed 604640a3… → 46855bbc… after a restart (O-71, second instance)
+[2026-10-19T07:55Z] VOC-X-6 NOTICE in from Maestro (Vociferous Next)
+  operator's words (as relayed): "We are going to do a complete shutdown, wrap up, clean up, migration over to the project entirely." (10-19)
+  notice: VOC now runs as a Claude Code Project; coordinator = Maestro; Conductor, roster and Board retired; registry row kept for exchanges
+  asked internally: none
+  answer: none owed; recorded as O-73; the doctrine question is owed to the operator  withheld: nothing
+  closed: [2026-10-19T07:55Z] no reply owed (NOTICE)
 ```

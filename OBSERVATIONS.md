@@ -974,3 +974,45 @@ account (relayed, not re-measured here, except where marked).
 ---
 
 `INTAKE CLOSED` · `2026-10-17T09:05Z` · **2 entries** (`O-71`, `O-72`).
+
+
+---
+
+## `2026-10-19` — the largest workspace moved into a native project container
+
+**Window:** exchange `VOC-X-6`, a NOTICE from Maestro (Vociferous Next), received 2026-10-19T07:55Z.
+**Instrument:** the reporting Maestro's account, relayed and not re-measured here.
+
+### `O-73` — Claude Code Projects may be the native shape of Orchestra size
+
+- **Observed (relayed).** VOC moved its whole workspace into a Claude Code Project (beta), on the
+  operator's words: *"We are going to do a complete shutdown, wrap up, clean up, migration over to
+  the project entirely."* What the Project provides:
+  - a coordinator conversation plus threads, run locally through Remote Control in one
+    pre-approved folder;
+  - project instructions, up to 16,000 characters;
+  - a goal, up to 8,000 characters;
+  - auto memory, an Overview pane, routines and mobile steering.
+
+  VOC's coordinator is now its Maestro. Its Conductor, roster and Board are retired, because threads
+  report to the coordinator natively. VOC's registry row stays, for exchanges.
+- **What it would retire, if it holds.** The send budget (`O-72`) and re-registering the hook
+  session id after a restart (`O-71`) stop mattering for traffic inside the workspace. They still
+  matter for exchanges between workspaces.
+- **Limits reported:**
+  - existing local sessions can't be moved in, and are recreated as threads from state files;
+  - local threads get the project instructions but not the project memory;
+  - Projects are single-user and in beta.
+
+  The Project's "Debug access" setting can grant another Project read-only access, which is a
+  candidate channel for exchanges.
+- **Confidence:** `UNVERIFIED`. One workspace, a beta product, two days of use, nothing re-measured
+  here.
+- **Owed to the operator, not decided here:** whether `06-delegation.md` should name a Project as
+  the reference shape of Orchestra (the coordinator as Maestro, threads as sections, no separate
+  Conductor), and what L-19 means when the platform supplies the controller. That's a doctrine
+  change, so it isn't a Maestro's call.
+
+---
+
+`INTAKE CLOSED` · `2026-10-19T07:55Z` · **1 entry** (`O-73`).
